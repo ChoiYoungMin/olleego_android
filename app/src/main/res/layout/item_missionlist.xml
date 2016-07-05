@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/mission_img"
+        android:src="@drawable/kakao_default_profile_image"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="5dp"
+        />
+
+
+    <TextView
+        android:layout_marginTop="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="쉽게 따라하는 초보용 미션 프로그램"
+        android:id="@+id/mission_title"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/mission_img" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="타겟 : "
+        android:id="@+id/textView5"
+        android:textColor="@android:color/black"
+        android:textSize="11sp"
+        android:layout_below="@+id/ratingBar2"
+        android:layout_alignStart="@+id/mission_title"
+        android:layout_marginTop="9dp" />
+
+    <TextView
+        android:textSize="11sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text=" 복근 , 하체 , 상체"
+        android:id="@+id/mission_target"
+        android:layout_alignBaseline="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_toEndOf="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/gym_pt12"
+        android:text=" "
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/mission_img"
+        android:layout_alignStart="@+id/textView5" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar2"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_below="@+id/mission_title"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(30)"
+        android:id="@+id/textView6"
+        android:layout_alignTop="@+id/ratingBar2"
+        android:layout_toEndOf="@+id/ratingBar2" />
+
+</RelativeLayout>

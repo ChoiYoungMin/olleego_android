@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edn.olleego.R;
-import com.edn.olleego.activity.MainActivity;
+import com.edn.olleego.activity.Main3Activity;
 import com.edn.olleego.activity.signup.SignupActivity;
 
 import butterknife.ButterKnife;
@@ -36,15 +36,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.email_signup)
-    void email_signup_cclick() {
+    void email_signup_click() {
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
         startActivity(intent);
     }
 
     @OnClick(R.id.free)
     void free_click() {
-        //Intent intent = new Intent(LoginActivity.this, DiaryActivity.class);
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        //Intent intent = new Intent(LoginActivity.this, DiaryActivity.class); 다이어리 기능 구현
+        //Intent intent = new Intent(LoginActivity.this, MainActivity.class); 메인부분
+
+        //Intent intent = new Intent(LoginActivity.this, Main2Activity.class); 트래커
+        Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
         startActivity(intent);
     }
 

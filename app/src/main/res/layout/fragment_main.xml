@@ -19,6 +19,7 @@
                 android:src="@drawable/yy"/>
 
             <ImageView
+                android:id="@+id/mission"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:src="@drawable/yy2"/>

@@ -17,11 +17,11 @@ public class GlobalFont  extends Application {
     public void onCreate() {
         super.onCreate();
         Typekit.getInstance()
-                // .addNormal(Typekit.createFromAsset(this, "KoPubBatangMedium.ttf"))
-                // .addBold(Typekit.createFromAsset(this, "KoPubBatangBold.ttf"));
+                .addNormal(Typekit.createFromAsset(this, "KoPubBatangLight.ttf"))
+                .addBold(Typekit.createFromAsset(this, "KoPubBatangBold.ttf"));
 
-                .addNormal(Typekit.createFromAsset(this, "NanumGothic.ttf"))
-                .addBold(Typekit.createFromAsset(this, "NanumGothicBold.ttf"));
+                //.addNormal(Typekit.createFromAsset(this, "NanumGothic.ttf"))
+                //.addBold(Typekit.createFromAsset(this, "NanumGothicBold.ttf"));
     }
 
     @Override

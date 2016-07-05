@@ -77,8 +77,8 @@ public class OlleegGym_Adapter extends BaseAdapter {
         return convertView;
     }
 
-    public void add(int img, String test1, String test2, String test3, String test4) {
-        OlleegoGym_Data olleegoGym_data = new OlleegoGym_Data(img, test1, test2, test3, test4);
+    public void add(int mImg, String gym_type, String gym_name, String gym_pay, String gym_pt) {
+        OlleegoGym_Data olleegoGym_data = new OlleegoGym_Data(mImg, gym_type, gym_name, gym_pay, gym_pt);
 
         mGymData.add(olleegoGym_data);
     }
