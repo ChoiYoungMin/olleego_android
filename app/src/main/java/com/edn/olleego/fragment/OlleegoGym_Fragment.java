@@ -66,7 +66,7 @@ public class OlleegoGym_Fragment extends Fragment {
                 Fragment aa = new MissionDetailFragment();
 
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.mysql, aa);
+                transaction.replace(R.id.content_main, aa);
                 transaction.addToBackStack(null);
                 transaction.commit();
 

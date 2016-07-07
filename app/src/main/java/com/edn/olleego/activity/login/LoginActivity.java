@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         //Intent intent = new Intent(LoginActivity.this, Main2Activity.class); 트래커
         Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
         startActivity(intent);
+        finish();
     }
 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single" android:id="@+id/test">
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
@@ -26,7 +26,7 @@
         android:id="@+id/nav_manage21"
         android:icon="@drawable/ic_menu_manage"
         android:title="운동영상" />
-    </group>
+
 
     <item android:title="Communicate">
         <menu>
@@ -48,5 +48,5 @@
                 android:title="공지사항" />
         </menu>
     </item>
-
+    </group>
 </menu>

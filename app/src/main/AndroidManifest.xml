@@ -44,10 +44,9 @@
 
         <activity android:name=".activity.gym.GymDetailActivity" />
         <activity android:name=".activity.mission.MissionActivity" />
-        <activity android:name=".activity.Main2Activity" />
+        <activity android:name=".activity.Main2Activity"/>
         <activity
             android:name=".activity.Main3Activity"
-            android:label="@string/title_activity_main3"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

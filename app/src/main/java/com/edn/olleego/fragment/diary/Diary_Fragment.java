@@ -4,6 +4,8 @@ package com.edn.olleego.fragment.diary;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -335,6 +337,12 @@ public class Diary_Fragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main3, menu);
+    }
+
     public static OkHttpClient.Builder configureClient(final OkHttpClient.Builder builder) {
         final TrustManager[] certs = new TrustManager[]{new X509TrustManager() {
 
@@ -378,6 +386,7 @@ public class Diary_Fragment extends Fragment {
 
         return builder;
     }
+
 
 
 }

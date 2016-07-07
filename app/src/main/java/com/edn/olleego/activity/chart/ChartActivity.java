@@ -64,6 +64,8 @@ public class ChartActivity extends AppCompatActivity {
         // dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
         data.setGroupSpace(0);
 
+
+
         barChart.setData(data);
         barChart.animateY(2000);
         barChart.setDrawBarShadow(false);
