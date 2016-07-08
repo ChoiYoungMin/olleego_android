@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edn.olleego.R;
-import com.edn.olleego.activity.chart.*;
 import com.edn.olleego.activity.chart.MyYAxisValueFormatter;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -44,7 +43,11 @@ public class ChartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_chart, container, false);
+
+
         ButterKnife.bind(this, rootView);
+
+
 
         ArrayList<String> labels = new ArrayList<String>();
         labels.add("맨몸");

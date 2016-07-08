@@ -1,16 +1,11 @@
 package com.edn.olleego.activity;
 
-import android.app.ActionBar;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,11 +16,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
-import com.edn.olleego.activity.diary.DiaryActivity;
-import com.edn.olleego.activity.mission.MissionActivity;
+import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.common.BackPressCloseHandler;
 import com.edn.olleego.fragment.Home_Fragment;
-import com.edn.olleego.fragment.Mission.MissionDetailFragment;
+import com.edn.olleego.fragment.Mission.MissionFragment;
 import com.edn.olleego.fragment.OlleegoGym_Fragment;
 import com.edn.olleego.fragment.chart.ChartFragment;
 import com.edn.olleego.fragment.diary.Diary_Fragment;
@@ -40,12 +34,11 @@ public class Main3Activity extends AppCompatActivity
      OlleegoGym_Fragment GymFramgment;
      Home_Fragment MainFramgment;
      Diary_Fragment DiaryFramgment;
+    MissionFragment MissionFragment;
      com.edn.olleego.fragment.chart.ChartFragment ChartFragment;
     android.support.v4.app.FragmentTransaction transaction;
 
     Fragment fragment;
-
-    boolean move;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -77,8 +70,11 @@ public class Main3Activity extends AppCompatActivity
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+
+
+
         backPressCloseHandler = new BackPressCloseHandler(this);
-        move = false;
+
 
 
 
@@ -92,14 +88,18 @@ public class Main3Activity extends AppCompatActivity
         transaction = getSupportFragmentManager().beginTransaction();
 
 
-        transaction.add(R.id.content_main, MainFramgment);
+        transaction.add(R.id.content_main, MainFramgment,"main");
         transaction.addToBackStack(null);
         transaction.commit();
 
         setCustomActionbar();
 
 
+
+
+
     }
+
 
     @OnClick(R.id.toolbar_home)
     void toolbar_home_click() {
@@ -110,9 +110,9 @@ public class Main3Activity extends AppCompatActivity
     void toolbar_home2_click() {
         toolbar_home2.setVisibility(View.GONE);
         toolbar_home.setVisibility(View.VISIBLE);
+        toolbar_home22.setVisibility(View.VISIBLE);
 
         onBackPressed();
-        move = false;
     }
 
     @OnClick(R.id.toolbar_home22)
@@ -150,6 +150,7 @@ public class Main3Activity extends AppCompatActivity
         MainFramgment = new Home_Fragment();
         DiaryFramgment = new Diary_Fragment();
         ChartFragment = new ChartFragment();
+        MissionFragment = new MissionFragment();
     }
 
     @Override
@@ -163,9 +164,14 @@ public class Main3Activity extends AppCompatActivity
             drawer_layout.closeDrawer(GravityCompat.END);
         }
 
-        else if(move == false) {
+
+        final FragmentManager fm=this.getSupportFragmentManager();
+        final android.support.v4.app.Fragment fragment=fm.findFragmentByTag("main");
+
+        if(fragment != null && fragment.isVisible()){
             backPressCloseHandler.onBackPressed();
-        } else {
+        }
+        else{
             toolbar_home2.setVisibility(View.GONE);
             toolbar_home.setVisibility(View.VISIBLE);
             toolbar_home22.setVisibility(View.VISIBLE);
@@ -204,23 +210,34 @@ public class Main3Activity extends AppCompatActivity
         transaction.setCustomAnimations(R.anim.slide_in_left, 0);
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        actionbar_back(id);
 
-
-        //nav_view.getMenu().setGroupCheckable(R.id.test, false, true);
-
-        if (id == R.id.nav_gallery2) {
-            transaction.replace(R.id.content_main, ChartFragment);
-        }else if (id == R.id.nav_gallery) {
-            transaction.replace(R.id.content_main, DiaryFramgment);
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        // 오른쪽 메뉴
+        if(id == R.id.right1) {
             transaction.replace(R.id.content_main, GymFramgment);
-        } else if (id == R.id.nav_share) {
-
+        } else if(id == R.id.right2) {
+            Toast.makeText(this, "제휴 센터 지도", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if(id == R.id.right3) {
+            Toast.makeText(this, "My 센터", Toast.LENGTH_SHORT).show();
+            return true;
         }
 
+
+
+        if (id == R.id.left_menu_chart) {
+            transaction.replace(R.id.content_main, ChartFragment);
+        }else if (id == R.id.left_menu_diary) {
+            transaction.replace(R.id.content_main, DiaryFramgment);
+        } else if (id == R.id.left_menu_mission) {
+            transaction.replace(R.id.content_main, MissionFragment);
+        } else if (id == R.id.left_menu_video) {
+            return true;
+        } else if (id == R.id.left_menu_notice) {
+            return true;
+        }
+
+
+        actionbar_back(id);
         transaction.addToBackStack(null);
         transaction.commit();
 
@@ -247,14 +264,11 @@ public class Main3Activity extends AppCompatActivity
 
 
 
-        Log.e("dd", String.valueOf(id));
-
-        if (id == R.id.nav_camera) {
+        if (id == R.id.left_menu_home) {
 
             toolbar_home2.setVisibility(View.GONE);
             toolbar_home.setVisibility(View.VISIBLE);
             toolbar_home22.setVisibility(View.VISIBLE);
-            move = false;
 
         } else {
 
@@ -262,7 +276,6 @@ public class Main3Activity extends AppCompatActivity
             toolbar_home.setVisibility(View.GONE);
             toolbar_home22.setVisibility(View.GONE);
 
-            move = true;
         }
     }
 

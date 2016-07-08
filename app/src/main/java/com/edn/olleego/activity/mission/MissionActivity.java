@@ -32,7 +32,7 @@ public class MissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mission);
         ButterKnife.bind(this);
-
+/*
         missionAdapter = new Mission_Adapter(this);
         mListView.setAdapter(missionAdapter);
 
@@ -57,7 +57,7 @@ public class MissionActivity extends AppCompatActivity {
                 transaction.commit();
             }
         });
-
+*/
     }
 
 

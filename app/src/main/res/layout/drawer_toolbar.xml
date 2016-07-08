@@ -24,7 +24,7 @@
             android:id="@+id/toolbar_home2"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@android:drawable/ic_delete"
+            android:background="@drawable/calendar_prev"
             android:visibility="gone"
             />
     <LinearLayout
@@ -38,7 +38,7 @@
             android:id="@+id/toolbar_home22"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@android:drawable/btn_star_big_on"
+            android:background="@drawable/birth_btn"
 
 
             />

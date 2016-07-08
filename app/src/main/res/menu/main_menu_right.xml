@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" android:id="@+id/test">
+        <item
+            android:id="@+id/right1"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="제휴 센터 리스트" />
+        <item
+            android:id="@+id/right2"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="제휴 센터 지도" />
+        <item
+            android:id="@+id/right3"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="My 센터" />
+
+    </group>
+</menu>

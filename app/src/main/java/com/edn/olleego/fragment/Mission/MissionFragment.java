@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.edn.olleego.R;
@@ -37,18 +38,44 @@ public class MissionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_olleego_gym_, container, false);
+
+
+        View rootView = inflater.inflate(R.layout.fragment_mission, container, false);
 
         mListView = (ListView)rootView.findViewById(R.id.mission_list);
 
-        missionAdapter = new Mission_Adapter(getContext());
+        missionAdapter = new Mission_Adapter(inflater);
+
+
+
         mListView.setAdapter(missionAdapter);
 
         missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 초보용 미션 프로그램", "복근 , 하체 , 상체");
 
         missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 초보용 미션 프로그램", "복근 , 하체 , 상체");
+
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                fragment = new MissionDetailFragment();
+                MissionDetailFragment missionDetailFragment = new MissionDetailFragment();
+
+
+
+                android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+
+
+                transaction.replace(R.id.content_main, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mission, container, false);
+        return rootView;
     }
 
 }

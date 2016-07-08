@@ -35,7 +35,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_left_header"
-        app:menu="@menu/activity_main3_drawer" />
+        app:menu="@menu/main_menu_left" />
 
 
 
@@ -47,7 +47,7 @@
             android:layout_gravity="end"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/drawer_right_header"
-            app:menu="@menu/activity_main3_drawer" />
+            app:menu="@menu/main_menu_right" />
 
 
 

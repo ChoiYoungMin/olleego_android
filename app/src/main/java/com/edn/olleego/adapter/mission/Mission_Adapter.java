@@ -19,14 +19,14 @@ import java.util.ArrayList;
  */
 public class Mission_Adapter extends BaseAdapter{
 
+    private final LayoutInflater inflater;
     private Context context = null;
     private ArrayList<Mission_Data> mission_data = new ArrayList<Mission_Data>();
 
-    public Mission_Adapter(Context context) {
+    public Mission_Adapter(LayoutInflater inflater) {
         super();
-        this.context = context;
+        this.inflater = inflater;
     }
-
 
 
     @Override
@@ -51,7 +51,6 @@ public class Mission_Adapter extends BaseAdapter{
 
         if(convertView == null) {
 
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_missionlist, null);
 
             holder = new Mission_ViewHolder(convertView);
@@ -63,6 +62,11 @@ public class Mission_Adapter extends BaseAdapter{
 
 
         Mission_Data gymDatas = mission_data.get(position);
+
+        holder.mImg.setImageResource(gymDatas.mImg);
+        holder.mTitle.setText(gymDatas.mTitle);
+        holder.mTarget.setText(gymDatas.mTarget);
+
 
 
         return convertView;

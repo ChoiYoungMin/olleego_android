@@ -21,19 +21,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="홍길동"
+        android:text="(로그인)"
+        android:textStyle="bold"
         android:id="@+id/textView17"
-        android:layout_marginBottom="15dp"
-        android:layout_above="@+id/textView18"
-        android:layout_alignStart="@+id/textView18" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="70,500 P"
-        android:id="@+id/textView18"
-        android:layout_marginStart="22dp"
-        android:layout_alignBottom="@+id/imageView16"
+        android:textSize="18sp"
+        android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/imageView16"
-        android:layout_marginBottom="22dp" />
+        android:layout_marginStart="25dp" />
 </RelativeLayout>

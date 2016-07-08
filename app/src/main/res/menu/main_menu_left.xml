@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" android:id="@+id/test">
+        <item
+            android:id="@+id/left_menu_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="HOME" />
+        <item
+            android:id="@+id/left_menu_chart"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="건강리포트" />
+        <item
+            android:id="@+id/left_menu_diary"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="건강일기" />
+        <item
+            android:id="@+id/left_menu_mission"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="올리고 미션" />
+        <item
+            android:id="@+id/left_menu_video"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="운동영상" />
+
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/left_menu_notice"
+                android:icon="@drawable/ic_menu_share"
+                android:title="공지사항" />
+        </menu>
+    </item>
+    </group>
+</menu>
