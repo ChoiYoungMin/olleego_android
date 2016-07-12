@@ -1,3 +1,5 @@
+
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,6 +13,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/main_login_no"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="#f2f2f2"
@@ -30,12 +33,51 @@
                    android:layout_marginBottom="18dp" />
 
                 <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(아이콘) 로그인"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/button2" />
+
+
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(아이콘) 로그인"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/button2" />
+                    android:text="로그아웃"
+                    android:id="@+id/button22"
+                    android:layout_alignTop="@+id/button2"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/main_login_ok_type1"
+                android:layout_width="match_parent"
+                android:layout_height="113dp"
+                android:background="#f2f2f2"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="키, 체중 등 건강정보를 입력 하고\n건강리포트를 받아보세요!"
+                    android:id="@+id/textView22"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/button3"
+                    android:layout_marginEnd="22dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+ 건강정보"
+                    android:layout_marginEnd="15dp"
+                    android:id="@+id/button3"
+                    android:layout_alignTop="@+id/textView22"
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 
@@ -66,7 +108,7 @@
                         android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
-                        android:id="@+id/imageView18"
+                        android:id="@+id/main_custom_mission"
                         android:background="@drawable/bbb"
                         android:layout_below="@+id/imageView19"
                         android:layout_alignStart="@+id/imageView19" />
@@ -137,7 +179,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:background="@drawable/kakaoaccount_icon"/>
+                    android:background="@drawable/test"/>
 
                 <View
                     android:layout_width="1dp"
@@ -152,33 +194,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:background="@android:color/black"/>
                 <ImageView
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@drawable/kakaostory_icon"/>
+                    android:layout_height="100dp"
+                    android:background="@drawable/test1"/>
 
                 <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:background="@android:color/black"/>
                 <ImageView
 
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@drawable/kakao_account_logo"/>
-
+                    android:layout_height="100dp"
+                    android:background="@drawable/test2"/>
                 <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:background="@android:color/black"/>
+
             </LinearLayout>
 
             <View

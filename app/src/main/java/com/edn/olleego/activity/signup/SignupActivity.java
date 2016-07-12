@@ -3,6 +3,7 @@ package com.edn.olleego.activity.signup;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
+import com.edn.olleego.activity.Main3Activity;
 import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.common.ServerInfo;
@@ -73,6 +75,7 @@ public class SignupActivity extends FragmentActivity {
     @BindView(R.id.sex_w)
     ImageView sex_w;
 
+    SharedPreferences olleego_SP;
 
 
     boolean check_m, check_w;
@@ -189,8 +192,14 @@ public class SignupActivity extends FragmentActivity {
 
                             Toast.makeText(getApplicationContext(), "회원가입 완료!", Toast.LENGTH_SHORT).show();
 
+                            olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = olleego_SP.edit();
+                            editor.putString("login_chk", "true");
+                            editor.putString("login_email", email.getText().toString());
+                            editor.putString("login_token", forgot_model_.getToken());
+                            editor.commit();
 
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
                             intent.putExtra("sort", "signin");
                             intent.putExtra("userEmail", email.getText().toString());
                             intent.putExtra("SNS_type", "email_login");

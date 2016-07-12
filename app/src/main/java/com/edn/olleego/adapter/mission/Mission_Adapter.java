@@ -77,4 +77,10 @@ public class Mission_Adapter extends BaseAdapter{
 
         mission_data.add(missionData);
     }
+
+    public void ItemRemove() {
+        mission_data.clear();
+    }
+
+
 }

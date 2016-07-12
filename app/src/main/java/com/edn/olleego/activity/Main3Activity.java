@@ -1,7 +1,9 @@
 package com.edn.olleego.activity;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +25,7 @@ import com.edn.olleego.fragment.Mission.MissionFragment;
 import com.edn.olleego.fragment.OlleegoGym_Fragment;
 import com.edn.olleego.fragment.chart.ChartFragment;
 import com.edn.olleego.fragment.diary.Diary_Fragment;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,15 +43,10 @@ public class Main3Activity extends AppCompatActivity
 
     Fragment fragment;
 
+
+
     private BackPressCloseHandler backPressCloseHandler;
 
-
-    @BindView(R.id.toolbar_home)
-    ImageView toolbar_home;
-    @BindView(R.id.toolbar_home2)
-    ImageView toolbar_home2;
-    @BindView(R.id.toolbar_home22)
-    ImageView toolbar_home22;
 
     @BindView(R.id.nav_view)
     NavigationView nav_view;
@@ -62,7 +60,8 @@ public class Main3Activity extends AppCompatActivity
     Toolbar drawer_toolbar;
 
 
-
+    int login_chk;
+    SharedPreferences olleego_SP;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,24 +69,15 @@ public class Main3Activity extends AppCompatActivity
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         ButterKnife.bind(this);
-
-
-
         backPressCloseHandler = new BackPressCloseHandler(this);
-
-
-
-
         drawer_layout.setFitsSystemWindows(true);
         nav_view.setNavigationItemSelectedListener(this);
         nav_view2.setNavigationItemSelectedListener(this);
-
+        login_chk = 0;
 
         Init_Framgment();
 
         transaction = getSupportFragmentManager().beginTransaction();
-
-
         transaction.add(R.id.content_main, MainFramgment,"main");
         transaction.addToBackStack(null);
         transaction.commit();
@@ -95,28 +85,23 @@ public class Main3Activity extends AppCompatActivity
         setCustomActionbar();
 
 
-
-
-
     }
 
 
-    @OnClick(R.id.toolbar_home)
-    void toolbar_home_click() {
+    @OnClick(R.id.toolbar_left_menu)
+    void toolbar_left_menu_click() {
         drawer_layout.openDrawer(GravityCompat.START);
     }
 
-    @OnClick(R.id.toolbar_home2)
-    void toolbar_home2_click() {
-        toolbar_home2.setVisibility(View.GONE);
-        toolbar_home.setVisibility(View.VISIBLE);
-        toolbar_home22.setVisibility(View.VISIBLE);
+    @OnClick(R.id.toolbar_back)
+    void toolbar_back_click() {
+
 
         onBackPressed();
     }
 
-    @OnClick(R.id.toolbar_home22)
-    void toolbar_home22_click() {
+    @OnClick(R.id.toolbar_right_menu)
+    void toolbar_right_menu_click() {
 
         drawer_layout.openDrawer(GravityCompat.END);
     }
@@ -124,8 +109,6 @@ public class Main3Activity extends AppCompatActivity
 
 
     private void setCustomActionbar() {
-
-
         drawer_toolbar.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(drawer_toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -135,9 +118,6 @@ public class Main3Activity extends AppCompatActivity
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
-
 
     }
 
@@ -151,6 +131,11 @@ public class Main3Activity extends AppCompatActivity
         DiaryFramgment = new Diary_Fragment();
         ChartFragment = new ChartFragment();
         MissionFragment = new MissionFragment();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
     @Override
@@ -172,9 +157,12 @@ public class Main3Activity extends AppCompatActivity
             backPressCloseHandler.onBackPressed();
         }
         else{
+
+            /*
             toolbar_home2.setVisibility(View.GONE);
             toolbar_home.setVisibility(View.VISIBLE);
             toolbar_home22.setVisibility(View.VISIBLE);
+            */
 
             super.onBackPressed();
         }
@@ -188,7 +176,35 @@ public class Main3Activity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
 
+        if(login_chk == 0) {
+
+            findViewById(R.id.login_no_left).setVisibility(View.GONE);
+            findViewById(R.id.login_no_right).setVisibility(View.GONE);
+            findViewById(R.id.login_ok_right).setVisibility(View.GONE);
+            findViewById(R.id.login_ok_left).setVisibility(View.GONE);
+
+            if (olleego_SP.getString("login_chk", "").equals("true")) {
+                findViewById(R.id.login_ok_left).setVisibility(View.VISIBLE);
+                findViewById(R.id.login_ok_right).setVisibility(View.VISIBLE);
+                Toast.makeText(getApplicationContext(), "로그인중", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+            // 비로그인 상태
+            else {
+                findViewById(R.id.login_no_left).setVisibility(View.VISIBLE);
+                findViewById(R.id.login_no_right).setVisibility(View.VISIBLE);
+                Toast.makeText(getApplicationContext(), "비로그인중", Toast.LENGTH_SHORT).show();
+
+
+            }
+        } else {
+
+            return true;
+        }
         return true;
     }
 
@@ -205,6 +221,10 @@ public class Main3Activity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+
+
+
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         transaction.setCustomAnimations(R.anim.slide_in_left, 0);
@@ -233,51 +253,29 @@ public class Main3Activity extends AppCompatActivity
         } else if (id == R.id.left_menu_video) {
             return true;
         } else if (id == R.id.left_menu_notice) {
+            SharedPreferences.Editor editor = olleego_SP.edit();
+            //editor.remove("login_chk");
+            editor.clear();
+            editor.commit();
             return true;
         }
 
-
-        actionbar_back(id);
         transaction.addToBackStack(null);
         transaction.commit();
-
-
-
-
-
-
-
 
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START);
 
         }
+
         else if (drawer_layout.isDrawerOpen(GravityCompat.END)) {
             drawer_layout.closeDrawer(GravityCompat.END);
         }
+
         return true;
     }
 
 
-
-    public void actionbar_back(int id) {
-
-
-
-        if (id == R.id.left_menu_home) {
-
-            toolbar_home2.setVisibility(View.GONE);
-            toolbar_home.setVisibility(View.VISIBLE);
-            toolbar_home22.setVisibility(View.VISIBLE);
-
-        } else {
-
-            toolbar_home2.setVisibility(View.VISIBLE);
-            toolbar_home.setVisibility(View.GONE);
-            toolbar_home22.setVisibility(View.GONE);
-
-        }
-    }
 
 
 }

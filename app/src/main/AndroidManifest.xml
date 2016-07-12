@@ -20,9 +20,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.login.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activity.diary.DiaryActivity" />
         <activity
             android:name=".activity.signup.SignupActivity"
@@ -40,7 +38,7 @@
 
         <activity android:name=".activity.gym.GymDetailActivity" />
         <activity android:name=".activity.mission.MissionActivity" />
-        <activity android:name=".activity.Main2Activity"/>
+        <activity android:name=".activity.Main2Activity" />
         <activity
             android:name=".activity.Main3Activity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -50,6 +48,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.mission.MissionCustomized1Activity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

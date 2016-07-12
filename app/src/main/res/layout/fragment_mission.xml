@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.edn.olleego.activity.mission.MissionActivity">
 
 
@@ -10,29 +11,116 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="@android:color/darker_gray"
+        android:background="#f2f2f2"
         android:gravity="center"
         android:id="@+id/linearLayout2">
 
+        <LinearLayout
+            android:id="@+id/mission_all_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@drawable/border">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mission_all"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:text="전체" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mission_diet_layout"
+        android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="맞춤형 미션" />
+            android:id="@+id/mission_diet"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            android:text="다이어트" />
+         </LinearLayout>
 
 
+        <LinearLayout
+            android:id="@+id/mission_pilates_layout"
+        android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+        android:layout_weight="1">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mtest"
-            android:layout_marginLeft="100dp"
-            android:text="카테고리" />
+            android:layout_weight="1"
+            android:id="@+id/mission_pilates"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:text="필라테스" />
+
+        </LinearLayout>
+
+
+         <LinearLayout
+             android:id="@+id/mission_health_layout"
+        android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:gravity="center"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/mission_health"
+            android:text="건강관리" />
+
+         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+
+        android:layout_below="@+id/linearLayout2">
+        <RadioGroup
+            android:layout_marginRight="5dp"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="별점 순"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사용자 순"/>
+        </RadioGroup>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linearLayout2">
+        android:layout_below="@+id/test">
 
 
         <ListView

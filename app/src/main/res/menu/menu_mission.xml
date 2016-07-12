@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.edn.olleego.activity.MainActivity">
 
+
     <item
-        android:id="@+id/action_search"
-        android:title="fdf"
+        android:id="@+id/toolbar_mission_catagory"
+        android:title="카테고리"
         android:orderInCategory="100"
-        android:icon="@android:drawable/btn_star_big_on"
-        app:showAsAction="ifRoom"/>
-+
+        android:icon="@drawable/com_facebook_close"
+        app:showAsAction="always"/>
 </menu>

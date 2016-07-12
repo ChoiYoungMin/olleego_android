@@ -23,6 +23,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, Main3Activity.class);
+        startActivity(intent);
+        finish();
+    }
 
     /**
      *  2016-06-15 최영민
@@ -41,15 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @OnClick(R.id.free)
-    void free_click() {
-        //Intent intent = new Intent(LoginActivity.this, DiaryActivity.class); 다이어리 기능 구현
-        //Intent intent = new Intent(LoginActivity.this, MainActivity.class); 메인부분
 
-        //Intent intent = new Intent(LoginActivity.this, Main2Activity.class); 트래커
-        Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
-        startActivity(intent);
-        finish();
-    }
 
 }

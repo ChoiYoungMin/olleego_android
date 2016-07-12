@@ -2,12 +2,14 @@ package com.edn.olleego.activity.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
+import com.edn.olleego.activity.Main3Activity;
 import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.server.request.Login;
@@ -55,6 +57,9 @@ public class EmailActivity extends Activity {
 
     private static OkHttpClient client;
 
+
+    SharedPreferences olleego_SP;
+
     public static final int CONNECT_TIMEOUT = 15;
     public static final int WRITE_TIMEOUT = 15;
     public static final int READ_TIMEOUT = 15;
@@ -67,6 +72,7 @@ public class EmailActivity extends Activity {
 
 
     }
+
 
     @OnClick(R.id.email_exit)
     void email_exit_click() {
@@ -136,7 +142,18 @@ public class EmailActivity extends Activity {
 
                         Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(EmailActivity.this, MainActivity.class);
+                        olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = olleego_SP.edit();
+                        editor.putString("login_chk", "true");
+
+                        editor.putString("login_email", login_email.getText().toString());
+
+                        editor.putString("login_token", loginModel.getToken());
+                        editor.commit();
+
+                        Intent intent = new Intent(EmailActivity.this, Main3Activity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                         startActivity(intent);
                         finish();
 
@@ -159,6 +176,7 @@ public class EmailActivity extends Activity {
 
                     }
                 }
+
 
                 @Override
                 public void onFailure(Call<LoginModel> call, Throwable t) {
