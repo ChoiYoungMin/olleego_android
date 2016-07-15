@@ -2,7 +2,6 @@ package com.edn.olleego.adapter.main;
 
 import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,30 +13,14 @@ import com.edn.olleego.common.CircleProgressBar;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.common.VerticalProgressBar;
-import com.edn.olleego.model.mission.MissionModel;
-import com.edn.olleego.model.user.UserModel;
+import com.edn.olleego.model.MissionModel;
 import com.edn.olleego.server.MissionAPI;
-import com.edn.olleego.server.UserAPI;
 
-import java.net.CookieManager;
-import java.net.CookiePolicy;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import okhttp3.JavaNetCookieJar;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -148,7 +131,17 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                         endDate = dateFormat.parse(b);
 
                         diff = endDate.getTime() - beginDate.getTime();
-                        diffDays = diff / (24 * 60 * 60 * 1000);
+                        diffDays = (diff / (24 * 60 * 60 * 1000)+1);
+
+
+                        SharedPreferences.Editor editor = olleego_SP.edit();
+                        editor.putInt("user_mission_today_food", response.body().getResults().get(0).getMission().getMi_days().get((int) diffDays-1).getFood());
+                        editor.putInt("user_mission_today_life", response.body().getResults().get(0).getMission().getMi_days().get((int) diffDays-1).getLife());
+                        editor.putInt("user_mission_today_exgroup", response.body().getResults().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup());
+                        editor.putString("user_mission_today_rest", String.valueOf(response.body().getResults().get(0).getMission().getMi_days().get((int) diffDays-1).getRest()));
+
+
+                        editor.commit();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -169,6 +162,8 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
                 @Override
                 public void onFailure(Call<MissionModel> call, Throwable t) {
+                    //서버 연결 ㄴㄴ
+
 
                 }
 

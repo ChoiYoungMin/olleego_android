@@ -208,7 +208,7 @@
                         android:id="@+id/custom_progressBar2"
                         android:layout_width="58dp"
                         android:layout_height="58dp"
-                        app:progress="35"
+                        app:progress="10"
                         app:progressBarThickness="3dp"
                         android:layout_below="@+id/imageView19"
                         android:layout_centerHorizontal="true"
@@ -221,7 +221,7 @@
                         android:textColor="#454544"
                         android:textStyle="bold"
                         android:textSize="16sp"
-                        android:id="@+id/textView34"
+                        android:id="@+id/main_diary_walking"
                         android:layout_marginRight="9dp"
                         android:layout_alignTop="@+id/custom_progressBar2"
                         android:layout_centerHorizontal="true"
@@ -256,7 +256,7 @@
                         android:textColor="#454544"
                         android:textStyle="bold"
                         android:textSize="16sp"
-                        android:id="@+id/textView343"
+                        android:id="@+id/main_diary_sleep"
                         android:layout_marginRight="9dp"
                         android:layout_below="@+id/imageView192"
                         android:layout_centerHorizontal="true"
@@ -275,12 +275,13 @@
                     android:layout_marginLeft="5dp">
 
                     <TextView
+                        android:id="@+id/main_diary_water_minus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="-"
                         android:textSize="30sp"
                         android:layout_above="@+id/custom_progressBar23"
-                        android:layout_toStartOf="@+id/textView341" />
+                        android:layout_toStartOf="@+id/custom_progressBar23" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -296,7 +297,7 @@
                         android:id="@+id/custom_progressBar23"
                         android:layout_width="58dp"
                         android:layout_height="58dp"
-                        app:progress="35"
+                        app:progress="10"
                         app:progressBarThickness="3dp"
                         android:layout_below="@+id/imageView119"
                         android:layout_centerHorizontal="true"
@@ -305,11 +306,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="100"
+                        android:text="0"
                         android:textColor="#454544"
                         android:textStyle="bold"
                         android:textSize="16sp"
-                        android:id="@+id/textView341"
+                        android:id="@+id/main_diary_water"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="19dp"
                         android:layout_alignTop="@+id/custom_progressBar23"
@@ -323,17 +324,17 @@
                         android:textColor="@android:color/black"
                         android:textStyle="bold"
                         android:id="@+id/textView36"
-                        android:layout_alignBottom="@+id/textView341"
-                        android:layout_toEndOf="@+id/textView341" />
+                        android:layout_alignBottom="@+id/main_diary_water"
+                        android:layout_toEndOf="@+id/main_diary_water" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="+"
                         android:textSize="30sp"
-                        android:id="@+id/textView35"
+                        android:id="@+id/main_diary_water_plus"
                         android:layout_above="@+id/custom_progressBar23"
-                        android:layout_toEndOf="@+id/textView36" />
+                        android:layout_toEndOf="@+id/custom_progressBar23" />
                 </RelativeLayout>
 
 
@@ -362,123 +363,136 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/diary_step_1"
+                        android:src="@drawable/diary_meal_4"
                         android:id="@+id/imageView21"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/textView37"
                         android:layout_marginStart="8dp" />
 
-
                     <LinearLayout
-                        android:layout_width="62dp"
-                        android:layout_height="26dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center"
-                        android:background="@drawable/raduis3"
-                        android:layout_above="@+id/imageView21"
-                        android:layout_toEndOf="@+id/imageView21"
-                        android:layout_marginStart="64dp"
-                        android:id="@+id/linearLayout6">
+                        android:id="@+id/linearLayout11"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="100dp">
+                        <LinearLayout
+                            android:layout_width="65dp"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:background="@drawable/raduis3"
+                            android:id="@+id/main_diary_morning">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:text="아침"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:text="아침"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="65dp"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:background="@drawable/raduis3"
+                            android:id="@+id/main_diary_lunch">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:text="점심" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="65dp"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:background="@drawable/raduis3"
+                            android:visibility="gone"
+                            android:id="@+id/main_diary_dinner">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:text="저녁" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="62dp"
-                        android:layout_height="26dp"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:background="@drawable/raduis3"
-                        android:id="@+id/linearLayout7"
-                        android:layout_alignTop="@+id/linearLayout6"
-                        android:layout_toEndOf="@+id/linearLayout6">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:text="점심" />
-                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="62dp"
-                        android:layout_height="26dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center"
-                        android:background="@drawable/raduis3"
-                        android:layout_above="@+id/imageView21"
-                        android:layout_toEndOf="@+id/linearLayout7"
-                        android:id="@+id/linearLayout8">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:text="저녁" />
+                        android:layout_below="@+id/imageView21"
+                        android:layout_centerHorizontal="true">
+                        <LinearLayout
+                            android:layout_width="65dp"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:gravity="center"
+                            android:background="@drawable/raduis3"
+                            android:id="@+id/main_diary_snack">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:text="간식" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="65dp"
+                            android:layout_height="30dp"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:background="@drawable/raduis3"
+                            android:id="@+id/main_diary_snack2">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:text="간식" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="65dp"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:id="@+id/main_diary_snack3">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:text="..."/>
+                        </LinearLayout>
+
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_width="62dp"
-                        android:layout_height="26dp"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:background="@drawable/raduis3"
-                        android:layout_alignTop="@+id/imageView21"
-                        android:layout_alignStart="@+id/linearLayout6">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:text="간식" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="62dp"
-                        android:layout_height="26dp"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:background="@drawable/raduis3"
-                        android:layout_below="@+id/linearLayout7"
-                        android:layout_toEndOf="@+id/linearLayout6">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:text="간식" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="62dp"
-                        android:layout_height="26dp"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_below="@+id/linearLayout8"
-                        android:layout_alignStart="@+id/linearLayout8">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:text="..." />
-                    </LinearLayout>
                 </RelativeLayout>
 
             </RelativeLayout>

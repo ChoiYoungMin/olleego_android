@@ -31,7 +31,7 @@
             android:layout_alignBottom="@+id/imageView23"
             android:layout_toEndOf="@+id/imageView23"
             android:layout_marginStart="5dp"
-            android:id="@+id/textView43"/>
+            android:id="@+id/user_mission_title"/>
 
         <TextView
             android:textColor="@android:color/white"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
-            android:id="@+id/textView42"
+            android:id="@+id/user_mission_now_position"
             android:layout_marginEnd="41dp"
             android:layout_alignTop="@+id/imageView23"
             android:layout_alignParentEnd="true" />
@@ -54,8 +54,8 @@
             android:layout_height="wrap_content"
             android:text="/"
             android:id="@+id/textView44"
-            android:layout_alignTop="@+id/textView42"
-            android:layout_alignStart="@+id/textView42" />
+            android:layout_alignTop="@+id/user_mission_now_position"
+            android:layout_alignStart="@+id/user_mission_now_position" />
 
         <TextView
             android:layout_marginLeft="5dp"
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4"
-            android:id="@+id/textView45"
+            android:id="@+id/user_mission_today_count"
             android:layout_alignTop="@+id/textView44"
             android:layout_toEndOf="@+id/textView44" />
 
@@ -75,9 +75,9 @@
             android:background="#e3e3e3"
             android:layout_marginTop="9dp"
             android:id="@+id/view4"
-            android:layout_below="@+id/textView43"
+            android:layout_below="@+id/user_mission_title"
             android:layout_alignStart="@+id/imageView23"
-            android:layout_alignEnd="@+id/textView45" />
+            android:layout_alignEnd="@+id/user_mission_today_count" />
 
         <TextView
             android:textColor="@android:color/white"
@@ -87,16 +87,16 @@
             android:layout_height="wrap_content"
             android:text="40분"
             android:textSize="14sp"
-            android:id="@+id/textView46"
+            android:id="@+id/user_mission_time"
             android:layout_centerVertical="true"
-            android:layout_alignEnd="@+id/textView42" />
+            android:layout_alignEnd="@+id/user_mission_now_position" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView24"
             android:src="@drawable/time"
-            android:layout_alignBottom="@+id/textView46"
+            android:layout_alignBottom="@+id/user_mission_time"
             android:layout_alignEnd="@+id/view4" />
 
         <ImageView
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView224"
             android:src="@drawable/tool_1"
-            android:layout_alignTop="@+id/textView47"
+            android:layout_alignTop="@+id/user_mission_time2"
             android:layout_marginTop="3dp"
             android:layout_alignStart="@+id/imageView24" />
 
@@ -116,10 +116,10 @@
             android:layout_height="wrap_content"
             android:text="40분"
             android:textSize="14sp"
-            android:id="@+id/textView47"
+            android:id="@+id/user_mission_time2"
             android:layout_marginTop="15dp"
-            android:layout_below="@+id/textView46"
-            android:layout_alignStart="@+id/textView46" />
+            android:layout_below="@+id/user_mission_time"
+            android:layout_alignStart="@+id/user_mission_time" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
             android:id="@+id/imageView25"
             android:src="@drawable/person"
             android:layout_below="@+id/view4"
-            android:layout_alignStart="@+id/textView43"
+            android:layout_alignStart="@+id/user_mission_title"
             android:layout_marginTop="9dp" />
 
         <ImageView
@@ -147,7 +147,7 @@
             android:layout_alignBottom="@+id/imageView26"
             android:layout_alignEnd="@+id/imageView224"
             android:gravity="center"
-            android:id="@+id/linearLayout9">
+            android:id="@+id/user_mission_start">
 
             <TextView
                 android:layout_width="wrap_content"

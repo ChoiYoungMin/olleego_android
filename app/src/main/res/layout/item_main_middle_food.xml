@@ -31,7 +31,7 @@
             android:layout_alignBottom="@+id/imageView23"
             android:layout_toEndOf="@+id/imageView23"
             android:layout_marginStart="5dp"
-            android:id="@+id/textView43"/>
+            android:id="@+id/user_food_title"/>
 
         <TextView
             android:textColor="@android:color/white"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3"
-            android:id="@+id/textView42"
+            android:id="@+id/user_food_now_position"
             android:layout_marginEnd="41dp"
             android:layout_alignTop="@+id/imageView23"
             android:layout_alignParentEnd="true" />
@@ -54,8 +54,8 @@
             android:layout_height="wrap_content"
             android:text="/"
             android:id="@+id/textView44"
-            android:layout_alignTop="@+id/textView42"
-            android:layout_alignStart="@+id/textView42" />
+            android:layout_alignTop="@+id/user_food_now_position"
+            android:layout_alignStart="@+id/user_food_now_position" />
 
         <TextView
             android:layout_marginLeft="5dp"
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4"
-            android:id="@+id/textView45"
+            android:id="@+id/user_food_today_count"
             android:layout_alignTop="@+id/textView44"
             android:layout_toEndOf="@+id/textView44" />
 
@@ -75,9 +75,9 @@
             android:background="#e3e3e3"
             android:layout_marginTop="9dp"
             android:id="@+id/view4"
-            android:layout_below="@+id/textView43"
+            android:layout_below="@+id/user_food_title"
             android:layout_alignStart="@+id/imageView23"
-            android:layout_alignEnd="@+id/textView45" />
+            android:layout_alignEnd="@+id/user_food_today_count" />
 
         <TextView
             android:textColor="@android:color/white"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="식습관 설명 영역"
-            android:id="@+id/textView48"
+            android:id="@+id/user_food_context"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 

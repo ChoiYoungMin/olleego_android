@@ -1,4 +1,6 @@
-package com.edn.olleego.model.mission;
+package com.edn.olleego.model;
+
+import com.edn.olleego.model.mission.Result;
 
 import java.util.List;
 

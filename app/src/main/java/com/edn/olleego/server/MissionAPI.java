@@ -1,7 +1,6 @@
 package com.edn.olleego.server;
 
-import com.edn.olleego.model.mission.MissionModel;
-import com.edn.olleego.model.user.UserModel;
+import com.edn.olleego.model.MissionModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

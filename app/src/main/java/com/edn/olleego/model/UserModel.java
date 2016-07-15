@@ -1,4 +1,6 @@
-package com.edn.olleego.model.user;
+package com.edn.olleego.model;
+
+import com.edn.olleego.model.user.*;
 
 import java.util.Date;
 import java.util.List;
@@ -10,7 +12,7 @@ public class UserModel {
 
      String success;
 
-    Result result;
+    com.edn.olleego.model.user.Result result;
 
     public void setSuccess(String success) {
         this.success = success;
@@ -20,11 +22,11 @@ public class UserModel {
         return success;
     }
 
-    public Result getResult() {
+    public com.edn.olleego.model.user.Result getResult() {
         return result;
     }
 
-    public void setResult(Result result) {
+    public void setResult(com.edn.olleego.model.user.Result result) {
         this.result = result;
     }
 
