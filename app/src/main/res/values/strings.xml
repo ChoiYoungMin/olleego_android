@@ -356,4 +356,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_main4">Main4Activity</string>
+    <string name="title_activity_main424">Main4Activity24</string>
+    <string name="title_activity_main4431">Main4Activity431</string>
 </resources>

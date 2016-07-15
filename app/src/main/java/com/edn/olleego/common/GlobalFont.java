@@ -20,6 +20,14 @@ public class GlobalFont  extends Application {
                 .addNormal(Typekit.createFromAsset(this, "KoPubBatangLight.ttf"))
                 .addBold(Typekit.createFromAsset(this, "KoPubBatangBold.ttf"));
 
+                /*
+
+                .addNormal(Typekit.createFromAsset(this, "NotoSansCJKkr-Medium.otf"))
+                .addCustom1(Typekit.createFromAsset(this, "NotoSansCJKkr-Regular.otf"))
+                .addBold(Typekit.createFromAsset(this, "NotoSansCJKkr-Bold.otf"));
+
+                 */
+
                 //.addNormal(Typekit.createFromAsset(this, "NanumGothic.ttf"))
                 //.addBold(Typekit.createFromAsset(this, "NanumGothicBold.ttf"));
     }

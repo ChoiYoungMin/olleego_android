@@ -1,37 +1,35 @@
 package com.edn.olleego.fragment;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
-import com.edn.olleego.activity.login.LoginActivity;
-import com.edn.olleego.activity.mission.MissionCustomized1Activity;
-import com.edn.olleego.fragment.Mission.MissionFragment;
-import com.edn.olleego.fragment.chart.ChartFragment;
+import com.edn.olleego.adapter.main.MainMiddleViewPagerAdapter;
+import com.edn.olleego.adapter.main.MainTopViewPagerAdapter;
+import com.edn.olleego.adapter.mission.Mission_Adapter;
+import com.edn.olleego.common.CircleProgressBar;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import me.relex.circleindicator.CircleIndicator;
 
 /**
  * Created by Antonio on 2016-06-23.
  */
 public class Home_Fragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    @BindView(R.id.home_mission_choise)
-    ImageView mission_chise;
+
 
     SharedPreferences olleego_SP;
+    CircleProgressBar circleProgressBar;
+
+    ViewPager viewPager, viewPager2;
+    CircleIndicator circleIndicator, circleIndicator2;
 
 
     @Override
@@ -44,55 +42,56 @@ public class Home_Fragment extends Fragment {
         olleego_SP = getActivity().getSharedPreferences("olleego", getActivity().MODE_PRIVATE);
 
 
+
+        /*
+        RoundCornerProgressBar progress1 = (RoundCornerProgressBar) rootView.findViewById(R.id.progress22);
+        progress1.setProgressColor(Color.parseColor("#ed3b27"));
+        progress1.setProgressBackgroundColor(Color.parseColor("#808080"));
+        progress1.setMax(100);
+        progress1.setProgress(45);
+*/
+
         //로그인 상태
         if(olleego_SP.getString("login_chk", "").equals("true")) {
 
-            rootView.findViewById(R.id.main_login_no).setVisibility(View.GONE);
-            Toast.makeText(getContext(),"로그인중", Toast.LENGTH_SHORT).show();
+            viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+            viewPager2 = (ViewPager) rootView.findViewById(R.id.viewPager2);
+            circleIndicator = (CircleIndicator) rootView.findViewById(R.id.inco);
+            circleIndicator2 = (CircleIndicator) rootView.findViewById(R.id.inco2);
 
-            /*
-            //최초 로그인
-            if() {
 
-            }
-            //미션 선택 안한 상태
-            else if () {
+            viewPager.setAdapter(new MainTopViewPagerAdapter(inflater, olleego_SP));
+            circleIndicator.setViewPager(viewPager);
 
-            }
-            //미션 선택한 상태
-            else if() {
-
-            }
-            //미션 끝난 상태
-            else if() {
-
-            }
-            */
+            viewPager2.setAdapter(new MainMiddleViewPagerAdapter(inflater));
+            circleIndicator2.setViewPager(viewPager2);
 
         }
         // 비로그인 상태
         else {
-            rootView.findViewById(R.id.main_login_ok_type1).setVisibility(View.GONE);
             Toast.makeText(getContext(),"비로그인중", Toast.LENGTH_SHORT).show();
 
 
         }
+
+
         return rootView;
     }
 
 
     public void actionbar_init() {
 
-        getActivity().findViewById(R.id.toolbar_back).setVisibility(View.GONE);
+        //getActivity().findViewById(R.id.toolbar_back).setVisibility(View.GONE);
         getActivity().findViewById(R.id.toolbar_left_menu).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.toolbar_right_menu).setVisibility(View.VISIBLE);
 
 
     }
 
-
+/*
     @OnClick(R.id.home_mission_choise)
     void mission_btn_click() {
+
         android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         MissionFragment missionFragment = new MissionFragment();
@@ -101,6 +100,9 @@ public class Home_Fragment extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
 
+        Intent intent = new Intent(getActivity(), Mission.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
 
@@ -125,5 +127,6 @@ public class Home_Fragment extends Fragment {
         Intent intent = new Intent(getActivity(), MissionCustomized1Activity.class);
         getActivity().startActivity(intent);
     }
+    */
 
 }

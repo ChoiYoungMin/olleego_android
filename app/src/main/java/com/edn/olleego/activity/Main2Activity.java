@@ -1,5 +1,13 @@
 package com.edn.olleego.activity;
 
+/*
+
+트래커 기술 구현 부분
+
+ */
+
+
+
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;

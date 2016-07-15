@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.edn.olleego.R;
-import com.edn.olleego.activity.Main3Activity;
+import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.activity.signup.SignupActivity;
 
 import butterknife.ButterKnife;
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, Main3Activity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

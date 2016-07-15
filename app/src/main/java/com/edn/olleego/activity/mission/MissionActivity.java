@@ -32,8 +32,11 @@ public class MissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mission);
         ButterKnife.bind(this);
-/*
-        missionAdapter = new Mission_Adapter(this);
+
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("미션리스트");
+
+        missionAdapter = new Mission_Adapter(getLayoutInflater());
         mListView.setAdapter(missionAdapter);
 
         missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 초보용 미션 프로그램", "복근 , 하체 , 상체");
@@ -51,17 +54,24 @@ public class MissionActivity extends AppCompatActivity {
 
                 android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-                transaction.add(R.id.mission_detail2, fragment);
-
+                transaction.add(R.id.test1212, fragment);
+                transaction.addToBackStack(null);
 
                 transaction.commit();
             }
         });
-*/
+
     }
 
 
+    @Override
+    public void onBackPressed() {
 
+
+
+        super.onBackPressed();
+
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {

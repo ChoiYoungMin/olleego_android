@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
-import com.edn.olleego.activity.Main3Activity;
 import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.common.ServerInfo;
@@ -199,7 +198,7 @@ public class SignupActivity extends FragmentActivity {
                             editor.putString("login_token", forgot_model_.getToken());
                             editor.commit();
 
-                            Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("sort", "signin");
                             intent.putExtra("userEmail", email.getText().toString());
                             intent.putExtra("SNS_type", "email_login");

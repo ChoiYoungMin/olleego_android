@@ -4,6 +4,7 @@ package com.edn.olleego.fragment.Mission;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,9 +34,11 @@ public class MissionFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static MissionFragment newInstance(String param1, String param2) {
+    public static MissionFragment newInstance(int position) {
         MissionFragment fragment = new MissionFragment();
-
+        Bundle args = new Bundle();
+        args.putInt("position", position);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -66,7 +69,6 @@ public class MissionFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        setHasOptionsMenu(true);
         rootView = inflater.inflate(R.layout.fragment_mission, container, false);
 
         ButterKnife.bind(this, rootView);
@@ -77,7 +79,7 @@ public class MissionFragment extends Fragment {
 
         mListView.setAdapter(missionAdapter);
 
-        missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 초보용 미션 프로그램", "복근 , 하체 , 상체");
+        missionAdapter.addItem(R.drawable.kakao_default_profile_image,getString(R.string.section_format, getArguments().getInt("position")), "복근 , 하체 , 상체");
 
         missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 중수용 미션 프로그램", "복근 , 하체 , 상체");
         missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 고수용 미션 프로그램", "복근 , 하체 , 상체");
@@ -98,83 +100,6 @@ public class MissionFragment extends Fragment {
             }
         });
 
-        rootView.findViewById(R.id.mission_all_layout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(now == R.id.mission_all_layout) {
-
-                }
-                else {
-                    rootView.findViewById(now).setBackgroundColor(Color.parseColor("#ffffff"));
-                    rootView.findViewById(R.id.mission_all_layout).setBackgroundResource(R.drawable.border);
-                    now = R.id.mission_all_layout;
-
-                    missionAdapter.ItemRemove();
-                    missionAdapter.addItem(R.drawable.kakao_default_profile_image,"전체 메뉴", "복근 , 하체 , 상체");
-                    missionAdapter.notifyDataSetChanged();
-                }
-            }
-        });
-
-        rootView.findViewById(R.id.mission_diet_layout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(now == R.id.mission_diet_layout) {
-
-                }
-                else {
-                    rootView.findViewById(now).setBackgroundColor(Color.parseColor("#ffffff"));
-                    rootView.findViewById(R.id.mission_diet_layout).setBackgroundResource(R.drawable.border);
-                    now = R.id.mission_diet_layout;
-
-                    missionAdapter.ItemRemove();
-                    missionAdapter.addItem(R.drawable.kakao_default_profile_image,"다이어트", "복근 , 하체 , 상체");
-                    missionAdapter.notifyDataSetChanged();
-                }
-            }
-        });
-
-        rootView.findViewById(R.id.mission_health_layout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if(now == R.id.mission_health_layout) {
-
-                }
-                else {
-                    rootView.findViewById(now).setBackgroundColor(Color.parseColor("#ffffff"));
-                    rootView.findViewById(R.id.mission_health_layout).setBackgroundResource(R.drawable.border);
-                    now = R.id.mission_health_layout;
-
-                    missionAdapter.ItemRemove();
-                    missionAdapter.addItem(R.drawable.kakao_default_profile_image,"필라테스", "복근 , 하체 , 상체");
-                    missionAdapter.notifyDataSetChanged();
-                }
-            }
-        });
-
-        rootView.findViewById(R.id.mission_pilates_layout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(now == R.id.mission_pilates_layout) {
-
-                }
-                else {
-                    rootView.findViewById(now).setBackgroundColor(Color.parseColor("#ffffff"));
-                    rootView.findViewById(R.id.mission_pilates_layout).setBackgroundResource(R.drawable.border);
-                    now = R.id.mission_pilates_layout;
-
-                    missionAdapter.ItemRemove();
-                    missionAdapter.addItem(R.drawable.kakao_default_profile_image,"건강관리", "복근 , 하체 , 상체");
-                    missionAdapter.notifyDataSetChanged();
-                }
-            }
-        });
-
-
 
 
 
@@ -186,10 +111,11 @@ public class MissionFragment extends Fragment {
 
     public void actionbar_init() {
 
-        getActivity().findViewById(R.id.toolbar_left_menu).setVisibility(View.GONE);
-        getActivity().findViewById(R.id.toolbar_right_menu).setVisibility(View.GONE);
 
-        getActivity().findViewById(R.id.toolbar_back).setVisibility(View.VISIBLE);
+        //getActivity().findViewById(R.id.toolbar_left_menu).setVisibility(View.GONE);
+        //getActivity().findViewById(R.id.toolbar_right_menu).setVisibility(View.GONE);
+
+        //getActivity().findViewById(R.id.toolbar_back).setVisibility(View.VISIBLE);
 
     }
 

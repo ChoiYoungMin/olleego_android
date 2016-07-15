@@ -9,9 +9,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
-import com.edn.olleego.activity.Main3Activity;
 import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.common.ServerInfo;
+import com.edn.olleego.model.user.Result;
+import com.edn.olleego.model.user.UserModel;
+import com.edn.olleego.server.UserAPI;
 import com.edn.olleego.server.request.Login;
 import com.edn.olleego.model.LoginModel;
 import com.edn.olleego.server.LoginAPI;
@@ -59,6 +61,8 @@ public class EmailActivity extends Activity {
 
 
     SharedPreferences olleego_SP;
+
+    LoginModel loginModel;
 
     public static final int CONNECT_TIMEOUT = 15;
     public static final int WRITE_TIMEOUT = 15;
@@ -138,24 +142,72 @@ public class EmailActivity extends Activity {
 
                     if(response.isSuccessful()) {
 
-                        LoginModel loginModel = response.body();
+                        loginModel = response.body();
 
                         Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
 
-                        olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = olleego_SP.edit();
-                        editor.putString("login_chk", "true");
 
-                        editor.putString("login_email", login_email.getText().toString());
+                        retrofit = new Retrofit.Builder()
+                                .baseUrl(ServerInfo.OLLEEGO_HOST)
+                                .client(client)
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
 
-                        editor.putString("login_token", loginModel.getToken());
-                        editor.commit();
 
-                        Intent intent = new Intent(EmailActivity.this, Main3Activity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        UserAPI userAPI = retrofit.create(UserAPI.class);
+                        String token = "ollego " + loginModel.getToken();
+                        final Call<UserModel> repos2 = userAPI.listRepos(token);
 
-                        startActivity(intent);
-                        finish();
+                        repos2.enqueue(new Callback<UserModel>() {
+                            @Override
+                            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                                UserModel userModel = response.body();
+
+                                int last = userModel.getResult().getInbody().size();
+
+
+
+
+                                olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = olleego_SP.edit();
+                                editor.putString("login_chk", "true");
+                                editor.putString("login_email", login_email.getText().toString());
+                                editor.putString("login_token", loginModel.getToken());
+                                editor.putString("user_id" , String.valueOf(userModel.getResult().get_id()));
+                                editor.putFloat("user_bmi", (float) userModel.getResult().getInbody().get(last-1).getBmi());
+                                editor.putInt("user_health_temp", (int)userModel.getResult().getInbody().get(last-1).getHealth_temp());
+
+                                editor.commit();
+
+
+                                Intent intent = new Intent(EmailActivity.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+                                startActivity(intent);
+                                finish();
+                            }
+
+                            @Override
+                            public void onFailure(Call<UserModel> call, Throwable t) {
+
+                            }
+                        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     } else {
                         Converter<ResponseBody, LoginModel> converter = retrofit.responseBodyConverter(LoginModel.class, new Annotation[0]);

@@ -16,9 +16,10 @@ import com.edn.olleego.R;
 import com.edn.olleego.activity.OlleegoGymActivity;
 import com.edn.olleego.activity.gym.GymDetailActivity;
 import com.edn.olleego.adapter.olleegogym.OlleegGym_Adapter;
+import com.edn.olleego.common.GlobalFont;
 import com.edn.olleego.fragment.Mission.MissionDetailFragment;
 
-public class OlleegoGym_Fragment extends Fragment {
+public class OlleegoGym_Fragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -32,6 +33,8 @@ public class OlleegoGym_Fragment extends Fragment {
 
         return fragment;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

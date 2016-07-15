@@ -134,4 +134,20 @@
     <color name="material_brown_300">#ffa1887f</color>
     <color name="material_brown_500">#ff795548</color>
     <color name="material_brown_700">#ff5d4037</color>
+
+    <color name="olleego_actionbar">#30312f</color>
+
+    <color name="olleego_status">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="dull_yellow">#cde860</color>
+    <color name="light_grey">#e5e5e2</color>
+    <color name="light_grey_two">#cbcbc9</color>
+    <color name="charcoal_two">#454544</color>
+    <color name="brownish_grey">#606060</color>
+    <color name="light_teal">#94eec1</color>
+    <color name="kiwi_green">#98e56a</color>
+    <color name="light_gold">#ffdf45</color>
+    <color name="medium_grey">#878885</color>
+
+
 </resources>

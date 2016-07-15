@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#30312f"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:id="@+id/imageView22"
+        android:src="@drawable/full_coach"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="당신의 BMI"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:id="@+id/textView38"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/imageView22"
+        android:layout_toEndOf="@+id/imageView22" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27.2 (고도비만)"
+        android:textSize="16sp"
+        android:textColor="#cde860"
+        android:textStyle="bold"
+        android:id="@+id/main_top_bmi"
+        android:layout_below="@+id/textView38"
+        android:layout_alignStart="@+id/textView38"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="자세히보기 >"
+        android:id="@+id/textView30"
+        android:textStyle="bold"
+        android:textSize="10sp"
+        android:textColor="#cbcbc9"
+        android:layout_alignBottom="@+id/imageView22"
+        android:layout_alignStart="@+id/main_top_bmi" />
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="67dp"
+        android:background="#454544"
+        android:layout_marginStart="28dp"
+        android:layout_alignTop="@+id/textView38"
+        android:layout_toEndOf="@+id/main_top_bmi"
+        android:id="@+id/view2" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/view2"
+        android:layout_toEndOf="@+id/view2">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="70 ˚"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#cdc860"
+            android:id="@+id/main_top_health_temp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="건강양호"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#cde860"
+            android:id="@+id/main_top_health_temp2"
+            android:layout_below="@+id/main_top_health_temp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="30dp"/>
+
+        <RelativeLayout
+            android:gravity="center|fill"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/main_top_health_temp"
+            android:layout_marginLeft="22dp"
+            android:id="@+id/relativeLayout5">
+
+            <com.edn.olleego.common.VerticalProgressBar
+                android:layout_width="4dp"
+                android:layout_height="45dp"
+                android:id="@+id/main_top_health_bar"
+                style="@style/vertical_progress_bar"
+                android:background="#606060"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="51dp"/>
+
+            <LinearLayout
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:background="@drawable/raduis_dhs"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="4dp">
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
