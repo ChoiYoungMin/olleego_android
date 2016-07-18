@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single" android:id="@+id/test">
+    <group android:checkableBehavior="single" android:id="@+id/test" >
         <item
             android:id="@+id/left_menu_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="HOME" />
+            android:icon="@drawable/ic_home_copy"
+            android:title="home"
+            />
         <item
             android:id="@+id/left_menu_chart"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="건강리포트" />
+            android:icon="@drawable/icon_24_px_copy"
+            android:title="건강리포트"/>
         <item
             android:id="@+id/left_menu_diary"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_24_px_copy_2"
             android:title="건강일기" />
         <item
             android:id="@+id/left_menu_mission"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_24_px_copy_3"
             android:title="올리고 미션" />
         <item
             android:id="@+id/left_menu_video"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/icon_24_px_copy_4"
             android:title="운동영상" />
+        <item
+            android:id="@+id/left_menu_setting"
+            android:icon="@drawable/icon_241_px"
+            android:title="설정" />
+        <item
+            android:id="@+id/left_menu_notice"
+            android:icon="@drawable/icon_234_px"
+            android:title="공지사항" />
 
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/left_menu_notice"
-                android:icon="@drawable/ic_menu_share"
-                android:title="공지사항" />
-        </menu>
-    </item>
     </group>
 </menu>

@@ -2,6 +2,7 @@ package com.edn.olleego.adapter.main;
 
 import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Antonio on 2016-07-14.
  */
 public class MainTopViewPagerAdapter extends PagerAdapter {
+
+    Boolean mission;
+
 
     private LayoutInflater inflater;
     private final Random random = new Random();
@@ -112,52 +116,79 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
             String token = "ollego " + olleego_SP.getString("login_token", "");;
             final Call<MissionModel> repos2 = missionAPI.listRepos(token);
 
+            final View ConvertView2 = convertView;
             repos2.enqueue(new Callback<MissionModel>() {
                 @Override
                 public void onResponse(Call<MissionModel> call, Response<MissionModel> response) {
-                    SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault());
-                    Date date = new Date();
-                    nowDate =  Integer.parseInt(dateFormat.format(date));
-                   // int myDate = Integer.parseInt();
+                    SharedPreferences.Editor editor = olleego_SP.edit();
 
-                    //nowDate = nowDate - myDate;
+                    if(response.code() == 404) {
+                        ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
+                        ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
+                        editor.putString("user_mission_today_rest", "null");
 
-                    Date beginDate = null;
-                    Date endDate = null;
-                    try {
-                        String a = dateFormat.format(response.body().getResults().get(0).getMission().getCreated());
-                        String b = dateFormat.format(date);
-                        beginDate = dateFormat.parse(a);
-                        endDate = dateFormat.parse(b);
+                    } else if (response.isSuccessful()) {
 
-                        diff = endDate.getTime() - beginDate.getTime();
-                        diffDays = (diff / (24 * 60 * 60 * 1000)+1);
+                        SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault());
+                        Date date = new Date();
+                        nowDate =  Integer.parseInt(dateFormat.format(date));
+
+                        // int myDate = Integer.parseInt();
+
+                        //nowDate = nowDate - myDate;
+                        Date beginDate = null;
+                        Date endDate = null;
+                        try {
+                            String a = dateFormat.format(response.body().getResult().get(0).getMission().getCreated());
+                            String b = dateFormat.format(date);
+                            beginDate = dateFormat.parse(a);
+                            endDate = dateFormat.parse(b);
+
+                            diff = endDate.getTime() - beginDate.getTime();
+                            diffDays = (diff / (24 * 60 * 60 * 1000)+1);
 
 
-                        SharedPreferences.Editor editor = olleego_SP.edit();
-                        editor.putInt("user_mission_today_food", response.body().getResults().get(0).getMission().getMi_days().get((int) diffDays-1).getFood());
-                        editor.putInt("user_mission_today_life", response.body().getResults().get(0).getMission().getMi_days().get((int) diffDays-1).getLife());
-                        editor.putInt("user_mission_today_exgroup", response.body().getResults().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup());
-                        editor.putString("user_mission_today_rest", String.valueOf(response.body().getResults().get(0).getMission().getMi_days().get((int) diffDays-1).getRest()));
+
+                            editor.putInt("user_mission_today_food", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getFood());
+                            editor.putInt("user_mission_today_life", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getLife());
+                            editor.putInt("user_mission_today_exgroup", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup());
+                            editor.putString("user_mission_today_rest", String.valueOf(response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getRest()));
 
 
-                        editor.commit();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
+
+
+                            mission_title = response.body().getResult().get(0).getMission().getTitle();
+                            mission_myday = response.body().getResult().get(0).getMission().getTitle();
+                            //현재 날짜와 계산하여 몇이차인지 확인
+                            mission_allday = response.body().getResult().get(0).getMission().getMi_term();
+
+
+
+                            main_top_mission_title.setText(mission_title);
+                            main_top_mission_day.setText(String.valueOf(diffDays));
+                            main_top_mission_allday.setText(String.valueOf((mission_allday*7)));
+
+                            ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.VISIBLE);
+                            ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.GONE);
+                        } catch (IndexOutOfBoundsException e) {
+                            ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
+                            ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
+                            editor.putString("user_mission_today_rest", "null");
+
+                            e.printStackTrace();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+
                     }
 
 
 
+                    editor.commit();
 
-                    mission_title = response.body().getResults().get(0).getMission().getTitle();
-                    mission_myday = response.body().getResults().get(0).getMission().getTitle();
-                    //현재 날짜와 계산하여 몇이차인지 확인
-                    mission_allday = response.body().getResults().get(0).getMission().getMi_term();
-
-
-                    main_top_mission_title.setText(mission_title);
-                    main_top_mission_day.setText(String.valueOf(diffDays));
-                    main_top_mission_allday.setText(String.valueOf((mission_allday*7)));
                 }
 
                 @Override
@@ -173,59 +204,66 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
         } else if(position == 1) {
             convertView = inflater.inflate(R.layout.item_main_top_two, null);
-            float i_bim = olleego_SP.getFloat("user_bmi",0);
-            int i_health_temp = olleego_SP.getInt("user_health_temp",0);
+
+            if(olleego_SP.getFloat("user_bmi", 0) != 0) {
+                float i_bim = olleego_SP.getFloat("user_bmi", 0);
+                int i_health_temp = olleego_SP.getInt("user_health_temp", 0);
 
 
-            String s_bim = null;
-            String s_health_temp = null;
+                String s_bim = null;
+                String s_health_temp = null;
 
-            if(i_bim > 0 && i_bim < 18.5) {
-                s_bim = String.valueOf(i_bim +" (저체중)");
-            } else if (i_bim >= 18.5 && i_bim < 23) {
-                s_bim = String.valueOf(i_bim +" (정상)");
-            } else if(i_bim >= 23 && i_bim < 25) {
-                s_bim = String.valueOf(i_bim +" (과체중)");
-            }else if(i_bim >= 25 && i_bim < 30) {
-                s_bim = String.valueOf(i_bim +" (경도비만)");
-            }else {
-                s_bim = String.valueOf(i_bim +" (고도비만)");
+                if (i_bim > 0 && i_bim < 18.5) {
+                    s_bim = String.valueOf(i_bim + " (저체중)");
+                } else if (i_bim >= 18.5 && i_bim < 23) {
+                    s_bim = String.valueOf(i_bim + " (정상)");
+                } else if (i_bim >= 23 && i_bim < 25) {
+                    s_bim = String.valueOf(i_bim + " (과체중)");
+                } else if (i_bim >= 25 && i_bim < 30) {
+                    s_bim = String.valueOf(i_bim + " (경도비만)");
+                } else {
+                    s_bim = String.valueOf(i_bim + " (고도비만)");
+                }
+
+                VerticalProgressBar progressBar = (VerticalProgressBar) convertView.findViewById(R.id.main_top_health_bar);
+
+
+                if (i_health_temp > 0 && i_health_temp < 20) {
+                    s_health_temp = "건강위험";
+                    progressBar.setCurrentValue(Percent.PERCENT_10);
+                } else if (i_health_temp >= 20 && i_health_temp < 40) {
+                    s_health_temp = "주의";
+                    progressBar.setCurrentValue(Percent.PERCENT_25);
+                } else if (i_health_temp >= 40 && i_health_temp < 60) {
+                    s_health_temp = "건강관심";
+                    progressBar.setCurrentValue(Percent.PERCENT_50);
+                } else if (i_health_temp >= 60 && i_health_temp < 80) {
+                    s_health_temp = "건강양호";
+                    progressBar.setCurrentValue(Percent.PERCENT_75);
+                } else {
+                    s_health_temp = "건강좋음";
+                    progressBar.setCurrentValue(Percent.PERCENT_100);
+                }
+
+
+                TextView tv_bmi = (TextView) convertView.findViewById(R.id.main_top_bmi);
+                tv_bmi.setText(s_bim);
+
+                TextView health_temp = (TextView) convertView.findViewById(R.id.main_top_health_temp);
+                health_temp.setText(String.valueOf(i_health_temp) + "˚");
+
+                TextView health_temp2 = (TextView) convertView.findViewById(R.id.main_top_health_temp2);
+                health_temp2.setText(s_health_temp);
+
+                convertView.findViewById(R.id.main_top_health_no).setVisibility(View.GONE);
+                convertView.findViewById(R.id.main_top_health_yes).setVisibility(View.VISIBLE);
+            } else if(olleego_SP.getFloat("user_bmi", 0) == 0) {
+                convertView.findViewById(R.id.main_top_health_no).setVisibility(View.VISIBLE);
+                convertView.findViewById(R.id.main_top_health_yes).setVisibility(View.GONE);
+
             }
-
-            VerticalProgressBar progressBar = (VerticalProgressBar) convertView.findViewById(R.id.main_top_health_bar);
-
-
-            if(i_health_temp > 0 && i_health_temp < 20) {
-                s_health_temp = "건강위험";
-                progressBar.setCurrentValue(Percent.PERCENT_10);
-            } else if (i_health_temp >= 20 && i_health_temp < 40) {
-                s_health_temp = "주의";
-                progressBar.setCurrentValue(Percent.PERCENT_25);
-            } else if(i_health_temp >= 40 && i_health_temp < 60) {
-                s_health_temp = "건강관심";
-                progressBar.setCurrentValue(Percent.PERCENT_50);
-            }else if(i_health_temp >= 60 && i_health_temp < 80) {
-                s_health_temp = "건강양호";
-                progressBar.setCurrentValue(Percent.PERCENT_75);
-            }else {
-                s_health_temp = "건강좋음";
-                progressBar.setCurrentValue(Percent.PERCENT_100);
-            }
-
-
-
-
 
             view.addView(convertView);
-
-            TextView tv_bmi = (TextView)convertView.findViewById(R.id.main_top_bmi);
-            tv_bmi.setText(s_bim);
-
-            TextView health_temp = (TextView)convertView.findViewById(R.id.main_top_health_temp);
-            health_temp.setText(String.valueOf(i_health_temp)+ "˚");
-
-            TextView health_temp2 = (TextView)convertView.findViewById(R.id.main_top_health_temp2);
-            health_temp2.setText(s_health_temp);
         }
 
         return convertView;

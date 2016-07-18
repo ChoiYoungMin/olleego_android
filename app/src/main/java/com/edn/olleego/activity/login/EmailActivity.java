@@ -166,16 +166,21 @@ public class EmailActivity extends Activity {
 
 
 
-
                                 olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = olleego_SP.edit();
                                 editor.putString("login_chk", "true");
                                 editor.putString("login_email", login_email.getText().toString());
                                 editor.putString("login_token", loginModel.getToken());
                                 editor.putString("user_id" , String.valueOf(userModel.getResult().get_id()));
-                                editor.putFloat("user_bmi", (float) userModel.getResult().getInbody().get(last-1).getBmi());
-                                editor.putInt("user_health_temp", (int)userModel.getResult().getInbody().get(last-1).getHealth_temp());
 
+                                try {
+                                    editor.putFloat("user_bmi", (float) userModel.getResult().getInbody().get(last - 1).getBmi());
+                                    editor.putInt("user_health_temp", (int) userModel.getResult().getInbody().get(last - 1).getHealth_temp());
+                                }
+                                catch (ArrayIndexOutOfBoundsException e ){
+                                    editor.putFloat("user_bmi", 0);
+                                    editor.putInt("user_health_temp", 0);
+                                }
                                 editor.commit();
 
 

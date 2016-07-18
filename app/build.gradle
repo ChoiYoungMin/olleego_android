@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.edn.olleego"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -23,7 +23,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile group: 'com.kakao.sdk', name: 'kakaotalk', version: project.KAKAO_SDK_VERSION
 
@@ -47,5 +46,4 @@ dependencies {
     compile 'com.github.orangegangsters:sensorstep:1.4.2@aar'
     compile 'com.akexorcist:RoundCornerProgressBar:2.0.3'
     compile 'me.relex:circleindicator:1.2.1@aar'
-
 }

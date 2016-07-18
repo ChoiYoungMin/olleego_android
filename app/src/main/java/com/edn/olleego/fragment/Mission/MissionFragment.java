@@ -79,7 +79,7 @@ public class MissionFragment extends Fragment {
 
         mListView.setAdapter(missionAdapter);
 
-        missionAdapter.addItem(R.drawable.kakao_default_profile_image,getString(R.string.section_format, getArguments().getInt("position")), "복근 , 하체 , 상체");
+        //missionAdapter.addItem(R.drawable.kakao_default_profile_image,getString(R.string.section_format, getArguments().getInt("position")), "복근 , 하체 , 상체");
 
         missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 중수용 미션 프로그램", "복근 , 하체 , 상체");
         missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 고수용 미션 프로그램", "복근 , 하체 , 상체");

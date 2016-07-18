@@ -1,5 +1,6 @@
 package com.edn.olleego.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
+import com.edn.olleego.activity.MainActivity;
+import com.edn.olleego.activity.login.EmailActivity;
+import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.adapter.main.MainMiddleViewPagerAdapter;
 import com.edn.olleego.adapter.main.MainTopViewPagerAdapter;
 import com.edn.olleego.adapter.mission.Mission_Adapter;
@@ -98,6 +102,12 @@ public class Home_Fragment extends Fragment {
         //로그인 상태
         if(olleego_SP.getString("login_chk", "").equals("true")) {
 
+
+            rootView.findViewById(R.id.main_login_yes).setVisibility(View.VISIBLE);
+            rootView.findViewById(R.id.main_login_no).setVisibility(View.GONE);
+
+
+
             viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
             viewPager2 = (ViewPager) rootView.findViewById(R.id.viewPager2);
             circleIndicator = (CircleIndicator) rootView.findViewById(R.id.inco);
@@ -114,13 +124,25 @@ public class Home_Fragment extends Fragment {
 
 
 
-
         }
         // 비로그인 상태
         else {
             Toast.makeText(getContext(),"비로그인중", Toast.LENGTH_SHORT).show();
 
+            rootView.findViewById(R.id.main_mission_yes).setVisibility(View.GONE);
+            rootView.findViewById(R.id.main_login_yes).setVisibility(View.GONE);
 
+            rootView.findViewById(R.id.main_mission_no).setVisibility(View.VISIBLE);
+            rootView.findViewById(R.id.main_login_no).setVisibility(View.VISIBLE);
+
+            rootView.findViewById(R.id.main_login_go).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            });
         }
 
 
@@ -212,11 +234,21 @@ public class Home_Fragment extends Fragment {
 
                 }
             });
+
+
+            rootView.findViewById(R.id.main_mission_yes).setVisibility(View.VISIBLE);
+            rootView.findViewById(R.id.main_mission_no).setVisibility(View.GONE);
         }
 
         //쉬는날일경우
-        else {
-            Toast.makeText(getContext(),"쉬는날임다", Toast.LENGTH_SHORT).show();
+        else if(olleego_SP.getString("user_mission_today_rest", "").equals("true")) {
+            Toast.makeText(getContext(),"쉬는날임다 아직 디자인이 안나옴", Toast.LENGTH_SHORT).show();
+        }
+        // 미션이 없음.
+        else if(olleego_SP.getString("user_mission_today_rest", "").equals("null")) {
+            rootView.findViewById(R.id.main_mission_yes).setVisibility(View.GONE);
+            rootView.findViewById(R.id.main_mission_no).setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -261,22 +293,6 @@ public class Home_Fragment extends Fragment {
             public void onResponse(Call<LifesModel> call, Response<LifesModel> response) {
                 lifesModel = response.body();
                 viewPager2.setAdapter(new MainMiddleViewPagerAdapter(inflater,exgroupsModel,foodsModel,lifesModel));
-                viewPager2.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                    @Override
-                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                    }
-
-                    @Override
-                    public void onPageSelected(int position) {
-
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int state) {
-
-                    }
-                });
                 circleIndicator2.setViewPager(viewPager2);
             }
 
@@ -285,7 +301,11 @@ public class Home_Fragment extends Fragment {
 
             }
         });
+
     }
+
+
+
 
 
     public void today_diary() {
@@ -301,42 +321,66 @@ public class Home_Fragment extends Fragment {
         DiaryAPI diaryAPI = retrofit.create(DiaryAPI.class);
 
         final Call<DiaryModel> diaryPos = diaryAPI.listRepos(dateFormat.format(date), token);
-        Log.e("zz", String.valueOf(diaryPos.request()));
 
         diaryPos.enqueue(new Callback<DiaryModel>() {
             @Override
             public void onResponse(Call<DiaryModel> call, Response<DiaryModel> response) {
 
                 TextView sleep = (TextView) rootView.findViewById(R.id.main_diary_sleep);
-                sleep.setText(response.body().getResult().getSleep());
-
                 TextView walking = (TextView) rootView.findViewById(R.id.main_diary_walking);
-                walking.setText(response.body().getResult().getWalking());
+                String time;
+                String walkings;
+                if(response.body().getResult().getSleep() == null) {
+                    time = "00 : 00";
+                } else {
+                    time = response.body().getResult().getSleep();
+                }
+                if(response.body().getResult().getWalking() == null) {
+
+                    walkings = "0";
+                } else {
+                    walkings =response.body().getResult().getWalking();
+                }
+
+                    sleep.setText(time);
+                    walking.setText(walkings);
 
 
 
-                for (int a=0; a<response.body().getResult().getFood().size(); a++) {
 
-                    switch (response.body().getResult().getFood().get(a).getSort().get_id()) {
-                        case 1:
-                            rootView.findViewById(R.id.main_diary_morning).setVisibility(View.VISIBLE);
-                            break;
-                        case 2:
-                            rootView.findViewById(R.id.main_diary_lunch).setVisibility(View.VISIBLE);
-                            break;
-                        case 3:
-                            rootView.findViewById(R.id.main_diary_dinner).setVisibility(View.VISIBLE);
-                            break;
-                        case 4:
-                            rootView.findViewById(R.id.main_diary_snack).setVisibility(View.VISIBLE);
-                            break;
+                try {
 
-                        default:
-                            break;
+                    for (int a=0; a<response.body().getResult().getFood().size(); a++) {
+
+                        switch (response.body().getResult().getFood().get(a).getSort().get_id()) {
+                            case 1:
+                                rootView.findViewById(R.id.main_diary_morning).setVisibility(View.VISIBLE);
+                                break;
+                            case 2:
+                                rootView.findViewById(R.id.main_diary_lunch).setVisibility(View.VISIBLE);
+                                break;
+                            case 3:
+                                rootView.findViewById(R.id.main_diary_dinner).setVisibility(View.VISIBLE);
+                                break;
+                            case 4:
+                                rootView.findViewById(R.id.main_diary_snack).setVisibility(View.VISIBLE);
+                                break;
+
+                            default:
+                                break;
+
+                        }
 
                     }
 
+                    rootView.findViewById(R.id.main_diary_food_no).setVisibility(View.GONE);
+                } catch (ArrayIndexOutOfBoundsException e ) {
+                    rootView.findViewById(R.id.main_diary_food_no).setVisibility(View.VISIBLE);
                 }
+
+
+
+
             }
 
             @Override

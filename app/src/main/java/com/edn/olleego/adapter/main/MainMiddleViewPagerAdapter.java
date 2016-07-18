@@ -112,7 +112,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
                     mission_title.setText(exgroupsModel.getResult().getTitle());
                     mission_time.setText(String.valueOf(exgroupsModel.getResult().getTime()) + "분");
-                    mission_time2.setText(String.valueOf(exgroupsModel.getResult().getTime()) + "분");
+                    mission_time2.setText(String.valueOf(exgroupsModel.getResult().getEx_list().size()) + "개");
 
                     today_allcount.setText(String.valueOf(mSize));
                     today_nowcount.setText(String.valueOf(position+1));

@@ -68,8 +68,12 @@ public class MainActivity extends AppCompatActivity
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+
+        nav_view.setItemIconTintList(null);
+
         backPressCloseHandler = new BackPressCloseHandler(this);
         drawer_layout.setFitsSystemWindows(true);
+
         nav_view.setNavigationItemSelectedListener(this);
         nav_view2.setNavigationItemSelectedListener(this);
         login_chk = 0;
@@ -228,6 +232,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         // 오른쪽 메뉴
+
         if(id == R.id.right1) {
             transaction.replace(R.id.content_main, GymFramgment);
         } else if(id == R.id.right2) {
@@ -239,8 +244,10 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-
-        if (id == R.id.left_menu_chart) {
+        if(id == R.id.left_menu_home) {
+            transaction.replace(R.id.content_main, MainFramgment);
+        }
+        else if (id == R.id.left_menu_chart) {
             transaction.replace(R.id.content_main, ChartFragment);
         }else if (id == R.id.left_menu_diary) {
             transaction.replace(R.id.content_main, DiaryFramgment);

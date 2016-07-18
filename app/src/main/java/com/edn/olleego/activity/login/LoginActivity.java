@@ -39,12 +39,14 @@ public class LoginActivity extends AppCompatActivity {
     void email_login_click() {
         Intent intent = new Intent(LoginActivity.this, EmailActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @OnClick(R.id.email_signup)
     void email_signup_click() {
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

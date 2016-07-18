@@ -11,7 +11,7 @@ public class MissionModel {
 
     boolean success;
 
-    List<Result> results;
+    List<Result> result;
 
     boolean err;
 
@@ -22,11 +22,11 @@ public class MissionModel {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-    public List<Result> getResults() {
-        return this.results;
+    public List<Result> getResult() {
+        return this.result;
     }
-    public void setResults(List<Result> results) {
-        this.results = results;
+    public void setResult(List<Result> result) {
+        this.result = result;
     }
     public boolean getErr() {
         return this.err;
