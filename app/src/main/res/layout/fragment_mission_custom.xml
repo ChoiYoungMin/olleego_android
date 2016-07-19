@@ -1,0 +1,53 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f6f3"
+    tools:context="com.edn.olleego.fragment.Mission.MissionCustomFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@drawable/card_background"
+        android:orientation="vertical"
+
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff5b53"
+            android:textSize="14sp"
+            android:lineSpacingExtra="5dp"
+            android:text="  나에게 딱 맞는 운동방법과\n다이어트 가이드를 찾아보세요"/>
+
+
+        <LinearLayout
+            android:id="@+id/mission_custom_go"
+            android:layout_marginTop="40dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="#454544"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_extension"
+                />
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="나에게 맞는 미션 설계하기"/>
+        </LinearLayout>
+
+</LinearLayout>
+
+</RelativeLayout>

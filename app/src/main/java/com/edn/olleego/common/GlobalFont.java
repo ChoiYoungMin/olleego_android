@@ -17,14 +17,14 @@ public class GlobalFont  extends Application {
     public void onCreate() {
         super.onCreate();
         Typekit.getInstance()
-                .addNormal(Typekit.createFromAsset(this, "KoPubBatangLight.ttf"))
-                .addBold(Typekit.createFromAsset(this, "KoPubBatangBold.ttf"));
-
+                .addNormal(Typekit.createFromAsset(this, "NotoSansCJKkr-Medium.woff"))
+                .addBold(Typekit.createFromAsset(this, "NotoSansCJKkr-Bold.woff"));
                 /*
 
-                .addNormal(Typekit.createFromAsset(this, "NotoSansCJKkr-Medium.otf"))
-                .addCustom1(Typekit.createFromAsset(this, "NotoSansCJKkr-Regular.otf"))
-                .addBold(Typekit.createFromAsset(this, "NotoSansCJKkr-Bold.otf"));
+                //.addCustom1(Typekit.createFromAsset(this, "NotoSansCJKkr-Regular.ttf"))
+
+                .addNormal(Typekit.createFromAsset(this, "KoPubBatangLight.ttf"))
+                .addBold(Typekit.createFromAsset(this, "KoPubBatangBold.ttf"));
 
                  */
 

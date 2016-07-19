@@ -20,7 +20,9 @@ import com.edn.olleego.R;
 import com.edn.olleego.activity.login.EmailActivity;
 import com.edn.olleego.common.BackPressCloseHandler;
 import com.edn.olleego.fragment.Home_Fragment;
-import com.edn.olleego.fragment.Mission.MissionFragment;
+import com.edn.olleego.fragment.Mission.MissionCategoryFragment;
+import com.edn.olleego.fragment.Mission.MissionCategoryMainFragment;
+import com.edn.olleego.fragment.Mission.MissionCustomFragment;
 import com.edn.olleego.fragment.OlleegoGym_Fragment;
 import com.edn.olleego.fragment.chart.ChartFragment;
 import com.edn.olleego.fragment.diary.Diary_Fragment;
@@ -33,11 +35,17 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-     OlleegoGym_Fragment GymFramgment;
-     Home_Fragment MainFramgment;
-     Diary_Fragment DiaryFramgment;
-    MissionFragment MissionFragment;
-     com.edn.olleego.fragment.chart.ChartFragment ChartFragment;
+    OlleegoGym_Fragment gymFragment;
+    Home_Fragment mainFragment;
+    Diary_Fragment diaryFragment;
+    MissionCategoryMainFragment missionCategoryFragment;
+    MissionCustomFragment missionCustomFragment;
+    ChartFragment chartFragment;
+
+
+
+
+
     android.support.v4.app.FragmentTransaction transaction;
 
     Fragment fragment;
@@ -81,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         Init_Framgment();
 
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.content_main, MainFramgment,"main");
+        transaction.add(R.id.content_main, mainFragment,"main");
         transaction.addToBackStack(null);
         transaction.commit();
 
@@ -126,11 +134,12 @@ public class MainActivity extends AppCompatActivity
 
 
     public void Init_Framgment() {
-        GymFramgment = new OlleegoGym_Fragment();
-        MainFramgment = new Home_Fragment();
-        DiaryFramgment = new Diary_Fragment();
-        ChartFragment = new ChartFragment();
-        MissionFragment = new MissionFragment();
+        gymFragment = new OlleegoGym_Fragment();
+        mainFragment = new Home_Fragment();
+        diaryFragment = new Diary_Fragment();
+        chartFragment = new ChartFragment();
+        missionCategoryFragment = new MissionCategoryMainFragment();
+        missionCustomFragment = new MissionCustomFragment();
     }
 
     @Override
@@ -234,7 +243,7 @@ public class MainActivity extends AppCompatActivity
         // 오른쪽 메뉴
 
         if(id == R.id.right1) {
-            transaction.replace(R.id.content_main, GymFramgment);
+            //transaction.replace(R.id.content_main, getFragmentManager());
         } else if(id == R.id.right2) {
             Toast.makeText(this, "제휴 센터 지도", Toast.LENGTH_SHORT).show();
             return true;
@@ -245,18 +254,20 @@ public class MainActivity extends AppCompatActivity
 
 
         if(id == R.id.left_menu_home) {
-            transaction.replace(R.id.content_main, MainFramgment);
+            transaction.replace(R.id.content_main, mainFragment);
         }
         else if (id == R.id.left_menu_chart) {
-            transaction.replace(R.id.content_main, ChartFragment);
+            transaction.replace(R.id.content_main, chartFragment);
         }else if (id == R.id.left_menu_diary) {
-            transaction.replace(R.id.content_main, DiaryFramgment);
+            transaction.replace(R.id.content_main, diaryFragment);
         } else if (id == R.id.left_menu_mission) {
-            transaction.replace(R.id.content_main, MissionFragment);
+            transaction.replace(R.id.content_main, missionCategoryFragment);
         } else if (id == R.id.left_menu_video) {
             Intent intent = new Intent(getApplicationContext(), EmailActivity.class);
             startActivity(intent);
             finish();
+        } else if (id == R.id.left_menu_setting) {
+            transaction.replace(R.id.content_main, missionCustomFragment);
         } else if (id == R.id.left_menu_notice) {
             SharedPreferences.Editor editor = olleego_SP.edit();
             //editor.remove("login_chk");

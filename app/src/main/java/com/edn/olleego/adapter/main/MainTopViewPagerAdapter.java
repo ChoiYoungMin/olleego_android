@@ -2,7 +2,6 @@ package com.edn.olleego.adapter.main;
 
 import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,8 @@ import com.edn.olleego.common.CircleProgressBar;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.common.VerticalProgressBar;
-import com.edn.olleego.model.MissionModel;
-import com.edn.olleego.server.MissionAPI;
+import com.edn.olleego.model.UserMissionModel;
+import com.edn.olleego.server.UserMissionAPI;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -112,14 +111,14 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                     .build();
 
 
-            MissionAPI missionAPI = retrofit.create(MissionAPI.class);
+            UserMissionAPI missionAPI = retrofit.create(UserMissionAPI.class);
             String token = "ollego " + olleego_SP.getString("login_token", "");;
-            final Call<MissionModel> repos2 = missionAPI.listRepos(token);
+            final Call<UserMissionModel> repos2 = missionAPI.listRepos(token);
 
             final View ConvertView2 = convertView;
-            repos2.enqueue(new Callback<MissionModel>() {
+            repos2.enqueue(new Callback<UserMissionModel>() {
                 @Override
-                public void onResponse(Call<MissionModel> call, Response<MissionModel> response) {
+                public void onResponse(Call<UserMissionModel> call, Response<UserMissionModel> response) {
                     SharedPreferences.Editor editor = olleego_SP.edit();
 
                     if(response.code() == 404) {
@@ -129,17 +128,19 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
                     } else if (response.isSuccessful()) {
 
-                        SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault());
-                        Date date = new Date();
-                        nowDate =  Integer.parseInt(dateFormat.format(date));
 
-                        // int myDate = Integer.parseInt();
-
-                        //nowDate = nowDate - myDate;
-                        Date beginDate = null;
-                        Date endDate = null;
                         try {
-                            String a = dateFormat.format(response.body().getResult().get(0).getMission().getCreated());
+                            SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault());
+                            Date date = new Date();
+                            nowDate =  Integer.parseInt(dateFormat.format(date));
+
+                            // int myDate = Integer.parseInt();
+
+                            //nowDate = nowDate - myDate;
+                            Date beginDate = null;
+                            Date endDate = null;
+
+                            String a = dateFormat.format(response.body().getResult().get(0).getCreated());
                             String b = dateFormat.format(date);
                             beginDate = dateFormat.parse(a);
                             endDate = dateFormat.parse(b);
@@ -178,6 +179,10 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             e.printStackTrace();
                         } catch (ParseException e) {
                             e.printStackTrace();
+                        } catch (NullPointerException e ) {
+                            ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
+                            ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
+                            editor.putString("user_mission_today_rest", "null");
                         }
 
 
@@ -192,7 +197,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                 }
 
                 @Override
-                public void onFailure(Call<MissionModel> call, Throwable t) {
+                public void onFailure(Call<UserMissionModel> call, Throwable t) {
                     //서버 연결 ㄴㄴ
 
 

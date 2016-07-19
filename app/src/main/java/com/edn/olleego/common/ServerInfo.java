@@ -6,4 +6,5 @@ package com.edn.olleego.common;
 public class ServerInfo {
     //public static String OLLEEGO_HOST = "http://192.168.0.34:4000";
     public static String OLLEEGO_HOST = "http://1.255.51.120:5000";
+    public static String OLLEEGO_IMAGE = "http://1.255.51.120:5000/uploads/";
 }

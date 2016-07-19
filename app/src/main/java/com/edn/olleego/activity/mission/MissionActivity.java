@@ -36,12 +36,12 @@ public class MissionActivity extends AppCompatActivity {
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("미션리스트");
 
-        missionAdapter = new Mission_Adapter(getLayoutInflater());
+        //missionAdapter = new Mission_Adapter(getLayoutInflater());
         mListView.setAdapter(missionAdapter);
 
-        missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 초보용 미션 프로그램", "복근 , 하체 , 상체");
+        //missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 초보용 미션 프로그램", "복근 , 하체 , 상체");
 
-        missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 초보용 미션 프로그램", "복근 , 하체 , 상체");
+        //missionAdapter.addItem(R.drawable.kakao_default_profile_image,"쉽게 따라하는 초보용 미션 프로그램", "복근 , 하체 , 상체");
 
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

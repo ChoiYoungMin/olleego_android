@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
@@ -23,9 +24,10 @@ public class Mission_Adapter extends BaseAdapter{
     private Context context = null;
     private ArrayList<Mission_Data> mission_data = new ArrayList<Mission_Data>();
 
-    public Mission_Adapter(LayoutInflater inflater) {
+    public Mission_Adapter(LayoutInflater inflater, Context context) {
         super();
         this.inflater = inflater;
+        this.context = context;
     }
 
 
@@ -63,19 +65,27 @@ public class Mission_Adapter extends BaseAdapter{
 
         Mission_Data gymDatas = mission_data.get(position);
 
-        holder.mImg.setImageResource(gymDatas.mImg);
-        holder.mTitle.setText(gymDatas.mTitle);
-        holder.mTarget.setText(gymDatas.mTarget);
+        Glide.with(context).load(gymDatas.mImg)
+                .into(holder.mImg);
 
+        holder.mImg.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        holder.mission_type.setText(gymDatas.mission_type);
+        holder.mission_title.setText(gymDatas.mission_title);
+        holder.rating.setRating(gymDatas.rating);
+        holder.rating_peple.setText(String.valueOf(gymDatas.rating_peple));
+        holder.mission_level.setText(gymDatas.mission_level);
+        holder.mission_time.setText(gymDatas.mission_time);
 
 
         return convertView;
     }
 
-    public void addItem(int mImg, String mTitle, String mTarget) {
-        Mission_Data missionData = new Mission_Data(mImg, mTitle, mTarget);
+    public void addItem(String mImg, String mission_type, String mission_title, int rating, int rating_peple, String mission_level, String mission_time) {
+        Mission_Data missionData = new Mission_Data(mImg, mission_type, mission_title, rating, rating_peple, mission_level, mission_time);
 
         mission_data.add(missionData);
+        notifyDataSetChanged();
     }
 
     public void ItemRemove() {

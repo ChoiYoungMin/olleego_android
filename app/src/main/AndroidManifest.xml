@@ -46,12 +46,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.mission.MissionCustomized1Activity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.mission.Mission"
-            android:label="@string/title_activity_main4431"></activity>
+        <activity android:name=".activity.mission.MissionCustomStepOneActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

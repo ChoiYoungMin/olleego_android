@@ -23,13 +23,13 @@
                     android:layout_marginTop="5dp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:id="@+id/imageView17"
-                    android:src="@drawable/icon_99_px"
+                    android:background="@drawable/icon_99_px"
                     android:layout_marginLeft="50dp"
-                    android:layout_alignTop="@+id/main_top_mission_title"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="7dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
                     android:textColor="#cde860"
                     android:layout_below="@+id/imageView17"
                     android:layout_alignStart="@+id/main_top_mission_title"
-                    android:layout_marginTop="9dp" />
+                    android:layout_marginTop="15dp" />
 
 
                 <TextView
@@ -73,8 +73,9 @@
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:textColor="#f0f1ed"
-                    android:layout_alignTop="@+id/main_top_mission_myday"
-                    android:layout_toStartOf="@+id/imageView17" />
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_toEndOf="@+id/view3" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -84,10 +85,9 @@
                     android:textStyle="bold"
                     android:textSize="10sp"
                     android:textColor="@android:color/white"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="20dp"
-
-                    android:layout_alignBottom="@+id/view3"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_alignTop="@+id/view3"
                     android:layout_toEndOf="@+id/main_top_mission_allday" />
 
                 <TextView
@@ -110,7 +110,7 @@
                     app:progress="35"
                     app:progressBarThickness="3dp"
                     android:layout_marginEnd="35dp"
-                    android:layout_alignTop="@+id/imageView17"
+                    android:layout_marginTop="10dp"
                     android:layout_alignParentEnd="true" />
 
                 <TextView
@@ -123,7 +123,8 @@
                     android:id="@+id/main_top_bar_text"
                     android:layout_marginEnd="9dp"
                     android:layout_marginRight="9dp"
-                    android:layout_alignTop="@+id/main_top_mission_allday"
+
+                    android:layout_marginTop="35dp"
                     android:layout_alignRight="@+id/main_top_bar" />
 
 

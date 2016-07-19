@@ -2,44 +2,17 @@ package com.edn.olleego.adapter.main;
 
 import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.edn.olleego.R;
-import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.model.ExgroupsModel;
 import com.edn.olleego.model.FoodsModel;
 import com.edn.olleego.model.LifesModel;
-import com.edn.olleego.model.MissionModel;
-import com.edn.olleego.server.ExgroupsAPI;
-import com.edn.olleego.server.FoodsAPI;
-import com.edn.olleego.server.LifesAPI;
-import com.edn.olleego.server.MissionAPI;
-import com.google.android.gms.vision.text.Text;
 
-import java.net.CookieManager;
-import java.net.CookiePolicy;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
-import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import okhttp3.JavaNetCookieJar;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Antonio on 2016-07-14.
@@ -71,7 +44,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
         this.foodsModel = foodsModel;
         this.lifesModel = lifesModel;
         convertView= null;
-        mSize = this.exgroupsModel.getResult().getEx_list().size() + this.foodsModel.getResult().getFd_list().size()+ this.lifesModel.getResult().getLf_list().size();
+        mSize = 1 + this.foodsModel.getResult().getFd_list().size()+ this.lifesModel.getResult().getLf_list().size();
         //notifyDataSetChanged();
 
     }
@@ -99,7 +72,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
 
 
-            if(position < exgroupsModel.getResult().getEx_list().size()) {
+            if(position < 1) {
 
 
                     convertView = inflater.inflate(R.layout.item_main_middle_mission, null);
@@ -120,7 +93,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                     view.addView(convertView);
 
 
-            } else if(position < exgroupsModel.getResult().getEx_list().size()+foodsModel.getResult().getFd_list().size()){
+            } else if(position < 1+foodsModel.getResult().getFd_list().size()){
 
 
                 convertView = inflater.inflate(R.layout.item_main_middle_food, null);
@@ -134,13 +107,13 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                 today_nowcount.setText(String.valueOf(position + 1));
 
 
-                food_title.setText(foodsModel.getResult().getFd_list().get(position - (exgroupsModel.getResult().getEx_list().size())).getTitle());
-                food_content.setText(foodsModel.getResult().getFd_list().get(position - (exgroupsModel.getResult().getEx_list().size())).getDescription1());
+                food_title.setText(foodsModel.getResult().getTitle());
+                food_content.setText(foodsModel.getResult().getFd_list().get(position - 1).getTitle());
 
                 view.addView(convertView);
 
                 //되돌아갈떄 계속 커짐
-            } else if(position < exgroupsModel.getResult().getEx_list().size()+foodsModel.getResult().getFd_list().size()+ lifesModel.getResult().getLf_list().size()){
+            } else if(position < 1+foodsModel.getResult().getFd_list().size()+ lifesModel.getResult().getLf_list().size()){
 
                     convertView = inflater.inflate(R.layout.item_main_middle_life, null);
 
@@ -152,8 +125,8 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
                     today_allcount.setText(String.valueOf(mSize));
                     today_nowcount.setText(String.valueOf(position + 1));
-                    life_title.setText(lifesModel.getResult().getLf_list().get(position - (exgroupsModel.getResult().getEx_list().size()+foodsModel.getResult().getFd_list().size())).getTitle());
-                    life_content.setText(lifesModel.getResult().getLf_list().get(position - (exgroupsModel.getResult().getEx_list().size()+foodsModel.getResult().getFd_list().size())).getDescription1());
+                    life_title.setText(lifesModel.getResult().getTitle());
+                    life_content.setText(lifesModel.getResult().getLf_list().get(position - (1+foodsModel.getResult().getFd_list().size())).getTitle());
 
                     view.addView(convertView);
 

@@ -48,6 +48,8 @@
 
     <!-- Primary & accent colors -->
 
+    <color name="red">#fd6d66</color>
+
     <color name="material_red_100">#fff4c7c3</color>
     <color name="material_red_300">#ffe67c73</color>
     <color name="material_red_500">#ffdb4437</color>
