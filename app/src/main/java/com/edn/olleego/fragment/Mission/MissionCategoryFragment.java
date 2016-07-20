@@ -1,10 +1,13 @@
 package com.edn.olleego.fragment.Mission;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,10 +20,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.mission.MissionDetailActivity;
 import com.edn.olleego.adapter.mission.Mission_Adapter;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.model.AllMissionModel;
 import com.edn.olleego.server.AllMissionAPI;
+
+import java.io.Serializable;
 
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -54,6 +60,8 @@ public class MissionCategoryFragment extends Fragment {
     ListView mListView;
     int now;
     View rootView;
+
+    AllMissionModel allMissionModel;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -99,14 +107,22 @@ public class MissionCategoryFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                fragment = new MissionDetailFragment();
-                MissionDetailFragment missionDetailFragment = new MissionDetailFragment();
+                Intent intent = new Intent(getActivity(), MissionDetailActivity.class);
+                intent.putExtra("mission_id", allMissionModel.getResult().get(position).get_id());
+                //intent.putExtra("mission_type_img", rootView.findViewById(R.id.imageView27).getResources().toString()); // 이미지 전달은 어캐하지
+                intent.putExtra("mission_type_name", allMissionModel.getResult().get(position).getMi_lg_sort().getValue());
+                intent.putExtra("mission_title", allMissionModel.getResult().get(position).getTitle());
+                intent.putExtra("mission_level", allMissionModel.getResult().get(position).getMi_level().getValue());
+                intent.putExtra("mission_day", String.valueOf(allMissionModel.getResult().get(position).getMi_term()));
+                intent.putExtra("mission_description", allMissionModel.getResult().get(position).getDescription1());
+                intent.putExtra("mission_img_size", allMissionModel.getResult().get(position).getDescription_img().size());
+                intent.putExtra("mission_title_img", allMissionModel.getResult().get(position).getTitle_img());
+                for(int i= 0;i<allMissionModel.getResult().get(position).getDescription_img().size(); i++) {
+                    intent.putExtra("mission_img"+i, allMissionModel.getResult().get(position).getDescription_img().get(i).toString());
+                }
 
-                android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-                transaction.add(R.id.content_main, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                startActivity(intent);
             }
         });
 
@@ -130,18 +146,23 @@ public class MissionCategoryFragment extends Fragment {
 
         SharedPreferences olleego_SP = getActivity().getSharedPreferences("olleego", getActivity().MODE_PRIVATE);
         AllMissionAPI allMissionAPI = retrofit.create(AllMissionAPI.class);
-        String token = "ollego " + olleego_SP.getString("login_token", "");
-        final Call<AllMissionModel> lifePos = allMissionAPI.listRepos(token);
+        String token = "olleego " + olleego_SP.getString("login_token", "");
+        final Call<AllMissionModel> lifePos = allMissionAPI.listRepos(token, "");
 
         lifePos.enqueue(new Callback<AllMissionModel>() {
             @Override
             public void onResponse(Call<AllMissionModel> call, Response<AllMissionModel> response) {
+                allMissionModel = response.body();
+
 
                 if (response.isSuccessful()) {
 
                     for (int i = 0; i < response.body().getResult().size(); i++) {
-                        missionAdapter.addItem(ServerInfo.OLLEEGO_IMAGE+response.body().getResult().get(i).getTitle_img(), response.body().getResult().get(i).getMi_lg_sort().getValue(), response.body().getResult().get(i).getTitle(), 3, 00, response.body().getResult().get(i).getMi_level().getValue(), response.body().getResult().get(i).getMi_term() + "주");
+                        try {
+                            missionAdapter.addItem(ServerInfo.OLLEEGO_IMAGE + response.body().getResult().get(i).getTitle_img(), response.body().getResult().get(i).getMi_lg_sort().getValue(), response.body().getResult().get(i).getTitle(), 3, 00, response.body().getResult().get(i).getMi_level().getValue(), response.body().getResult().get(i).getMi_term() + "주");
+                        } catch (NullPointerException e) {
 
+                        }
                     }
                 }
                 else  {

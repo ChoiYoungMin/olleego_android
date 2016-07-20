@@ -62,7 +62,8 @@
     android:orientation="horizontal"
     android:layout_alignTop="@+id/mission_title"
     android:layout_alignStart="@+id/mission_title"
-    android:layout_marginTop="40dp" >
+    android:layout_marginTop="40dp"
+        android:id="@+id/linearLayout17">
 
         <LinearLayout
             android:layout_width="40dp"
@@ -108,10 +109,9 @@
         android:layout_alignStart="@+id/mission_title">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView27"
-            android:src="@drawable/pilates"/>
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:id="@+id/mission_type_img"/>
         
         <TextView
             android:id="@+id/mission_type"
@@ -147,8 +147,8 @@
         android:layout_height="20dp"
         android:background="@drawable/mission_radius"
         android:gravity="center"
-        android:layout_marginStart="7dp"
-        android:layout_below="@+id/linearLayout8"
+        android:layout_marginStart="6dp"
+        android:layout_alignTop="@+id/linearLayout17"
         android:layout_alignParentStart="true">
 
         <ImageView

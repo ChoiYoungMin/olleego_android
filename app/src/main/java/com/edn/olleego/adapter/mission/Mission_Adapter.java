@@ -77,7 +77,18 @@ public class Mission_Adapter extends BaseAdapter{
         holder.mission_level.setText(gymDatas.mission_level);
         holder.mission_time.setText(gymDatas.mission_time);
 
+        if(gymDatas.mission_type.equals("다이어트")) {
+            Glide.with(context).load(R.drawable.diet)
+                    .into(holder.mission_type_img);
+        } else if(gymDatas.mission_type.equals("필라테스")) {
+            Glide.with(context).load(R.drawable.pilates)
+                    .into(holder.mission_type_img);
+        } else if(gymDatas.mission_type.equals("건강관리")){
+            Glide.with(context).load(R.drawable.health_managing)
+                    .into(holder.mission_type_img);
+        }
 
+        //mission_type_img
         return convertView;
     }
 

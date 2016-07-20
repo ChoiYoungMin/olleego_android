@@ -112,7 +112,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
 
             UserMissionAPI missionAPI = retrofit.create(UserMissionAPI.class);
-            String token = "ollego " + olleego_SP.getString("login_token", "");;
+            String token = "olleego " + olleego_SP.getString("login_token", "");;
             final Call<UserMissionModel> repos2 = missionAPI.listRepos(token);
 
             final View ConvertView2 = convertView;
@@ -149,11 +149,21 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             diffDays = (diff / (24 * 60 * 60 * 1000)+1);
 
 
+                            if(diffDays-1 > response.body().getResult().get(0).getMission().getMi_term()*7){ // 임시용 미션 끝
+                                ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
+                                ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
+                                editor.putString("user_mission_today_rest", "null");
+                            }
+                            else {
+                                editor.putInt("user_mission_today_food", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getFood());
+                                editor.putInt("user_mission_today_life", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getLife());
+                                editor.putInt("user_mission_today_exgroup", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup());
+                                editor.putString("user_mission_today_rest", String.valueOf(response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getRest()));
 
-                            editor.putInt("user_mission_today_food", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getFood());
-                            editor.putInt("user_mission_today_life", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getLife());
-                            editor.putInt("user_mission_today_exgroup", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup());
-                            editor.putString("user_mission_today_rest", String.valueOf(response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getRest()));
+
+                                ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.VISIBLE);
+                                ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.GONE);
+                            }
 
 
 
@@ -169,8 +179,6 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             main_top_mission_day.setText(String.valueOf(diffDays));
                             main_top_mission_allday.setText(String.valueOf((mission_allday*7)));
 
-                            ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.VISIBLE);
-                            ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.GONE);
                         } catch (IndexOutOfBoundsException e) {
                             ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
                             ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);

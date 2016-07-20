@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 
@@ -39,7 +40,6 @@ public class MissionDetailFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_mission_detail, container, false);
         //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-
         RatingBar ratingBar = (RatingBar)rootView.findViewById(R.id.ratingBar2) ;
 
         ratingBar.setStepSize((float) 0.5);

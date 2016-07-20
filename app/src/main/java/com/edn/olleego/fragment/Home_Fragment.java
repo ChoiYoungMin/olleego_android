@@ -58,7 +58,15 @@ public class Home_Fragment extends Fragment {
     ExgroupsModel exgroupsModel;
     FoodsModel foodsModel;
     LifesModel lifesModel;
-    Retrofit retrofit;
+
+
+    Retrofit retrofit_home;
+
+
+    Retrofit retrofit_diary;
+    Retrofit retrofit_lifes;
+    Retrofit retrofit_foods;
+
     View rootView;
     int waters;
     @Override
@@ -209,13 +217,13 @@ public class Home_Fragment extends Fragment {
             //운동 조회
 
 
-            retrofit = new Retrofit.Builder()
+            retrofit_home = new Retrofit.Builder()
                     .baseUrl(ServerInfo.OLLEEGO_HOST)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
 
-            ExgroupsAPI exgroupsAPI = retrofit.create(ExgroupsAPI.class);
+            ExgroupsAPI exgroupsAPI = retrofit_home.create(ExgroupsAPI.class);
             final Call<ExgroupsModel> repos2 = exgroupsAPI.listRepos(olleego_SP.getInt("user_mission_today_exgroup", 0));
 
             repos2.enqueue(new Callback<ExgroupsModel>() {
@@ -254,13 +262,12 @@ public class Home_Fragment extends Fragment {
 
 
     public void today_foods( final LayoutInflater inflater) {
-        retrofit = new Retrofit.Builder()
+        retrofit_foods = new Retrofit.Builder()
                 .baseUrl(ServerInfo.OLLEEGO_HOST)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
-        FoodsAPI foodsAPI = retrofit.create(FoodsAPI.class);
+        FoodsAPI foodsAPI = retrofit_foods.create(FoodsAPI.class);
         final Call<FoodsModel> foodPos = foodsAPI.listRepos(olleego_SP.getInt("user_mission_today_food", 0));
 
         foodPos.enqueue(new Callback<FoodsModel>() {
@@ -279,13 +286,12 @@ public class Home_Fragment extends Fragment {
 
 
     public void today_lifes(final LayoutInflater inflater) {
-        retrofit = new Retrofit.Builder()
+        retrofit_lifes = new Retrofit.Builder()
                 .baseUrl(ServerInfo.OLLEEGO_HOST)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
-        LifesAPI lifesAPI = retrofit.create(LifesAPI.class);
+        LifesAPI lifesAPI = retrofit_lifes.create(LifesAPI.class);
         final Call<LifesModel> lifePos = lifesAPI.listRepos(olleego_SP.getInt("user_mission_today_life", 0));
 
         lifePos.enqueue(new Callback<LifesModel>() {
@@ -309,7 +315,7 @@ public class Home_Fragment extends Fragment {
 
 
     public void today_diary() {
-        retrofit = new Retrofit.Builder()
+        retrofit_diary = new Retrofit.Builder()
                 .baseUrl(ServerInfo.OLLEEGO_HOST)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -318,7 +324,7 @@ public class Home_Fragment extends Fragment {
         Date date = new Date();
 
         String token = "ollego " + olleego_SP.getString("login_token", "");;
-        DiaryAPI diaryAPI = retrofit.create(DiaryAPI.class);
+        DiaryAPI diaryAPI = retrofit_diary.create(DiaryAPI.class);
 
         final Call<DiaryModel> diaryPos = diaryAPI.listRepos(dateFormat.format(date), token);
 
@@ -326,60 +332,62 @@ public class Home_Fragment extends Fragment {
             @Override
             public void onResponse(Call<DiaryModel> call, Response<DiaryModel> response) {
 
-                TextView sleep = (TextView) rootView.findViewById(R.id.main_diary_sleep);
-                TextView walking = (TextView) rootView.findViewById(R.id.main_diary_walking);
-                String time;
-                String walkings;
-                if(response.body().getResult().getSleep() == null) {
-                    time = "00 : 00";
-                } else {
-                    time = response.body().getResult().getSleep();
-                }
-                if(response.body().getResult().getWalking() == null) {
+                if(response.isSuccessful()) {
 
-                    walkings = "0";
-                } else {
-                    walkings =response.body().getResult().getWalking();
-                }
+                    TextView sleep = (TextView) rootView.findViewById(R.id.main_diary_sleep);
+                    TextView walking = (TextView) rootView.findViewById(R.id.main_diary_walking);
+                    String time;
+                    String walkings;
+                    if (response.body().getResult().getSleep() == null) {
+                        time = "00 : 00";
+                    } else {
+                        time = response.body().getResult().getSleep();
+                    }
+                    if (response.body().getResult().getWalking() == null) {
+
+                        walkings = "0";
+                    } else {
+                        walkings = response.body().getResult().getWalking();
+                    }
 
                     sleep.setText(time);
                     walking.setText(walkings);
 
 
+                    try {
 
+                        for (int a = 0; a < response.body().getResult().getFood().size(); a++) {
 
-                try {
+                            switch (response.body().getResult().getFood().get(a).getSort().get_id()) {
+                                case 1:
+                                    rootView.findViewById(R.id.main_diary_morning).setVisibility(View.VISIBLE);
+                                    break;
+                                case 2:
+                                    rootView.findViewById(R.id.main_diary_lunch).setVisibility(View.VISIBLE);
+                                    break;
+                                case 3:
+                                    rootView.findViewById(R.id.main_diary_dinner).setVisibility(View.VISIBLE);
+                                    break;
+                                case 4:
+                                    rootView.findViewById(R.id.main_diary_snack).setVisibility(View.VISIBLE);
+                                    break;
 
-                    for (int a=0; a<response.body().getResult().getFood().size(); a++) {
+                                default:
+                                    break;
 
-                        switch (response.body().getResult().getFood().get(a).getSort().get_id()) {
-                            case 1:
-                                rootView.findViewById(R.id.main_diary_morning).setVisibility(View.VISIBLE);
-                                break;
-                            case 2:
-                                rootView.findViewById(R.id.main_diary_lunch).setVisibility(View.VISIBLE);
-                                break;
-                            case 3:
-                                rootView.findViewById(R.id.main_diary_dinner).setVisibility(View.VISIBLE);
-                                break;
-                            case 4:
-                                rootView.findViewById(R.id.main_diary_snack).setVisibility(View.VISIBLE);
-                                break;
-
-                            default:
-                                break;
+                            }
 
                         }
 
+                        rootView.findViewById(R.id.main_diary_food_no).setVisibility(View.GONE);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        rootView.findViewById(R.id.main_diary_food_no).setVisibility(View.VISIBLE);
                     }
 
-                    rootView.findViewById(R.id.main_diary_food_no).setVisibility(View.GONE);
-                } catch (ArrayIndexOutOfBoundsException e ) {
+
+                } else {
                     rootView.findViewById(R.id.main_diary_food_no).setVisibility(View.VISIBLE);
                 }
-
-
-
 
             }
 

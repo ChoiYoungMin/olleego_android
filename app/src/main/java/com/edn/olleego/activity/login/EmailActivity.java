@@ -107,23 +107,9 @@ public class EmailActivity extends Activity {
         }
         else {
 
-            HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-            CookieManager cookieManager = new CookieManager();
-            cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-
-            client = configureClient(new OkHttpClient().newBuilder()) //인증서 무시
-                    .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS) //연결 타임아웃 시간 설정
-                    .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS) //쓰기 타임아웃 시간 설정
-                    .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS) //읽기 타임아웃 시간 설정
-                    .cookieJar(new JavaNetCookieJar(cookieManager)) //쿠키메니져 설정
-                    .addInterceptor(httpLoggingInterceptor) //http 로그 확인
-                    .build();
 
             retrofit = new Retrofit.Builder()
                     .baseUrl(ServerInfo.OLLEEGO_HOST)
-                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
@@ -132,9 +118,6 @@ public class EmailActivity extends Activity {
             Login login = new Login(login_email.getText().toString(), login_password.getText().toString());
             final Call<LoginModel> repos = loginAPI.listRepos(login);
 
-            Log.e("zzz",repos.request().toString());
-
-            Log.e("zzz2",retrofit.toString());
             repos.enqueue(new Callback<LoginModel>() {
                 @Override
                 public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
@@ -148,7 +131,6 @@ public class EmailActivity extends Activity {
 
                         retrofit = new Retrofit.Builder()
                                 .baseUrl(ServerInfo.OLLEEGO_HOST)
-                                .client(client)
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build();
 
@@ -242,47 +224,5 @@ public class EmailActivity extends Activity {
         }
     }
 
-    public static OkHttpClient.Builder configureClient(final OkHttpClient.Builder builder) {
-        final TrustManager[] certs = new TrustManager[]{new X509TrustManager() {
 
-            @Override
-            public X509Certificate[] getAcceptedIssuers() {
-                X509Certificate[] x509Certificates = new X509Certificate[0];
-                return x509Certificates;
-            }
-
-            @Override
-            public void checkServerTrusted(final X509Certificate[] chain,
-                                           final String authType) {
-            }
-
-            @Override
-            public void checkClientTrusted(final X509Certificate[] chain,
-                                           final String authType) {
-            }
-        }};
-
-        SSLContext ctx = null;
-        try {
-            ctx = SSLContext.getInstance("TLS");
-            ctx.init(null, certs, new SecureRandom());
-        } catch (final java.security.GeneralSecurityException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            final HostnameVerifier hostnameVerifier = new HostnameVerifier() {
-                @Override
-                public boolean verify(final String hostname, final SSLSession session) {
-                    return true;
-                }
-            };
-
-            builder.sslSocketFactory(ctx.getSocketFactory()).hostnameVerifier(hostnameVerifier);
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-
-        return builder;
-    }
 }
