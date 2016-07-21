@@ -1,6 +1,7 @@
 package com.edn.olleego.common;
 
 import android.app.Activity;
+import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
 /**
@@ -23,7 +24,9 @@ public class BackPressCloseHandler {
             return;
         }
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            activity.finish();
+            ActivityCompat.finishAffinity(activity);
+            System.runFinalizersOnExit(true);
+            System.exit(0);
             toast.cancel();
         }
     }

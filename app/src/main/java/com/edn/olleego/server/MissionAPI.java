@@ -12,7 +12,7 @@ import retrofit2.http.Path;
 /**
  * Created by Antonio on 2016-07-19.
  */
-public interface AllMissionAPI {
+public interface MissionAPI {
     @Headers("Content-Type: application/json")
     @GET("/api/v2/missions/{id}")
     Call<AllMissionModel> listRepos(@Header("Authorization") String authorization, @Path("id") String su);

@@ -1,16 +1,18 @@
 package com.edn.olleego.model.usermission;
 
+import java.util.List;
+
 /**
  * Created by Antonio on 2016-07-14.
  */
 public class MiDay {
 
 
-    int life;
+    Life life;
 
-    int food;
+    Food food;
 
-    int exgroup;
+    List<Exgroup> exgroup;
 
     int day;
 
@@ -20,22 +22,22 @@ public class MiDay {
 
 
 
-    public int getLife() {
+    public Life getLife() {
         return this.life;
     }
-    public void setLife(int life) {
+    public void setLife(Life life) {
         this.life = life;
     }
-    public int getFood() {
+    public Food getFood() {
         return this.food;
     }
-    public void setFood(int food) {
+    public void setFood(Food food) {
         this.food = food;
     }
-    public int getExgroup() {
+    public List<Exgroup> getExgroup() {
         return this.exgroup;
     }
-    public void setExgroup(int exgroup) {
+    public void setExgroup(List<Exgroup> exgroup) {
         this.exgroup = exgroup;
     }
     public int getDay() {

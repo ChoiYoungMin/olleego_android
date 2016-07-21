@@ -38,13 +38,16 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
     FoodsModel foodsModel;
     LifesModel lifesModel;
 
-    public MainMiddleViewPagerAdapter(LayoutInflater inflater,ExgroupsModel exgroupsModel,FoodsModel foodsModel,LifesModel lifesModel) {
+    Boolean type;
+
+    public MainMiddleViewPagerAdapter(LayoutInflater inflater,ExgroupsModel exgroupsModel,FoodsModel foodsModel,LifesModel lifesModel, Boolean type) {
         this.inflater = inflater;
         this.exgroupsModel = exgroupsModel;
         this.foodsModel = foodsModel;
         this.lifesModel = lifesModel;
         convertView= null;
         mSize = 1 + this.foodsModel.getResult().getFd_list().size()+ this.lifesModel.getResult().getLf_list().size();
+        this.type = type;
         //notifyDataSetChanged();
 
     }
@@ -69,28 +72,31 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup view, int position) {
-
-
-
+        if(type == false) {
+            convertView = inflater.inflate(R.layout.item_main_middle_no, null);
+            view.addView(convertView);
+            mSize = 1;
+            notifyDataSetChanged();
+        } else {
             if(position < 1) {
 
 
-                    convertView = inflater.inflate(R.layout.item_main_middle_mission, null);
+                convertView = inflater.inflate(R.layout.item_main_middle_mission, null);
 
-                    TextView today_allcount = (TextView) convertView.findViewById(R.id.user_mission_today_count);
-                    TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_mission_now_position);
-                    TextView mission_title = (TextView) convertView.findViewById(R.id.user_mission_title);
-                    TextView mission_time = (TextView)convertView.findViewById(R.id.user_mission_time);
-                    TextView mission_time2 = (TextView)convertView.findViewById(R.id.user_mission_time2);
+                TextView today_allcount = (TextView) convertView.findViewById(R.id.user_mission_today_count);
+                TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_mission_now_position);
+                TextView mission_title = (TextView) convertView.findViewById(R.id.user_mission_title);
+                TextView mission_time = (TextView)convertView.findViewById(R.id.user_mission_time);
+                TextView mission_time2 = (TextView)convertView.findViewById(R.id.user_mission_time2);
 
-                    mission_title.setText(exgroupsModel.getResult().getTitle());
-                    mission_time.setText(String.valueOf(exgroupsModel.getResult().getTime()) + "분");
-                    mission_time2.setText(String.valueOf(exgroupsModel.getResult().getEx_list().size()) + "개");
+                mission_title.setText(exgroupsModel.getResult().getTitle());
+                mission_time.setText(String.valueOf(exgroupsModel.getResult().getTime()) + "분");
+                mission_time2.setText(String.valueOf(exgroupsModel.getResult().getEx_list().size()) + "개");
 
-                    today_allcount.setText(String.valueOf(mSize));
-                    today_nowcount.setText(String.valueOf(position+1));
+                today_allcount.setText(String.valueOf(mSize));
+                today_nowcount.setText(String.valueOf(position+1));
 
-                    view.addView(convertView);
+                view.addView(convertView);
 
 
             } else if(position < 1+foodsModel.getResult().getFd_list().size()){
@@ -115,26 +121,32 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                 //되돌아갈떄 계속 커짐
             } else if(position < 1+foodsModel.getResult().getFd_list().size()+ lifesModel.getResult().getLf_list().size()){
 
-                    convertView = inflater.inflate(R.layout.item_main_middle_life, null);
+                convertView = inflater.inflate(R.layout.item_main_middle_life, null);
 
-                    TextView today_allcount = (TextView) convertView.findViewById(R.id.user_life_today_count);
-                    TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_life_now_position);
-                    TextView life_title = (TextView) convertView.findViewById(R.id.user_life_title);
-                    TextView life_content = (TextView) convertView.findViewById(R.id.user_life_content);
+                TextView today_allcount = (TextView) convertView.findViewById(R.id.user_life_today_count);
+                TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_life_now_position);
+                TextView life_title = (TextView) convertView.findViewById(R.id.user_life_title);
+                TextView life_content = (TextView) convertView.findViewById(R.id.user_life_content);
 
 
-                    today_allcount.setText(String.valueOf(mSize));
-                    today_nowcount.setText(String.valueOf(position + 1));
-                    life_title.setText(lifesModel.getResult().getTitle());
-                    life_content.setText(lifesModel.getResult().getLf_list().get(position - (1+foodsModel.getResult().getFd_list().size())).getTitle());
+                today_allcount.setText(String.valueOf(mSize));
+                today_nowcount.setText(String.valueOf(position + 1));
+                life_title.setText(lifesModel.getResult().getTitle());
+                life_content.setText(lifesModel.getResult().getLf_list().get(position - (1+foodsModel.getResult().getFd_list().size())).getTitle());
 
-                    view.addView(convertView);
+                view.addView(convertView);
 
 
 
             }else {
                 return convertView;
             }
+
+        }
+
+
+
+
 
 
         /*if (position == 1) {
@@ -147,6 +159,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
 
         return convertView;
+
     }
 
     public void addItem() {

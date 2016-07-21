@@ -5,14 +5,11 @@ import com.edn.olleego.model.usermission.Result;
 import java.util.List;
 
 /**
- * Created by Antonio on 2016-07-14.
+ * Created by Antonio on 2016-07-21.
  */
-public class UserMissionModel {
+public class MissionsModel {
 
     boolean success;
-
-    List<Result> result;
-
 
 
     public boolean getSuccess() {
@@ -21,11 +18,4 @@ public class UserMissionModel {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-    public List<Result> getResult() {
-        return this.result;
-    }
-    public void setResult(List<Result> result) {
-        this.result = result;
-    }
-
 }

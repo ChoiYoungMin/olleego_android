@@ -96,6 +96,8 @@ public class Home_Fragment extends Fragment {
             }
         });
 
+        //initSP();
+
 
 
 
@@ -122,6 +124,7 @@ public class Home_Fragment extends Fragment {
             circleIndicator2 = (CircleIndicator) rootView.findViewById(R.id.inco2);
 
 
+
             viewPager.setAdapter(new MainTopViewPagerAdapter(inflater, olleego_SP));
             circleIndicator.setViewPager(viewPager);
 
@@ -129,6 +132,7 @@ public class Home_Fragment extends Fragment {
             today_mission(inflater);
 
             today_diary();
+
 
 
 
@@ -157,6 +161,16 @@ public class Home_Fragment extends Fragment {
         return rootView;
     }
 
+    public void initSP() {
+
+        SharedPreferences.Editor editor = olleego_SP.edit();
+        editor.remove("user_mission_today_food");
+        editor.remove("user_mission_today_life");
+        editor.remove("user_mission_today_exgroup");
+        editor.remove("user_mission_today_rest");
+        editor.commit();
+
+    }
 
     public void actionbar_init() {
 
@@ -167,53 +181,12 @@ public class Home_Fragment extends Fragment {
 
     }
 
-/*
-    @OnClick(R.id.home_mission_choise)
-    void mission_btn_click() {
-
-        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-        MissionFragment missionFragment = new MissionFragment();
-        transaction.setCustomAnimations(R.anim.slide_in_left, 0);
-        transaction.replace(R.id.content_main, missionFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-
-        Intent intent = new Intent(getActivity(), Mission.class);
-        startActivity(intent);
-        getActivity().finish();
-    }
-
-
-    @OnClick(R.id.button2)
-    void login() {
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        getActivity().startActivity(intent);
-        getActivity().finish();
-    }
-
-    @OnClick(R.id.button22)
-    void logout() {
-
-        SharedPreferences.Editor editor = olleego_SP.edit();
-        //editor.remove("login_chk");
-        editor.clear();
-        editor.commit();
-    }
-
-    @OnClick(R.id.main_custom_mission)
-    void click() {
-        Intent intent = new Intent(getActivity(), MissionCustomized1Activity.class);
-        getActivity().startActivity(intent);
-    }
-    */
-
-
     public void today_mission(final LayoutInflater inflater) {
 
 
-        if(olleego_SP.getString("user_mission_today_rest", "").equals("false")) {
-
+        if(olleego_SP.getString("user_mission_today_rest", "").equals("false") || olleego_SP.getString("user_mission_today_onoff", "").equals("on")) {
+            //rootView.findViewById(R.id.main_mission_yes).setVisibility(View.VISIBLE);
+            //rootView.findViewById(R.id.main_mission_no).setVisibility(View.GONE);
             //운동 조회
 
 
@@ -243,20 +216,12 @@ public class Home_Fragment extends Fragment {
                 }
             });
 
-
-            rootView.findViewById(R.id.main_mission_yes).setVisibility(View.VISIBLE);
-            rootView.findViewById(R.id.main_mission_no).setVisibility(View.GONE);
         }
 
         //쉬는날일경우
         else if(olleego_SP.getString("user_mission_today_rest", "").equals("true")) {
-            Toast.makeText(getContext(),"쉬는날임다 아직 디자인이 안나옴", Toast.LENGTH_SHORT).show();
-        }
-        // 미션이 없음.
-        else if(olleego_SP.getString("user_mission_today_rest", "").equals("null")) {
-            rootView.findViewById(R.id.main_mission_yes).setVisibility(View.GONE);
-            rootView.findViewById(R.id.main_mission_no).setVisibility(View.VISIBLE);
 
+            Toast.makeText(getContext(),"쉬는날임다 아직 디자인이 안나옴", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -298,8 +263,23 @@ public class Home_Fragment extends Fragment {
             @Override
             public void onResponse(Call<LifesModel> call, Response<LifesModel> response) {
                 lifesModel = response.body();
-                viewPager2.setAdapter(new MainMiddleViewPagerAdapter(inflater,exgroupsModel,foodsModel,lifesModel));
-                circleIndicator2.setViewPager(viewPager2);
+                Boolean type = false;
+                if(olleego_SP.getString("user_mission_today_onoff", "").equals("on")) {
+                    type = true;
+                } else {
+                    type = false;
+                }
+
+
+                viewPager2.setAdapter(new MainMiddleViewPagerAdapter(inflater,exgroupsModel,foodsModel,lifesModel,type ));
+
+                if(type == false) {
+
+                    circleIndicator2.setVisibility(View.GONE);
+                } else {
+                    circleIndicator2.setVisibility(View.VISIBLE);
+                    circleIndicator2.setViewPager(viewPager2);
+                }
             }
 
             @Override

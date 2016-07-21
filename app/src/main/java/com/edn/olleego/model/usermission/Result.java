@@ -15,7 +15,7 @@ public class Result {
 
     Date created;
 
-    User user;
+    int user;
 
     Mission mission;
 
@@ -31,8 +31,19 @@ public class Result {
 
     boolean active_yn;
 
+    int time;
 
 
+
+
+    public int get_time() {
+        return this.time;
+
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
 
     public int get_id() {
         return this._id;
@@ -53,10 +64,10 @@ public class Result {
     public void setCreated(Date created) {
         this.created = created;
     }
-    public User getUser() {
+    public int getUser() {
         return this.user;
     }
-    public void setUser(User user) {
+    public void setUser(int user) {
         this.user = user;
     }
     public Mission getMission() {

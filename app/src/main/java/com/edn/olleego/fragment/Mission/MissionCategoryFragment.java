@@ -4,8 +4,6 @@ package com.edn.olleego.fragment.Mission;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,15 +16,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.mission.MissionDetailActivity;
 import com.edn.olleego.adapter.mission.Mission_Adapter;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.model.AllMissionModel;
-import com.edn.olleego.server.AllMissionAPI;
-
-import java.io.Serializable;
+import com.edn.olleego.server.MissionAPI;
 
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -145,10 +140,9 @@ public class MissionCategoryFragment extends Fragment {
                 .build();
 
         SharedPreferences olleego_SP = getActivity().getSharedPreferences("olleego", getActivity().MODE_PRIVATE);
-        AllMissionAPI allMissionAPI = retrofit.create(AllMissionAPI.class);
+        MissionAPI allMissionAPI = retrofit.create(MissionAPI.class);
         String token = "olleego " + olleego_SP.getString("login_token", "");
         final Call<AllMissionModel> lifePos = allMissionAPI.listRepos(token, "");
-
         lifePos.enqueue(new Callback<AllMissionModel>() {
             @Override
             public void onResponse(Call<AllMissionModel> call, Response<AllMissionModel> response) {

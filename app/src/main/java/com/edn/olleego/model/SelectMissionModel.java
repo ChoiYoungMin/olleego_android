@@ -1,19 +1,19 @@
 package com.edn.olleego.model;
 
-import com.edn.olleego.model.usermission.Result;
+
+import com.edn.olleego.model.selectmission.Result;
 
 import java.util.List;
 
 /**
- * Created by Antonio on 2016-07-14.
+ * Created by Antonio on 2016-07-21.
  */
-public class UserMissionModel {
+public class SelectMissionModel {
+
 
     boolean success;
 
-    List<Result> result;
-
-
+    Result result;
 
     public boolean getSuccess() {
         return this.success;
@@ -21,11 +21,10 @@ public class UserMissionModel {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-    public List<Result> getResult() {
+    public Result getResult() {
         return this.result;
     }
-    public void setResult(List<Result> result) {
+    public void setResult(Result result) {
         this.result = result;
     }
-
 }

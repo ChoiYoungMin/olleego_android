@@ -302,7 +302,7 @@
             android:background="#30312f"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_marginTop="17dp"
@@ -351,7 +351,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
                     android:textStyle="bold"
-                    android:textColor="#454544"
+                    android:textColor="#878885"
                     android:text="10분"/>
             </LinearLayout>
 
@@ -446,29 +446,40 @@
 
             </LinearLayout>
 
-            <ScrollView
-                android:background="@drawable/barder2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="10dp"
-                android:layout_below="@+id/linearLayout16"
-                android:layout_centerHorizontal="true">
                 <LinearLayout
-                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_below="@+id/linearLayout16"
+                    android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:textColor="#cbcbc9"
-                        android:textSize="13sp"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="운동 목록 (총 5개)"/>
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:textColor="#cbcbc9"
+                            android:textSize="13sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="운동 목록 ( 총 "/>
+
+                        <TextView
+                            android:id="@+id/mission_detail_list_su"
+                            android:textColor="#cbcbc9"
+                            android:textSize="13sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5개 )"/>
+                    </LinearLayout>
+
 
 
 
@@ -482,14 +493,17 @@
 
 
                     <TextView
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/mission_detail_list"
+                        android:layout_marginTop="10dp"
                         android:textSize="13sp"
                         android:textColor="#878885"
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="스쿼드\n\n런지\n\n팔벌려 높이 뛰기"/>
+                        android:lineSpacingExtra = "7dp"
+                        android:text="스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기"/>
                 </LinearLayout>
-            </ScrollView>
 
         </RelativeLayout>
 
@@ -507,7 +521,7 @@
 
         <LinearLayout
             android:id="@+id/mission_start"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#cde860"

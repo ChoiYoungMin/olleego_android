@@ -39,7 +39,6 @@ public class Mission {
     //List<int> mi_md_sort;
 
 
-
     public int get_id() {
         return this._id;
     }
