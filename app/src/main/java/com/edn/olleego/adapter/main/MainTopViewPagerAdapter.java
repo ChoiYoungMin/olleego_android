@@ -1,7 +1,9 @@
 package com.edn.olleego.adapter.main;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,11 +51,15 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
     int mission_allday;
     int nowDate;
     long diffDays;
+    Context context;
+    ViewPager viewPager;
 
     long diff;
-    public MainTopViewPagerAdapter(LayoutInflater inflater, SharedPreferences olleego_SP) {
+    public MainTopViewPagerAdapter(LayoutInflater inflater, SharedPreferences olleego_SP, ViewPager viewPager, Context context) {
         this.inflater = inflater;
         this.olleego_SP = olleego_SP;
+        this.viewPager = viewPager;
+        this.context = context;
         mSize = 2;
     }
 
@@ -156,8 +162,10 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             }
                             else {
                                 editor.putString("user_mission_today_onoff", "on");
+                                editor.putInt("user_mission_id", response.body().getResult().get(0).get_id());
                                 editor.putInt("user_mission_today_food", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getFood().get_id());
                                 editor.putInt("user_mission_today_life", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getLife().get_id());
+                                editor.putString("user_mission_today_onoff", "on");
 
                                 for(int i=0; i< response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().size(); i++) {
                                     if(response.body().getResult().get(0).get_time() == response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().get(i).getTime()) {
@@ -210,6 +218,19 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
 
                     editor.commit();
+
+
+                    Boolean type = false;
+                    if(olleego_SP.getString("user_mission_today_onoff", "").equals("on")) {
+                        type = true;
+
+                        viewPager.setAdapter(new MainMiddleViewPagerAdapter(inflater, type, 1 ,olleego_SP,context));
+                    } else {
+                        type = false;
+
+                        MainMiddleViewPagerAdapter mainMiddleViewPagerAdapter = new MainMiddleViewPagerAdapter(inflater, type, context );
+                        viewPager.setAdapter(mainMiddleViewPagerAdapter);
+                    }
 
                 }
 

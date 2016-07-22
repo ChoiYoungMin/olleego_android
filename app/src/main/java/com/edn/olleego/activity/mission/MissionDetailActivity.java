@@ -255,8 +255,15 @@ public class MissionDetailActivity extends AppCompatActivity {
         } else if(olleego_SP.getString("user_mission_today_onoff", "").equals("off")) {
             type = false;
         }
+        int mission_id = 0;
+        try {
+             mission_id = olleego_SP.getInt("user_mission_id", 0);
+
+        }catch (NullPointerException e) {
+             mission_id= 0;
+        }
             Intent intent = getIntent();
-            final MissionStartDialog dialog = new MissionStartDialog(MissionDetailActivity.this, title ,times, type, olleego_SP.getString("login_token", ""),Integer.valueOf(olleego_SP.getString("user_id", "")), Integer.valueOf(mission_ids),  Integer.valueOf(intent.getStringExtra("mission_day")));
+            final MissionStartDialog dialog = new MissionStartDialog(MissionDetailActivity.this, title ,times, type, olleego_SP.getString("login_token", ""),Integer.valueOf(olleego_SP.getString("user_id", "")), Integer.valueOf(mission_ids),  Integer.valueOf(intent.getStringExtra("mission_day")),mission_id);
 
             dialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override

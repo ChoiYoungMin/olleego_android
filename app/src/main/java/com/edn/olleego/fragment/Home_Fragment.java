@@ -67,8 +67,12 @@ public class Home_Fragment extends Fragment {
     Retrofit retrofit_lifes;
     Retrofit retrofit_foods;
 
+
+    MainMiddleViewPagerAdapter mainMiddleViewPagerAdapter;
+    MainTopViewPagerAdapter mainTopViewPagerAdapter;
     View rootView;
     int waters;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -124,14 +128,17 @@ public class Home_Fragment extends Fragment {
             circleIndicator2 = (CircleIndicator) rootView.findViewById(R.id.inco2);
 
 
-
-            viewPager.setAdapter(new MainTopViewPagerAdapter(inflater, olleego_SP));
+            viewPager.removeAllViews();
+            mainTopViewPagerAdapter = new MainTopViewPagerAdapter(inflater, olleego_SP, viewPager2, getContext());
+            viewPager.setAdapter(mainTopViewPagerAdapter);
+            mainTopViewPagerAdapter.notifyDataSetChanged();
             circleIndicator.setViewPager(viewPager);
 
 
-            today_mission(inflater);
 
             today_diary();
+
+
 
 
 
@@ -140,19 +147,25 @@ public class Home_Fragment extends Fragment {
         // 비로그인 상태
         else {
             Toast.makeText(getContext(),"비로그인중", Toast.LENGTH_SHORT).show();
+            viewPager2 = (ViewPager) rootView.findViewById(R.id.viewPager2);
+            viewPager2.removeAllViews();
+            mainMiddleViewPagerAdapter = new MainMiddleViewPagerAdapter(inflater,false, getContext() );
+            viewPager2.setAdapter(mainMiddleViewPagerAdapter);
+            mainMiddleViewPagerAdapter.notifyDataSetChanged();
 
-            rootView.findViewById(R.id.main_mission_yes).setVisibility(View.GONE);
+
             rootView.findViewById(R.id.main_login_yes).setVisibility(View.GONE);
 
-            rootView.findViewById(R.id.main_mission_no).setVisibility(View.VISIBLE);
             rootView.findViewById(R.id.main_login_no).setVisibility(View.VISIBLE);
 
             rootView.findViewById(R.id.main_login_go).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     getActivity().finish();
+
                 }
             });
         }
@@ -181,114 +194,9 @@ public class Home_Fragment extends Fragment {
 
     }
 
-    public void today_mission(final LayoutInflater inflater) {
-
-
-        if(olleego_SP.getString("user_mission_today_rest", "").equals("false") || olleego_SP.getString("user_mission_today_onoff", "").equals("on")) {
-            //rootView.findViewById(R.id.main_mission_yes).setVisibility(View.VISIBLE);
-            //rootView.findViewById(R.id.main_mission_no).setVisibility(View.GONE);
-            //운동 조회
-
-
-            retrofit_home = new Retrofit.Builder()
-                    .baseUrl(ServerInfo.OLLEEGO_HOST)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-
-            ExgroupsAPI exgroupsAPI = retrofit_home.create(ExgroupsAPI.class);
-            final Call<ExgroupsModel> repos2 = exgroupsAPI.listRepos(olleego_SP.getInt("user_mission_today_exgroup", 0));
-
-            repos2.enqueue(new Callback<ExgroupsModel>() {
-                @Override
-                public void onResponse(Call<ExgroupsModel> call, Response<ExgroupsModel> response) {
-
-                    exgroupsModel = response.body();
-                    today_foods(inflater);
-                }
 
 
 
-
-                @Override
-                public void onFailure(Call<ExgroupsModel> call, Throwable t) {
-
-                }
-            });
-
-        }
-
-        //쉬는날일경우
-        else if(olleego_SP.getString("user_mission_today_rest", "").equals("true")) {
-
-            Toast.makeText(getContext(),"쉬는날임다 아직 디자인이 안나옴", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-    public void today_foods( final LayoutInflater inflater) {
-        retrofit_foods = new Retrofit.Builder()
-                .baseUrl(ServerInfo.OLLEEGO_HOST)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        FoodsAPI foodsAPI = retrofit_foods.create(FoodsAPI.class);
-        final Call<FoodsModel> foodPos = foodsAPI.listRepos(olleego_SP.getInt("user_mission_today_food", 0));
-
-        foodPos.enqueue(new Callback<FoodsModel>() {
-            @Override
-            public void onResponse(Call<FoodsModel> call, Response<FoodsModel> response) {
-                foodsModel = response.body();
-                today_lifes(inflater);
-            }
-
-            @Override
-            public void onFailure(Call<FoodsModel> call, Throwable t) {
-
-            }
-        });
-    }
-
-
-    public void today_lifes(final LayoutInflater inflater) {
-        retrofit_lifes = new Retrofit.Builder()
-                .baseUrl(ServerInfo.OLLEEGO_HOST)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        LifesAPI lifesAPI = retrofit_lifes.create(LifesAPI.class);
-        final Call<LifesModel> lifePos = lifesAPI.listRepos(olleego_SP.getInt("user_mission_today_life", 0));
-
-        lifePos.enqueue(new Callback<LifesModel>() {
-            @Override
-            public void onResponse(Call<LifesModel> call, Response<LifesModel> response) {
-                lifesModel = response.body();
-                Boolean type = false;
-                if(olleego_SP.getString("user_mission_today_onoff", "").equals("on")) {
-                    type = true;
-                } else {
-                    type = false;
-                }
-
-
-                viewPager2.setAdapter(new MainMiddleViewPagerAdapter(inflater,exgroupsModel,foodsModel,lifesModel,type ));
-
-                if(type == false) {
-
-                    circleIndicator2.setVisibility(View.GONE);
-                } else {
-                    circleIndicator2.setVisibility(View.VISIBLE);
-                    circleIndicator2.setViewPager(viewPager2);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LifesModel> call, Throwable t) {
-
-            }
-        });
-
-    }
 
 
 

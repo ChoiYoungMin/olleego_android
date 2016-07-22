@@ -49,8 +49,14 @@
         <activity
             android:name=".activity.mission.MissionCustomStepOneActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.mission.MissionDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.mission.MissionDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.mission.ExMission.ExMissionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.mission.ExMission.EtcMissionActivity"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
     </application>
 
 </manifest>

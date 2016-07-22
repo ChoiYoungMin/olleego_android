@@ -88,10 +88,16 @@ public class MainActivity extends AppCompatActivity
 
         Init_Framgment();
 
-        transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.content_main, mainFragment,"main");
-        transaction.addToBackStack(null);
-        transaction.commit();
+        olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
+
+
+
+
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main, mainFragment,"main");
+            transaction.addToBackStack(null);
+            transaction.commit();
+
 
         setCustomActionbar();
 
@@ -264,6 +270,7 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.content_main, missionCategoryFragment);
         } else if (id == R.id.left_menu_video) {
             Intent intent = new Intent(getApplicationContext(), EmailActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
         } else if (id == R.id.left_menu_setting) {
@@ -273,6 +280,7 @@ public class MainActivity extends AppCompatActivity
             //editor.remove("login_chk");
             editor.clear();
             editor.commit();
+            finish();
             return true;
         }
 

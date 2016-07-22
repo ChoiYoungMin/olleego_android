@@ -1,18 +1,11 @@
 package com.edn.olleego.dialog;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Window;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,12 +13,9 @@ import com.edn.olleego.R;
 import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.model.MissionsModel;
-import com.edn.olleego.model.SignupModel;
-import com.edn.olleego.server.NewMissionAPI;
-import com.edn.olleego.server.SignupAPI;
-import com.edn.olleego.server.request.NewMission;
-import com.edn.olleego.server.request.Signup;
-import com.google.android.gms.vision.text.Text;
+import com.edn.olleego.server.ChoiceGetMissionAPI;
+import com.edn.olleego.server.ChoicePutMissionAPI;
+import com.edn.olleego.server.request.ChoiceMission;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -52,6 +42,7 @@ public class MissionStartDialog extends Dialog {
     int user, mission;
     int day;
     int end_day;
+    int mission_id;
 
     @BindView(R.id.missionstart_mission_title)
     TextView mission_title;
@@ -60,7 +51,7 @@ public class MissionStartDialog extends Dialog {
     TextView mission_time;
     SharedPreferences olleego_SP;
 
-    public MissionStartDialog(Context context, String title, int time, Boolean type, String token, int user, int mission, int day) {
+    public MissionStartDialog(Context context, String title, int time, Boolean type, String token, int user, int mission, int day, int mission_id) {
         super(context);
         this.title = title;
         this.time = time;
@@ -69,6 +60,7 @@ public class MissionStartDialog extends Dialog {
         this.user= user;
         this.mission = mission;
         this.day= day;
+        this.mission_id=  mission_id;
     }
 
 
@@ -135,7 +127,37 @@ public class MissionStartDialog extends Dialog {
         Date endd = cal.getTime();
         if(type == true) { //PUT
 
-            Toast.makeText(getContext(), "미션 이미 있음 ㅋ", Toast.LENGTH_SHORT).show();
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(ServerInfo.OLLEEGO_HOST)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            ChoicePutMissionAPI PutMissionAPI = retrofit.create(ChoicePutMissionAPI.class);
+
+
+
+            ChoiceMission newMission = new ChoiceMission(user, mission,time,date,endd,date);
+            final Call<MissionsModel> repos = PutMissionAPI.listRepos("olleego "+ token,newMission,mission_id);
+
+            repos.enqueue(new Callback<MissionsModel>() {
+                @Override
+                public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
+                    Toast.makeText(getContext(), "미션 변경 완료", Toast.LENGTH_SHORT).show();
+
+
+                    SharedPreferences.Editor editor = olleego_SP.edit();
+                    editor.putString("user_mission_today_onoff", "on");
+                    editor.commit();
+
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    getContext().startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(Call<MissionsModel> call, Throwable t) {
+
+                }
+            });
         } else { // POST
 
 
@@ -146,11 +168,11 @@ public class MissionStartDialog extends Dialog {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            NewMissionAPI newMissionAPI = retrofit.create(NewMissionAPI.class);
+            ChoiceGetMissionAPI newMissionAPI = retrofit.create(ChoiceGetMissionAPI.class);
 
 
 
-            NewMission newMission = new NewMission(user, mission,time,date,endd,date);
+            ChoiceMission newMission = new ChoiceMission(user, mission,time,date,endd,date);
             final Call<MissionsModel> repos = newMissionAPI.listRepos("olleego "+ token,newMission);
 
             repos.enqueue(new Callback<MissionsModel>() {
@@ -161,10 +183,13 @@ public class MissionStartDialog extends Dialog {
 
                     SharedPreferences.Editor editor = olleego_SP.edit();
                     editor.putString("user_mission_today_onoff", "on");
+                    editor.putString("user_mission_today_rest", "false");
+
                     editor.commit();
 
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     getContext().startActivity(intent);
+
 
                 }
 

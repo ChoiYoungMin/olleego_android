@@ -5,13 +5,13 @@ import java.util.Date;
 /**
  * Created by Antonio on 2016-07-21.
  */
-public class NewMission {
+public class ChoiceMission {
 
     int user,mission, time;
     Date startAt, endAt, created;
 
 
-    public NewMission(int user, int mission, int time, Date startAt, Date endAt, Date created) {
+    public ChoiceMission(int user, int mission, int time, Date startAt, Date endAt, Date created) {
         this.user = user;
         this.mission = mission;
         this.time = time;

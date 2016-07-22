@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.edn.olleego.activity.mission.ExMission.ExMissionActivity"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/basic_food_1"
+
+            android:background="@drawable/card_background"
+            android:scaleType="fitXY"/>
+
+        <RelativeLayout
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="19dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:id="@+id/linearLayout19">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_alarm_add"/>
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#a6c52a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="식습관"/>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout19"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="27dp"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘 먹은 탄수화물을 계산해보세요."
+                android:textSize="15sp"
+                android:textColor="#454544"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:background="#fafcf3"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="135dp">
+
+                <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_turned_in_not_18"/>
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+
+                    android:layout_weight="0.9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="난이도"/>
+
+                <TextView
+                    android:layout_marginRight="20dp"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="#a6c52a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="쉬워요."/>
+
+
+            </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_marginLeft="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_update_18"/>
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/darker_gray"
+
+                        android:layout_weight="0.9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="시간"/>
+
+                    <TextView
+
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#a6c52a"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="즉시 완료할 수 있어요."/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_marginLeft="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_card_giftcard"/>
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/darker_gray"
+
+                        android:layout_weight="0.9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="기대효과"/>
+
+                    <TextView
+
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#a6c52a"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="탄수화물을 다르게 볼 수 있어요."/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>

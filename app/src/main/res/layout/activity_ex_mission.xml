@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f8f8">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.edn.olleego.activity.mission.ExMission.ExMissionActivity"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@drawable/banner01"
+
+        android:background="@drawable/card_background"
+        android:scaleType="fitXY"/>
+
+    <RelativeLayout
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#30312f">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="19dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_alarm_add"/>
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#a6c52a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘의 운동"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#cde860"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1-4"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="스탠딩 레그레이즈 프랭크"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#cbcbc9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[ 15회 - 3set ]"
+
+                />
+
+
+            <LinearLayout
+                android:id="@+id/testbtn"
+                android:layout_marginTop="15dp"
+                android:layout_width="130dp"
+                android:layout_height="120dp"
+                android:background="@drawable/exmission_raduis"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_update"/>
+
+                <TextView
+                    android:textSize="30sp"
+                    android:textColor="#454544"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="05:00"/>
+
+                <TextView
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="완료 (다음운동)"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운동방법"/>
+
+        <TextView
+            android:textColor="#606060"
+            android:lineSpacingExtra="10dp"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.손을 잡고 바닥에 누워라\n심호흡을 간단한ㄷ게 하adad다\n심호흡을 간단한ㄷ게 하adad다\n심호흡을 간단한ㄷ게 하adad다"/>
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:background="#fff3f3"
+            android:gravity="center">
+
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="#ff5b53"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주의사항"/>
+
+            <TextView
+                android:lineSpacingExtra="10dp"
+                android:textColor="#ff5b53"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="다리를 들어올릴 떄 허벅지에 집중해야한다 \n허벅지에 집중해야한다 허벅지에 집중해야한다허벅지에 집중해야한다."/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/card_background"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운동목록"/>
+
+
+
+            <ListView
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/exmission_listview"
+                android:layout_gravity="center_horizontal"
+                android:dividerHeight="3dp"
+                android:divider="@android:color/darker_gray"
+
+                />
+
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:src="@drawable/basic_mission"
+            android:scaleType="fitXY"
+            android:id="@+id/exmission_img"
+            android:layout_marginBottom="2dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점핑잭"
+            android:id="@+id/exmission_title"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/exmission_img"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="14dp" />
+
+        <TextView
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15회 3세트"
+            android:id="@+id/exmission_title2"
+            android:layout_alignBottom="@+id/exmission_img"
+            android:layout_alignStart="@+id/exmission_title" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/exmission_next"
+            android:src="@drawable/calendar_next"
+            android:layout_marginEnd="15dp"
+            android:layout_alignTop="@+id/exmission_title"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
