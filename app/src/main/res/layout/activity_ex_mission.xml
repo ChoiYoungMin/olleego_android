@@ -8,7 +8,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.edn.olleego.activity.mission.ExMission.ExMissionActivity"
+    tools:context="com.edn.olleego.activity.mission.exmission.ExMissionActivity"
     android:orientation="vertical">
 
 
@@ -60,6 +60,7 @@
             android:gravity="center_horizontal">
 
             <TextView
+                android:id="@+id/ex_mission_step"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#cde860"
@@ -68,6 +69,8 @@
                 android:text="1-4"/>
 
             <TextView
+                android:id="@+id/ex_mission_title"
+
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:textSize="16sp"
@@ -104,6 +107,7 @@
                     android:src="@drawable/ic_update"/>
 
                 <TextView
+                    android:id="@+id/ex_mission_time"
                     android:textSize="30sp"
                     android:textColor="#454544"
                     android:textStyle="bold"
@@ -147,6 +151,8 @@
             android:text="운동방법"/>
 
         <TextView
+            android:id="@+id/ex_mission_method"
+
             android:textColor="#606060"
             android:lineSpacingExtra="10dp"
             android:gravity="center"
@@ -178,6 +184,8 @@
                 android:text="주의사항"/>
 
             <TextView
+                android:id="@+id/ex_mission_warning"
+
                 android:lineSpacingExtra="10dp"
                 android:textColor="#ff5b53"
                 android:textSize="12sp"
@@ -219,7 +227,7 @@
                 android:layout_marginBottom="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/exmission_listview"
+                android:id="@+id/ex_mission_listview"
                 android:layout_gravity="center_horizontal"
                 android:dividerHeight="3dp"
                 android:divider="@android:color/darker_gray"

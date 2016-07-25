@@ -53,9 +53,9 @@
             android:name=".activity.mission.MissionDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.mission.ExMission.ExMissionActivity"
+            android:name=".activity.mission.exmission.ExMissionActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.mission.ExMission.EtcMissionActivity"
+        <activity android:name=".activity.mission.exmission.EtcMissionActivity"
             android:theme="@style/AppTheme.NoActionBar" ></activity>
     </application>
 

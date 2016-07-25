@@ -1,11 +1,12 @@
 package com.edn.olleego.model.foods;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Antonio on 2016-07-15.
  */
-public class FdList {
+public class FdList  implements Serializable {
 
     int _id;
 

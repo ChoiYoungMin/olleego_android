@@ -1,11 +1,15 @@
 package com.edn.olleego.model.exgroups;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by Antonio on 2016-07-15.
  */
-public class Ex {
+public class Ex  implements Serializable{
 
     int _id;
 

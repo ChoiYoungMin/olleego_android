@@ -2,6 +2,8 @@ package com.edn.olleego.model;
 
 import com.edn.olleego.model.exgroups.Result;
 
+import java.io.Serializable;
+
 /**
  * Created by Antonio on 2016-07-15.
  */

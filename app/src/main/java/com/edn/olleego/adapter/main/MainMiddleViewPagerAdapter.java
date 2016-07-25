@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.edn.olleego.R;
 import com.edn.olleego.activity.MainActivity;
-import com.edn.olleego.activity.mission.ExMission.EtcMissionActivity;
-import com.edn.olleego.activity.mission.ExMission.ExMissionActivity;
+import com.edn.olleego.activity.mission.exmission.EtcMissionActivity;
+import com.edn.olleego.activity.mission.exmission.ExMissionActivity;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.model.ExgroupsModel;
 import com.edn.olleego.model.FoodsModel;
@@ -22,6 +22,8 @@ import com.edn.olleego.model.LifesModel;
 import com.edn.olleego.server.ExgroupsAPI;
 import com.edn.olleego.server.FoodsAPI;
 import com.edn.olleego.server.LifesAPI;
+
+import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,13 +59,41 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
     Boolean type;
 
+    Boolean rest;
+
+    String token;
+    int exgroup_id;
+    int mission_today;
+    int mission_id;
+    int life_id;
+    int food_id;
+
+
+    int foods = 0;
+    int lifes =0;
     public MainMiddleViewPagerAdapter(LayoutInflater inflater,Boolean type, int i, SharedPreferences olleego_SP, Context context) {
         this.inflater = inflater;
         this.context= context;
         convertView = null;
         this.type = type;
         //notifyDataSetChanged();
-        today_mission(inflater, olleego_SP);
+
+        if(olleego_SP.getString("user_mission_today_rest", "").equals("false")) {
+
+            today_mission(inflater, olleego_SP);
+            rest = false;
+        } else if (olleego_SP.getString("user_mission_today_rest", "").equals("true")){
+            mSize = 1;
+            Toast.makeText(context,"쉬는날 디자인 ㄴ",  Toast.LENGTH_SHORT).show();
+            rest = true;
+        }
+
+        token = olleego_SP.getString("login_token", "");
+        mission_id = olleego_SP.getInt("user_mission_id", 0);
+        mission_today = Integer.parseInt(olleego_SP.getString("user_mission_today", ""));
+        exgroup_id = olleego_SP.getInt("user_mission_today_exgroup", 0);
+        food_id = olleego_SP.getInt("user_mission_today_food", 0);
+        life_id = olleego_SP.getInt("user_mission_today_life", 0);
     }
 
     public MainMiddleViewPagerAdapter(LayoutInflater inflater, Boolean type, Context context){
@@ -92,14 +122,21 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup view, int position) {
+    public Object instantiateItem(final ViewGroup view, final int position) {
+
+
 
         if(type == false) {
             convertView = inflater.inflate(R.layout.item_main_middle_no, null);
             view.addView(convertView);
             mSize = 1;
         } else {
-            if(position < 1) {
+            if (rest == true) {
+                convertView = inflater.inflate(R.layout.item_main_middle_rest, null);
+                view.addView(convertView);
+                mSize = 1;
+            } else if (rest == false) {
+                if(position < 1) {
 
 
                     convertView = inflater.inflate(R.layout.item_main_middle_mission, null);
@@ -110,13 +147,13 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                     TextView mission_time = (TextView) convertView.findViewById(R.id.user_mission_time);
                     TextView mission_time2 = (TextView) convertView.findViewById(R.id.user_mission_time2);
 
-                try {
-                    mission_title.setText(exgroupsModel.getResult().getTitle());
-                    mission_time.setText(String.valueOf(exgroupsModel.getResult().getTime()) + "분");
-                    mission_time2.setText(String.valueOf(exgroupsModel.getResult().getEx_list().size()) + "개");
-                } catch (NullPointerException e ){
-                    Log.e("zz", String.valueOf(e));
-                }
+                    try {
+                        mission_title.setText(exgroupsModel.getResult().getTitle());
+                        mission_time.setText(String.valueOf(exgroupsModel.getResult().getTime()) + "분");
+                        mission_time2.setText(String.valueOf(exgroupsModel.getResult().getEx_list().size()) + "개");
+                    } catch (NullPointerException e ){
+                        Log.e("zz", String.valueOf(e));
+                    }
                     today_allcount.setText(String.valueOf(mSize));
                     today_nowcount.setText(String.valueOf(position + 1));
 
@@ -124,6 +161,17 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(context, ExMissionActivity.class);
+                            for(int a=0; a< exgroupsModel.getResult().getEx_list().size(); a++) {
+
+                                intent.putExtra("ex"+a, (Serializable) exgroupsModel.getResult().getEx_list().get(a).getEx());
+                            }
+                            intent.putExtra("step", 0);
+                            intent.putExtra("size", exgroupsModel.getResult().getEx_list().size());
+                            intent.putExtra("token", token);
+                            intent.putExtra("mission_id", mission_id);
+                            intent.putExtra("mission_today", mission_today);
+                            intent.putExtra("exgroup_id", exgroup_id);
+
                             context.startActivity(intent);
 
                         }
@@ -132,63 +180,90 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
 
 
-            } else if(position < 1+foodsModel.getResult().getFd_list().size()){
+                } else if(position < 1+foodsModel.getResult().getFd_list().size()){
 
 
 
-                convertView = inflater.inflate(R.layout.item_main_middle_food, null);
+                    convertView = inflater.inflate(R.layout.item_main_middle_food, null);
 
-                TextView today_allcount = (TextView) convertView.findViewById(R.id.user_food_today_count);
-                TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_food_now_position);
-                TextView food_title = (TextView) convertView.findViewById(R.id.user_food_title);
-                TextView food_content = (TextView) convertView.findViewById(R.id.user_food_context);
+                    TextView today_allcount = (TextView) convertView.findViewById(R.id.user_food_today_count);
+                    TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_food_now_position);
+                    TextView food_title = (TextView) convertView.findViewById(R.id.user_food_title);
+                    TextView food_content = (TextView) convertView.findViewById(R.id.user_food_context);
 
-                today_allcount.setText(String.valueOf(mSize));
-                today_nowcount.setText(String.valueOf(position + 1));
+                    today_allcount.setText(String.valueOf(mSize));
+                    today_nowcount.setText(String.valueOf(position + 1));
 
-                try {
-                    food_title.setText(foodsModel.getResult().getTitle());
-                    food_content.setText(foodsModel.getResult().getFd_list().get(position - 1).getTitle());
-                }catch (NullPointerException e ){
-                    Log.e("zz", String.valueOf(e));
-                }
-
-                convertView.findViewById(R.id.foodtestbtn).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, EtcMissionActivity.class);
-                        context.startActivity(intent);
+                    try {
+                        food_title.setText(foodsModel.getResult().getTitle());
+                        food_content.setText(foodsModel.getResult().getFd_list().get(position - 1).getTitle());
+                    }catch (NullPointerException e ){
+                        Log.e("zz", String.valueOf(e));
                     }
-                });
-                view.addView(convertView);
 
-                //되돌아갈떄 계속 커짐
-            } else if(position < 1+foodsModel.getResult().getFd_list().size()+ lifesModel.getResult().getLf_list().size()){
+                    convertView.findViewById(R.id.foodtestbtn).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context, EtcMissionActivity.class);
 
-                convertView = inflater.inflate(R.layout.item_main_middle_life, null);
+                            intent.putExtra("type", "food");
+                            intent.putExtra("food", (Serializable) foodsModel.getResult().getFd_list().get(position - 1));
+                            intent.putExtra("token", token);
+                            intent.putExtra("mission_id", mission_id);
+                            intent.putExtra("mission_today", mission_today);
+                            intent.putExtra("food_id", food_id);
 
-                TextView today_allcount = (TextView) convertView.findViewById(R.id.user_life_today_count);
-                TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_life_now_position);
-                TextView life_title = (TextView) convertView.findViewById(R.id.user_life_title);
-                TextView life_content = (TextView) convertView.findViewById(R.id.user_life_content);
+                            context.startActivity(intent);
+                        }
+                    });
+                    view.addView(convertView);
+
+                    //되돌아갈떄 계속 커짐
+                } else if(position < 1+foodsModel.getResult().getFd_list().size()+ lifesModel.getResult().getLf_list().size()){
+
+                    convertView = inflater.inflate(R.layout.item_main_middle_life, null);
+
+                    TextView today_allcount = (TextView) convertView.findViewById(R.id.user_life_today_count);
+                    TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_life_now_position);
+                    TextView life_title = (TextView) convertView.findViewById(R.id.user_life_title);
+                    TextView life_content = (TextView) convertView.findViewById(R.id.user_life_content);
 
 
-                today_allcount.setText(String.valueOf(mSize));
-                today_nowcount.setText(String.valueOf(position + 1));
-                try {
-                    life_title.setText(lifesModel.getResult().getTitle());
-                    life_content.setText(lifesModel.getResult().getLf_list().get(position - (1 + foodsModel.getResult().getFd_list().size())).getTitle());
-                } catch (NullPointerException e ){
-                    Log.e("zz", String.valueOf(e));
+                    today_allcount.setText(String.valueOf(mSize));
+                    today_nowcount.setText(String.valueOf(position + 1));
+                    try {
+                        life_title.setText(lifesModel.getResult().getTitle());
+                        life_content.setText(lifesModel.getResult().getLf_list().get(position - (1 + foodsModel.getResult().getFd_list().size())).getTitle());
+                    } catch (NullPointerException e ){
+                        Log.e("zz", String.valueOf(e));
+                    }
+                    view.addView(convertView);
+
+
+                    convertView.findViewById(R.id.main_middle_life).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context, EtcMissionActivity.class);
+
+                            intent.putExtra("type", "life");
+                            intent.putExtra("life", (Serializable) lifesModel.getResult().getLf_list().get(position -(foodsModel.getResult().getFd_list().size()+ lifesModel.getResult().getLf_list().size()) ));
+                            intent.putExtra("token", token);
+                            intent.putExtra("mission_id", mission_id);
+                            intent.putExtra("mission_today", mission_today);
+                            intent.putExtra("life_id", life_id);
+
+                            context.startActivity(intent);
+                        }
+                    });
+
+
+                }else {
+
+                    return convertView;
                 }
-                view.addView(convertView);
-
-
-
-            }else {
-
-                return convertView;
             }
+
+
 
         }
 

@@ -161,18 +161,23 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                                 editor.putString("user_mission_today_onoff", "off");
                             }
                             else {
-                                editor.putString("user_mission_today_onoff", "on");
-                                editor.putInt("user_mission_id", response.body().getResult().get(0).get_id());
-                                editor.putInt("user_mission_today_food", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getFood().get_id());
-                                editor.putInt("user_mission_today_life", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getLife().get_id());
-                                editor.putString("user_mission_today_onoff", "on");
+                                if(response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getRest()== true) {
 
-                                for(int i=0; i< response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().size(); i++) {
-                                    if(response.body().getResult().get(0).get_time() == response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().get(i).getTime()) {
-                                        editor.putInt("user_mission_today_exgroup", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().get(i).get_id());
-                                    } else {
+                                } else {
+                                    editor.putString("user_mission_today_onoff", "on");
+                                    editor.putInt("user_mission_id", response.body().getResult().get(0).get_id());
+                                    editor.putInt("user_mission_today_food", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getFood().get_id());
+                                    editor.putInt("user_mission_today_life", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getLife().get_id());
+
+
+                                    for(int i=0; i< response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().size(); i++) {
+                                        if(response.body().getResult().get(0).get_time() == response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().get(i).getTime()) {
+                                            editor.putInt("user_mission_today_exgroup", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().get(i).get_id());
+                                        } else {
+                                        }
                                     }
                                 }
+
 
                                 editor.putString("user_mission_today_rest", String.valueOf(response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getRest()));
                                 editor.putInt("user_mission_today_time", response.body().getResult().get(0).get_time());
@@ -194,6 +199,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
                             main_top_mission_title.setText(mission_title);
                             main_top_mission_day.setText(String.valueOf(diffDays));
+                            editor.putString("user_mission_today", String.valueOf(diffDays));
                             main_top_mission_allday.setText(String.valueOf((mission_allday*7)));
 
                         } catch (IndexOutOfBoundsException e) {

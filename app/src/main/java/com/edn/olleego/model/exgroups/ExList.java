@@ -1,9 +1,11 @@
 package com.edn.olleego.model.exgroups;
 
+import java.io.Serializable;
+
 /**
  * Created by Antonio on 2016-07-15.
  */
-public class ExList {
+public class ExList  {
 
 
     Ex ex;

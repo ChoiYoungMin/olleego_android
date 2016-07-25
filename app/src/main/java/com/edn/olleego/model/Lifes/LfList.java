@@ -1,11 +1,12 @@
 package com.edn.olleego.model.Lifes;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Antonio on 2016-07-15.
  */
-public class LfList {
+public class LfList implements Serializable {
 
 
     int _id;

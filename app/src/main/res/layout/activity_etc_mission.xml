@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#f5f6f3">
     <LinearLayout
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.edn.olleego.activity.mission.ExMission.ExMissionActivity"
+        tools:context="com.edn.olleego.activity.mission.exmission.ExMissionActivity"
         android:orientation="vertical">
 
 
@@ -41,6 +42,7 @@
                     android:src="@drawable/ic_alarm_add"/>
 
                 <TextView
+                    android:id="@+id/etc_mission_type"
                     android:layout_marginLeft="5dp"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -64,6 +66,8 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/etc_mission_title"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="오늘 먹은 탄수화물을 계산해보세요."
@@ -101,6 +105,8 @@
                     android:text="난이도"/>
 
                 <TextView
+                    android:id="@+id/etc_mission_level"
+
                     android:layout_marginRight="20dp"
                     android:textStyle="bold"
                     android:textSize="14sp"
@@ -136,6 +142,7 @@
                         android:text="시간"/>
 
                     <TextView
+                        android:id="@+id/etc_mission_time"
 
                         android:textStyle="bold"
                         android:textSize="14sp"
@@ -171,6 +178,7 @@
                         android:text="기대효과"/>
 
                     <TextView
+                        android:id="@+id/etc_mission_gg"
 
                         android:textStyle="bold"
                         android:textSize="14sp"
@@ -178,7 +186,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="탄수화물을 다르게 볼 수 있어요."/>
+                        android:text=""/>
 
 
                 </LinearLayout>
@@ -186,10 +194,98 @@
             </LinearLayout>
 
 
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="미션 진행 방법"/>
+
+                <TextView
+                    android:id="@+id/etc_mission_description"
+
+                    android:layout_marginBottom="50dp"
+                    android:textSize="13sp"
+                    android:textColor="#606060"
+                    android:layout_marginTop="30dp"
+                    android:lineSpacingExtra="5dp"
+                    android:layout_width="312dp"
+                    android:layout_height="wrap_content"
+                    android:text="우리의 생활이 편리해질수록 가공 식품은 아주 많이 발달되어 왔어요. 가공 식품의 역할이 커진 만큼 우리의 식탁에서 많은 부분을 차지하게 되었지요. 가공식품을 먹는 방법을 꼼꼼하게 확인해 볼 필요가 있어요.\n
+1. 라벨 읽어보기 : 라벨을 읽어보는 것은 생각보다 어렵습니다. 다양한 정보들이 있기 때문에 기본적으로 성분을 찾아 보는 것도 중요해요.
+2. 성분에 대해 찾아보기 : 성분이 우리에게 주는 것은"/>
+
+
+                <LinearLayout
+                    android:id="@+id/etc_mission_ok"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="#cde860"
+                    android:gravity="center">
+
+                    <TextView
+                        android:textSize="14sp"
+                        android:textColor="#606060"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="완료"/>
+
+               </LinearLayout>
+            </LinearLayout>
+
+
+
         </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#30312f"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tip"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#cde860"/>
+
+
+
+            <TextView
+
+                android:layout_marginBottom="30dp"
+                android:id="@+id/etc_mission_tip"
+
+                android:lineSpacingExtra="5dp"
+                android:layout_marginTop="30dp"
+                android:textSize="13sp"
+                android:textColor="#cbcbc9"
+                android:layout_width="312dp"
+                android:layout_height="wrap_content"
+                android:text="우리의 생활이 편리해질수록 가공 식품은 아주 많이 발달되어 왔어요. 가공 식품의 역할이 커진 만큼 우리의 식탁에서 많은 부분을 차지하게 되었지요. 가공식품을 먹는 방법을 꼼꼼하게 확인해 볼 필요가 있어요.
+1. 라벨 읽어보기 : 라벨을 읽어보는 것은 생각보다 어렵습니다. 다양한 정보들이 있기 때문에 기본적으로 성분을 찾아 보는 것도 중요해요.
+2. 성분에 대해 찾아보기 : 성분이 우리에게 주는 것은"/>
+
+        </LinearLayout>
 
 
 

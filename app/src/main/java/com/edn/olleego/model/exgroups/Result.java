@@ -1,12 +1,13 @@
 package com.edn.olleego.model.exgroups;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Antonio on 2016-07-15.
  */
-public class Result {
+public class Result  {
 
     int _id;
 
