@@ -1,6 +1,8 @@
 package com.edn.olleego.activity.mission.exmission;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
+import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.common.ServerInfo;
+import com.edn.olleego.dialog.MissionSuccessDialog;
 import com.edn.olleego.model.Lifes.LfList;
 import com.edn.olleego.model.MissionsModel;
 import com.edn.olleego.model.exgroups.Ex;
@@ -54,11 +58,13 @@ public class EtcMissionActivity extends AppCompatActivity {
     TextView mission_tip;
 
     String tokens;
-
+    MissionSuccessDialog missionSuccessDialog;
     int mission_id;
     int mission_today;
     int food_id;
     int life_id;
+    int gg =3;
+    int types =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,8 +127,11 @@ public class EtcMissionActivity extends AppCompatActivity {
         MissionSuccess missionSuccess = null;
         if( type.equals("food")) {
              missionSuccess = new MissionSuccess(mission_today, food_id, 3);
+
+            types= 1;
         } else if(type.equals("life")) {
              missionSuccess = new MissionSuccess(mission_today, life_id, 2);
+            types=2;
         }
         String token = "olleego " + tokens;
         MissionSuccessAPI missionSuccessAPI = retrofit_diary.create(MissionSuccessAPI.class);
@@ -132,8 +141,21 @@ public class EtcMissionActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
                 if(response.body().getSuccess() == true) {
-                    Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
-                    finish();
+
+                    if(types == 1) {
+
+                        missionSuccessDialog = new MissionSuccessDialog(EtcMissionActivity.this, "etc" , 2);
+                        missionSuccessDialog.show();
+                    } else {
+
+                        missionSuccessDialog = new MissionSuccessDialog(EtcMissionActivity.this, "etc" , 3);
+                        missionSuccessDialog.show();
+                    }
+
+                    mHandler2.sendEmptyMessage(0);
+
+
+
                 }
             }
 
@@ -148,6 +170,9 @@ public class EtcMissionActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
         finish();
     }
 
@@ -245,6 +270,25 @@ public class EtcMissionActivity extends AppCompatActivity {
 
         return "";
     }
+    Handler mHandler2 = new Handler() {
+        public void handleMessage(Message msg) {
+            if(gg ==0){
+                missionSuccessDialog.dismiss();
+                mHandler2.removeMessages(0);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
+            } else {
+                gg--;
+            }
 
+
+
+
+            // 메세지를 처리하고 또다시 핸들러에 메세지 전달 (1000ms 지연)
+            mHandler2.sendEmptyMessageDelayed(0,1000);
+        }
+    };
 
 }

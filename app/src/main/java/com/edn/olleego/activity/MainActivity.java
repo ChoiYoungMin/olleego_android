@@ -86,17 +86,18 @@ public class MainActivity extends AppCompatActivity
         nav_view2.setNavigationItemSelectedListener(this);
         login_chk = 0;
 
-        Init_Framgment();
-
         olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
 
+        Init_Framgment();
 
 
 
-            transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.content_main, mainFragment,"main");
-            transaction.addToBackStack(null);
-            transaction.commit();
+
+
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_main, mainFragment,"main");
+        transaction.addToBackStack(null);
+        transaction.commit();
 
 
         setCustomActionbar();
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity
     public void Init_Framgment() {
         gymFragment = new OlleegoGym_Fragment();
         mainFragment = new Home_Fragment();
-        diaryFragment = new Diary_Fragment();
+        diaryFragment = new Diary_Fragment(olleego_SP);
         chartFragment = new ChartFragment();
         missionCategoryFragment = new MissionCategoryMainFragment();
         missionCustomFragment = new MissionCustomFragment();

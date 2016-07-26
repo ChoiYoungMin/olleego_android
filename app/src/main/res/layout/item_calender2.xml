@@ -16,12 +16,13 @@
         android:gravity="center_horizontal"
 
         android:id="@+id/tv_item_gridview"
-
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
+
         android:text="dd"
-        android:textColor="@android:color/black"
+        android:textColor="#606060"
 
         />
 

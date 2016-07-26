@@ -3,45 +3,59 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
-    android:background="@drawable/border"
-    android:layout_height="50dp"
-    android:gravity="center"
-    android:id="@+id/calender_layout">
+    android:layout_height="40dp"
+    android:id="@+id/calender_layout"
+    android:gravity="center">
 
 
 
-    <TextView
-        android:gravity="center_horizontal"
 
-        android:id="@+id/tv_item_gridview"
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:id="@+id/calender_walking"/>
+    <ImageView
 
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignTop="@+id/calender_walking"
+        android:layout_toEndOf="@+id/calender_walking"
+        android:id="@+id/calender_water" />
+    <ImageView
+        android:id="@+id/calender_sleep"
+
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_below="@+id/calender_walking"
+        android:layout_toStartOf="@+id/calender_water" />
+
+    <ImageView
+
+        android:id="@+id/calender_food"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_below="@+id/calender_water"
+        android:layout_alignStart="@+id/calender_water" />
+
+
+    <LinearLayout
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:textSize="18sp"
-        android:text="dd"
-        android:textColor="@android:color/black"
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
-        />
 
-    <ImageView
-        android:layout_width="10dp"
-        android:layout_height="15dp"
-        android:id="@+id/img2"
-        android:layout_alignTop="@+id/img3" />
-    <ImageView
-        android:layout_width="10dp"
-        android:layout_height="15dp"
-        android:id="@+id/img1"
-        android:layout_marginRight="1dp"
-        android:layout_alignTop="@+id/img2"
-        android:layout_toStartOf="@+id/img2" />
-    <ImageView
-        android:layout_width="10dp"
-        android:layout_height="15dp"
-        android:id="@+id/img3"
-        android:layout_marginLeft="1dp"
-        android:layout_below="@+id/tv_item_gridview"
-        android:layout_toEndOf="@+id/img2" />
+        <TextView
+            android:gravity="center"
 
+            android:id="@+id/tv_item_gridview"
+
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="d"
+            android:textColor="@android:color/darker_gray"/>
+    </LinearLayout>
 
 </RelativeLayout>

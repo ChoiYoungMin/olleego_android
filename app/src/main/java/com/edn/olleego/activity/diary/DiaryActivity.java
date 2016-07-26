@@ -65,7 +65,7 @@ public class DiaryActivity extends AppCompatActivity {
     public static final int WRITE_TIMEOUT = 15;
     public static final int READ_TIMEOUT = 15;
 
-    public List<CalendarModel> calendarModels;
+    public CalendarModel calendarModels;
 
 
     long now ;
@@ -211,7 +211,7 @@ public class DiaryActivity extends AppCompatActivity {
 
         if (Integer.parseInt(day2) < 10) day2 = "0"+day2;
 
-        gridAdapter = new Calender_Adapter(getApplicationContext(), dayList, "0", dayNum, calendarModels, day1+day2);
+      //  gridAdapter = new Calender_Adapter(getApplicationContext(), dayList, "0", dayNum, calendarModels, day1+day2);
 
         gridView.setAdapter(gridAdapter);
 
@@ -249,7 +249,7 @@ public class DiaryActivity extends AppCompatActivity {
         day2= String.valueOf(b);
 
         if (Integer.parseInt(day2) < 10) day2 = "0"+day2;
-        gridAdapter = new Calender_Adapter(getApplicationContext(), dayList, "0", dayNum, calendarModels, day1+day2);
+        //gridAdapter = new Calender_Adapter(getApplicationContext(), dayList, "0", dayNum, calendarModels, day1+day2);
 
         gridView.setAdapter(gridAdapter);
 
@@ -318,10 +318,10 @@ public class DiaryActivity extends AppCompatActivity {
         repos.enqueue(new Callback<List<CalendarModel>>() {
             @Override
             public void onResponse(Call<List<CalendarModel>> call, Response<List<CalendarModel>> response) {
-                calendarModels = response.body();
+                //calendarModels = response.body();
 
-                gridAdapter2 = new Calender_Adapter(getApplicationContext(), dayList2, "1", 0, calendarModels, curYearFormat.format(date)+curMonthFormat.format(date));
-                gridAdapter = new Calender_Adapter(getApplicationContext(), dayList, "0", dayNum, calendarModels, curYearFormat.format(date)+curMonthFormat.format(date));
+               // gridAdapter2 = new Calender_Adapter(getApplicationContext(), dayList2, "1", 0, calendarModels, curYearFormat.format(date)+curMonthFormat.format(date));
+                //gridAdapter = new Calender_Adapter(getApplicationContext(), dayList, "0", dayNum, calendarModels, curYearFormat.format(date)+curMonthFormat.format(date));
 
                 gridView2.setAdapter(gridAdapter2);
                 gridView.setAdapter(gridAdapter);

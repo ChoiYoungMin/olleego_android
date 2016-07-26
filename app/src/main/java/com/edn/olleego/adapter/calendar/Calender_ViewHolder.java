@@ -12,6 +12,6 @@ public class Calender_ViewHolder {
 
         TextView tvItemGridView;
         LinearLayout linearLayout;
-        ImageView img1, img2, img3;
+        ImageView calender_walking, calender_sleep, calender_water, calender_food;
 
 }

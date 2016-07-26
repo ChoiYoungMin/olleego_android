@@ -119,7 +119,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
 
             UserMissionAPI missionAPI = retrofit.create(UserMissionAPI.class);
-            String token = "olleego " + olleego_SP.getString("login_token", "");;
+            String token = "olleego " + olleego_SP.getString("login_token", "");
             final Call<UserMissionModel> repos2 = missionAPI.listRepos(token);
             final View ConvertView2 = convertView;
             repos2.enqueue(new Callback<UserMissionModel>() {
@@ -188,6 +188,8 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             }
 
 
+                            editor.commit();
+
 
 
                             mission_title = response.body().getResult().get(0).getMission().getTitle();
@@ -196,17 +198,57 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             mission_allday = response.body().getResult().get(0).getMission().getMi_term();
 
 
+                            if(response.body().getResult().get(0).getMi_days().get((int) (diffDays-1)).getExgroup().size() == 0) {
+                                editor.putString("user_mission_today_exgroup_complete", "false");
+                            } else {
+                                for (int i = 0; i < response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getExgroup().size(); i++) {
+                                    if (response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getExgroup().get(i).toString().equals(String.valueOf(olleego_SP.getInt("user_mission_today_exgroup", 0)) + ".0")) {
+                                        editor.putString("user_mission_today_exgroup_complete", "true");
+                                    }
+                                }
+                            }
+
+
+                            if(response.body().getResult().get(0).getMi_days().get((int) (diffDays-1)).getFood().size() == 0) {
+                                editor.putString("user_mission_today_food_complete", "false");
+                            } else {
+                                for (int i = 0; i < response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getFood().size(); i++) {
+                                    if (response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getFood().get(i).toString().equals(String.valueOf(olleego_SP.getInt("user_mission_today_food", 0)) + ".0")) {
+                                        editor.putString("user_mission_today_food_complete", "true");
+                                    }
+                                }
+                            }
+
+
+
+
+                            if(response.body().getResult().get(0).getMi_days().get((int) (diffDays-1)).getLife().size() == 0) {
+                                editor.putString("user_mission_today_life_complete", "false");
+                            }else {
+                                for (int i = 0; i < response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getLife().size(); i++) {
+                                    if (response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getLife().get(i).toString().equals(String.valueOf(olleego_SP.getInt("user_mission_today_life", 0)) + ".0")) {
+                                        editor.putString("user_mission_today_life_complete", "true");
+                                    }
+                                }
+                            }
+
+
+
+
 
                             main_top_mission_title.setText(mission_title);
                             main_top_mission_day.setText(String.valueOf(diffDays));
                             editor.putString("user_mission_today", String.valueOf(diffDays));
                             main_top_mission_allday.setText(String.valueOf((mission_allday*7)));
 
+                            editor.commit();
+
                         } catch (IndexOutOfBoundsException e) {
                             ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
                             ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
                             editor.putString("user_mission_today_onoff", "off");
 
+                            editor.commit();
                             e.printStackTrace();
                         } catch (ParseException e) {
                             e.printStackTrace();
@@ -214,6 +256,8 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
                             ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
                             editor.putString("user_mission_today_rest", "off");
+
+                            editor.commit();
                         }
 
 
@@ -222,8 +266,6 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                     }
 
 
-
-                    editor.commit();
 
 
                     Boolean type = false;

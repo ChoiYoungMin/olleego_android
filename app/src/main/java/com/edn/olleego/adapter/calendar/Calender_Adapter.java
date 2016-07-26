@@ -2,6 +2,8 @@ package com.edn.olleego.adapter.calendar;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,11 @@ import android.widget.TextView;
 
 import com.edn.olleego.R;
 import com.edn.olleego.model.CalendarModel;
+import com.edn.olleego.model.DiaryMonthModel;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,7 +37,7 @@ public class Calender_Adapter extends BaseAdapter {
 
     private Calendar mCal;
 
-    List<CalendarModel> calendar_;
+    DiaryMonthModel calendar_;
 
     String day;
 
@@ -49,7 +54,7 @@ public class Calender_Adapter extends BaseAdapter {
 
      */
 
-    public Calender_Adapter(Context context, List<String> list, String type, int num, List<CalendarModel> calendar_, String day) {
+    public Calender_Adapter(Context context, List<String> list, String type, int num, DiaryMonthModel calendar_, String day) {
 
         this.list = list;
 
@@ -127,9 +132,10 @@ public class Calender_Adapter extends BaseAdapter {
 
 
             holder.tvItemGridView = (TextView) convertView.findViewById(R.id.tv_item_gridview);
-            holder.img1 = (ImageView) convertView.findViewById(R.id.img1);
-            holder.img2 = (ImageView) convertView.findViewById(R.id.img2);
-            holder.img3 = (ImageView) convertView.findViewById(R.id.img3);
+            holder.calender_walking = (ImageView) convertView.findViewById(R.id.calender_walking);
+            holder.calender_sleep = (ImageView) convertView.findViewById(R.id.calender_sleep);
+            holder.calender_water = (ImageView) convertView.findViewById(R.id.calender_water);
+            holder.calender_food = (ImageView) convertView.findViewById(R.id.calender_food);
 
             convertView.setTag(holder);
 
@@ -152,6 +158,7 @@ public class Calender_Adapter extends BaseAdapter {
             }
         }
 
+        /*
             for(int j=0; j < calendar_.size(); j++){
 
                 if(calendar_.get(j).getDAY().equals(su)) {
@@ -164,7 +171,7 @@ public class Calender_Adapter extends BaseAdapter {
                 }
 
             }
-
+*/
 
 
 
@@ -180,11 +187,7 @@ public class Calender_Adapter extends BaseAdapter {
 
         String sToday = String.valueOf(today);
 
-        if (sToday.equals(getItem(position))) { //오늘 day 텍스트 컬러 변경
 
-            String strColor = "#f6b800";
-            holder.tvItemGridView.setTextColor(Color.parseColor(strColor));
-        }
 
 
 
@@ -193,16 +196,78 @@ public class Calender_Adapter extends BaseAdapter {
         }
         else {
 
-            if(food) {
+            for(int i=0; i<calendar_.getResult().size(); i++) {
 
-                holder.img1.setImageResource(R.drawable.img1);
+                SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault());
+                String daya= null;
 
-                holder.img2.setImageResource(R.drawable.img2);
+                try {
+                    if (Integer.valueOf(getItem(position)) < 10) {
+                        daya = day + "0" + getItem(position);
 
-                holder.img3.setImageResource(R.drawable.img3);
+                    } else {
+                        daya = day + getItem(position);
+
+                    }
+                } catch (NumberFormatException e) {
+
+                }
+
+                if(dateFormat.format(calendar_.getResult().get(i).getDay()).equals(daya)) {
+
+
+                    String strColor = "#000000";
+                    holder.tvItemGridView.setTextColor(Color.parseColor(strColor));
+
+
+                    try {
+                        if (calendar_.getResult().get(i).getWalking() != 0) {
+                            holder.calender_walking.setImageResource(R.drawable.calendar_step);
+                        }
+                    }catch (NullPointerException e) {
+
+                    }
+
+                    try {
+                        if (calendar_.getResult().get(i).getWater() != 0) {
+                            holder.calender_water.setImageResource(R.drawable.calendar_water);
+                        }
+                    }catch (NullPointerException e) {
+
+                    }
+
+                    try {
+                        if (calendar_.getResult().get(i).getSleep() != 0) {
+                            holder.calender_sleep.setImageResource(R.drawable.calendar_sleep);
+                        }
+                    }catch (NullPointerException e) {
+
+                    }
+
+
+                    try {
+                        if (calendar_.getResult().get(i).getFood().size() != 0) {
+                            holder.calender_food.setImageResource(R.drawable.calendar_meal);
+                        }
+                    } catch (NullPointerException e) {
+
+                    }
 
 
 
+
+
+
+
+
+
+                    if (sToday.equals(getItem(position))) { //오늘 day 텍스트 컬러 변경
+
+                        String strColors = "#0015ff";
+                        holder.tvItemGridView.setTextColor(Color.parseColor(strColors));
+                    }
+
+                }
             }
         }
 

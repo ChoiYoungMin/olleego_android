@@ -224,22 +224,23 @@ public class Home_Fragment extends Fragment {
 
                     TextView sleep = (TextView) rootView.findViewById(R.id.main_diary_sleep);
                     TextView walking = (TextView) rootView.findViewById(R.id.main_diary_walking);
-                    String time;
-                    String walkings;
-                    if (response.body().getResult().getSleep() == null) {
-                        time = "00 : 00";
+                    int time;
+                    int walkings;
+
+                    if (response.body().getResult().getSleep() == 0) {
+                        time = 00;
                     } else {
                         time = response.body().getResult().getSleep();
                     }
-                    if (response.body().getResult().getWalking() == null) {
+                    if (response.body().getResult().getWalking() == 0) {
 
-                        walkings = "0";
+                        walkings = 0;
                     } else {
                         walkings = response.body().getResult().getWalking();
                     }
 
-                    sleep.setText(time);
-                    walking.setText(walkings);
+                    sleep.setText(String.valueOf(time));
+                    walking.setText(String.valueOf(walkings));
 
 
                     try {
@@ -247,16 +248,16 @@ public class Home_Fragment extends Fragment {
                         for (int a = 0; a < response.body().getResult().getFood().size(); a++) {
 
                             switch (response.body().getResult().getFood().get(a).getSort().get_id()) {
-                                case 1:
+                                case 130:
                                     rootView.findViewById(R.id.main_diary_morning).setVisibility(View.VISIBLE);
                                     break;
-                                case 2:
+                                case 131:
                                     rootView.findViewById(R.id.main_diary_lunch).setVisibility(View.VISIBLE);
                                     break;
-                                case 3:
+                                case 132:
                                     rootView.findViewById(R.id.main_diary_dinner).setVisibility(View.VISIBLE);
                                     break;
-                                case 4:
+                                case 133:
                                     rootView.findViewById(R.id.main_diary_snack).setVisibility(View.VISIBLE);
                                     break;
 

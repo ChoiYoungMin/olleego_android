@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
+import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.adapter.mission.exmission.ExMission_Adapter;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.dialog.MissionStartDialog;
@@ -79,6 +80,7 @@ public class ExMissionActivity extends AppCompatActivity {
     int mission_id;
     int mission_today;
     int exgroup_id;
+    String exgroup_title;
 
     int gg = 3;
     MissionSuccessDialog missionSuccessDialog;
@@ -98,7 +100,7 @@ public class ExMissionActivity extends AppCompatActivity {
         mission_id = intent.getIntExtra("mission_id", 0);
         mission_today = intent.getIntExtra("mission_today", 0);
         exgroup_id = intent.getIntExtra("exgroup_id", 0);
-
+        exgroup_title = intent.getStringExtra("exgroup_title");
 
             ex_mission_step.setText((su+1)+"-"+size);
             ex_mission_title.setText(exmodel.getTitle());
@@ -148,7 +150,7 @@ public class ExMissionActivity extends AppCompatActivity {
             diaryPos.enqueue(new Callback<MissionsModel>() {
                 @Override
                 public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
-                    missionSuccessDialog = new MissionSuccessDialog(ExMissionActivity.this);
+                    missionSuccessDialog = new MissionSuccessDialog(ExMissionActivity.this, exgroup_title, 1);
                     missionSuccessDialog.show();
                     mHandler2.sendEmptyMessage(0);
                 }
@@ -220,6 +222,9 @@ public class ExMissionActivity extends AppCompatActivity {
             if(gg ==0){
                 missionSuccessDialog.dismiss();
                 mHandler2.removeMessages(0);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 finish();
             } else {
                 gg--;
@@ -237,5 +242,9 @@ public class ExMissionActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         mHandler.removeMessages(0);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
     }
 }

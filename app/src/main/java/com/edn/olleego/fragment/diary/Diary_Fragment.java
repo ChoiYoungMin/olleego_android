@@ -1,21 +1,30 @@
 package com.edn.olleego.fragment.diary;
 
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
 import com.edn.olleego.adapter.calendar.Calender_Adapter;
+import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.model.CalendarModel;
+import com.edn.olleego.model.DiaryModel;
+import com.edn.olleego.model.DiaryMonthModel;
 import com.edn.olleego.server.CalenderAPI;
+import com.edn.olleego.server.DiaryAPI;
+import com.edn.olleego.server.DiaryMonthAPI;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -35,6 +44,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
@@ -51,6 +61,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * A simple {@link Fragment} subclass.
  */
 public class Diary_Fragment extends Fragment {
+
+    @BindView(R.id.diary_walking_icon)
+    ImageView diary_walking_icon;
+
+    @BindView(R.id.diary_walking_text)
+    TextView diary_walking_text;
+
+    @BindView(R.id.diary_food_icon)
+    ImageView diary_food_icon;
+
+    @BindView(R.id.diary_food_text)
+    TextView diary_food_text;
+
+    @BindView(R.id.diary_sleep_icon)
+    ImageView diary_sleep_icon;
+
+    @BindView(R.id.diary_sleep_text)
+    TextView diary_sleep_text;
+
+    @BindView(R.id.diary_water_icon)
+    ImageView diary_water_icon;
+
+    @BindView(R.id.diary_water_text)
+    TextView diary_water_text;
+
+
 
     private long backKeyPressedTime = 0;
     private Toast toast;
@@ -72,7 +108,7 @@ public class Diary_Fragment extends Fragment {
     public static final int WRITE_TIMEOUT = 15;
     public static final int READ_TIMEOUT = 15;
 
-    public List<CalendarModel> calendarModels;
+    public DiaryMonthModel diaryMonthModels;
 
 
     long now ;
@@ -94,27 +130,29 @@ public class Diary_Fragment extends Fragment {
     String day2= null;
 
 
+    SharedPreferences Olleego_SP;
+    View rootView;
 
-    public Diary_Fragment() {
+    TextView daytext;
+
+    public Diary_Fragment(SharedPreferences Olleego_SP) {
         // Required empty public constructor
+        this.Olleego_SP = Olleego_SP;
     }
-    public static Diary_Fragment newInstance(int sectionNumber) {
-        Diary_Fragment fragment = new Diary_Fragment();
-        return fragment;
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View rootView = inflater.inflate(R.layout.fragment_diary, container, false);
+        rootView = inflater.inflate(R.layout.fragment_diary, container, false);
         ButterKnife.bind(this, rootView);
         tvDate = (TextView) rootView.findViewById(R.id.tv_date);
 
         gridView = (GridView) rootView.findViewById(R.id.gridview);
         gridView2 = (GridView) rootView.findViewById(R.id.gridview2);
-
+        daytext = (TextView)rootView.findViewById(R.id.diary_day);
 
 
         // 오늘에 날짜를 세팅 해준다.
@@ -141,13 +179,13 @@ public class Diary_Fragment extends Fragment {
 
         dayList = new ArrayList<String>();
         dayList2 = new ArrayList<String>();
-        dayList2.add("일");
-        dayList2.add("월");
-        dayList2.add("화");
-        dayList2.add("수");
-        dayList2.add("목");
-        dayList2.add("금");
-        dayList2.add("토");
+        dayList2.add("S");
+        dayList2.add("M");
+        dayList2.add("T");
+        dayList2.add("W");
+        dayList2.add("T");
+        dayList2.add("F");
+        dayList2.add("S");
 
 
 
@@ -173,12 +211,15 @@ public class Diary_Fragment extends Fragment {
         setCalendarDate(mCal.get(Calendar.MONTH) + 1);
 
         // 사용자 다이어리 데이터를 가져온다.
-        onCalendar();
+        onCalendar(curYearFormat.format(date) + "-" + curMonthFormat.format(date), curYearFormat.format(date) + curMonthFormat.format(date));
 
-
+        //
+        daydetail(curMonthFormat.format(date)+"월 "+curDayFormat.format(date)+"일", curYearFormat.format(date)+"-"+curMonthFormat.format(date)+"-"+curDayFormat.format(date));
 
         return rootView;
     }
+
+
 
     @OnItemClick(R.id.gridview)
     void calender_click(int position) {
@@ -189,13 +230,22 @@ public class Diary_Fragment extends Fragment {
 
         if (Integer.parseInt(day2) < 10) day2 = "0"+day2;
 
+
         if(Integer.parseInt(gridAdapter.getItem(position)) < 10) {
-            su = day1+day2+"0"+gridAdapter.getItem(position);
+            su = day2+"월 "+"0"+gridAdapter.getItem(position)+"일";
         } else {
-            su = day1+day2+gridAdapter.getItem(position);
+            su = day2+"월 "+gridAdapter.getItem(position)+"일";
         }
 
-        Toast.makeText(getContext(), su, Toast.LENGTH_SHORT).show();
+        String day3;
+
+        if(Integer.parseInt(gridAdapter.getItem(position)) < 10) {
+            day3 = "0"+gridAdapter.getItem(position);
+        } else {
+            day3 = gridAdapter.getItem(position);
+        }
+
+        daydetail(su, day1+"-"+day2+"-"+day3);
     }
 
 
@@ -231,9 +281,8 @@ public class Diary_Fragment extends Fragment {
 
         if (Integer.parseInt(day2) < 10) day2 = "0"+day2;
 
-        gridAdapter = new Calender_Adapter(getContext(), dayList, "0", dayNum, calendarModels, day1+day2);
-
-        gridView.setAdapter(gridAdapter);
+        String day_prev = day1+"-"+day2;
+        onCalendar(day_prev, day1+day2);
 
 
     }
@@ -269,9 +318,9 @@ public class Diary_Fragment extends Fragment {
         day2= String.valueOf(b);
 
         if (Integer.parseInt(day2) < 10) day2 = "0"+day2;
-        gridAdapter = new Calender_Adapter(getContext(), dayList, "0", dayNum, calendarModels, day1+day2);
 
-        gridView.setAdapter(gridAdapter);
+        String day_prev = day1+"-"+day2;
+        onCalendar(day_prev, day1+day2);
 
     }
 
@@ -291,7 +340,7 @@ public class Diary_Fragment extends Fragment {
 
     }
 
-    public void onCalendar() {
+    public void onCalendar(String day, final String day_type) {
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -308,35 +357,140 @@ public class Diary_Fragment extends Fragment {
                 .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://olleego.com/")
+                .baseUrl(ServerInfo.OLLEEGO_HOST)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
 
-        CalenderAPI calenderAPI = retrofit.create(CalenderAPI.class);
+        DiaryMonthAPI calenderAPI = retrofit.create(DiaryMonthAPI.class);
         //Calender calender = new Calender("mdjk1@naver.com","20160610");
-        final Call<List<CalendarModel>> repos = calenderAPI.listRepos("mdjk1@naver.com","20160610");
+        String token = "olleego " + Olleego_SP.getString("login_token", "");
+        String days = day;
+        final Call<DiaryMonthModel> repos = calenderAPI.listRepos(token, days);
 
-        repos.enqueue(new Callback<List<CalendarModel>>() {
+        repos.enqueue(new Callback<DiaryMonthModel>() {
             @Override
-            public void onResponse(Call<List<CalendarModel>> call, Response<List<CalendarModel>> response) {
-                calendarModels = response.body();
+            public void onResponse(Call<DiaryMonthModel> call, Response<DiaryMonthModel> response) {
+                diaryMonthModels = response.body();
 
-                gridAdapter2 = new Calender_Adapter(getActivity(), dayList2, "1", 0, calendarModels, curYearFormat.format(date)+curMonthFormat.format(date));
-                gridAdapter = new Calender_Adapter(getActivity(), dayList, "0", dayNum, calendarModels, curYearFormat.format(date)+curMonthFormat.format(date));
+                gridAdapter2 = new Calender_Adapter(getActivity(), dayList2, "1", 0, diaryMonthModels, day_type);
+                gridAdapter = new Calender_Adapter(getActivity(), dayList, "0", dayNum, diaryMonthModels, day_type);
 
                 gridView2.setAdapter(gridAdapter2);
                 gridView.setAdapter(gridAdapter);
 
+
             }
 
             @Override
-            public void onFailure(Call<List<CalendarModel>> call, Throwable t) {
+            public void onFailure(Call<DiaryMonthModel> call, Throwable t) {
 
             }
         });
+
+        /*
+
+         */
     }
+
+
+
+    private void daydetail(String day, String day2) {
+        Log.e("sdsad", day2);
+
+        daytext.setText(day);
+
+        Retrofit retrofit_diary = new Retrofit.Builder()
+                .baseUrl(ServerInfo.OLLEEGO_HOST)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        String token = "olleego " + Olleego_SP.getString("login_token", "");
+        DiaryAPI diaryAPI = retrofit_diary.create(DiaryAPI.class);
+
+        final Call<DiaryModel> diaryPos = diaryAPI.listRepos(day2, token);
+
+        diaryPos.enqueue(new Callback<DiaryModel>() {
+            @Override
+            public void onResponse(Call<DiaryModel> call, Response<DiaryModel> response) {
+
+                String strColors = "#606060";
+                String strColorsUn = "#cbcbc9";
+
+                if(response.isSuccessful()) {
+
+                        if (response.body().getResult().getWalking() != 0) {
+                            diary_walking_icon.setImageResource(R.drawable.diary_step_1);
+                            diary_walking_text.setTextColor(Color.parseColor(strColors));
+                            diary_walking_text.setText(String.valueOf(response.body().getResult().getWalking()));
+                        } else {
+                            diary_walking_icon.setImageResource(R.drawable.diary_step_1_unchecked);
+                            diary_walking_text.setTextColor(Color.parseColor(strColorsUn));
+                            diary_walking_text.setText("0");
+                        }
+
+
+                        if (response.body().getResult().getWater() != 0) {
+                            diary_water_icon.setImageResource(R.drawable.diary_water_3);
+                            diary_water_text.setTextColor(Color.parseColor(strColors));
+                            diary_water_text.setText(String.valueOf(response.body().getResult().getWater()) + " 잔");
+                        } else {
+                            diary_water_icon.setImageResource(R.drawable.diary_water_3_unchecked);
+                            diary_water_text.setTextColor(Color.parseColor(strColorsUn));
+                            diary_water_text.setText("0 잔");
+                        }
+
+
+                    if(response.body().getResult().getSleep() != 0) {
+                        diary_sleep_icon.setImageResource(R.drawable.diary_sleep_2);
+                        diary_sleep_text.setTextColor(Color.parseColor(strColors));
+                        diary_sleep_text.setText(String.valueOf(response.body().getResult().getWater()));
+                    } else {
+                        diary_sleep_icon.setImageResource(R.drawable.diary_sleep_2_unchecked);
+                        diary_sleep_text.setTextColor(Color.parseColor(strColorsUn));
+                        diary_sleep_text.setText("00:00");
+                    }
+
+                    if(response.body().getResult().getFood().size() != 0) {
+                        diary_food_icon.setImageResource(R.drawable.diary_meal_4);
+                        diary_food_text.setVisibility(View.GONE);
+                    } else {
+                        diary_food_icon.setImageResource(R.drawable.diary_meal_4_unchecked);
+                        diary_food_text.setVisibility(View.VISIBLE);
+                    }
+
+
+
+                }
+                else if(response.code() == 404) {
+                    diary_walking_icon.setImageResource(R.drawable.diary_step_1_unchecked);
+                    diary_walking_text.setTextColor(Color.parseColor(strColorsUn));
+                    diary_walking_text.setText("0");
+                    diary_water_icon.setImageResource(R.drawable.diary_water_3_unchecked);
+                    diary_water_text.setTextColor(Color.parseColor(strColorsUn));
+                    diary_water_text.setText("0 잔");
+                    diary_sleep_icon.setImageResource(R.drawable.diary_sleep_2_unchecked);
+                    diary_sleep_text.setTextColor(Color.parseColor(strColorsUn));
+                    diary_sleep_text.setText("00:00");
+                    diary_food_icon.setImageResource(R.drawable.diary_meal_4_unchecked);
+                    diary_food_text.setVisibility(View.VISIBLE);
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<DiaryModel> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
+
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

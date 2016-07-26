@@ -10,7 +10,7 @@ public class Result {
 
     Date day;
 
-    String water;
+    int water;
 
     //User user;
 
@@ -18,8 +18,8 @@ public class Result {
 
     Date created;
 
-    String walking;
-    String sleep;
+    int walking;
+    int sleep;
     List<Food> food;
 
     Date waterUpdatedAt;
@@ -33,16 +33,16 @@ public class Result {
     public void setDay(Date day) {
         this.day = day;
     }
-    public String getSleep() {
+    public int getSleep() {
         return this.sleep;
     }
-    public void setSleep(String sleep) {
+    public void setSleep(int sleep) {
         this.water = sleep;
     }
-    public String getWater() {
+    public int getWater() {
         return this.water;
     }
-    public void setWater(String water) {
+    public void setWater(int water) {
         this.water = water;
     }
 
@@ -73,10 +73,10 @@ public class Result {
     public void setCreated(Date created) {
         this.created = created;
     }
-    public String getWalking() {
+    public int getWalking() {
         return this.walking;
     }
-    public void setWalking(String walking) {
+    public void setWalking(int walking) {
         this.walking = walking;
     }
     public List<Food> getFood() {
