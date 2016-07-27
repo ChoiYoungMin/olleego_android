@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:elevation="3dp"
+
+    android:layout_height="122dp">
+
+    <ImageView
+        android:layout_width="122dp"
+        android:layout_height="122dp"
+        android:src="@drawable/basic_food_1"
+        android:scaleType="fitXY"
+        android:id="@+id/item_diary_food_img" />
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="122dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/item_diary_food_img">
+
+
+        <TextView
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#a6c52a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아침"
+            android:id="@+id/item_diary_food_sort"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            />
+
+        <TextView
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#606060"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="탄수화물,육류"
+            android:id="@+id/item_diary_food_foods"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="15dp" />
+
+        <TextView
+            android:textSize="12sp"
+            android:textColor="#606060"
+            android:lineSpacingExtra="5dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="메모하는곳 ㅋㅋasfasfasfasfasㅁㄻㄴㄻㄴㄻㄴ"
+            android:id="@+id/item_diary_food_memo"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_diary_food_icon"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/hungry_list"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

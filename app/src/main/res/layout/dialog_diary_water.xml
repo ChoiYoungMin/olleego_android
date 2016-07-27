@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="280dp"
+    android:background="@android:color/white"
+    android:layout_height="248dp">
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="물마시기 입력"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/water_remove"
+            android:layout_marginRight="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_remove_18"/>
+        
+        
+        <LinearLayout
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:background="@drawable/barder2"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/water_text"
+
+                android:textColor="#cbcbc9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textColor="#606060"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="잔"/>
+
+
+
+        <ImageView
+            android:id="@+id/water_add"
+
+            android:layout_marginLeft="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_add_24"/>
+   </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:id="@+id/dialog_diary_water_no"
+
+                android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+                android:background="#f0f1ed"
+                android:gravity="center">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#454544"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="취소"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dialog_diary_water_add"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#cde860"
+                android:gravity="center">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="#454544"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="확인"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

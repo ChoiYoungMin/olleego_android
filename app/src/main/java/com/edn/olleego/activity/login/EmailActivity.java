@@ -136,7 +136,7 @@ public class EmailActivity extends Activity {
 
 
                         UserAPI userAPI = retrofit.create(UserAPI.class);
-                        String token = "ollego " + loginModel.getToken();
+                        String token = "olleego " + loginModel.getToken();
                         final Call<UserModel> repos2 = userAPI.listRepos(token);
 
                         repos2.enqueue(new Callback<UserModel>() {
@@ -144,7 +144,7 @@ public class EmailActivity extends Activity {
                             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                                 UserModel userModel = response.body();
 
-                                int last = userModel.getResult().getInbody().size();
+                                int last = userModel.getResult().getIn_body().size();
 
 
 
@@ -156,8 +156,8 @@ public class EmailActivity extends Activity {
                                 editor.putString("user_id" , String.valueOf(userModel.getResult().get_id()));
 
                                 try {
-                                    editor.putFloat("user_bmi", (float) userModel.getResult().getInbody().get(last - 1).getBmi());
-                                    editor.putInt("user_health_temp", (int) userModel.getResult().getInbody().get(last - 1).getHealth_temp());
+                                    editor.putFloat("user_bmi", (float) userModel.getResult().getIn_body().get(last - 1).getBmi());
+                                    editor.putInt("user_health_temp", (int) userModel.getResult().getIn_body().get(last - 1).getHealth_temp());
                                 }
                                 catch (ArrayIndexOutOfBoundsException e ){
                                     editor.putFloat("user_bmi", 0);

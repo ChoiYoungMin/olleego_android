@@ -1,6 +1,8 @@
 package com.edn.olleego.fragment.diary;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,14 +13,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
 import com.edn.olleego.adapter.calendar.Calender_Adapter;
+import com.edn.olleego.adapter.calendar.food.Diary_Food_Adapter;
 import com.edn.olleego.common.ServerInfo;
+import com.edn.olleego.dialog.DiaryWaterAddDialog;
 import com.edn.olleego.model.CalendarModel;
 import com.edn.olleego.model.DiaryModel;
 import com.edn.olleego.model.DiaryMonthModel;
@@ -30,6 +37,7 @@ import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -86,13 +94,37 @@ public class Diary_Fragment extends Fragment {
     @BindView(R.id.diary_water_text)
     TextView diary_water_text;
 
+    @BindView(R.id.diary_food_layout)
+    LinearLayout diary_food_layout;
 
+    @BindView(R.id.diary_food_dinner)
+    LinearLayout diary_food_dinner;
+    @BindView(R.id.diary_food_morning)
+    LinearLayout diary_food_morning;
+    @BindView(R.id.diary_food_lunch)
+    LinearLayout diary_food_lunch;
+    @BindView(R.id.diary_food_etc)
+    LinearLayout diary_food_etc;
+    @BindView(R.id.diary_food_etc2)
+    LinearLayout diary_food_etc2;
+
+    @BindView(R.id.diary_listview)
+    ListView diary_listview;
+
+    @BindView(R.id.diary_listview_layout)
+    LinearLayout diary_listview_layout;
+
+    @BindView(R.id.diary_water_add)
+    LinearLayout diary_water_add;
+    int etc2_su;
 
     private long backKeyPressedTime = 0;
     private Toast toast;
     private TextView tvDate;
 
     private Calender_Adapter gridAdapter, gridAdapter2;
+
+    private Diary_Food_Adapter diary_food_adapter;
 
     private ArrayList<String> dayList, dayList2;
 
@@ -115,6 +147,8 @@ public class Diary_Fragment extends Fragment {
 
     Date date;
 
+    DiaryModel diaryModel;
+
 
 
     SimpleDateFormat curYearFormat;
@@ -135,6 +169,11 @@ public class Diary_Fragment extends Fragment {
 
     TextView daytext;
 
+    LayoutInflater inflater;
+
+    String click_day1;
+    String click_day2;
+
     public Diary_Fragment(SharedPreferences Olleego_SP) {
         // Required empty public constructor
         this.Olleego_SP = Olleego_SP;
@@ -145,7 +184,7 @@ public class Diary_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        this.inflater = inflater;
         rootView = inflater.inflate(R.layout.fragment_diary, container, false);
         ButterKnife.bind(this, rootView);
         tvDate = (TextView) rootView.findViewById(R.id.tv_date);
@@ -397,7 +436,10 @@ public class Diary_Fragment extends Fragment {
 
 
     private void daydetail(String day, String day2) {
-        Log.e("sdsad", day2);
+
+        click_day1 = day;
+        click_day2 = day2;
+
 
         daytext.setText(day);
 
@@ -419,6 +461,7 @@ public class Diary_Fragment extends Fragment {
                 String strColorsUn = "#cbcbc9";
 
                 if(response.isSuccessful()) {
+                    diaryModel = response.body();
 
                         if (response.body().getResult().getWalking() != 0) {
                             diary_walking_icon.setImageResource(R.drawable.diary_step_1);
@@ -453,11 +496,80 @@ public class Diary_Fragment extends Fragment {
                     }
 
                     if(response.body().getResult().getFood().size() != 0) {
+                        diary_listview_layout.setVisibility(View.VISIBLE);
+
+                        etc2_su =0;
+                        diary_food_adapter = new Diary_Food_Adapter(inflater,getContext());
+                        diary_listview.setAdapter(diary_food_adapter);
+                        initFood();
                         diary_food_icon.setImageResource(R.drawable.diary_meal_4);
                         diary_food_text.setVisibility(View.GONE);
+                        diary_food_layout.setVisibility(View.VISIBLE);
+
+                        for (int j=0;j<response.body().getResult().getFood().size(); j++) {
+                            String foods = "";
+                            if(response.body().getResult().getFood().get(j).getFood().size() == 1) {
+                                diary_food_adapter.additem("없음아직",response.body().getResult().getFood().get(j).getSort(),response.body().getResult().getFood().get(j).getFood().get(0),response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety());
+                            } else {
+                                for (int g=0; g<response.body().getResult().getFood().get(j).getFood().size(); g++) {
+                                    if(response.body().getResult().getFood().get(j).getFood().size() == g) {
+                                        foods = foods + response.body().getResult().getFood().get(j).getFood().get(g)+"";
+
+                                    } else {
+                                        foods = foods + response.body().getResult().getFood().get(j).getFood().get(g)+", ";
+
+                                    }
+                                }
+                                diary_food_adapter.additem("없음아직",response.body().getResult().getFood().get(j).getSort(),foods,response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety());
+                            }
+
+
+                            switch (response.body().getResult().getFood().get(j).getSort()) {
+                                case "아침":
+                                    diary_food_morning.setVisibility(View.VISIBLE);
+                                    break;
+                                case "점심":
+                                    diary_food_lunch.setVisibility(View.VISIBLE);
+                                    break;
+
+                                case "저녁":
+                                    diary_food_dinner.setVisibility(View.VISIBLE);
+                                    break;
+
+                                case "간식":
+                                    diary_food_etc2.setVisibility(View.VISIBLE);
+                                    etc2_su++;
+                                    break;
+
+                                case "모임":
+                                    diary_food_etc.setVisibility(View.VISIBLE);
+                                    break;
+
+
+                                default:
+                                    break;
+
+
+                            }
+                        }
+
+                        TextView etc_text = (TextView)rootView.findViewById(R.id.diary_food_etc2_text);
+                        if(etc2_su == 1) {
+                            etc_text.setText("간식");
+                        } else {
+                            etc_text.setText("간식 +"+String.valueOf(etc2_su));
+                        }
+
+
+                        listViewHeightSet(diary_food_adapter, diary_listview);
+
                     } else {
                         diary_food_icon.setImageResource(R.drawable.diary_meal_4_unchecked);
                         diary_food_text.setVisibility(View.VISIBLE);
+                        diary_food_layout.setVisibility(View.GONE);
+                        diary_food_adapter.ItemRemove();
+                        diary_listview_layout.setVisibility(View.GONE);
+
                     }
 
 
@@ -475,6 +587,11 @@ public class Diary_Fragment extends Fragment {
                     diary_sleep_text.setText("00:00");
                     diary_food_icon.setImageResource(R.drawable.diary_meal_4_unchecked);
                     diary_food_text.setVisibility(View.VISIBLE);
+                    diary_food_layout.setVisibility(View.GONE);
+                    diary_food_adapter.ItemRemove();
+                    diary_listview_layout.setVisibility(View.GONE);
+
+
                 }
 
 
@@ -489,6 +606,29 @@ public class Diary_Fragment extends Fragment {
 
     }
 
+    private void listViewHeightSet(Adapter listAdapter, ListView listView)
+    {
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++)
+        {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
+
+    public void initFood() {
+        diary_food_morning.setVisibility(View.GONE);
+        diary_food_lunch.setVisibility(View.GONE);
+        diary_food_dinner.setVisibility(View.GONE);
+        diary_food_etc.setVisibility(View.GONE);
+        diary_food_etc2.setVisibility(View.GONE);
+
+    }
 
 
 
@@ -541,6 +681,25 @@ public class Diary_Fragment extends Fragment {
         return builder;
     }
 
+
+    @OnClick(R.id.diary_water_add)
+    void diart_water_add_click() {
+        final DiaryWaterAddDialog diaryWaterAddDialog = new DiaryWaterAddDialog(getContext(), Olleego_SP.getString("login_token", ""), Integer.valueOf(Olleego_SP.getString("user_id","")),click_day2, diaryModel.getResult().getWater());
+        diaryWaterAddDialog.show();
+
+        diaryWaterAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+
+                if(diaryWaterAddDialog.getType() == true) {
+
+                    String day_ = day1+"-"+day2;
+                    onCalendar(day_, day1+day2);
+                    daydetail(click_day1 ,click_day2);
+                }
+            }
+        });
+    }
 
 
 }

@@ -224,11 +224,11 @@ public class Home_Fragment extends Fragment {
 
                     TextView sleep = (TextView) rootView.findViewById(R.id.main_diary_sleep);
                     TextView walking = (TextView) rootView.findViewById(R.id.main_diary_walking);
-                    int time;
+                    float time;
                     int walkings;
 
                     if (response.body().getResult().getSleep() == 0) {
-                        time = 00;
+                        time = (float) 00.00;
                     } else {
                         time = response.body().getResult().getSleep();
                     }
@@ -247,17 +247,17 @@ public class Home_Fragment extends Fragment {
 
                         for (int a = 0; a < response.body().getResult().getFood().size(); a++) {
 
-                            switch (response.body().getResult().getFood().get(a).getSort().get_id()) {
-                                case 130:
+                            switch (response.body().getResult().getFood().get(a).getSort()) {
+                                case "아침":
                                     rootView.findViewById(R.id.main_diary_morning).setVisibility(View.VISIBLE);
                                     break;
-                                case 131:
+                                case "점심":
                                     rootView.findViewById(R.id.main_diary_lunch).setVisibility(View.VISIBLE);
                                     break;
-                                case 132:
+                                case "저녁":
                                     rootView.findViewById(R.id.main_diary_dinner).setVisibility(View.VISIBLE);
                                     break;
-                                case 133:
+                                case "간식":
                                     rootView.findViewById(R.id.main_diary_snack).setVisibility(View.VISIBLE);
                                     break;
 

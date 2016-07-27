@@ -1,6 +1,7 @@
 package com.edn.olleego.model.diarymonth;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Antonio on 2016-07-26.
@@ -8,13 +9,13 @@ import java.util.Date;
 public class Food {
 
 
-    Satiety satiety;
+    String satiety;
 
     String memo;
 
-    Food food;
+    List<String> food;
 
-    Sort sort;
+    String sort;
 
     String _id;
 
@@ -23,10 +24,10 @@ public class Food {
 
 
 
-    public Satiety getSatiety() {
+    public String getSatiety() {
         return this.satiety;
     }
-    public void setSatiety(Satiety satiety) {
+    public void setSatiety(String satiety) {
         this.satiety = satiety;
     }
     public String getMemo() {
@@ -35,16 +36,16 @@ public class Food {
     public void setMemo(String memo) {
         this.memo = memo;
     }
-    public Food getFood() {
+    public List<String> getFood() {
         return this.food;
     }
-    public void setFood(Food food) {
+    public void setFood(List<String> food) {
         this.food = food;
     }
-    public Sort getSort() {
+    public String getSort() {
         return this.sort;
     }
-    public void setSort(Sort sort) {
+    public void setSort(String sort) {
         this.sort = sort;
     }
     public String get_id() {

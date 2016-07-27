@@ -19,7 +19,7 @@ public class Result {
     Date created;
 
     int walking;
-    int sleep;
+    float sleep;
     List<Food> food;
 
     Date waterUpdatedAt;
@@ -33,11 +33,11 @@ public class Result {
     public void setDay(Date day) {
         this.day = day;
     }
-    public int getSleep() {
+    public float getSleep() {
         return this.sleep;
     }
-    public void setSleep(int sleep) {
-        this.water = sleep;
+    public void setSleep(float sleep) {
+        this.sleep = sleep;
     }
     public int getWater() {
         return this.water;

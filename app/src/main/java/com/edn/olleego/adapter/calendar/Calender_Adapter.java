@@ -196,78 +196,75 @@ public class Calender_Adapter extends BaseAdapter {
         }
         else {
 
-            for(int i=0; i<calendar_.getResult().size(); i++) {
+            try {
+                for (int i = 0; i < calendar_.getResult().size(); i++) {
 
-                SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault());
-                String daya= null;
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault());
+                    String daya = null;
 
-                try {
-                    if (Integer.valueOf(getItem(position)) < 10) {
-                        daya = day + "0" + getItem(position);
+                    try {
+                        if (Integer.valueOf(getItem(position)) < 10) {
+                            daya = day + "0" + getItem(position);
 
-                    } else {
-                        daya = day + getItem(position);
+                        } else {
+                            daya = day + getItem(position);
+
+                        }
+                    } catch (NumberFormatException e) {
 
                     }
-                } catch (NumberFormatException e) {
 
+                    if (dateFormat.format(calendar_.getResult().get(i).getDay()).equals(daya)) {
+
+
+                        String strColor = "#000000";
+                        holder.tvItemGridView.setTextColor(Color.parseColor(strColor));
+
+
+                        try {
+                            if (calendar_.getResult().get(i).getWalking() != 0) {
+                                holder.calender_walking.setImageResource(R.drawable.calendar_step);
+                            }
+                        } catch (NullPointerException e) {
+
+                        }
+
+                        try {
+                            if (calendar_.getResult().get(i).getWater() != 0) {
+                                holder.calender_water.setImageResource(R.drawable.calendar_water);
+                            }
+                        } catch (NullPointerException e) {
+
+                        }
+
+                        try {
+                            if (calendar_.getResult().get(i).getSleep() != 0) {
+                                holder.calender_sleep.setImageResource(R.drawable.calendar_sleep);
+                            }
+                        } catch (NullPointerException e) {
+
+                        }
+
+
+                        try {
+                            if (calendar_.getResult().get(i).getFood().size() != 0) {
+                                holder.calender_food.setImageResource(R.drawable.calendar_meal);
+                            }
+                        } catch (NullPointerException e) {
+
+                        }
+
+
+                        if (sToday.equals(getItem(position))) { //오늘 day 텍스트 컬러 변경
+
+                            String strColors = "#0015ff";
+                            holder.tvItemGridView.setTextColor(Color.parseColor(strColors));
+                        }
+
+                    }
                 }
+            } catch (NullPointerException e) {
 
-                if(dateFormat.format(calendar_.getResult().get(i).getDay()).equals(daya)) {
-
-
-                    String strColor = "#000000";
-                    holder.tvItemGridView.setTextColor(Color.parseColor(strColor));
-
-
-                    try {
-                        if (calendar_.getResult().get(i).getWalking() != 0) {
-                            holder.calender_walking.setImageResource(R.drawable.calendar_step);
-                        }
-                    }catch (NullPointerException e) {
-
-                    }
-
-                    try {
-                        if (calendar_.getResult().get(i).getWater() != 0) {
-                            holder.calender_water.setImageResource(R.drawable.calendar_water);
-                        }
-                    }catch (NullPointerException e) {
-
-                    }
-
-                    try {
-                        if (calendar_.getResult().get(i).getSleep() != 0) {
-                            holder.calender_sleep.setImageResource(R.drawable.calendar_sleep);
-                        }
-                    }catch (NullPointerException e) {
-
-                    }
-
-
-                    try {
-                        if (calendar_.getResult().get(i).getFood().size() != 0) {
-                            holder.calender_food.setImageResource(R.drawable.calendar_meal);
-                        }
-                    } catch (NullPointerException e) {
-
-                    }
-
-
-
-
-
-
-
-
-
-                    if (sToday.equals(getItem(position))) { //오늘 day 텍스트 컬러 변경
-
-                        String strColors = "#0015ff";
-                        holder.tvItemGridView.setTextColor(Color.parseColor(strColors));
-                    }
-
-                }
             }
         }
 

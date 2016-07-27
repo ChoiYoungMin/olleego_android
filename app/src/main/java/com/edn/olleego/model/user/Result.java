@@ -16,7 +16,7 @@ public class Result {
 
     int user_level;
 
-    List<Inbody> inbody;
+    List<InBody> in_body;
 
     public int get_id() {
         return this._id;
@@ -82,12 +82,11 @@ public class Result {
     }
 
 
-    public List<Inbody> getInbody() {
-        return inbody;
-    }
 
-    public void setInbody(List<Inbody> inbody) {
-        this.inbody = inbody;
+    public List<InBody> getIn_body() {
+        return this.in_body;
     }
-
+    public void setIn_body(List<InBody> in_body) {
+        this.in_body = in_body;
+    }
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Antonio on 2016-07-14.
  */
-public class Inbody {
+public class InBody {
 
     int health_temp;
 
@@ -25,7 +25,7 @@ public class Inbody {
 
     Bloodpressure bloodpressure;
 
-    Waist waist;
+    int waist;
 
 
 
@@ -84,10 +84,10 @@ public class Inbody {
     public void setBloodpressure(Bloodpressure bloodpressure) {
         this.bloodpressure = bloodpressure;
     }
-    public Waist getWaist() {
+    public int getWaist() {
         return this.waist;
     }
-    public void setWaist(Waist waist) {
+    public void setWaist(int waist) {
         this.waist = waist;
     }
 
