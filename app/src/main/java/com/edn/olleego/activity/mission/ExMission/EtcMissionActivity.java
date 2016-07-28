@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,7 +84,7 @@ public class EtcMissionActivity extends AppCompatActivity {
                 mission_title.setText(fdList.getTitle());
                 mission_level.setText(getlevel(fdList.getFd_level(),1));
                 mission_time.setText(gettime(fdList.getFd_time(),1));
-                mission_description.setText(fdList.getDescription1());
+                mission_description.setText(Html.fromHtml(fdList.getDescription2()));
                 mission_tip.setText(fdList.getTip());
 
 

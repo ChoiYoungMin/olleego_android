@@ -19,26 +19,14 @@ public class DiaryAdd {
 
 
 
-    public void DiaryWaterAdd(int user, String day, int waters) {
-
+    public void DiaryWaterAdd(int user, String day, int water, float sleep, int walking) {
         this.user= user;
         this.day = day;
-        water = waters;
+        this.water = water;
+        this.sleep = sleep;
+        this.walking = walking;
     }
 
-    public void DiaryWalkingAdd(int user, String day, float sleeps) {
-
-        this.user= user;
-        this.day = day;
-        sleep = sleeps;
-    }
-
-    public void DiarySleepAdd(int user, String day, int walkings) {
-
-        this.user= user;
-        this.day = day;
-        walking = walkings;
-    }
 
     public void DiaryFoodAdd(int user, String day, List<String> foods) {
 

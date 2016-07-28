@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -137,7 +138,7 @@ public class MissionDetailActivity extends AppCompatActivity {
         mission_detail_level.setText(intent.getStringExtra("mission_level"));
         mission_detail_day.setText(intent.getStringExtra("mission_day")+"주");
         //ission_detail_su.setText(); 주 몇회?
-        mission_detail_description.setText(intent.getStringExtra("mission_description"));
+        mission_detail_description.setText(Html.fromHtml(intent.getStringExtra("mission_description")));
 
         for(int i=0; i< intent.getIntExtra("mission_img_size",0); i++) {
             mission_detail_img_adapter.addItem(ServerInfo.OLLEEGO_IMAGE+intent.getStringExtra("mission_img"+i));

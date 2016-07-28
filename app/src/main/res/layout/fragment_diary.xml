@@ -2,6 +2,8 @@
     android:layout_height="match_parent"
     android:background="#f5f6f3"
     xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -177,6 +179,8 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/diary_sleep_add"
+
 
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
@@ -245,6 +249,7 @@
 
 
         <LinearLayout
+            android:id="@+id/diary_food_add"
 
             android:gravity="center_horizontal"
             android:background="#ffffff"
@@ -429,6 +434,8 @@
 
         </LinearLayout>
     </LinearLayout>
+
+
 </LinearLayout>
 
 

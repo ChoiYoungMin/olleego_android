@@ -13,4 +13,15 @@
         <item>Neptune</item>
         <item>Pluto</item>
     </string-array>
+
+
+    <string-array name="food">
+        <item >의견을 선택해주세요.</item>
+        <item >건강식으로 먹었어요.</item>
+        <item >짜게 먹었어요.</item>
+        <item >인스턴트로 먹었어요.</item>
+        <item >국물을 많이 먹었어요.</item>
+        <item >직접입력</item>
+    </string-array>
+
 </resources>

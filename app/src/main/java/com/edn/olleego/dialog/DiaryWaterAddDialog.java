@@ -58,22 +58,26 @@ public class DiaryWaterAddDialog extends Dialog{
     @BindView(R.id.water_text)
     TextView water_text;
 
-    int water;
+
 
     Boolean type = false;
-
+    int water;
     String token;
     int user_id;
     String day;
 
+    float sleep;
+    int walking;
 
-    public DiaryWaterAddDialog(Context context, String token, int user_id, String day, int nowWater) {
+    public DiaryWaterAddDialog(Context context, String token, int user_id, String day, int nowWater, float sleep, int walking) {
         super(context);
 
         this.token = token;
         this.user_id = user_id;
         this.day = day;
         this.water = nowWater;
+        this.sleep = sleep;
+        this.walking = walking;
     }
 
     @Override
@@ -84,7 +88,6 @@ public class DiaryWaterAddDialog extends Dialog{
         ButterKnife.bind(this);
 
         water_text.setText(String.valueOf(water));
-
 
     }
 
@@ -128,10 +131,9 @@ public class DiaryWaterAddDialog extends Dialog{
 
         DiaryAdd diaryAdd = new DiaryAdd();
 
-        diaryAdd.DiaryWaterAdd(user_id,day,water);
+        diaryAdd.DiaryWaterAdd(user_id,day,water,sleep,walking);
 
         final Call<MissionsModel> diaryPos = diaryAddAPI.listRepos(tokens, "water",diaryAdd);
-        Log.e("zz", String.valueOf(diaryPos.request()));
 
         diaryPos.enqueue(new Callback<MissionsModel>() {
             @Override
@@ -139,7 +141,6 @@ public class DiaryWaterAddDialog extends Dialog{
                 if(response.isSuccessful()) {
                     Toast.makeText(getContext(),"추가 완료", Toast.LENGTH_SHORT).show();
                     type = true;
-
                     dismiss();
                 }
             }
