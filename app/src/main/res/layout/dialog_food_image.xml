@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="280dp"
+    android:layout_height="250dp"
+    android:background="@android:color/white"
+    android:gravity="center|top">
+
+    <TextView
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="#454544"
+        android:layout_marginTop="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사진 추가하기"/>
+
+
+    <RadioGroup
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <RadioButton
+            android:id="@+id/dialog_food_image_camera"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="#878885"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카메라로 촬영"/>
+
+
+        <RadioButton
+            android:id="@+id/dialog_food_image_gallery"
+            android:textSize="15sp"
+            android:textColor="#878885"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="갤러리에서 추가"/>
+    </RadioGroup>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+        
+        <LinearLayout
+            android:id="@+id/dialog_food_no"
+            android:background="#f0f1ed"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="#454544"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="취소"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialog_food_ok"
+
+            android:gravity="center"
+            android:background="#cde860"
+            android:layout_weight="1"
+
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="#454544"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="확인"/>
+
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</LinearLayout>

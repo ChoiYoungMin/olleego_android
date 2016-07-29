@@ -14,31 +14,50 @@
             android:background="#30312f"
             android:gravity="center">
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="#454544"
-                android:orientation="vertical"
-                android:gravity="center">
+                <LinearLayout
+                    android:id="@+id/diary_food_Image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:background="#454544"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="57dp"
-                    android:layout_height="57dp"
-                    android:src="@drawable/ic_insert_photo"/>
+                    <ImageView
+                        android:id="@+id/test_img"
+                        android:scaleType="fitXY"
+                        android:layout_width="57dp"
+                        android:layout_height="57dp"
+                        android:src="@drawable/ic_insert_photo"/>
 
-                <TextView
-                    android:textColor="#30312f"
-                    android:textStyle="bold"
-                    android:textSize="12sp"
-                    android:layout_marginTop="10dp"
+                    <TextView
+                        android:textColor="#30312f"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사진 올리기기"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="사진 올리기기"/>
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/asdasd"/>
+                </LinearLayout>
+
+            </RelativeLayout>
 
 
-            </LinearLayout>
 
 
 
@@ -74,12 +93,15 @@
 
 
             <LinearLayout
+                android:id="@+id/diary_food_morning_layout"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/barder_food_type_on"
                 android:gravity="center">
 
                 <TextView
+                    android:id="@+id/diary_food_morning_text"
+
                     android:textColor="#ffffff"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -91,6 +113,7 @@
 
             <LinearLayout
                 android:layout_marginLeft="20dp"
+                android:id="@+id/diary_food_lunch_layout"
 
                 android:gravity="center"
                 android:layout_width="50dp"
@@ -98,6 +121,8 @@
                 android:background="@drawable/barder_food_type_off">
 
                 <TextView
+                    android:id="@+id/diary_food_lunch_text"
+
                     android:textColor="#cbcbc9"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -108,12 +133,16 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_dinner_layout"
+
                 android:gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/barder_food_type_off">
                 <TextView
+                    android:id="@+id/diary_food_dinner_text"
+
                     android:textColor="#cbcbc9"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -124,12 +153,16 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_etc_layout"
+
                 android:gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/barder_food_type_off">
                 <TextView
+                    android:id="@+id/diary_food_etc_text"
+
                     android:textColor="#cbcbc9"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -140,6 +173,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_etc2_layout"
+
                 android:gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"
@@ -147,6 +182,8 @@
                 android:background="@drawable/barder_food_type_off">
 
                 <TextView
+                    android:id="@+id/diary_food_etc2_text"
+
                     android:textColor="#cbcbc9"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -190,23 +227,29 @@
 
 
             <LinearLayout
+                android:id="@+id/diary_food_meal1_layout"
+
                 android:layout_marginLeft="10dp"
 
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:background="@drawable/barder_food_type_on"
+                android:background="@drawable/barder_food_type_off"
                 android:orientation="vertical"
                 android:gravity="center">
 
 
                 <ImageView
+
+                    android:id="@+id/diary_food_meal1_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal"/>
+                    android:src="@drawable/meal_1_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal1_text"
+
                     android:layout_marginTop="10dp"
-                    android:textColor="#ffffff"
+                    android:textColor="#cbcbc9"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
@@ -216,6 +259,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_meal2_layout"
+
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_width="74dp"
@@ -224,11 +269,15 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/diary_food_meal2_icon"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal_unchecked"/>
+                    android:src="@drawable/meal_2_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal2_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -240,6 +289,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_meal3_layout"
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
 
@@ -248,11 +298,14 @@
                 android:background="@drawable/barder_food_type_off"
                 android:orientation="vertical">
                 <ImageView
+                    android:id="@+id/diary_food_meal3_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal_unchecked"/>
+                    android:src="@drawable/meal_3_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal3_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -264,6 +317,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_meal4_layout"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
@@ -273,11 +327,14 @@
                 android:background="@drawable/barder_food_type_off"
                 android:orientation="vertical">
                 <ImageView
+                    android:id="@+id/diary_food_meal4_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal_unchecked"/>
+                    android:src="@drawable/meal_4_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal4_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -306,6 +363,7 @@
 
 
             <LinearLayout
+                android:id="@+id/diary_food_meal5_layout"
                 android:layout_marginLeft="10dp"
 
                 android:layout_width="80dp"
@@ -316,11 +374,14 @@
 
 
                 <ImageView
+                    android:id="@+id/diary_food_meal5_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal_unchecked"/>
+                    android:src="@drawable/meal_5_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal5_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -333,6 +394,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_meal6_layout"
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_width="74dp"
@@ -341,11 +403,14 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/diary_food_meal6_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal_unchecked"/>
+                    android:src="@drawable/meal_6_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal6_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -357,6 +422,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_meal7_layout"
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_width="74dp"
@@ -364,11 +430,14 @@
                 android:background="@drawable/barder_food_type_off"
                 android:orientation="vertical">
                 <ImageView
+                    android:id="@+id/diary_food_meal7_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal_unchecked"/>
+                    android:src="@drawable/meal_7_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal7_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -380,6 +449,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_meal8_layout"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
@@ -388,11 +458,14 @@
                 android:background="@drawable/barder_food_type_off"
                 android:orientation="vertical">
                 <ImageView
+                    android:id="@+id/diary_food_meal8_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal_unchecked"/>
+                    android:src="@drawable/meal_8_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal8_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -418,6 +491,7 @@
 
             <LinearLayout
 
+                android:id="@+id/diary_food_meal9_layout"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@drawable/barder_food_type_off"
@@ -426,11 +500,14 @@
 
 
                 <ImageView
+                    android:id="@+id/diary_food_meal9_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal_unchecked"/>
+                    android:src="@drawable/meal_9_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal9_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -443,6 +520,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_meal10_layout"
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_width="74dp"
@@ -451,11 +529,14 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/diary_food_meal10_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/meal_unchecked"/>
+                    android:src="@drawable/meal_10_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_meal10_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -507,7 +588,6 @@
                 android:background="@drawable/barder_food_type_off"
                 >
                 <Spinner
-
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -526,6 +606,7 @@
 
 
                 <EditText
+                    android:textSize="13sp"
                     android:lineSpacingExtra="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
@@ -570,6 +651,7 @@
 
 
             <LinearLayout
+                android:id="@+id/diary_food_hungry_layout"
                 android:layout_marginLeft="10dp"
                 android:layout_width="74dp"
                 android:layout_height="74dp"
@@ -579,11 +661,15 @@
 
 
                 <ImageView
+                    android:id="@+id/diary_food_hungry_icon"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/hungry_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_hungry_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -596,6 +682,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_happy_layout"
+
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_width="74dp"
@@ -604,11 +692,15 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/diary_food_happy_icon"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/happy_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_happy_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -620,6 +712,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_full_layout"
+
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_width="74dp"
@@ -627,11 +721,15 @@
                 android:background="@drawable/barder_food_type_off"
                 android:orientation="vertical">
                 <ImageView
+                    android:id="@+id/diary_food_full_icon"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/full_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_full_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
@@ -643,6 +741,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diary_food_overeat_layout"
+
                 android:gravity="center"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
@@ -651,11 +751,15 @@
                 android:background="@drawable/barder_food_type_off"
                 android:orientation="vertical">
                 <ImageView
+                    android:id="@+id/diary_food_overeat_icon"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/overeat_unchecked"/>
 
                 <TextView
+                    android:id="@+id/diary_food_overeat_text"
+
                     android:layout_marginTop="10dp"
                     android:textColor="#cbcbc9"
                     android:textSize="12sp"
