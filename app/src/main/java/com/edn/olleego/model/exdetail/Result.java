@@ -23,7 +23,7 @@ public class Result {
 
     String warning;
 
-    TtSort tt_sort;
+    int tt_sort;
 
     LgSort lg_sort;
 
@@ -35,7 +35,7 @@ public class Result {
 
     LvAttr lv_attr;
 
-    int std_attr;
+    //int std_attr;
 
     boolean bp_etc;
 
@@ -89,10 +89,10 @@ public class Result {
     public void setWarning(String warning) {
         this.warning = warning;
     }
-    public TtSort getTt_sort() {
+    public int getTt_sort() {
         return this.tt_sort;
     }
-    public void setTt_sort(TtSort tt_sort) {
+    public void setTt_sort(int tt_sort) {
         this.tt_sort = tt_sort;
     }
     public LgSort getLg_sort() {
@@ -125,12 +125,13 @@ public class Result {
     public void setLv_attr(LvAttr lv_attr) {
         this.lv_attr = lv_attr;
     }
+    /*
     public int getStd_attr() {
         return this.std_attr;
     }
     public void setStd_attr(int std_attr) {
         this.std_attr = std_attr;
-    }
+    }*/
     public boolean getBp_etc() {
         return this.bp_etc;
     }

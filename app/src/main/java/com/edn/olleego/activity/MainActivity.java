@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.left_menu_chart) {
             transaction.replace(R.id.content_main, chartFragment);
         }else if (id == R.id.left_menu_diary) {
-            transaction.replace(R.id.content_main, diaryFragment);
+            transaction.replace(R.id.content_main, diaryFragment, "diary");
         } else if (id == R.id.left_menu_mission) {
             transaction.replace(R.id.content_main, missionCategoryFragment);
         } else if (id == R.id.left_menu_video) {
@@ -301,6 +301,13 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-
+        if(resultCode == 5 ) {
+            final android.support.v4.app.Fragment fragment =  getSupportFragmentManager().findFragmentByTag("diary");
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }

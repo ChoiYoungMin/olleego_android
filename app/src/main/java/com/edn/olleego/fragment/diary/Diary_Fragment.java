@@ -557,7 +557,7 @@ public class Diary_Fragment extends Fragment {
                         for (int j=0;j<response.body().getResult().getFood().size(); j++) {
                             String foods = "";
                             if(response.body().getResult().getFood().get(j).getFood().size() == 1) {
-                                diary_food_adapter.additem("없음아직",response.body().getResult().getFood().get(j).getSort(),response.body().getResult().getFood().get(j).getFood().get(0),response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety());
+                                diary_food_adapter.additem(response.body().getResult().getFood().get(j).getImage(),response.body().getResult().getFood().get(j).getSort(),response.body().getResult().getFood().get(j).getFood().get(0),response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety());
                             } else {
                                 for (int g=0; g<response.body().getResult().getFood().get(j).getFood().size(); g++) {
                                     if(response.body().getResult().getFood().get(j).getFood().size() == g) {
@@ -568,7 +568,7 @@ public class Diary_Fragment extends Fragment {
 
                                     }
                                 }
-                                diary_food_adapter.additem("없음아직",response.body().getResult().getFood().get(j).getSort(),foods,response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety());
+                                diary_food_adapter.additem(response.body().getResult().getFood().get(j).getImage(),response.body().getResult().getFood().get(j).getSort(),foods,response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety());
                             }
 
 
@@ -775,8 +775,23 @@ public class Diary_Fragment extends Fragment {
     @OnClick(R.id.diary_food_add)
     void diary_food_add_click() {
         Intent intent = new Intent(getActivity(), DiaryFoodActivity.class);
-        getActivity().startActivity(intent);
+        intent.putExtra("user", Olleego_SP.getString("user_id", ""));
+        intent.putExtra("day", click_day2);
+        intent.putExtra("token", Olleego_SP.getString("login_token", ""));
+        getActivity().startActivityForResult(intent, 0);
 
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == 5) {
+            String day_ = day1+"-"+day2;
+            onCalendar(day_, day1+day2);
+            daydetail(click_day1 ,click_day2);
+        }
+
+    }
 }

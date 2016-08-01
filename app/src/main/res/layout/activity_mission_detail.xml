@@ -502,7 +502,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra = "7dp"
-                        android:text="스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기스쿼드\n런지\n팔벌려 높이 뛰기"/>
+                        android:text=""/>
                 </LinearLayout>
 
         </RelativeLayout>

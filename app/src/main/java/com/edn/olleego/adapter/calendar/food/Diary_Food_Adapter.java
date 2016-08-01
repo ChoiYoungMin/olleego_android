@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.adapter.mission.Mission_Data;
 import com.edn.olleego.adapter.mission.Mission_ViewHolder;
@@ -61,6 +62,7 @@ public class Diary_Food_Adapter extends BaseAdapter{
         Diary_Food_Data diary_food_data = diary_food_datas.get(position);
 
 
+        Glide.with(context).load(diary_food_data.mImg).into(holder.diary_food_img);
         holder.diary_food_sort.setText(diary_food_data.mSort);
         holder.diary_food_foods.setText(diary_food_data.mFoods);
         holder.diary_food_memo.setText(diary_food_data.mMemo);

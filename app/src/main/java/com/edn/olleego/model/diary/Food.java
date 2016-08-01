@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class Food {
 
+    String image;
 
     String satiety;
 
@@ -22,6 +23,13 @@ public class Food {
     Date updatedAt;
     Date createdAt;
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 
     public String getSatiety() {

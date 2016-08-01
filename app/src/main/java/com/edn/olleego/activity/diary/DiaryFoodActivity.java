@@ -1,6 +1,9 @@
 package com.edn.olleego.activity.diary;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -15,22 +18,65 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
+import com.edn.olleego.common.FileUtils;
+import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.dialog.DiaryFoodImageDialog;
+import com.edn.olleego.model.MissionsModel;
+import com.edn.olleego.server.DiaryAddAPI;
+import com.edn.olleego.server.DiaryFoodAddAPI;
+import com.edn.olleego.server.request.DiaryAdd;
+import com.edn.olleego.server.request.DiaryFoodAdd;
+import com.edn.olleego.server.request.Foods;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.JavaNetCookieJar;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Url;
 
 public class DiaryFoodActivity extends AppCompatActivity {
 
     @BindView(R.id.asdasd)
     ImageView test;
 
+    @BindView(R.id.diary_food_memo)
+    TextView diary_food_memo;
+
+    @BindView(R.id.diary_food_Image_yes)
+    LinearLayout diary_food_Image_yes;
 
     @BindView(R.id.diary_food_Image)
     LinearLayout diary_food_Image;
@@ -152,16 +198,23 @@ public class DiaryFoodActivity extends AppCompatActivity {
 
 
 
-
+    Uri Image_url;
 
 
     int types ;
 
     int chk= 0;
 
+    int con;
+
+    HashMap<Integer, String> meal = new HashMap<Integer, String>() ;
 
 
     ArrayList<Integer> meal_chk_int = new ArrayList<Integer>();
+    ArrayList<String> meal_chk_String = new ArrayList<String>();
+
+    String type_temp;
+    String cons_temp;
 
     boolean meal1;
     boolean meal2;
@@ -176,6 +229,9 @@ public class DiaryFoodActivity extends AppCompatActivity {
 
 
 
+    String user_id;
+    String token;
+    String day;
 
 
 
@@ -185,6 +241,12 @@ public class DiaryFoodActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_diary_food);
         ButterKnife.bind(this);
+        mealinit();
+        Intent intent = getIntent();
+        user_id= intent.getStringExtra("user");
+        token = intent.getStringExtra("token");
+        day = intent.getStringExtra("day");
+
         init_layout();
         meal_chk_int.clear();
 
@@ -229,7 +291,12 @@ public class DiaryFoodActivity extends AppCompatActivity {
     private void handleCrop(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
             test.setImageURI(Crop.getOutput(result));
+            Image_url =  Crop.getOutput(result);
             diary_food_Image.setVisibility(View.GONE);
+            diary_food_Image_yes.setVisibility(View.VISIBLE);
+
+
+
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             Toast.makeText(this, Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
@@ -563,9 +630,6 @@ public class DiaryFoodActivity extends AppCompatActivity {
 
     @OnClick(R.id.diary_food_meal10_layout)
     void meal10_click() {
-        for(int j=0;j<meal_chk_int.size(); j++) {
-            Log.e("dasd", String.valueOf(meal_chk_int.get(j)));
-        }
 
         if(chk == 3 && meal10 == false) {
             Toast.makeText(this,"3개 까지만 선택 가능합니다", Toast.LENGTH_SHORT).show();
@@ -676,29 +740,199 @@ public class DiaryFoodActivity extends AppCompatActivity {
                 diary_food_hungry_layout.setBackgroundResource(R.drawable.barder_food_type_on);
                 diary_food_hungry_text.setTextColor(Color.parseColor("#cbcbc9"));
                 diary_food_hungry_icon.setImageResource(R.drawable.hungry);
+                con = 1;
                 break;
 
             case 2:
                 diary_food_happy_layout.setBackgroundResource(R.drawable.barder_food_type_on);
                 diary_food_happy_text.setTextColor(Color.parseColor("#cbcbc9"));
                 diary_food_happy_icon.setImageResource(R.drawable.happy);
+                con =2;
                 break;
 
             case 3:
                 diary_food_full_layout.setBackgroundResource(R.drawable.barder_food_type_on);
                 diary_food_full_text.setTextColor(Color.parseColor("#cbcbc9"));
                 diary_food_full_icon.setImageResource(R.drawable.full);
+                con = 3;
                 break;
 
             case 4:
                 diary_food_overeat_layout.setBackgroundResource(R.drawable.barder_food_type_on);
                 diary_food_overeat_text.setTextColor(Color.parseColor("#cbcbc9"));
                 diary_food_overeat_icon.setImageResource(R.drawable.overeat);
+                con=4;
                 break;
 
 
 
         }
+    }
+
+    public void mealinit() {
+        meal.put(1, "밥(흰밥)");
+        meal.put(2, "밥(잡곡)");
+        meal.put(3, "육류");
+        meal.put(4, "생선류");
+        meal.put(5, "채소류");
+        meal.put(6, "과일류");
+        meal.put(7, "빵류");
+        meal.put(8, "국수류");
+        meal.put(9, "유제품");
+        meal.put(10, "술");
+
+    }
+
+    @OnClick(R.id.diary_food_ok)
+    void diary_food_ok() {
+
+
+        switch (types) {
+            case 1:
+                type_temp = "아침";
+                break;
+            case 2:
+                type_temp = "점심";
+                break;
+            case 3:
+                type_temp = "저녁";
+                break;
+            case 4:
+                type_temp = "간식";
+                break;
+            case 5:
+                type_temp = "모임";
+                break;
+
+        }
+
+        switch (con) {
+            case 1:
+                cons_temp = "부족해";
+                break;
+            case 2:
+                cons_temp = "기분좋아";
+                break;
+            case 3:
+                cons_temp = "배불러요";
+                break;
+            case 4:
+                cons_temp = "과식!";
+                break;
+
+        }
+
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        CookieManager cookieManager = new CookieManager();
+        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+
+        OkHttpClient client = configureClient(new OkHttpClient().newBuilder()) //인증서 무시
+                .connectTimeout(15, TimeUnit.SECONDS) //연결 타임아웃 시간 설정
+                .writeTimeout(15, TimeUnit.SECONDS) //쓰기 타임아웃 시간 설정
+                .readTimeout(15, TimeUnit.SECONDS) //읽기 타임아웃 시간 설정
+                .cookieJar(new JavaNetCookieJar(cookieManager)) //쿠키메니져 설정
+                .addInterceptor(httpLoggingInterceptor) //http 로그 확인
+                .build();
+
+
+
+        Retrofit retrofit_diary = new Retrofit.Builder()
+                .baseUrl(ServerInfo.OLLEEGO_HOST)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        String tokens = "olleego " + token;
+        DiaryFoodAddAPI diaryAddAPI = retrofit_diary.create(DiaryFoodAddAPI.class);
+
+        for(int j=0;j<meal_chk_int.size(); j++) {
+            meal_chk_String.add(meal.get(meal_chk_int.get(j)));
+        }
+
+        File file = FileUtils.getFile(this, Image_url);
+
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("image/*"), file);
+
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName()+".png", requestFile);
+        Foods foods = new Foods(type_temp, meal_chk_String, diary_food_memo.getText().toString(), cons_temp);
+
+
+        DiaryFoodAdd diaryAdd = new DiaryFoodAdd(Integer.valueOf(user_id), day, foods);
+
+
+
+
+        final Call<MissionsModel> diaryPos = diaryAddAPI.listRepos(tokens, "food" ,diaryAdd, body);
+
+        Log.e("z", diaryAdd.getDay());
+        Log.e("z", diaryAdd.getFood().toString());
+        Log.e("z", String.valueOf(diaryAdd.getUser()));
+
+
+
+        diaryPos.enqueue(new Callback<MissionsModel>() {
+            @Override
+            public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
+
+                if(response.isSuccessful()) {
+                    setResult(5);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MissionsModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public static OkHttpClient.Builder configureClient(final OkHttpClient.Builder builder) {
+        final TrustManager[] certs = new TrustManager[]{new X509TrustManager() {
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                X509Certificate[] x509Certificates = new X509Certificate[0];
+                return x509Certificates;
+            }
+
+            @Override
+            public void checkServerTrusted(final X509Certificate[] chain,
+                                           final String authType) {
+            }
+
+            @Override
+            public void checkClientTrusted(final X509Certificate[] chain,
+                                           final String authType) {
+            }
+        }};
+
+        SSLContext ctx = null;
+        try {
+            ctx = SSLContext.getInstance("TLS");
+            ctx.init(null, certs, new SecureRandom());
+        } catch (final java.security.GeneralSecurityException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            final HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+                @Override
+                public boolean verify(final String hostname, final SSLSession session) {
+                    return true;
+                }
+            };
+
+            builder.sslSocketFactory(ctx.getSocketFactory()).hostnameVerifier(hostnameVerifier);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+
+        return builder;
     }
 
 }

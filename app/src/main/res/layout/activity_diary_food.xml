@@ -6,8 +6,21 @@
         android:background="#ffffff"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
+            android:id="@+id/diary_food_Image_yes"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:layout_margin="40dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/asdasd"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/diary_food_Image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:elevation="3dp"
@@ -19,7 +32,6 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/diary_food_Image"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:background="#454544"
@@ -45,15 +57,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/asdasd"/>
-                </LinearLayout>
 
             </RelativeLayout>
 
@@ -606,6 +610,7 @@
 
 
                 <EditText
+                    android:id="@+id/diary_food_memo"
                     android:textSize="13sp"
                     android:lineSpacingExtra="10dp"
                     android:layout_marginTop="10dp"
@@ -781,6 +786,7 @@
             android:gravity="center|bottom">
 
             <LinearLayout
+                android:id="@+id/diary_food_ok"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#cde860"
