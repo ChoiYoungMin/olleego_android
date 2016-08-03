@@ -1,0 +1,658 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f6f3"
+    tools:context="com.edn.olleego.fragment.report.HealthyReportFragment">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:visibility="gone"
+            android:gravity="center"
+
+            android:orientation="horizontal"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#cde860">
+
+            <TextView
+                android:textColor="#606060"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="건강 정보 입력하기"/>
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_input_16"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:background="@drawable/card_background"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:textColor="#a6c52a"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REPORT 1."/>
+            
+            <RelativeLayout
+                android:gravity="center|start"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#606060"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/report_healthy_report1_title" />
+
+
+                <TextView
+                    android:id="@+id/report_healthy_report1_detail"
+                    android:textColor="#a6c52a"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="자세히보기"
+                    android:layout_alignTop="@+id/report_healthy_report1_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="55dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search"
+                    android:layout_alignTop="@+id/report_healthy_report1_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="30dp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/report_healthy_report1_content"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColor="#606060"
+                android:lineSpacingExtra="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="312dp"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+
+            <LinearLayout
+                android:background="#f9f9f9"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="75dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:textColor="#878885"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="정상"/>
+
+                    <TextView
+
+                        android:id="@+id/report_healthy_report1_allbmi"
+                        android:textColor="#606060"
+                        android:textStyle="bold"
+                        android:textSize="19sp"
+                        android:layout_marginTop="7dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="18.5 ~ 22.9"/>
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/report_healthy_report1_bmiimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/calendar_prev"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:textColor="#878885"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="나의 BMI"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+
+                            android:id="@+id/report_healthy_report1_mybmi"
+                            android:textColor="#606060"
+                            android:textStyle="bold"
+                            android:textSize="19sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="18.5 ~ 22.9"/>
+
+                        <ImageView
+                            android:id="@+id/report_healthy_report1_bmiimg2"
+                            android:layout_marginLeft="7dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_status_2"/>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="#fafcf3"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#606060"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="적정 체중"/>
+
+                    <TextView
+
+                        android:id="@+id/report_healthy_report1_allkg"
+                        android:textStyle="bold"
+                        android:textColor="#606060"
+                        android:textSize="14sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="약 72kg ~ 88kg"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="33dp"
+                    android:background="#e5e5e2"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:visibility="gone"
+                        android:textStyle="bold"
+                        android:textColor="#a6c52a"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="↓ 감량 필요"/>
+
+                    <TextView
+
+                        android:id="@+id/report_healthy_report1_chkkg"
+                        android:textStyle="bold"
+                        android:textColor="#a6c52a"
+                        android:textSize="14sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="약 7kg ~ 12g"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="#cde860"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="36dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search"/>
+
+                <TextView
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="체중변화 보기"/>
+
+           </LinearLayout>
+
+        </LinearLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:background="#bbffffff">
+
+                <TextView
+                    android:lineSpacingExtra="10dp"
+                    android:textStyle="normal"
+                    android:textColor="#ff5b53"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="건강정보를 입력하시면 회원님의 비만도를 알려드려요!\n    상단의 건강정보 입력 버튼을 눌러 주세요요"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="113dp" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:textColor="#a6c52a"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REPORT 2."/>
+
+                <RelativeLayout
+                    android:gravity="center|start"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+
+                    <TextView
+
+                        android:id="@+id/report_healthy_report2_title"
+                        android:textStyle="bold"
+                        android:textColor="#606060"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+
+                    <TextView
+                        android:textColor="#a6c52a"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="자세히보기"
+                        android:layout_alignTop="@+id/report_healthy_report2_title"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="55dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_search"
+                        android:layout_alignTop="@+id/report_healthy_report2_title"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="30dp"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/report_healthy_report2_content"
+                    android:textStyle="normal"
+                    android:textSize="13sp"
+                    android:textColor="#606060"
+                    android:lineSpacingExtra="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="312dp"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="#f8f8f8"
+                    android:gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp">
+
+                    <LinearLayout
+                        android:layout_marginLeft="45dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/report_healthy_report2_waist_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_check_circle_x"/>
+
+                        <TextView
+
+                            android:id="@+id/report_healthy_report2_waist_text"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:textColor="#cbcbc9"
+                            android:layout_marginLeft="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="허리둘레 90cm이상의 복부비만"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="45dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/report_healthy_report2_bp_img"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_check_circle_x"/>
+
+                        <TextView
+                            android:id="@+id/report_healthy_report2_bp_text"
+
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:textColor="#cbcbc9"
+                            android:layout_marginLeft="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="혈압이 130/85mmHg 이상"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_marginLeft="45dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/report_healthy_report2_bs_img"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_check_circle_x"/>
+
+                        <TextView
+                            android:id="@+id/report_healthy_report2_bs_text"
+
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:textColor="#cbcbc9"
+                            android:layout_marginLeft="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="혈압이 100~110 mg/dL 이상"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:background="#fafcf3"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:lineSpacingExtra="10dp"
+                        android:textColor="#606060"
+                        android:textSize="13sp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="평소 30분 이상 운동습관을 갖는 것이 중요합니다.\n인스턴트 및 서구화된 식습관을 변화시켜야 합니다.\n탄수화물 섭취를 줄이세요\n수면시간을 적당하게(7~8시간) 유지하세요"
+                        />
+
+
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#bbffffff">
+
+                <TextView
+                    android:lineSpacingExtra="10dp"
+                    android:textStyle="normal"
+                    android:textColor="#ff5b53"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="혈압, 혈당 정보를 입력하면 건강상태를 알려 드려요!"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="113dp" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+
+        <LinearLayout
+
+            android:gravity="center"
+            android:background="#454544"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="266dp">
+
+            <TextView
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="올리고 추천 미션"/>
+            
+            <LinearLayout
+
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+
+                <LinearLayout
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <ImageView
+                            android:id="@+id/report_healthy_mission1_img"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"/>
+                        <TextView
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="60dp"
+                            android:id="@+id/report_healthy_mission1_text"
+                            android:gravity="center"
+                            android:lineSpacingExtra="7dp"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="혈압을 조절하는 4주 미션프로그램"/>
+
+
+                    </RelativeLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+
+                    android:orientation="vertical"
+
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/report_healthy_mission2_img"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"/>
+
+                        <TextView
+
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="60dp"
+                            android:lineSpacingExtra="7dp"
+
+                            android:id="@+id/report_healthy_mission2_text"
+                            android:gravity="center"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="탄수화물 줄이기 타바타? 활동하기"/>
+
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

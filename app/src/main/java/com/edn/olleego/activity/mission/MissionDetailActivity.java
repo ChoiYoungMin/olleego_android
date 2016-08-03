@@ -128,7 +128,7 @@ public class MissionDetailActivity extends AppCompatActivity {
         intent = getIntent();
         Glide.with(getApplicationContext()).load(intent.getStringExtra("mission_type_img"))
                 .into(type_img);
-        Glide.with(getApplicationContext()).load(ServerInfo.OLLEEGO_IMAGE+intent.getStringExtra("mission_title_img"))
+        Glide.with(getApplicationContext()).load(intent.getStringExtra("mission_title_img"))
                 .into(mission_title_img);
 
         mission_title_img.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -141,7 +141,7 @@ public class MissionDetailActivity extends AppCompatActivity {
         mission_detail_description.setText(Html.fromHtml(intent.getStringExtra("mission_description")));
 
         for(int i=0; i< intent.getIntExtra("mission_img_size",0); i++) {
-            mission_detail_img_adapter.addItem(ServerInfo.OLLEEGO_IMAGE+intent.getStringExtra("mission_img"+i));
+            mission_detail_img_adapter.addItem(intent.getStringExtra("mission_img"+i));
 
         }
 

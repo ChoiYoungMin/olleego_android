@@ -36,7 +36,7 @@ public class MissionCategoryMainFragment extends Fragment {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new Mission_Category_PagerAdapter(getActivity().getSupportFragmentManager());
+        mSectionsPagerAdapter = new Mission_Category_PagerAdapter(getChildFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) view.findViewById(R.id.container);

@@ -245,7 +245,7 @@ public class DiaryFoodActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user_id= intent.getStringExtra("user");
         token = intent.getStringExtra("token");
-        day = intent.getStringExtra("day");
+        day = intent.getStringExtra("day") + " 00:00:00";;
 
         init_layout();
         meal_chk_int.clear();

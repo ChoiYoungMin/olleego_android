@@ -145,6 +145,8 @@ public class Diary_Fragment extends Fragment {
 
     Date date;
 
+    String day_temp;
+
     DiaryModel diaryModel;
 
     int water;
@@ -260,6 +262,14 @@ public class Diary_Fragment extends Fragment {
         //
         daydetail(curMonthFormat.format(date)+"월 "+curDayFormat.format(date)+"일", curYearFormat.format(date)+"-"+curMonthFormat.format(date)+"-"+curDayFormat.format(date));
 
+        click_day1 = curMonthFormat.format(date)+"월 "+curDayFormat.format(date)+"일";
+        click_day2 = curYearFormat.format(date)+"-"+curMonthFormat.format(date)+"-"+curDayFormat.format(date);
+
+        day1= String.valueOf(a);
+        day2= String.valueOf(b);
+
+
+
         return rootView;
     }
 
@@ -267,18 +277,18 @@ public class Diary_Fragment extends Fragment {
 
     @OnItemClick(R.id.gridview)
     void calender_click(int position) {
-
+        day_temp="";
         day1= String.valueOf(a);
         day2= String.valueOf(b);
 
 
-        if (Integer.parseInt(day2) < 10) day2 = "0"+day2;
+        if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
 
 
         if(Integer.parseInt(gridAdapter.getItem(position)) < 10) {
-            su = day2+"월 "+"0"+gridAdapter.getItem(position)+"일";
+            su = day_temp+"월 "+"0"+gridAdapter.getItem(position)+"일";
         } else {
-            su = day2+"월 "+gridAdapter.getItem(position)+"일";
+            su = day_temp+"월 "+gridAdapter.getItem(position)+"일";
         }
 
         String day3;
@@ -289,7 +299,7 @@ public class Diary_Fragment extends Fragment {
             day3 = gridAdapter.getItem(position);
         }
 
-        daydetail(su, day1+"-"+day2+"-"+day3);
+        daydetail(su, day1+"-"+day_temp+"-"+day3);
     }
 
 
@@ -323,10 +333,12 @@ public class Diary_Fragment extends Fragment {
         day1= String.valueOf(a);
         day2= String.valueOf(b);
 
-        if (Integer.parseInt(day2) < 10) day2 = "0"+day2;
 
-        String day_prev = day1+"-"+day2;
-        onCalendar(day_prev, day1+day2);
+        day_temp="";
+        if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
+
+        String day_prev = day1+"-"+day_temp;
+        onCalendar(day_prev, day1+day_temp);
 
 
     }
@@ -361,10 +373,12 @@ public class Diary_Fragment extends Fragment {
         day1= String.valueOf(a);
         day2= String.valueOf(b);
 
-        if (Integer.parseInt(day2) < 10) day2 = "0"+day2;
+        day_temp="";
+        if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
 
-        String day_prev = day1+"-"+day2;
-        onCalendar(day_prev, day1+day2);
+
+        String day_prev = day1+"-"+day_temp;
+        onCalendar(day_prev, day1+day_temp);
 
     }
 
@@ -456,7 +470,7 @@ public class Diary_Fragment extends Fragment {
         String token = "olleego " + Olleego_SP.getString("login_token", "");
         DiaryAPI diaryAPI = retrofit_diary.create(DiaryAPI.class);
 
-        final Call<DiaryModel> diaryPos = diaryAPI.listRepos(day2, token);
+        final Call<DiaryModel> diaryPos = diaryAPI.listRepos(day2+" 00:00:00", token);
 
         diaryPos.enqueue(new Callback<DiaryModel>() {
             @Override
@@ -740,12 +754,14 @@ public class Diary_Fragment extends Fragment {
         diaryWaterAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-
+                day_temp="";
                 if(diaryWaterAddDialog.getType() == true) {
-
-                    String day_ = day1+"-"+day2;
-                    onCalendar(day_, day1+day2);
+                    if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
+                    String day_ = day1+"-"+day_temp;
+                    onCalendar(day_, day1+day_temp);
                     daydetail(click_day1 ,click_day2);
+
+                    // 008 됌 수정하셈
                 }
             }
         });
@@ -759,10 +775,11 @@ public class Diary_Fragment extends Fragment {
         diarySleepAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
+                day_temp="";
                 if(diarySleepAddDialog.getType() == true) {
-
-                    String day_ = day1+"-"+day2;
-                    onCalendar(day_, day1+day2);
+                    if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
+                    String day_ = day1+"-"+day_temp;
+                    onCalendar(day_, day1+day_temp);
                     daydetail(click_day1 ,click_day2);
                 }
             }
@@ -788,8 +805,10 @@ public class Diary_Fragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == 5) {
-            String day_ = day1+"-"+day2;
-            onCalendar(day_, day1+day2);
+            day_temp="";
+            if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
+            String day_ = day1+"-"+day_temp;
+            onCalendar(day_, day1+day_temp);
             daydetail(click_day1 ,click_day2);
         }
 

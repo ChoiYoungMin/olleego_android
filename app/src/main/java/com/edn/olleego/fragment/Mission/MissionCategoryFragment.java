@@ -153,7 +153,7 @@ public class MissionCategoryFragment extends Fragment {
 
                     for (int i = 0; i < response.body().getResult().size(); i++) {
                         try {
-                            missionAdapter.addItem(ServerInfo.OLLEEGO_IMAGE + response.body().getResult().get(i).getTitle_img(), response.body().getResult().get(i).getMi_lg_sort().getValue(), response.body().getResult().get(i).getTitle(), 3, 00, response.body().getResult().get(i).getMi_level().getValue(), response.body().getResult().get(i).getMi_term() + "주");
+                            missionAdapter.addItem(response.body().getResult().get(i).getTitle_img(), response.body().getResult().get(i).getMi_lg_sort().getValue(), response.body().getResult().get(i).getTitle(), 3, 00, response.body().getResult().get(i).getMi_level().getValue(), response.body().getResult().get(i).getMi_term() + "주");
                         } catch (NullPointerException e) {
 
                         }

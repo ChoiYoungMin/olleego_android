@@ -1,4 +1,4 @@
-package com.edn.olleego.fragment.chart;
+package com.edn.olleego.fragment.report;
 
 
 import android.os.Bundle;

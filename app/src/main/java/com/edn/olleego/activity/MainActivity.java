@@ -24,8 +24,9 @@ import com.edn.olleego.fragment.Mission.MissionCategoryFragment;
 import com.edn.olleego.fragment.Mission.MissionCategoryMainFragment;
 import com.edn.olleego.fragment.Mission.MissionCustomFragment;
 import com.edn.olleego.fragment.OlleegoGym_Fragment;
-import com.edn.olleego.fragment.chart.ChartFragment;
+import com.edn.olleego.fragment.report.ChartFragment;
 import com.edn.olleego.fragment.diary.Diary_Fragment;
+import com.edn.olleego.fragment.report.ReportFragment;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 import butterknife.BindView;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity
     Diary_Fragment diaryFragment;
     MissionCategoryMainFragment missionCategoryFragment;
     MissionCustomFragment missionCustomFragment;
-    ChartFragment chartFragment;
+    ReportFragment reportFragment;
 
 
 
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity
         gymFragment = new OlleegoGym_Fragment();
         mainFragment = new Home_Fragment();
         diaryFragment = new Diary_Fragment(olleego_SP);
-        chartFragment = new ChartFragment();
+        reportFragment = new ReportFragment();
         missionCategoryFragment = new MissionCategoryMainFragment();
         missionCustomFragment = new MissionCustomFragment();
     }
@@ -264,7 +265,7 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.content_main, mainFragment);
         }
         else if (id == R.id.left_menu_chart) {
-            transaction.replace(R.id.content_main, chartFragment);
+            transaction.replace(R.id.content_main, reportFragment);
         }else if (id == R.id.left_menu_diary) {
             transaction.replace(R.id.content_main, diaryFragment, "diary");
         } else if (id == R.id.left_menu_mission) {

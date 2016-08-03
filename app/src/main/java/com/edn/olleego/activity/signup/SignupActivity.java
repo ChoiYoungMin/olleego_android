@@ -21,7 +21,9 @@ import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.fragment.Policy_Fragment;
 import com.edn.olleego.model.SignupModel;
+import com.edn.olleego.model.UserModel;
 import com.edn.olleego.server.SignupAPI;
+import com.edn.olleego.server.UserAPI;
 import com.edn.olleego.server.request.Signup;
 
 import java.io.IOException;
@@ -184,27 +186,62 @@ public class SignupActivity extends FragmentActivity {
                     public void onResponse(Call<SignupModel> call, Response<SignupModel> response) {
 
                         if(response.isSuccessful()) {
-                            SignupModel forgot_model_ = response.body();
+                            final SignupModel forgot_model_ = response.body();
 
                             //프렌트먼트로 토큰값 저장해두자
                             // forgot_model_.getToken()
 
                             Toast.makeText(getApplicationContext(), "회원가입 완료!", Toast.LENGTH_SHORT).show();
 
-                            olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = olleego_SP.edit();
-                            editor.putString("login_chk", "true");
-                            editor.putString("login_email", email.getText().toString());
-                            editor.putString("login_token", forgot_model_.getToken());
-                            editor.commit();
+                            Retrofit retrofit22 = new Retrofit.Builder()
+                                    .baseUrl(ServerInfo.OLLEEGO_HOST)
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build();
 
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("sort", "signin");
-                            intent.putExtra("userEmail", email.getText().toString());
-                            intent.putExtra("SNS_type", "email_login");
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            startActivity(intent);
-                            finish();
+
+                            UserAPI userAPI = retrofit22.create(UserAPI.class);
+                            String token = "olleego " + forgot_model_.getToken();
+                            final Call<UserModel> repos2 = userAPI.listRepos(token);
+
+                            repos2.enqueue(new Callback<UserModel>() {
+                                @Override
+                                public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                                    UserModel userModel = response.body();
+
+                                    int last = userModel.getResult().getIn_body().size();
+
+
+
+                                    olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = olleego_SP.edit();
+                                    editor.putString("login_chk", "true");
+                                    editor.putString("login_email", email.getText().toString());
+                                    editor.putString("login_token", forgot_model_.getToken());
+                                    editor.putString("user_id" , String.valueOf(userModel.getResult().get_id()));
+
+                                    try {
+                                        editor.putFloat("user_bmi", (float) userModel.getResult().getIn_body().get(last - 1).getBmi());
+                                        editor.putInt("user_health_temp", (int) userModel.getResult().getIn_body().get(last - 1).getHealth_temp());
+                                    }
+                                    catch (ArrayIndexOutOfBoundsException e ){
+                                        editor.putFloat("user_bmi", 0);
+                                        editor.putInt("user_health_temp", 0);
+                                    }
+                                    editor.commit();
+
+
+                                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                                @Override
+                                public void onFailure(Call<UserModel> call, Throwable t) {
+
+                                }
+                            });
 
                         } else {
                             Converter<ResponseBody, SignupModel> converter = retrofit.responseBodyConverter(SignupModel.class, new Annotation[0]);

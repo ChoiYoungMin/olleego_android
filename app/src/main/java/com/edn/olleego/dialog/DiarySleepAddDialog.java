@@ -70,7 +70,7 @@ public class DiarySleepAddDialog extends Dialog{
 
         this.token = token;
         this.user_id = user_id;
-        this.day = day;
+        this.day = day+ " 00:00:00";
         this.water = nowWater;
         this.sleep = sleep;
         this.walking = walking;
