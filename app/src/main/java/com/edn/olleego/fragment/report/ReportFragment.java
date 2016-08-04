@@ -1,7 +1,6 @@
 package com.edn.olleego.fragment.report;
 
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,11 +13,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.edn.olleego.R;
-import com.edn.olleego.adapter.mission.Mission_Category_PagerAdapter;
 import com.edn.olleego.adapter.report.Report_PagerAdapter;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
-import com.edn.olleego.common.VerticalProgressBar;
+import com.edn.olleego.custom.VerticalProgressBar;
 import com.edn.olleego.model.ReportModel;
 import com.edn.olleego.server.ReportAPI;
 

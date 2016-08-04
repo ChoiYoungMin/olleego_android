@@ -1,4 +1,4 @@
-package com.edn.olleego.common;
+package com.edn.olleego.custom;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;

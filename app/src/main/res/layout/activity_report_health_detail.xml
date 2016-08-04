@@ -1,0 +1,972 @@
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f6f3"
+    tools:context=".activity.report.ReportBMIDetailActivity">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/card_background"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="30dp">
+
+            <LinearLayout
+                android:gravity="center|start"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_status_5"/>
+
+                <TextView
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="허리둘레"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center|end"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/report_bmi_detail_waist"
+                    android:textSize="16sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100cm"/>
+
+                <TextView
+                    android:id="@+id/report_bmi_detail_waist2"
+                    android:layout_marginRight="15dp"
+                    android:textSize="12sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[복부비만]"/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <LinearLayout
+                android:visibility="invisible"
+                android:id="@+id/report_bmi_detail_waist_me"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_waist_me2"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:gravity="center|start"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:background="@drawable/report_health_1"
+                android:gravity="center"
+                android:layout_width="61dp"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="정상"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/report_bmi_2"
+                android:gravity="center"
+                android:layout_width="61dp"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="복부비만"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:textColor="#cbcbc9"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="90" />
+
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/card_background"
+        android:layout_width="match_parent"
+        android:layout_height="320dp">
+
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="30dp">
+
+            <LinearLayout
+                android:gravity="center|start"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_status_5"/>
+
+                <TextView
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="최고혈압"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center|end"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+
+                    android:id="@+id/report_bmi_detail_blood_pressure_max"
+                    android:textSize="16sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="140mmHg"/>
+
+                <TextView
+                    android:id="@+id/report_bmi_detail_blood_pressure_max2"
+                    android:layout_marginRight="15dp"
+                    android:textSize="12sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[2단계 고혈압]"/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <LinearLayout
+                android:visibility="invisible"
+
+                android:id="@+id/report_bmi_detail_blood_pressure_max_me"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_blood_pressure_max_me2"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_blood_pressure_max_me3"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_blood_pressure_max_me4"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+
+                android:layout_weight="1"
+                android:background="@drawable/report_health_1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="정상"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_marginLeft="2dp"
+                android:background="#ffa9a5"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고혈압 전단계"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:background="#ff8681"
+
+                android:layout_marginLeft="2dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1단계 고협압"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/report_bmi_2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2단계 고혈압"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+
+            <LinearLayout
+                android:gravity="end"
+                android:layout_weight="0.6"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="120"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="end"
+                android:layout_weight="0.6"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="140"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="end"
+                android:layout_weight="0.6"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="160"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="0.65"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="30dp">
+
+            <LinearLayout
+                android:gravity="center|start"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_status_2"/>
+
+                <TextView
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="최저혈압"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center|end"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/report_bmi_detail_blood_pressure_min"
+                    android:textSize="16sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="110mmHg"/>
+
+                <TextView
+                    android:id="@+id/report_bmi_detail_blood_pressure_min2"
+                    android:layout_marginRight="15dp"
+                    android:textSize="12sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[정상]"/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_blood_pressure_min_me"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_blood_pressure_min_me2"
+
+                android:layout_weight="1"
+                android:visibility="invisible"
+
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_blood_pressure_min_me3"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_blood_pressure_min_me4"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+
+                android:layout_weight="1"
+                android:background="@drawable/report_health_1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="정상"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_marginLeft="2dp"
+                android:background="#ffa9a5"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고혈압 전단계"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:background="#ff8681"
+
+                android:layout_marginLeft="2dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1단계 고협압"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/report_bmi_2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2단계 고혈압"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+
+            <LinearLayout
+                android:gravity="end"
+                android:layout_weight="0.6"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="120"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="end"
+                android:layout_weight="0.6"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="140"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="end"
+                android:layout_weight="0.6"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="160"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="0.65"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/card_background"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="30dp">
+
+            <LinearLayout
+                android:gravity="center|start"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_status_5"/>
+
+                <TextView
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="혈당"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center|end"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/report_bmi_detail_blood_sugar"
+                    android:textSize="16sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="140mg/dL"/>
+
+                <TextView
+                    android:id="@+id/report_bmi_detail_blood_sugar2"
+                    android:layout_marginRight="15dp"
+                    android:textSize="12sp"
+                    android:textColor="#606060"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[당뇨]"/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <LinearLayout
+                android:visibility="invisible"
+
+                android:id="@+id/report_bmi_detail_blood_sugar_me"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_blood_sugar_me2"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/report_bmi_detail_blood_sugar_me3"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:gravity="center|start"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:background="@drawable/report_health_1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="정상"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:background="#ff8681"
+
+                android:layout_marginLeft="2dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="당뇨 전단계"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/report_bmi_2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="당뇨"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+
+            <LinearLayout
+                android:gravity="end"
+                android:layout_weight="0.9"
+                android:layout_alignTop="@+id/textView600"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:gravity="end"
+            android:layout_weight="0.9"
+            android:layout_alignTop="@+id/textView600"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:textColor="#cbcbc9"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="126"/>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_alignTop="@+id/textView600"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+</ScrollView>

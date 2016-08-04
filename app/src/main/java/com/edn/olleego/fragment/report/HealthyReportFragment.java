@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.report.ReportBMIDetailActivity;
+import com.edn.olleego.activity.report.ReportHealthDetailActivity;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.model.DiaryModel;
 import com.edn.olleego.model.ReportModel;
@@ -226,6 +227,17 @@ public class HealthyReportFragment extends Fragment {
         intent.putExtra("whr", reportModel.getResult().getWhr());
         getContext().startActivity(intent);
 
+    }
+
+    @OnClick(R.id.report_healthy_report2_detail)
+    void report2_detail_click() {
+        Intent intent = new Intent(getActivity(), ReportHealthDetailActivity.class);
+        intent.putExtra("waist", reportModel.getResult().getWaist());
+        intent.putExtra("blood_pressure_max", reportModel.getResult().getBlood_pressure().getMax());
+        intent.putExtra("blood_pressure_min", reportModel.getResult().getBlood_pressure().getMin());
+        intent.putExtra("blood_sugar", reportModel.getResult().getBlood_sugar());
+
+        getContext().startActivity(intent);
     }
 
 }

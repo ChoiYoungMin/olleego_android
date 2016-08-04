@@ -50,6 +50,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/report_bmi_detail_mybmi"
                     android:textSize="16sp"
                     android:textColor="#606060"
                     android:textStyle="bold"
@@ -58,6 +59,7 @@
                     android:text="27.2"/>
 
                 <TextView
+                    android:id="@+id/report_bmi_detail_mybmi2"
                     android:layout_marginRight="15dp"
                     android:textSize="12sp"
                     android:textColor="#606060"
@@ -79,9 +81,9 @@
             android:layout_height="24dp">
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="invisible"
 
-                android:layout_marginLeft="22dp"
+                android:layout_weight="0.5"
                 android:id="@+id/report_bmi_detail_me"
                 android:gravity="center"
                 android:layout_width="wrap_content"
@@ -93,9 +95,10 @@
 
             </LinearLayout>
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="invisible"
 
-                android:layout_marginLeft="25dp"
+                android:layout_weight="0.5"
+
                 android:id="@+id/report_bmi_detail_me2"
                 android:gravity="center"
                 android:layout_width="wrap_content"
@@ -108,9 +111,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
+                android:layout_weight="0.5"
+                android:visibility="invisible"
 
-                android:layout_marginLeft="25dp"
+
                 android:id="@+id/report_bmi_detail_me3"
                 android:gravity="center"
                 android:layout_width="wrap_content"
@@ -123,9 +127,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
+                android:layout_weight="0.5"
 
-                android:layout_marginLeft="25dp"
+                android:visibility="invisible"
+
                 android:id="@+id/report_bmi_detail_me4"
                 android:gravity="center"
                 android:layout_width="wrap_content"
@@ -138,8 +143,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
-                android:layout_marginLeft="25dp"
+                android:visibility="invisible"
+                android:layout_weight="0.5"
                 android:id="@+id/report_bmi_detail_me5"
                 android:gravity="center"
                 android:layout_width="wrap_content"
@@ -161,6 +166,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:layout_weight="1"
                 android:background="@drawable/report_bmi_1"
                 android:gravity="center"
                 android:layout_width="61dp"
@@ -175,6 +181,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_weight="1"
+
                 android:layout_marginLeft="2dp"
                 android:background="#cde860"
                 android:gravity="center"
@@ -190,6 +198,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_marginLeft="2dp"
                 android:background="#ffa9a5"
                 android:gravity="center"
@@ -205,6 +214,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_marginLeft="2dp"
                 android:background="#ff8681"
                 android:gravity="center"
@@ -220,6 +230,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_marginLeft="2dp"
                 android:background="@drawable/report_bmi_2"
                 android:gravity="center"
@@ -237,60 +248,97 @@
 
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="20dp">
 
-            <TextView
-
-                android:textColor="#cbcbc9"
-                android:textSize="10sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="18.5"
-                android:id="@+id/textView5"
+            <LinearLayout
+                android:gravity="end"
+                android:layout_weight="0.65"
                 android:layout_alignTop="@+id/textView6"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="60dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
+                <TextView
 
-                android:textColor="#cbcbc9"
-                android:textSize="10sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="25"
-                android:layout_marginStart="53dp"
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18.5"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_weight="0.65"
+                android:gravity="end"
                 android:layout_alignTop="@+id/textView6"
-                android:layout_toEndOf="@+id/textView6"
-                android:id="@+id/textView10" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="23"/>
+            </LinearLayout>
 
 
-            <TextView
+            <LinearLayout
+                android:layout_weight="0.65"
 
-                android:textColor="#cbcbc9"
-                android:textSize="10sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="23"
-                android:layout_marginStart="49dp"
-                android:id="@+id/textView6"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/textView5" />
+                android:gravity="end"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:textColor="#cbcbc9"
-                android:textSize="10sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="30"
-                android:layout_marginStart="52dp"
-                android:id="@+id/textView9"
-                android:layout_alignTop="@+id/textView10"
-                android:layout_toEndOf="@+id/textView10" />
-        </RelativeLayout>
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.65"
+
+                android:gravity="end"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.7"
+
+                android:gravity="center"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textColor="#cbcbc9"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
+
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -358,6 +406,8 @@
                 android:layout_height="match_parent">
 
                 <TextView
+
+                    android:id="@+id/report_bmi_detail_mytemp"
                     android:textSize="16sp"
                     android:textColor="#606060"
                     android:textStyle="bold"
@@ -366,6 +416,7 @@
                     android:text="0.8%"/>
 
                 <TextView
+                    android:id="@+id/report_bmi_detail_mytemp2"
                     android:layout_marginRight="15dp"
                     android:textSize="12sp"
                     android:textColor="#606060"
@@ -387,6 +438,9 @@
             android:layout_height="24dp">
 
             <LinearLayout
+                android:visibility="invisible"
+
+                android:id="@+id/report_bmi_detail_temp_me"
                 android:gravity="center"
                 android:layout_marginLeft="90dp"
                 android:layout_width="wrap_content"
@@ -397,6 +451,19 @@
                     android:src="@drawable/ic_cu_me"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:visibility="invisible"
+
+                android:id="@+id/report_bmi_detail_temp_me2"
+                android:gravity="center"
+                android:layout_marginLeft="140dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cu_me"/>
+            </LinearLayout>
 
 
         </LinearLayout>

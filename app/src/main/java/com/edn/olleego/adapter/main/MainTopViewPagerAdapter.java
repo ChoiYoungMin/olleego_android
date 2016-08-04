@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,10 @@ import android.widget.TextView;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.edn.olleego.R;
-import com.edn.olleego.common.CircleProgressBar;
+import com.edn.olleego.custom.CircleProgressBar;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
-import com.edn.olleego.common.VerticalProgressBar;
+import com.edn.olleego.custom.VerticalProgressBar;
 import com.edn.olleego.model.UserMissionModel;
 import com.edn.olleego.server.UserMissionAPI;
 
@@ -110,7 +109,6 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
             circleProgressBar.setProgressWithAnimation(50);
             circleProgressBar.setProgress(50);
             circleProgressBar.invalidate();
-
 
             retrofit = new Retrofit.Builder()
                     .baseUrl(ServerInfo.OLLEEGO_HOST)

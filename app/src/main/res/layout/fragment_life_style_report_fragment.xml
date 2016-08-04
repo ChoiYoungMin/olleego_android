@@ -1,0 +1,449 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#f5f6f3"
+    android:layout_height="match_parent"
+    tools:context=".fragment.report.LifeStyleReportFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#606060">
+
+            <TextView
+                android:layout_marginLeft="25dp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘부터 30일 이내의 라이프 스타일을 분석합니다."/>
+
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:layout_width="match_parent"
+            android:layout_height="310dp">
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="25dp"
+                android:textColor="#606060"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="물마시기"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <com.edn.olleego.custom.CircleProgressBar_water
+                        android:id="@+id/lifestyle_report_water_bar"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:progress="35"
+                        app:progressBarThickness="8dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"/>
+
+                    <TextView
+                        android:id="@+id/lifestyle_report_water_bar_text"
+
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="50dp"
+                        android:textColor="#454544"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="42%"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/lifestyle_report_water_count"
+                            android:textStyle="bold"
+                            android:textColor="#606060"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4회 입력"/>
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:textColor="#878885"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="(최근 30일 이내)"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#454544"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="총"/>
+                        <TextView
+
+                            android:id="@+id/lifestyle_report_water_text"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#454544"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20,000"/>
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#454544"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="섭취"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/barder_water"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/diary_water_3"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="#454544"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="물을 좀 더 마셔보세요"/>
+
+
+                <TextView
+                    android:textStyle="normal"
+                    android:textColor="#606060"
+                    android:textSize="12sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="하루 1.5L ~ 2.0L 정도 마시는 것이 좋습니다."/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/card_background"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="310dp">
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="25dp"
+            android:textColor="#606060"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수면시간"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <com.edn.olleego.custom.CircleProgressBar_sleep
+                    android:id="@+id/lifestyle_report_sleep_bar"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:progress="35"
+                    app:progressBarThickness="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+
+                    android:id="@+id/lifestyle_report_sleep_bar_text"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="50dp"
+                    android:textColor="#454544"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="42%"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+
+                        android:id="@+id/lifestyle_report_sleep_count"
+                        android:textStyle="bold"
+                        android:textColor="#606060"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4회 입력"/>
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#878885"
+                        android:textSize="10sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(최근 30일 이내)"/>
+
+                </LinearLayout>
+
+
+                <TextView
+
+                    android:id="@+id/lifestyle_report_sleep_text"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#454544"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="총 00 시간 00 분"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/barder_sleep"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/diary_sleep_2"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textColor="#454544"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="적당한 수면"/>
+
+
+            <TextView
+                android:textStyle="normal"
+                android:textColor="#606060"
+                android:textSize="12sp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수면시간은 하루 6~7시간 사이가 적당합니다."/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="310dp">
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="25dp"
+                android:textColor="#606060"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="식사습관"/>
+
+
+            <LinearLayout
+                android:gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#606060"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4회 입력"/>
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="10sp"
+                    android:textColor="#878885"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(최근 30일 이내)"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/barder_food"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/diary_meal_4"/>
+
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#454544"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="과일"/>
+
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#606060"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="섭취가 부족합니다."/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#454544"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="빵, 국수, 술"/>
+
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#606060"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="의 섭취를 줄여야 합니다."/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>

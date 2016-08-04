@@ -362,6 +362,7 @@
 
 
                     <TextView
+                        android:id="@+id/report_healthy_report2_detail"
                         android:textColor="#a6c52a"
                         android:textSize="12sp"
                         android:layout_width="wrap_content"

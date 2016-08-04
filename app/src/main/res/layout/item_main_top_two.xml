@@ -105,7 +105,7 @@
                 android:layout_marginLeft="22dp"
                 android:id="@+id/relativeLayout5">
 
-                <com.edn.olleego.common.VerticalProgressBar
+                <com.edn.olleego.custom.VerticalProgressBar
                     android:layout_width="4dp"
                     android:layout_height="45dp"
                     android:id="@+id/main_top_health_bar"

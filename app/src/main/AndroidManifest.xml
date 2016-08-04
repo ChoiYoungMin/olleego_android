@@ -64,7 +64,10 @@
             android:name=".activity.diary.DiaryFoodActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
-        <activity android:name=".activity.report.ReportBMIDetailActivity"></activity>
+        <activity
+            android:name=".activity.report.ReportBMIDetailActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.report.ReportHealthDetailActivity"></activity>
     </application>
 
 </manifest>

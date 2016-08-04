@@ -1,10 +1,11 @@
-package com.edn.olleego.common;
+package com.edn.olleego.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.edn.olleego.R;
+import com.edn.olleego.common.Percent;
 
 import java.math.BigDecimal;
 

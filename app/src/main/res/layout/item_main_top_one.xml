@@ -103,12 +103,12 @@
                     android:layout_marginTop="20dp" />
 
 
-                <com.edn.olleego.common.CircleProgressBar
+                <com.edn.olleego.custom.CircleProgressBar
                     android:id="@+id/main_top_bar"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     app:progress="35"
-                    app:progressBarThickness="3dp"
+                    app:progressBarThickness="5dp"
                     android:layout_marginEnd="35dp"
                     android:layout_marginTop="10dp"
                     android:layout_alignParentEnd="true" />
@@ -136,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-                <com.edn.olleego.common.CircleProgressBar
+                <com.edn.olleego.custom.CircleProgressBar
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     app:progress="35"

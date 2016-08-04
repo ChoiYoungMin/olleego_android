@@ -1,4 +1,4 @@
-package com.edn.olleego.common;
+package com.edn.olleego.custom;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
