@@ -4,7 +4,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.edn.olleego.fragment.report.ReportFragment">
-    
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="15dp"
-                    android:text="27.2 [정상]"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -81,6 +85,7 @@
                             android:text="건강온도"/>
 
                         <ImageView
+                            android:id="@+id/report_health_img"
                             android:layout_marginLeft="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -98,7 +103,7 @@
                         android:textColor="#cde860"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="70˚ [건강양호]"/>
+                        android:text=""/>
                 </LinearLayout>
                 <RelativeLayout
                     android:gravity="center|fill"
@@ -153,12 +158,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1150dp">
+            android:layout_height="wrap_content">
             <android.support.v4.view.ViewPager
 
                 android:id="@+id/container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="1100dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         </LinearLayout>
 
@@ -169,4 +174,5 @@
     </LinearLayout>
 
 
+    </RelativeLayout>
 </ScrollView>

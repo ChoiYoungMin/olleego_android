@@ -36,6 +36,6 @@ public class MyYAxisValueFormatter implements YAxisValueFormatter {
         }
 
 
-        return mFormat.format(value) + " 세트"; // e.g. append a dollar-sign
+        return mFormat.format(value) + " kg"; // e.g. append a dollar-sign
     }
 }

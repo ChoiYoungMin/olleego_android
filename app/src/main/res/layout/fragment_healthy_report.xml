@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:visibility="gone"
+            android:id="@+id/report_healthy_report_input"
             android:gravity="center"
 
             android:orientation="horizontal"
@@ -277,6 +277,7 @@
 
 
             <LinearLayout
+                android:id="@+id/report_healthy_report1_wiast_layout"
 
                 android:orientation="horizontal"
                 android:gravity="center"

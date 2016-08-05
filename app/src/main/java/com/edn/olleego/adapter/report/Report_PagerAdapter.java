@@ -1,8 +1,12 @@
 package com.edn.olleego.adapter.report;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
+import android.view.ViewGroup;
 
 import com.edn.olleego.fragment.Mission.MissionCategoryFragment;
 import com.edn.olleego.fragment.report.HealthyReportFragment;
@@ -13,17 +17,20 @@ import com.edn.olleego.fragment.report.LifeStyleReportFragment;
  */
 public class Report_PagerAdapter extends FragmentPagerAdapter {
 
+    ViewPager viewPager;
+    Context context;
 
-
-    public Report_PagerAdapter(FragmentManager fm) {
+    public Report_PagerAdapter(FragmentManager fm, ViewPager viewPager, Context context) {
         super(fm);
+        this.viewPager = viewPager;
+        this.context = context;
     }
 
     @Override
     public Fragment getItem(int position) {
 
-        HealthyReportFragment healthyReportFragment = new HealthyReportFragment();
-        LifeStyleReportFragment lifeStyleReportFragment = new LifeStyleReportFragment();
+        HealthyReportFragment healthyReportFragment = new HealthyReportFragment(context, viewPager);
+        LifeStyleReportFragment lifeStyleReportFragment = new LifeStyleReportFragment(context, viewPager);
         // getItem is called to h the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
         switch (position) {
@@ -35,6 +42,7 @@ public class Report_PagerAdapter extends FragmentPagerAdapter {
                 return lifeStyleReportFragment;
         }
         return healthyReportFragment;
+
 
 
 

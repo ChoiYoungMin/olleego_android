@@ -1,11 +1,14 @@
 package com.edn.olleego.fragment.report;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,8 @@ import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.report.ReportBMIDetailActivity;
 import com.edn.olleego.activity.report.ReportHealthDetailActivity;
+import com.edn.olleego.activity.report.ReportHealthyInputActivity;
+import com.edn.olleego.activity.report.ReportWaistDetailActivity;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.model.DiaryModel;
 import com.edn.olleego.model.ReportModel;
@@ -39,6 +44,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * A simple {@link Fragment} subclass.
  */
 public class HealthyReportFragment extends Fragment {
+
+    @BindView(R.id.report_healthy_report_input)
+    LinearLayout report_healthy_report_input;
+
+    @BindView(R.id.report_healthy_report1_wiast_layout)
+    LinearLayout report_healthy_report1_wiast_layout;
 
     @BindView(R.id.report_healthy_mission1_img)
     ImageView report_healthy_mission1_img;
@@ -93,9 +104,26 @@ public class HealthyReportFragment extends Fragment {
     @BindView(R.id.report_healthy_report2_bs_img)
     ImageView report_healthy_report2_bs_img;
 
+    ViewPager viewPager;
+    Context context;
 
-    public HealthyReportFragment() {
+    public HealthyReportFragment(Context context, ViewPager viewPager) {
         // Required empty public constructor
+        this.viewPager = viewPager;
+        this.context = context;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(isVisibleToUser) {
+            DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+            int px = Math.round(1400 * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+            ViewGroup.LayoutParams params = viewPager.getLayoutParams();
+            params.height = px;
+            viewPager.setLayoutParams(params);
+        }
     }
 
     SharedPreferences olleego_SP;
@@ -240,4 +268,16 @@ public class HealthyReportFragment extends Fragment {
         getContext().startActivity(intent);
     }
 
+    @OnClick(R.id.report_healthy_report1_wiast_layout)
+    void report_healthy_report1_wiast_layout() {
+        Intent intent = new Intent(getActivity(), ReportWaistDetailActivity.class);
+        getContext().startActivity(intent);
+    }
+
+
+    @OnClick(R.id.report_healthy_report_input)
+    void report_healthy_report_input() {
+        Intent intent = new Intent(getActivity(), ReportHealthyInputActivity.class);
+        getContext().startActivity(intent);
+    }
 }

@@ -29,7 +29,7 @@ public class MyBarValueFormatter implements ValueFormatter {
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
 
-            return mFormat.format(value)+ " 세트" ;
+            return mFormat.format(value)+ " kg" ;
 
     }
 }

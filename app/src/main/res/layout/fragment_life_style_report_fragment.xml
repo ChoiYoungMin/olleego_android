@@ -61,22 +61,21 @@
                         android:id="@+id/lifestyle_report_water_bar"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        app:progress="35"
                         app:progressBarThickness="8dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="20dp"/>
 
                     <TextView
                         android:id="@+id/lifestyle_report_water_bar_text"
-
+                        android:gravity="center"
                         android:layout_marginLeft="40dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="47dp"
                         android:textColor="#454544"
                         android:textStyle="bold"
                         android:textSize="20sp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:text="42%"/>
+                        android:text=""/>
                 </RelativeLayout>
 
                 <LinearLayout
@@ -166,6 +165,7 @@
                     android:src="@drawable/diary_water_3"/>
 
                 <TextView
+                    android:id="@+id/lifestyle_report_water_chk"
                     android:layout_marginTop="10dp"
                     android:textStyle="bold"
                     android:textColor="#454544"
@@ -220,22 +220,21 @@
                     android:id="@+id/lifestyle_report_sleep_bar"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    app:progress="35"
                     app:progressBarThickness="8dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"/>
 
                 <TextView
-
+                    android:gravity="center"
                     android:id="@+id/lifestyle_report_sleep_bar_text"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="47dp"
                     android:textColor="#454544"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:text="42%"/>
+                    android:text=""/>
             </RelativeLayout>
 
             <LinearLayout
@@ -302,6 +301,7 @@
                 android:src="@drawable/diary_sleep_2"/>
 
             <TextView
+                android:id="@+id/lifestyle_report_sleep_chk"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textColor="#454544"
@@ -329,7 +329,7 @@
             android:background="@drawable/card_background"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="310dp">
+            android:layout_height="750dp">
 
             <TextView
                 android:layout_marginTop="30dp"
@@ -437,6 +437,44 @@
 
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="#ffffff"
+                android:elevation="4dp"
+                android:outlineProvider="bounds"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/lifestyle_report_food_chart1"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:elevation="4dp"
+                android:outlineProvider="bounds"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/lifestyle_report_food_chart2"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp" />
+
 
             </LinearLayout>
         </LinearLayout>

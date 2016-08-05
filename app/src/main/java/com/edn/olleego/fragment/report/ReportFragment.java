@@ -6,10 +6,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edn.olleego.R;
@@ -17,11 +20,13 @@ import com.edn.olleego.adapter.report.Report_PagerAdapter;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.custom.VerticalProgressBar;
+import com.edn.olleego.dialog.Report_HealthyDialog;
 import com.edn.olleego.model.ReportModel;
 import com.edn.olleego.server.ReportAPI;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +56,7 @@ public class ReportFragment extends Fragment {
     private Report_PagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
-
+    android.support.v4.app.FragmentTransaction transaction;
 
     public ReportFragment() {
         // Required empty public constructor
@@ -67,10 +72,11 @@ public class ReportFragment extends Fragment {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new Report_PagerAdapter(getChildFragmentManager());
+
+        mViewPager = (ViewPager) view.findViewById(R.id.container);
+        mSectionsPagerAdapter = new Report_PagerAdapter(getChildFragmentManager(), mViewPager, getContext());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) view.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
@@ -160,6 +166,13 @@ public class ReportFragment extends Fragment {
 
 
         return view;
+    }
+
+    @OnClick(R.id.report_health_img)
+    void report_health_img() {
+        Report_HealthyDialog reportHealthyDialog = new Report_HealthyDialog(getContext());
+        reportHealthyDialog.show();
+
     }
 
 }

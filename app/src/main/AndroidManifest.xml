@@ -67,7 +67,9 @@
         <activity
             android:name=".activity.report.ReportBMIDetailActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.report.ReportHealthDetailActivity"></activity>
+        <activity android:name=".activity.report.ReportHealthDetailActivity" />
+        <activity android:name=".activity.report.ReportWaistDetailActivity" />
+        <activity android:name=".activity.report.ReportHealthyInputActivity"></activity>
     </application>
 
 </manifest>
