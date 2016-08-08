@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,6 +17,9 @@
         android:layout_height="50dp">
 
         <TextView
+            android:textStyle="bold"
+            android:textColor="#606060"
+            android:textSize="12sp"
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,5 +27,668 @@
 
 
     </LinearLayout>
+    
+    
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="키(신장) *"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_height"
+                    android:inputType="number"
+                    android:gravity="end"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0"/>
+                <TextView
+
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cm"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="체중 *"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_weight"
+                    android:inputType="number"
+                    android:gravity="end"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0"/>
+                <TextView
+
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kg"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <View
+            android:background="#e5e5e2"
+            android:layout_width="350dp"
+            android:layout_height="2dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="#a6c52a"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BMI"/>
+
+            <TextView
+
+                android:id="@+id/report_input_bmi"
+                android:textSize="14sp"
+                android:textColor="#a6c52a"
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="27.5"/>
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center|end"
+        android:background="#f5f6f3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <RadioGroup
+            android:id="@+id/report_input_group"
+            android:layout_marginRight="40dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/report_input_inch"
+                android:textColor="#878885"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="바지사이즈(inch)"/>
+
+
+            <RadioButton
+                android:id="@+id/report_input_cm"
+                android:textColor="#878885"
+                android:textSize="12sp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="줄자(cm)"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="허리둘레 *"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_waist"
+                    android:inputType="numberDecimal"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="0"/>
+                <TextView
+                    android:id="@+id/report_input_waist_text"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cm"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="엉덩이둘레 *"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_hip"
+                    android:inputType="numberDecimal"
+                    android:gravity="end"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0"/>
+                <TextView
+
+                    android:id="@+id/report_input_hip_text"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cm"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <View
+            android:background="#e5e5e2"
+            android:layout_width="350dp"
+            android:layout_height="2dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="#a6c52a"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="복부비만율"/>
+
+            <TextView
+
+                android:id="@+id/report_input_whr"
+                android:textSize="14sp"
+                android:textColor="#a6c52a"
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.75"/>
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center|start"
+        android:background="#f5f6f3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#606060"
+            android:textSize="12sp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="건강정보"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="체지방률"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_body_fat"
+                    android:inputType="number"
+                    android:gravity="end"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0"/>
+                <TextView
+
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="체지방량"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_body_fat_per"
+                    android:inputType="number"
+                    android:gravity="end"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="02"/>
+                <TextView
+
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kg"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="근육량"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_muscle"
+                    android:inputType="number"
+                    android:gravity="end"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0"/>
+                <TextView
+
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kg"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center|start"
+        android:background="#f5f6f3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#606060"
+            android:textSize="12sp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="건강정보"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/card_background">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최고 혈압"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_blood_pressure_max"
+                    android:inputType="number"
+                    android:gravity="end"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0"/>
+                <TextView
+
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mmHg"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최저 협압"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_blood_pressure_min"
+                    android:inputType="number"
+                    android:gravity="end"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0"/>
+                <TextView
+
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mmHg"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="혈당"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="40dp"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/report_input_blood_sugar"
+                    android:inputType="number"
+                    android:gravity="end"
+                    android:background="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0"/>
+                <TextView
+
+                    android:textSize="14sp"
+                    android:textColor="#606060"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mmHg"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/report_healthy_input_ok"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:background="@drawable/exmission_raduis"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#606060"
+            android:textSize="12sp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저장"/>
+
+
+    </LinearLayout>
 
 </LinearLayout>
+
+
+
+</ScrollView>

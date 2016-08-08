@@ -36,6 +36,7 @@
 
 
                 <ImageView
+                    android:src="@drawable/ic_home_copy"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:id="@+id/mission_detail_type_img"/>

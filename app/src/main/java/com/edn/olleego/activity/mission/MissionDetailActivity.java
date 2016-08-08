@@ -27,6 +27,7 @@ import com.edn.olleego.model.ExgroupsModel;
 import com.edn.olleego.model.SelectMissionModel;
 import com.edn.olleego.server.ExdetailAPI;
 import com.edn.olleego.server.ExgroupsAPI;
+import com.edn.olleego.server.MissionAPI;
 import com.edn.olleego.server.SelectMissionAPI;
 
 import java.util.ArrayList;
@@ -97,6 +98,8 @@ public class MissionDetailActivity extends AppCompatActivity {
     SelectMissionModel selectMissionModel;
     int times;
 
+    int types;
+
     private ArrayList<String> ex_lists = new ArrayList<String>();
     private ArrayList<Integer> time = new ArrayList<Integer>();
     private ArrayList<Integer> ex_list = new ArrayList<Integer>();
@@ -118,55 +121,63 @@ public class MissionDetailActivity extends AppCompatActivity {
         time.add(5, R.id.mission_detail_time_six);
         times = 10;
 
-        Intent intent = getIntent();
-        mission_ids = String.valueOf(intent.getIntExtra("mission_id", 0));
 
         mission_detail_img_adapter = new Mission_Detail_Img_Adapter(getLayoutInflater(), getApplicationContext());
         listView.setAdapter(mission_detail_img_adapter);
 
 
-        intent = getIntent();
-        Glide.with(getApplicationContext()).load(intent.getStringExtra("mission_type_img"))
-                .into(type_img);
-        Glide.with(getApplicationContext()).load(intent.getStringExtra("mission_title_img"))
-                .into(mission_title_img);
+        Intent intent = getIntent();
+        mission_ids = String.valueOf(intent.getIntExtra("mission_id", 0));
 
-        mission_title_img.setScaleType(ImageView.ScaleType.FIT_XY);
+        types = intent.getIntExtra("mission_type", 0);
 
-        type_name.setText(intent.getStringExtra("mission_type_name"));
-        mission_title.setText(intent.getStringExtra("mission_title"));
-        mission_detail_level.setText(intent.getStringExtra("mission_level"));
-        mission_detail_day.setText(intent.getStringExtra("mission_day")+"주");
-        //ission_detail_su.setText(); 주 몇회?
-        mission_detail_description.setText(Html.fromHtml(intent.getStringExtra("mission_description")));
+        if(types == 1) {
+            Glide.with(getApplicationContext()).load(intent.getStringExtra("mission_type_img"))
+                    .into(type_img);
+            Glide.with(getApplicationContext()).load(intent.getStringExtra("mission_title_img"))
+                    .into(mission_title_img);
 
-        for(int i=0; i< intent.getIntExtra("mission_img_size",0); i++) {
-            mission_detail_img_adapter.addItem(intent.getStringExtra("mission_img"+i));
+            mission_title_img.setScaleType(ImageView.ScaleType.FIT_XY);
+
+            type_name.setText(intent.getStringExtra("mission_type_name"));
+            mission_title.setText(intent.getStringExtra("mission_title"));
+            mission_detail_level.setText(intent.getStringExtra("mission_level"));
+            mission_detail_day.setText(intent.getStringExtra("mission_day")+"주");
+            //ission_detail_su.setText(); 주 몇회?
+            mission_detail_description.setText(Html.fromHtml(intent.getStringExtra("mission_description")));
+
+            for(int i=0; i< intent.getIntExtra("mission_img_size",0); i++) {
+                mission_detail_img_adapter.addItem(intent.getStringExtra("mission_img"+i));
+
+            }
+
+            if(intent.getStringExtra("mission_type_name").equals("다이어트")) {
+                Glide.with(getApplicationContext()).load(R.drawable.diet)
+                        .into(type_img);
+            } else if(intent.getStringExtra("mission_type_name").equals("필라테스")) {
+                Glide.with(getApplicationContext()).load(R.drawable.pilates)
+                        .into(type_img);
+            } else if(intent.getStringExtra("mission_type_name").equals("관강관리")) {
+                Glide.with(getApplicationContext()).load(R.drawable.health_managing)
+                        .into(type_img);
+            }
+
+
+            title = intent.getStringExtra("mission_title");
+        } else {
 
         }
 
-        if(intent.getStringExtra("mission_type_name").equals("다이어트")) {
-            Glide.with(getApplicationContext()).load(R.drawable.diet)
-                    .into(type_img);
-        } else if(intent.getStringExtra("mission_type_name").equals("필라테스")) {
-            Glide.with(getApplicationContext()).load(R.drawable.pilates)
-                    .into(type_img);
-        } else if(intent.getStringExtra("mission_type_name").equals("관강관리")) {
-            Glide.with(getApplicationContext()).load(R.drawable.health_managing)
-                    .into(type_img);
-        }
-
-        listViewHeightSet(mission_detail_img_adapter, listView);
-
-        title = intent.getStringExtra("mission_title");
 
 
 
         init_list();
 
+        listViewHeightSet(mission_detail_img_adapter, listView);
 
 
     }
+
 
     public void selectEx(final int i) {
         Retrofit retrofit2 = new Retrofit.Builder()
@@ -228,7 +239,50 @@ public class MissionDetailActivity extends AppCompatActivity {
         repos2.enqueue(new Callback<SelectMissionModel>() {
             @Override
             public void onResponse(Call<SelectMissionModel> call, Response<SelectMissionModel> response) {
+                if(types == 2) {
+                    //mission_detail_level.setText(intent.getStringExtra("mission_level"));
+                    //type_name.setText(intent.getStringExtra("mission_type_name"));
+                    //Glide.with(getApplicationContext()).load(intent.getStringExtra("mission_type_img"); ).into(type_img);
+                    //mission_detail_day.setText(intent.getStringExtra("mission_day")+"주");
+                    /*
+                if(intent.getStringExtra("mission_type_name").equals("다이어트")) {
+                    Glide.with(getApplicationContext()).load(R.drawable.diet)
+                            .into(type_img);
+                } else if(intent.getStringExtra("mission_type_name").equals("필라테스")) {
+                    Glide.with(getApplicationContext()).load(R.drawable.pilates)
+                            .into(type_img);
+                } else if(intent.getStringExtra("mission_type_name").equals("건강관리")) {
+                    Glide.with(getApplicationContext()).load(R.drawable.health_managing)
+                            .into(type_img);
+                }*/
+
+
+
+
+                    Glide.with(getApplicationContext()).load(response.body().getResult().getTitle_img())
+                            .into(mission_title_img);
+
+                    mission_title_img.setScaleType(ImageView.ScaleType.FIT_XY);
+                    mission_title.setText(response.body().getResult().getTitle());
+
+                    //ission_detail_su.setText(); 주 몇회?
+                    mission_detail_description.setText(Html.fromHtml(response.body().getResult().getDescription1()));
+
+                    for(int i=0; i< response.body().getResult().getDescription_img().size(); i++) {
+                        mission_detail_img_adapter.addItem(response.body().getResult().getDescription_img().get(i));
+
+                    }
+
+
+
+                    title = response.body().getResult().getTitle();
+                }
+
+
+
                 selectMissionModel = response.body();
+
+
 
                 list_go(0);
                 ex_lists.clear();
@@ -247,7 +301,7 @@ public class MissionDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.mission_start)
     void start_click() {
-        Boolean type = null;
+        boolean type = false;
 
         SharedPreferences olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
 

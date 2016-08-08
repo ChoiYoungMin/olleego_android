@@ -34,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class MainTopViewPagerAdapter extends PagerAdapter {
 
-    Boolean mission;
+    boolean mission;
 
 
     private LayoutInflater inflater;
@@ -266,7 +266,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
 
 
-                    Boolean type = false;
+                    boolean type = false;
                     if(olleego_SP.getString("user_mission_today_onoff", "").equals("on")) {
                         type = true;
 

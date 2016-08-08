@@ -279,22 +279,26 @@ public class LifeStyleReportFragment extends Fragment {
 
                     int ru=0;
 
-                    for(int i=0; i<6; i++) {
-                        labels.add(reportFoodModel.getResult().getReport().get(i).get_id());
+                    try {
+                        for (int i = 0; i < 6; i++) {
+                            labels.add(reportFoodModel.getResult().getReport().get(i).get_id());
 
-                        float count = reportFoodModel.getResult().getReport().get(i).getCount();
+                            float count = reportFoodModel.getResult().getReport().get(i).getCount();
 
-                        group1.add(new BarEntry(count, i, "세트"));
+                            group1.add(new BarEntry(count, i, "세트"));
 
-                    }
+                        }
 
-                    for(int j= 6; j<reportFoodModel.getResult().getReport().size(); j++ ) {
-                        labels2.add(reportFoodModel.getResult().getReport().get(j).get_id());
+                        for (int j = 6; j < reportFoodModel.getResult().getReport().size(); j++) {
+                            labels2.add(reportFoodModel.getResult().getReport().get(j).get_id());
 
-                        float count = reportFoodModel.getResult().getReport().get(j).getCount();
+                            float count = reportFoodModel.getResult().getReport().get(j).getCount();
 
-                        group2.add(new BarEntry(count, ru, "세트"));
-                        ru++;
+                            group2.add(new BarEntry(count, ru, "세트"));
+                            ru++;
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+
                     }
 
 

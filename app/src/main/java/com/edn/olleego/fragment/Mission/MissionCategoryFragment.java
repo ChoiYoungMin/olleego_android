@@ -112,6 +112,7 @@ public class MissionCategoryFragment extends Fragment {
                 intent.putExtra("mission_description", allMissionModel.getResult().get(position).getDescription1());
                 intent.putExtra("mission_img_size", allMissionModel.getResult().get(position).getDescription_img().size());
                 intent.putExtra("mission_title_img", allMissionModel.getResult().get(position).getTitle_img());
+                intent.putExtra("mission_type", 1);
                 for(int i= 0;i<allMissionModel.getResult().get(position).getDescription_img().size(); i++) {
                     intent.putExtra("mission_img"+i, allMissionModel.getResult().get(position).getDescription_img().get(i).toString());
                 }

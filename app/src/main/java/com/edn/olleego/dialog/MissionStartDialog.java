@@ -37,7 +37,7 @@ public class MissionStartDialog extends Dialog {
 
     String title;
     int time;
-    Boolean type;
+    boolean type;
     String token;
     int user, mission;
     int day;
@@ -51,7 +51,7 @@ public class MissionStartDialog extends Dialog {
     TextView mission_time;
     SharedPreferences olleego_SP;
 
-    public MissionStartDialog(Context context, String title, int time, Boolean type, String token, int user, int mission, int day, int mission_id) {
+    public MissionStartDialog(Context context, String title, int time, boolean type, String token, int user, int mission, int day, int mission_id) {
         super(context);
         this.title = title;
         this.time = time;

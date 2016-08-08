@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.mission.MissionDetailActivity;
 import com.edn.olleego.activity.report.ReportBMIDetailActivity;
 import com.edn.olleego.activity.report.ReportHealthDetailActivity;
 import com.edn.olleego.activity.report.ReportHealthyInputActivity;
@@ -119,7 +121,7 @@ public class HealthyReportFragment extends Fragment {
 
         if(isVisibleToUser) {
             DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-            int px = Math.round(1400 * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+            int px = Math.round(1500 * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
             ViewGroup.LayoutParams params = viewPager.getLayoutParams();
             params.height = px;
             viewPager.setLayoutParams(params);
@@ -278,6 +280,33 @@ public class HealthyReportFragment extends Fragment {
     @OnClick(R.id.report_healthy_report_input)
     void report_healthy_report_input() {
         Intent intent = new Intent(getActivity(), ReportHealthyInputActivity.class);
+        intent.putExtra("height", reportModel.getResult().getHeight());
+        intent.putExtra("weight", reportModel.getResult().getWeight());
+        intent.putExtra("hip", reportModel.getResult().getHip());
+        intent.putExtra("waist", reportModel.getResult().getWaist());
+        intent.putExtra("blood_sugar", reportModel.getResult().getBlood_sugar());
+        intent.putExtra("blood_pressure_max", reportModel.getResult().getBlood_pressure().getMax());
+        intent.putExtra("blood_pressure_min", reportModel.getResult().getBlood_pressure().getMin());
+        intent.putExtra("body_fat", reportModel.getResult().getBody_fat());
+        intent.putExtra("body_fat_per", reportModel.getResult().getBody_fat_per());
+        intent.putExtra("muscle", reportModel.getResult().getMuscle());
         getContext().startActivity(intent);
+    }
+
+    @OnClick(R.id.report_healthy_mission1_layout)
+    void report_healthy_mission1_layout() {
+        Intent intent = new Intent(getActivity(), MissionDetailActivity.class);
+        intent.putExtra("mission_id", reportModel.getResult().getMission1().get_id());
+        intent.putExtra("mission_type", 2);
+        getActivity().startActivity(intent);
+    }
+
+
+    @OnClick(R.id.report_healthy_mission2_layout)
+    void report_healthy_mission2_layout() {
+        Intent intent = new Intent(getActivity(), MissionDetailActivity.class);
+        intent.putExtra("mission_id", reportModel.getResult().getMission2().get_id());
+        intent.putExtra("mission_type", 2);
+        getActivity().startActivity(intent);
     }
 }

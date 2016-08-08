@@ -59,9 +59,9 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
     FoodsModel foodsModel;
     LifesModel lifesModel;
 
-    Boolean type;
+    boolean type;
 
-    Boolean rest;
+    boolean rest;
 
     String token;
     int exgroup_id;
@@ -77,7 +77,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
     int foods = 0;
     int lifes =0;
-    public MainMiddleViewPagerAdapter(LayoutInflater inflater,Boolean type, int i, SharedPreferences olleego_SP, Context context) {
+    public MainMiddleViewPagerAdapter(LayoutInflater inflater,boolean type, int i, SharedPreferences olleego_SP, Context context) {
         this.inflater = inflater;
         this.context= context;
         convertView = null;
@@ -107,7 +107,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
         life_complete = olleego_SP.getString("user_mission_today_life_complete", "");
     }
 
-    public MainMiddleViewPagerAdapter(LayoutInflater inflater, Boolean type, Context context){
+    public MainMiddleViewPagerAdapter(LayoutInflater inflater, boolean type, Context context){
         this.context = context;
         this.inflater = inflater;
         this.type = type;
