@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edn.olleego.R;
+import com.edn.olleego.activity.diary.DiaryChartActivity;
 import com.edn.olleego.activity.diary.DiaryFoodActivity;
 import com.edn.olleego.adapter.calendar.Calender_Adapter;
 import com.edn.olleego.adapter.calendar.food.Diary_Food_Adapter;
@@ -186,10 +188,38 @@ public class Diary_Fragment extends Fragment {
         this.Olleego_SP = Olleego_SP;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // destroy all menu and re-call onCreateOptionsMenu
+        getActivity().invalidateOptionsMenu();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_dairy, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.menu_diray_chart :
+                Intent intent = new Intent(getContext(), DiaryChartActivity.class);
+                getContext().startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+
+        getActivity().findViewById(R.id.toolbar_right_menu).setVisibility(View.GONE);
+
         // Inflate the layout for this fragment
         this.inflater = inflater;
         rootView = inflater.inflate(R.layout.fragment_diary, container, false);
@@ -397,6 +427,7 @@ public class Diary_Fragment extends Fragment {
 
 
     }
+
 
     public void onCalendar(String day, final String day_type) {
 
@@ -696,10 +727,6 @@ public class Diary_Fragment extends Fragment {
 
 
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.main3, menu);
-    }
 
     public static OkHttpClient.Builder configureClient(final OkHttpClient.Builder builder) {
         final TrustManager[] certs = new TrustManager[]{new X509TrustManager() {

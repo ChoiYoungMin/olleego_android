@@ -6,16 +6,16 @@ package com.edn.olleego.model.usermission;
 public class ExList {
 
 
-    int ex;
+    Ex ex;
 
     String _id;
     int order;
 
 
-    public int getEx() {
+    public Ex getEx() {
         return this.ex;
     }
-    public void setEx(int ex) {
+    public void setEx(Ex ex) {
         this.ex = ex;
     }
     public String get_id() {

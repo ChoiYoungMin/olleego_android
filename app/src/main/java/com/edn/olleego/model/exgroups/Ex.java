@@ -5,11 +5,13 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Antonio on 2016-07-15.
  */
 public class Ex  implements Serializable{
+
 
     int _id;
 
@@ -19,7 +21,9 @@ public class Ex  implements Serializable{
 
     String title;
 
-    String movie_url;
+    String method;
+
+    String warning;
 
     int tt_sort;
 
@@ -39,21 +43,18 @@ public class Ex  implements Serializable{
 
     boolean bs_etc;
 
-    String description;
+    String thum_gif;
 
-    String method;
-
-    String warning;
+    String thum_jpg;
 
     int __v;
 
     //List<Object> hashtags;
 
-    //List<Object> thum_gif;
+    List<Integer> sm_sort;
 
-    //List<Object> thum_jpg;
-
-    //List<int> sm_sort;
+    String movie_url;
+    String description;
 
 
 
@@ -82,11 +83,17 @@ public class Ex  implements Serializable{
     public void setTitle(String title) {
         this.title = title;
     }
-    public String getMovie_url() {
-        return this.movie_url;
+    public String getMethod() {
+        return this.method;
     }
-    public void setMovie_url(String movie_url) {
-        this.movie_url = movie_url;
+    public void setMethod(String method) {
+        this.method = method;
+    }
+    public String getWarning() {
+        return this.warning;
+    }
+    public void setWarning(String warning) {
+        this.warning = warning;
     }
     public int getTt_sort() {
         return this.tt_sort;
@@ -142,23 +149,17 @@ public class Ex  implements Serializable{
     public void setBs_etc(boolean bs_etc) {
         this.bs_etc = bs_etc;
     }
-    public String getDescription() {
-        return this.description;
+    public String getThum_gif() {
+        return this.thum_gif;
     }
-    public void setDescription(String description) {
-        this.description = description;
+    public void setThum_gif(String thum_gif) {
+        this.thum_gif = thum_gif;
     }
-    public String getMethod() {
-        return this.method;
+    public String getThum_jpg() {
+        return this.thum_jpg;
     }
-    public void setMethod(String method) {
-        this.method = method;
-    }
-    public String getWarning() {
-        return this.warning;
-    }
-    public void setWarning(String warning) {
-        this.warning = warning;
+    public void setThum_jpg(String thum_jpg) {
+        this.thum_jpg = thum_jpg;
     }
     public int get__v() {
         return this.__v;
@@ -166,37 +167,23 @@ public class Ex  implements Serializable{
     public void set__v(int __v) {
         this.__v = __v;
     }
-
-    /*
-    @JsonProperty("hashtags")
-    public List<Object> getHashtags() {
-        return this.hashtags
+    public List<Integer> getSm_sort() {
+        return this.sm_sort;
     }
-    public List<Object> setHashtags(List<Object> hashtags) {
-        this.hashtags = hashtags
+    public void setSm_sort(List<Integer> sm_sort) {
+        this.sm_sort = sm_sort;
     }
-    @JsonProperty("thum_gif")
-    public List<Object> getThum_gif() {
-        return this.thum_gif
+    public String getMovie_url() {
+        return this.movie_url;
     }
-    public List<Object> setThum_gif(List<Object> thum_gif) {
-        this.thum_gif = thum_gif
+    public void setMovie_url(String movie_url) {
+        this.movie_url = movie_url;
     }
-    @JsonProperty("thum_jpg")
-    public List<Object> getThum_jpg() {
-        return this.thum_jpg
+    public String getDescription() {
+        return this.description;
     }
-    public List<Object> setThum_jpg(List<Object> thum_jpg) {
-        this.thum_jpg = thum_jpg
+    public void setDescription(String description) {
+        this.description = description;
     }
-    @JsonProperty("sm_sort")
-    public List<int> getSm_sort() {
-        return this.sm_sort
-    }
-    public List<int> setSm_sort(List<int> sm_sort) {
-        this.sm_sort = sm_sort
-    }
-*/
-
 
 }

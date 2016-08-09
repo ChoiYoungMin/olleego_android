@@ -1,16 +1,17 @@
 package com.edn.olleego.model;
 
-import com.edn.olleego.model.usermission.Result;
+import com.edn.olleego.model.diarychart.Result;
 
 import java.util.List;
 
 /**
- * Created by Antonio on 2016-07-14.
+ * Created by Antonio on 2016-08-09.
  */
-public class UserMissionModel {
+public class DiaryChartModel {
 
     boolean success;
-    Result result;
+    List<Result> result;
+
 
 
     public boolean getSuccess() {
@@ -19,10 +20,10 @@ public class UserMissionModel {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-    public Result getResult() {
+    public List<Result> getResult() {
         return this.result;
     }
-    public void setResult(Result result) {
+    public void setResult(List<Result> result) {
         this.result = result;
     }
 

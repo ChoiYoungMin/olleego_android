@@ -1,17 +1,13 @@
 package com.edn.olleego.model.usermission;
 
-import java.util.List;
-
 /**
- * Created by Antonio on 2016-07-21.
+ * Created by Antonio on 2016-08-09.
  */
-public class Food {
+public class LfList {
 
 
     int _id;
-
     String title;
-    List<FdList> fd_list;
 
 
     public int get_id() {
@@ -20,18 +16,11 @@ public class Food {
     public void set_id(int _id) {
         this._id = _id;
     }
+
     public String getTitle() {
         return this.title;
     }
     public void setTitle(String title) {
         this.title = title;
     }
-    public List<FdList> getFd_list() {
-        return this.fd_list;
-    }
-    public void setFd_list(List<FdList> fd_list) {
-        this.fd_list = fd_list;
-    }
 }
-
-

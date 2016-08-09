@@ -10,40 +10,35 @@ import java.util.List;
  */
 public class Result {
 
+
     int _id;
+
     Date updated;
 
     Date created;
 
-    int user;
-
-    Mission mission;
+    Date endAt;
 
     Date startAt;
 
-    Date endAt;
+    Mission mission;
+
+    int time;
+
+    int user;
+
+    int __v;
 
     List<MiDay2> mi_days;
 
     boolean total_complete;
 
     int current_day;
-
     boolean active_yn;
 
-    int time;
 
 
 
-
-    public int get_time() {
-        return this.time;
-
-    }
-
-    public void setTime(int time) {
-        this.time = time;
-    }
 
     public int get_id() {
         return this._id;
@@ -51,7 +46,6 @@ public class Result {
     public void set_id(int _id) {
         this._id = _id;
     }
-
     public Date getUpdated() {
         return this.updated;
     }
@@ -64,17 +58,11 @@ public class Result {
     public void setCreated(Date created) {
         this.created = created;
     }
-    public int getUser() {
-        return this.user;
+    public Date getEndAt() {
+        return this.endAt;
     }
-    public void setUser(int user) {
-        this.user = user;
-    }
-    public Mission getMission() {
-        return this.mission;
-    }
-    public void setMission(Mission mission) {
-        this.mission = mission;
+    public void setEndAt(Date endAt) {
+        this.endAt = endAt;
     }
     public Date getStartAt() {
         return this.startAt;
@@ -82,11 +70,23 @@ public class Result {
     public void setStartAt(Date startAt) {
         this.startAt = startAt;
     }
-    public Date getEndAt() {
-        return this.endAt;
+    public Mission getMission() {
+        return this.mission;
     }
-    public void setEndAt(Date endAt) {
-        this.endAt = endAt;
+    public void setMission(Mission mission) {
+        this.mission = mission;
+    }
+    public int getTime() {
+        return this.time;
+    }
+    public void setTime(int time) {
+        this.time = time;
+    }
+    public int getUser() {
+        return this.user;
+    }
+    public void setUser(int user) {
+        this.user = user;
     }
     public int get__v() {
         return this.__v;
@@ -94,8 +94,6 @@ public class Result {
     public void set__v(int __v) {
         this.__v = __v;
     }
-    int __v;
-
     public List<MiDay2> getMi_days() {
         return this.mi_days;
     }
@@ -120,5 +118,4 @@ public class Result {
     public void setActive_yn(boolean active_yn) {
         this.active_yn = active_yn;
     }
-
 }

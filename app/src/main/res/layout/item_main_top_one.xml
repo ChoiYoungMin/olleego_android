@@ -63,7 +63,7 @@
                     android:background="#aeaeae"
                     android:id="@+id/view3"
                     android:layout_alignBottom="@+id/textView27"
-                    android:layout_toEndOf="@+id/textView30" />
+                    android:layout_toEndOf="@+id/main_top_mission_detail" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="자세히보기 >"
-                    android:id="@+id/textView30"
+                    android:id="@+id/main_top_mission_detail"
                     android:textStyle="bold"
                     android:textSize="10sp"
                     android:textColor="#cbcbc9"

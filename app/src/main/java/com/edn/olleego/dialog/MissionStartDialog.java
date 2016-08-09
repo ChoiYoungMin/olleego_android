@@ -132,12 +132,12 @@ public class MissionStartDialog extends Dialog {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            ChoicePutMissionAPI PutMissionAPI = retrofit.create(ChoicePutMissionAPI.class);
+            ChoiceGetMissionAPI newMissionAPI = retrofit.create(ChoiceGetMissionAPI.class);
 
 
 
             ChoiceMission newMission = new ChoiceMission(user, mission,time,date,endd,date);
-            final Call<MissionsModel> repos = PutMissionAPI.listRepos("olleego "+ token,newMission,mission_id);
+            final Call<MissionsModel> repos = newMissionAPI.listRepos("olleego "+ token,newMission);
 
             repos.enqueue(new Callback<MissionsModel>() {
                 @Override

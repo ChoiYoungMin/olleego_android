@@ -1,6 +1,7 @@
 package com.edn.olleego.adapter.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.mission.missionlist.MissionListActivity;
 import com.edn.olleego.custom.CircleProgressBar;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
@@ -18,11 +20,25 @@ import com.edn.olleego.custom.VerticalProgressBar;
 import com.edn.olleego.model.UserMissionModel;
 import com.edn.olleego.server.UserMissionAPI;
 
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.JavaNetCookieJar;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -82,6 +98,8 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
     @Override public Object instantiateItem(ViewGroup view, int position) {
 
 
+
+
         View convertView = null;
         if(position == 0) {
 
@@ -91,6 +109,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
             final TextView main_top_mission_title = (TextView) convertView.findViewById(R.id.main_top_mission_title);
             final TextView main_top_mission_day= (TextView) convertView.findViewById(R.id.main_top_mission_myday);
             final TextView main_top_mission_allday= (TextView) convertView.findViewById(R.id.main_top_mission_allday);
+            final TextView main_top_mission_detail = (TextView)convertView.findViewById(R.id.main_top_mission_detail);
 
             mission_title = null;
             mission_myday= null;
@@ -110,8 +129,23 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
             circleProgressBar.setProgress(50);
             circleProgressBar.invalidate();
 
+            HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            CookieManager cookieManager = new CookieManager();
+            cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+
+            OkHttpClient client = configureClient(new OkHttpClient().newBuilder()) //인증서 무시
+                    .connectTimeout(15, TimeUnit.SECONDS) //연결 타임아웃 시간 설정
+                    .writeTimeout(15, TimeUnit.SECONDS) //쓰기 타임아웃 시간 설정
+                    .readTimeout(15, TimeUnit.SECONDS) //읽기 타임아웃 시간 설정
+                    .cookieJar(new JavaNetCookieJar(cookieManager)) //쿠키메니져 설정
+                    .addInterceptor(httpLoggingInterceptor) //http 로그 확인
+                    .build();
+
             retrofit = new Retrofit.Builder()
                     .baseUrl(ServerInfo.OLLEEGO_HOST)
+                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
@@ -144,7 +178,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             Date beginDate = null;
                             Date endDate = null;
 
-                            String a = dateFormat.format(response.body().getResult().get(0).getCreated());
+                            String a = dateFormat.format(response.body().getResult().getCreated());
                             String b = dateFormat.format(date);
                             beginDate = dateFormat.parse(a);
                             endDate = dateFormat.parse(b);
@@ -153,32 +187,32 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             diffDays = (diff / (24 * 60 * 60 * 1000)+1);
 
 
-                            if(diffDays-1 > response.body().getResult().get(0).getMission().getMi_term()*7){ // 임시용 미션 끝
+                            if(diffDays-1 > response.body().getResult().getMission().getMi_term()*7){ // 임시용 미션 끝
                                 ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
                                 ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
                                 editor.putString("user_mission_today_onoff", "off");
                             }
                             else {
-                                if(response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getRest()== true) {
+                                if(response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getRest()== true) {
 
                                 } else {
                                     editor.putString("user_mission_today_onoff", "on");
-                                    editor.putInt("user_mission_id", response.body().getResult().get(0).get_id());
-                                    editor.putInt("user_mission_today_food", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getFood().get_id());
-                                    editor.putInt("user_mission_today_life", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getLife().get_id());
+                                    editor.putInt("user_mission_id", response.body().getResult().get_id());
+                                    editor.putInt("user_mission_today_food", response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getFood().get_id());
+                                    editor.putInt("user_mission_today_life", response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getLife().get_id());
 
 
-                                    for(int i=0; i< response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().size(); i++) {
-                                        if(response.body().getResult().get(0).get_time() == response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().get(i).getTime()) {
-                                            editor.putInt("user_mission_today_exgroup", response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getExgroup().get(i).get_id());
+                                    for(int i=0; i< response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getExgroup().size(); i++) {
+                                        if(response.body().getResult().getTime() == response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getExgroup().get(i).getTime()) {
+                                            editor.putInt("user_mission_today_exgroup", response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getExgroup().get(i).get_id());
                                         } else {
                                         }
                                     }
                                 }
 
 
-                                editor.putString("user_mission_today_rest", String.valueOf(response.body().getResult().get(0).getMission().getMi_days().get((int) diffDays-1).getRest()));
-                                editor.putInt("user_mission_today_time", response.body().getResult().get(0).get_time());
+                                editor.putString("user_mission_today_rest", String.valueOf(response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getRest()));
+                                editor.putInt("user_mission_today_time", response.body().getResult().getTime());
 
 
                                 ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.VISIBLE);
@@ -190,28 +224,28 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
 
 
-                            mission_title = response.body().getResult().get(0).getMission().getTitle();
-                            mission_myday = response.body().getResult().get(0).getMission().getTitle();
+                            mission_title = response.body().getResult().getMission().getTitle();
+                            mission_myday = response.body().getResult().getMission().getTitle();
                             //현재 날짜와 계산하여 몇이차인지 확인
-                            mission_allday = response.body().getResult().get(0).getMission().getMi_term();
+                            mission_allday = response.body().getResult().getMission().getMi_term();
 
 
-                            if(response.body().getResult().get(0).getMi_days().get((int) (diffDays-1)).getExgroup().size() == 0) {
+                            if(response.body().getResult().getMi_days().get((int) (diffDays-1)).getExgroup().size() == 0) {
                                 editor.putString("user_mission_today_exgroup_complete", "false");
                             } else {
-                                for (int i = 0; i < response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getExgroup().size(); i++) {
-                                    if (response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getExgroup().get(i).toString().equals(String.valueOf(olleego_SP.getInt("user_mission_today_exgroup", 0)) + ".0")) {
+                                for (int i = 0; i < response.body().getResult().getMi_days().get((int) (diffDays - 1)).getExgroup().size(); i++) {
+                                    if (response.body().getResult().getMi_days().get((int) (diffDays - 1)).getExgroup().get(i).toString().equals(String.valueOf(olleego_SP.getInt("user_mission_today_exgroup", 0)) + ".0")) {
                                         editor.putString("user_mission_today_exgroup_complete", "true");
                                     }
                                 }
                             }
 
 
-                            if(response.body().getResult().get(0).getMi_days().get((int) (diffDays-1)).getFood().size() == 0) {
+                            if(response.body().getResult().getMi_days().get((int) (diffDays-1)).getFood().size() == 0) {
                                 editor.putString("user_mission_today_food_complete", "false");
                             } else {
-                                for (int i = 0; i < response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getFood().size(); i++) {
-                                    if (response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getFood().get(i).toString().equals(String.valueOf(olleego_SP.getInt("user_mission_today_food", 0)) + ".0")) {
+                                for (int i = 0; i < response.body().getResult().getMi_days().get((int) (diffDays - 1)).getFood().size(); i++) {
+                                    if (response.body().getResult().getMi_days().get((int) (diffDays - 1)).getFood().get(i).toString().equals(String.valueOf(olleego_SP.getInt("user_mission_today_food", 0)) + ".0")) {
                                         editor.putString("user_mission_today_food_complete", "true");
                                     }
                                 }
@@ -220,11 +254,11 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
 
 
-                            if(response.body().getResult().get(0).getMi_days().get((int) (diffDays-1)).getLife().size() == 0) {
+                            if(response.body().getResult().getMi_days().get((int) (diffDays-1)).getLife().size() == 0) {
                                 editor.putString("user_mission_today_life_complete", "false");
                             }else {
-                                for (int i = 0; i < response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getLife().size(); i++) {
-                                    if (response.body().getResult().get(0).getMi_days().get((int) (diffDays - 1)).getLife().get(i).toString().equals(String.valueOf(olleego_SP.getInt("user_mission_today_life", 0)) + ".0")) {
+                                for (int i = 0; i < response.body().getResult().getMi_days().get((int) (diffDays - 1)).getLife().size(); i++) {
+                                    if (response.body().getResult().getMi_days().get((int) (diffDays - 1)).getLife().get(i).toString().equals(String.valueOf(olleego_SP.getInt("user_mission_today_life", 0)) + ".0")) {
                                         editor.putString("user_mission_today_life_complete", "true");
                                     }
                                 }
@@ -239,7 +273,17 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             editor.putString("user_mission_today", String.valueOf(diffDays));
                             main_top_mission_allday.setText(String.valueOf((mission_allday*7)));
 
+
                             editor.commit();
+
+
+                            main_top_mission_detail.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(context, MissionListActivity.class);
+                                    context.startActivity(intent);
+                                }
+                            });
 
                         } catch (IndexOutOfBoundsException e) {
                             ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
@@ -355,6 +399,9 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
             view.addView(convertView);
         }
 
+
+
+
         return convertView;
     }
 
@@ -371,5 +418,51 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
         notifyDataSetChanged();
     }
+
+    public static OkHttpClient.Builder configureClient(final OkHttpClient.Builder builder) {
+        final TrustManager[] certs = new TrustManager[]{new X509TrustManager() {
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                X509Certificate[] x509Certificates = new X509Certificate[0];
+                return x509Certificates;
+            }
+
+            @Override
+            public void checkServerTrusted(final X509Certificate[] chain,
+                                           final String authType) {
+            }
+
+            @Override
+            public void checkClientTrusted(final X509Certificate[] chain,
+                                           final String authType) {
+            }
+        }};
+
+        SSLContext ctx = null;
+        try {
+            ctx = SSLContext.getInstance("TLS");
+            ctx.init(null, certs, new SecureRandom());
+        } catch (final java.security.GeneralSecurityException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            final HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+                @Override
+                public boolean verify(final String hostname, final SSLSession session) {
+                    return true;
+                }
+            };
+
+            builder.sslSocketFactory(ctx.getSocketFactory()).hostnameVerifier(hostnameVerifier);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+
+        return builder;
+    }
+
+
 
 }

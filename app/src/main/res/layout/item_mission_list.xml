@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#f5f6f3"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/mission_list_day"
+        android:textColor="#111111"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 일차"/>
+    
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/card_background"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_beenhere"/>
+            <TextView
+                android:id="@+id/mission_list_title_1"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40분 유산소 운동"/>
+
+        </LinearLayout>
+
+
+
+        <ListView
+            android:divider="#ffffff"
+            android:dividerHeight="10dp"
+            android:scrollbars="none"
+            android:id="@+id/mission_list_listview_1"
+            android:layout_marginBottom="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </ListView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/card_background"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_training_18"/>
+            <TextView
+                android:id="@+id/mission_list_title_2"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40분 유산소 운동"/>
+
+        </LinearLayout>
+
+
+
+        <ListView
+            android:divider="#ffffff"
+            android:dividerHeight="10dp"
+            android:scrollbars="none"
+            android:id="@+id/mission_list_listview_2"
+            android:layout_marginBottom="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            </ListView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/card_background"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_restaurant_menu_18"/>
+            <TextView
+                android:id="@+id/mission_list_title_3"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40분 유산소 운동"/>
+
+        </LinearLayout>
+
+
+
+        <ListView
+            android:divider="#ffffff"
+            android:dividerHeight="10dp"
+            android:scrollbars="none"
+            android:id="@+id/mission_list_listview_3"
+            android:layout_marginBottom="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            </ListView>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
+
+    </ScrollView>
