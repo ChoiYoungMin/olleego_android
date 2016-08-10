@@ -52,6 +52,8 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
     boolean mission;
 
+    int complete = 0;
+
 
     private LayoutInflater inflater;
     private final Random random = new Random();
@@ -120,19 +122,16 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
 
             view.addView(convertView);
 
-            CircleProgressBar circleProgressBar = (CircleProgressBar) convertView.findViewById(R.id.main_top_bar);
-            RoundCornerProgressBar roundCornerProgressBar = (RoundCornerProgressBar) convertView.findViewById(R.id.bars);
+            final CircleProgressBar circleProgressBar = (CircleProgressBar) convertView.findViewById(R.id.main_top_bar);
             //circleProgressBar.setColor(R.color.com_facebook_blue);
+            final TextView main_top_bar_text = (TextView)convertView.findViewById(R.id.main_top_bar_text);
 
 
-            circleProgressBar.setProgressWithAnimation(50);
-            circleProgressBar.setProgress(50);
-            circleProgressBar.invalidate();
 
-            HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+            final HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
             httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-            CookieManager cookieManager = new CookieManager();
+            final CookieManager cookieManager = new CookieManager();
             cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
 
             OkHttpClient client = configureClient(new OkHttpClient().newBuilder()) //인증서 무시
@@ -215,6 +214,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                                 editor.putInt("user_mission_today_time", response.body().getResult().getTime());
 
 
+
                                 ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.VISIBLE);
                                 ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.GONE);
                             }
@@ -230,6 +230,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             mission_allday = response.body().getResult().getMission().getMi_term();
 
 
+                            /*
                             if(response.body().getResult().getMi_days().get((int) (diffDays-1)).getExgroup().size() == 0) {
                                 editor.putString("user_mission_today_exgroup_complete", "false");
                             } else {
@@ -238,9 +239,17 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                                         editor.putString("user_mission_today_exgroup_complete", "true");
                                     }
                                 }
+                            }*/
+
+                            if(response.body().getResult().getMi_days().get((int) (diffDays-1)).getEx_complete() == true) {
+                                editor.putString("user_mission_today_exgroup_complete", "true");
+                            } else {
+                                editor.putString("user_mission_today_exgroup_complete", "false");
                             }
 
 
+
+                            /*
                             if(response.body().getResult().getMi_days().get((int) (diffDays-1)).getFood().size() == 0) {
                                 editor.putString("user_mission_today_food_complete", "false");
                             } else {
@@ -249,11 +258,17 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                                         editor.putString("user_mission_today_food_complete", "true");
                                     }
                                 }
+                            }*/
+
+                            if(response.body().getResult().getMi_days().get((int) (diffDays-1)).getFd_complete() == true) {
+                                editor.putString("user_mission_today_food_complete", "true");
+                            } else {
+                                editor.putString("user_mission_today_food_complete", "false");
                             }
 
 
 
-
+                            /*
                             if(response.body().getResult().getMi_days().get((int) (diffDays-1)).getLife().size() == 0) {
                                 editor.putString("user_mission_today_life_complete", "false");
                             }else {
@@ -262,11 +277,29 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                                         editor.putString("user_mission_today_life_complete", "true");
                                     }
                                 }
+                            }*/
+
+                            if(response.body().getResult().getMi_days().get((int) (diffDays-1)).getLf_complete() == true) {
+                                editor.putString("user_mission_today_life_complete", "true");
+                            } else {
+                                editor.putString("user_mission_today_life_complete", "false");
                             }
 
 
+                            for(int i=0; i<response.body().getResult().getMi_days().size(); i++) {
+                                if(response.body().getResult().getMi_days().get(i).getDay_complete() == true) {
+                                    complete++;
+                                }
+                            }
+                            //전체미션션
 
+                            float temp = (float) (((double)complete/(double)response.body().getResult().getMi_days().size())*100);
 
+                           circleProgressBar.setProgressWithAnimation(temp);
+                            circleProgressBar.setProgress(temp);
+                            circleProgressBar.invalidate();
+                            //(현재/전체*100)
+                            main_top_bar_text.setText(String.valueOf((int)temp+" %"));
 
                             main_top_mission_title.setText(mission_title);
                             main_top_mission_day.setText(String.valueOf(diffDays));

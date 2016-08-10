@@ -199,10 +199,10 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                                 intent.putExtra("token", token);
                                 intent.putExtra("mission_id", mission_id);
                                 intent.putExtra("mission_today", mission_today);
-                                intent.putExtra("exgroup_id", exgroup_id);
+                                intent.putExtra("exgroup_id", exgroupsModel.getResult().get_id());
                                 intent.putExtra("exgroup_title", exgroupsModel.getResult().getTitle());
-                                context.startActivity(intent);
-                                ((AppCompatActivity)context).finish();
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                ((MainActivity)context).startActivityForResult(intent, 1);
 
 
                             }
@@ -224,12 +224,10 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                                 intent.putExtra("token", token);
                                 intent.putExtra("mission_id", mission_id);
                                 intent.putExtra("mission_today", mission_today);
-                                intent.putExtra("exgroup_id", exgroup_id);
-
-                                context.startActivity(intent);
-                                ((AppCompatActivity)context).finish();
-
-
+                                intent.putExtra("exgroup_id", exgroupsModel.getResult().get_id());
+                                intent.putExtra("exgroup_title", exgroupsModel.getResult().getTitle());
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                ((MainActivity)context).startActivityForResult(intent, 1);
                             }
                         });
                     }
@@ -275,16 +273,14 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(context, EtcMissionActivity.class);
-
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 intent.putExtra("type", "food");
                                 intent.putExtra("food", (Serializable) foodsModel.getResult().getFd_list().get(position - 1));
+                                intent.putExtra("food_id", foodsModel.getResult().get_id());
                                 intent.putExtra("token", token);
                                 intent.putExtra("mission_id", mission_id);
                                 intent.putExtra("mission_today", mission_today);
-                                intent.putExtra("food_id", food_id);
-
-                                context.startActivity(intent);
-                                ((AppCompatActivity)context).finish();
+                                ((MainActivity)context).startActivityForResult(intent, 2);
                             }
                         });
                     }
@@ -322,16 +318,15 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(context, EtcMissionActivity.class);
-
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 intent.putExtra("type", "life");
                                 intent.putExtra("life", (Serializable) lifesModel.getResult().getLf_list().get(position -(foodsModel.getResult().getFd_list().size()+ lifesModel.getResult().getLf_list().size()) ));
+
                                 intent.putExtra("token", token);
                                 intent.putExtra("mission_id", mission_id);
                                 intent.putExtra("mission_today", mission_today);
-                                intent.putExtra("life_id", life_id);
-
-                                context.startActivity(intent);
-                                ((AppCompatActivity)context).finish();
+                                intent.putExtra("life_id", lifesModel.getResult().get_id());
+                                ((MainActivity)context).startActivityForResult(intent, 3);
                             }
                         });
                     }

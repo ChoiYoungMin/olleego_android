@@ -2,6 +2,7 @@ package com.edn.olleego.activity.mission.exmission;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
@@ -33,12 +34,27 @@ import com.edn.olleego.server.MissionSuccessAPI;
 import com.edn.olleego.server.request.MissionSuccess;
 
 import java.io.Serializable;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.JavaNetCookieJar;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -81,8 +97,15 @@ public class ExMissionActivity extends AppCompatActivity {
     int mission_today;
     int exgroup_id;
     String exgroup_title;
-
+    Ex exmodels;
     int gg = 3;
+
+    SharedPreferences olleego;
+
+    boolean oncom =false;
+
+    ArrayList<Integer> ex_id = new ArrayList<Integer>();
+
     MissionSuccessDialog missionSuccessDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +113,8 @@ public class ExMissionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ex_mission);
 
         ButterKnife.bind(this);
+
+        olleego = getSharedPreferences("olleego", MODE_PRIVATE);
 
         intent = getIntent();
 
@@ -119,7 +144,8 @@ public class ExMissionActivity extends AppCompatActivity {
         list_View.setAdapter(exMission_adapter);
 
         for(int i=0; i< size; i++ ) {
-            Ex exmodels = (Ex) intent.getSerializableExtra("ex"+i);
+            exmodels = (Ex) intent.getSerializableExtra("ex"+i);
+            ex_id.add(exmodels.get_id());
             exMission_adapter.add(exmodels.getMovie_url(), exmodels.getTitle(), exmodels.getWarning(),su);
         }
 
@@ -140,19 +166,28 @@ public class ExMissionActivity extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            final MissionSuccess missionSuccess = new MissionSuccess(mission_today,exgroup_id, 1);
+            final MissionSuccess missionSuccess = new MissionSuccess(mission_today,ex_id.get(su),exgroup_id, "exgroup");
 
-            String token = "ollego " + tokens;
+            String token = "olleego " + tokens;
             MissionSuccessAPI missionSuccessAPI = retrofit_diary.create(MissionSuccessAPI.class);
 
-            final Call<MissionsModel> diaryPos = missionSuccessAPI.listRepos( token,mission_id, missionSuccess);
+            final Call<MissionsModel> diaryPos = missionSuccessAPI.listRepos( token, olleego.getInt("user_mission_id",0),"ex", missionSuccess);
+
 
             diaryPos.enqueue(new Callback<MissionsModel>() {
                 @Override
                 public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
-                    missionSuccessDialog = new MissionSuccessDialog(ExMissionActivity.this, exgroup_title, 1);
-                    missionSuccessDialog.show();
-                    mHandler2.sendEmptyMessage(0);
+                    if(olleego.getString("user_mission_today_exgroup_complete","").equals("true")) {
+                        Toast.makeText(getApplicationContext(), "운동끝!! 이미 포인트 받음" ,Toast.LENGTH_SHORT).show();
+                        oncom=true;
+                        mHandler2.sendEmptyMessage(0);
+
+                    } else {
+
+                        missionSuccessDialog = new MissionSuccessDialog(ExMissionActivity.this, exgroup_title, 1);
+                        missionSuccessDialog.show();
+                        mHandler2.sendEmptyMessage(0);
+                    }
                 }
 
                 @Override
@@ -166,19 +201,47 @@ public class ExMissionActivity extends AppCompatActivity {
         }
         else {
 
-            mHandler.removeMessages(0);
-            Intent intent2 = new Intent(getApplicationContext(), ExMissionActivity.class);
-            for (int i = 0; i < size; i++) {
-                intent.putExtra("ex" + i, (Serializable) intent.getSerializableExtra("ex" + i));
-            }
-            intent.putExtra("step", su + 1);
-            intent.putExtra("size", size);
-            intent.putExtra("token", tokens);
-            intent.putExtra("mission_id", mission_id);
-            intent.putExtra("mission_today", mission_today);
-            intent.putExtra("exgroup_id", exgroup_id);
-            startActivity(intent);
-            finish();
+
+
+            Retrofit retrofit_diary = new Retrofit.Builder()
+                    .baseUrl(ServerInfo.OLLEEGO_HOST)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            final MissionSuccess missionSuccess = new MissionSuccess(mission_today,ex_id.get(su),exgroup_id, "exgroup");
+
+            String token = "olleego " + tokens;
+            MissionSuccessAPI missionSuccessAPI = retrofit_diary.create(MissionSuccessAPI.class);
+
+            final Call<MissionsModel> diaryPos = missionSuccessAPI.listRepos( token, olleego.getInt("user_mission_id",0),"ex", missionSuccess);
+
+            diaryPos.enqueue(new Callback<MissionsModel>() {
+                @Override
+                public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
+                    mHandler.removeMessages(0);
+                    Intent intent2 = new Intent(getApplicationContext(), ExMissionActivity.class);
+                    for (int i = 0; i < size; i++) {
+                        intent2.putExtra("ex" + i, (Serializable) intent.getSerializableExtra("ex" + i));
+                    }
+                    intent2.putExtra("step", su + 1);
+                    intent2.putExtra("size", size);
+                    intent2.putExtra("token", tokens);
+                    intent2.putExtra("mission_id", mission_id);
+                    intent2.putExtra("mission_today", mission_today);
+                    intent2.putExtra("exgroup_id", exgroup_id);
+                    setResult(1);
+                    startActivity(intent2);
+                    finish();
+                    //피니쉬떄문에 종료후 새로고침 인식못함
+                }
+
+                @Override
+                public void onFailure(Call<MissionsModel> call, Throwable t) {
+
+                }
+            });
+
+
         }
     }
 
@@ -220,11 +283,12 @@ public class ExMissionActivity extends AppCompatActivity {
     Handler mHandler2 = new Handler() {
         public void handleMessage(Message msg) {
             if(gg ==0){
-                missionSuccessDialog.dismiss();
+                if(oncom==false) {
+                    missionSuccessDialog.dismiss();
+
+                }
                 mHandler2.removeMessages(0);
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
+                setResult(1);
                 finish();
             } else {
                 gg--;
@@ -242,9 +306,8 @@ public class ExMissionActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         mHandler.removeMessages(0);
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
         finish();
     }
+
+
 }

@@ -20,11 +20,9 @@ import com.edn.olleego.R;
 import com.edn.olleego.activity.login.EmailActivity;
 import com.edn.olleego.common.BackPressCloseHandler;
 import com.edn.olleego.fragment.Home_Fragment;
-import com.edn.olleego.fragment.Mission.MissionCategoryFragment;
 import com.edn.olleego.fragment.Mission.MissionCategoryMainFragment;
-import com.edn.olleego.fragment.Mission.MissionCustomFragment;
+import com.edn.olleego.fragment.setting.SettingFragment;
 import com.edn.olleego.fragment.OlleegoGym_Fragment;
-import com.edn.olleego.fragment.report.ChartFragment;
 import com.edn.olleego.fragment.diary.Diary_Fragment;
 import com.edn.olleego.fragment.report.ReportFragment;
 import com.tsengvn.typekit.TypekitContextWrapper;
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     Home_Fragment mainFragment;
     Diary_Fragment diaryFragment;
     MissionCategoryMainFragment missionCategoryFragment;
-    MissionCustomFragment missionCustomFragment;
+    SettingFragment missionCustomFragment;
     ReportFragment reportFragment;
 
 
@@ -66,6 +64,9 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.drawer_toolbar)
     Toolbar drawer_toolbar;
+
+
+
 
 
     int login_chk;
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity
         diaryFragment = new Diary_Fragment(olleego_SP);
         reportFragment = new ReportFragment();
         missionCategoryFragment = new MissionCategoryMainFragment();
-        missionCustomFragment = new MissionCustomFragment();
+        missionCustomFragment = new SettingFragment();
     }
 
     @Override
@@ -310,5 +311,47 @@ public class MainActivity extends AppCompatActivity
             final android.support.v4.app.Fragment fragment =  getSupportFragmentManager().findFragmentByTag("diary");
             fragment.onActivityResult(requestCode, resultCode, data);
         }
+        if(resultCode == 1 ) {
+            SharedPreferences.Editor editor = olleego_SP.edit();
+            //editor.remove("login_chk");
+            editor.putString("user_mission_today_exgroup_complete", "true");
+            editor.commit();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main, mainFragment,"main");
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+            final android.support.v4.app.Fragment fragment =  getSupportFragmentManager().findFragmentByTag("main");
+            fragment.onActivityResult(requestCode, resultCode, data);
+
+        }
+        else if(resultCode == 2 ) {
+            SharedPreferences.Editor editor = olleego_SP.edit();
+            //editor.remove("login_chk");
+            editor.putString("user_mission_today_food_complete", "true");
+            editor.commit();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main, mainFragment,"main");
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+            final android.support.v4.app.Fragment fragment =  getSupportFragmentManager().findFragmentByTag("main");
+            fragment.onActivityResult(requestCode, resultCode, data);
+
+        } else if(resultCode == 3 ) {
+            SharedPreferences.Editor editor = olleego_SP.edit();
+            //editor.remove("login_chk");
+            editor.putString("user_mission_today_life_complete", "true");
+            editor.commit();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main, mainFragment,"main");
+            transaction.addToBackStack(null);
+            transaction.commit();
+            final android.support.v4.app.Fragment fragment =  getSupportFragmentManager().findFragmentByTag("main");
+            fragment.onActivityResult(requestCode, resultCode, data);
+
+        }
+
+
     }
 }

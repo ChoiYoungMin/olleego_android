@@ -1,4 +1,4 @@
-package com.edn.olleego.fragment.Mission;
+package com.edn.olleego.fragment.setting;
 
 
 import android.content.Intent;
@@ -14,15 +14,15 @@ import com.edn.olleego.activity.mission.MissionCustomStepOneActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MissionCustomFragment extends Fragment {
+public class SettingFragment extends Fragment {
 
 
-    public MissionCustomFragment() {
+    public SettingFragment() {
         // Required empty public constructor
     }
 
-    public static MissionCustomFragment newInstance(int position) {
-        MissionCustomFragment fragment = new MissionCustomFragment();
+    public static SettingFragment newInstance(int position) {
+        SettingFragment fragment = new SettingFragment();
         Bundle args = new Bundle();
         args.putInt("position", position);
         fragment.setArguments(args);
@@ -33,15 +33,9 @@ public class MissionCustomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_mission_custom, container, false);
+        View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
-        view.findViewById(R.id.mission_custom_go).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MissionCustomStepOneActivity.class);
-                startActivity(intent);
-            }
-        });
+
         return view;
     }
 

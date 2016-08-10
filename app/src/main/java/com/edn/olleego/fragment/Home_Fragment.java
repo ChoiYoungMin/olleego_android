@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
+import com.akexorcist.roundcornerprogressbar.common.BaseRoundCornerProgressBar;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.adapter.main.MainMiddleViewPagerAdapter;
@@ -40,6 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Home_Fragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
+    int today_com = 0;
 
     SharedPreferences olleego_SP;
     CircleProgressBar circleProgressBar;
@@ -65,6 +68,46 @@ public class Home_Fragment extends Fragment {
     MainTopViewPagerAdapter mainTopViewPagerAdapter;
     View rootView;
     int waters;
+
+    RoundCornerProgressBar main_today_bar ;
+    TextView main_today_bar_text ;
+
+    boolean replay;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if(resultCode == 1 || resultCode == 2|| resultCode == 3) {
+            today_com= 0;
+            if(olleego_SP.getString("user_mission_today_exgroup_complete", "").equals("true")) {
+                today_com++;
+            }
+            if(olleego_SP.getString("user_mission_today_life_complete", "").equals("true")) {
+                today_com++;
+            }
+            if(olleego_SP.getString("user_mission_today_food_complete", "").equals("true")) {
+                today_com++;
+            }
+
+            final float temp = (float)(((double)today_com / (double)3 ) * 100);
+            main_today_bar.setProgress(temp);
+            main_today_bar.setSecondaryProgress(temp);
+            main_today_bar_text.setText(String.valueOf((int)temp)+"%");
+
+
+            viewPager.removeAllViews();
+
+            viewPager.setAdapter(mainTopViewPagerAdapter);
+            mainTopViewPagerAdapter.notifyDataSetChanged();
+            circleIndicator.setViewPager(viewPager);
+
+            replay = true;
+
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -131,12 +174,36 @@ public class Home_Fragment extends Fragment {
 
             today_diary();
 
+            main_today_bar = (RoundCornerProgressBar)rootView.findViewById(R.id.main_today_bar);
+            main_today_bar_text = (TextView) rootView.findViewById(R.id.main_today_bar_text);
 
 
+
+            if(replay == true) {
+
+            } else {
+                today_com= 0;
+                if(olleego_SP.getString("user_mission_today_exgroup_complete", "").equals("true")) {
+                    today_com++;
+                }
+                if(olleego_SP.getString("user_mission_today_life_complete", "").equals("true")) {
+                    today_com++;
+                }
+                if(olleego_SP.getString("user_mission_today_food_complete", "").equals("true")) {
+                    today_com++;
+                }
+
+                final float temp = (float)(((double)today_com / (double)3 ) * 100);
+                main_today_bar.setProgress(temp);
+                main_today_bar.setSecondaryProgress(temp);
+                main_today_bar_text.setText(String.valueOf((int)temp)+"%");
+            }
+            replay = false;
 
 
 
         }
+
         // 비로그인 상태
         else {
             Toast.makeText(getContext(),"비로그인중", Toast.LENGTH_SHORT).show();

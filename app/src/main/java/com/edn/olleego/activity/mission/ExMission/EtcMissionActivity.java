@@ -1,6 +1,7 @@
 package com.edn.olleego.activity.mission.exmission;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +22,24 @@ import com.edn.olleego.model.foods.FdList;
 import com.edn.olleego.server.MissionSuccessAPI;
 import com.edn.olleego.server.request.MissionSuccess;
 
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.JavaNetCookieJar;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,11 +82,14 @@ public class EtcMissionActivity extends AppCompatActivity {
     int life_id;
     int gg =3;
     int types =0;
+
+    SharedPreferences olleego;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_etc_mission);
         ButterKnife.bind(this);
+        olleego = getSharedPreferences("olleego", MODE_PRIVATE);
 
         intent = getIntent();
 
@@ -120,31 +139,50 @@ public class EtcMissionActivity extends AppCompatActivity {
 
     @OnClick(R.id.etc_mission_ok)
     void mission_ok_click() {
+
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        CookieManager cookieManager = new CookieManager();
+        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+
+        OkHttpClient client = configureClient(new OkHttpClient().newBuilder()) //인증서 무시
+                .connectTimeout(15, TimeUnit.SECONDS) //연결 타임아웃 시간 설정
+                .writeTimeout(15, TimeUnit.SECONDS) //쓰기 타임아웃 시간 설정
+                .readTimeout(15, TimeUnit.SECONDS) //읽기 타임아웃 시간 설정
+                .cookieJar(new JavaNetCookieJar(cookieManager)) //쿠키메니져 설정
+                .addInterceptor(httpLoggingInterceptor) //http 로그 확인
+                .build();
+
+
+
         Retrofit retrofit_diary = new Retrofit.Builder()
                 .baseUrl(ServerInfo.OLLEEGO_HOST)
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        String temp = null;
 
         MissionSuccess missionSuccess = null;
         if( type.equals("food")) {
-             missionSuccess = new MissionSuccess(mission_today, food_id, 3);
-
+             missionSuccess = new MissionSuccess(mission_today,fdList.get_id(), food_id, "food");
+            temp="food";
             types= 1;
         } else if(type.equals("life")) {
-             missionSuccess = new MissionSuccess(mission_today, life_id, 2);
+             missionSuccess = new MissionSuccess(mission_today,lfList.get_id(),life_id , "life");
+            temp="life";
             types=2;
         }
         String token = "olleego " + tokens;
         MissionSuccessAPI missionSuccessAPI = retrofit_diary.create(MissionSuccessAPI.class);
 
-        final Call<MissionsModel> diaryPos = missionSuccessAPI.listRepos( token,mission_id, missionSuccess);
+        final Call<MissionsModel> diaryPos = missionSuccessAPI.listRepos( token,olleego.getInt("user_mission_id",0), temp,missionSuccess);
         diaryPos.enqueue(new Callback<MissionsModel>() {
             @Override
             public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
-                if(response.body().getSuccess() == true) {
+                if(response.isSuccessful()) {
 
                     if(types == 1) {
-
                         missionSuccessDialog = new MissionSuccessDialog(EtcMissionActivity.this, "etc" , 2);
                         missionSuccessDialog.show();
                     } else {
@@ -171,9 +209,6 @@ public class EtcMissionActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         super.onBackPressed();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
         finish();
     }
 
@@ -276,9 +311,13 @@ public class EtcMissionActivity extends AppCompatActivity {
             if(gg ==0){
                 missionSuccessDialog.dismiss();
                 mHandler2.removeMessages(0);
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
+                if(types==1) {
+
+                    setResult(2);
+                } else if(types==2) {
+
+                    setResult(3);
+                }
                 finish();
             } else {
                 gg--;
@@ -291,5 +330,51 @@ public class EtcMissionActivity extends AppCompatActivity {
             mHandler2.sendEmptyMessageDelayed(0,1000);
         }
     };
+
+
+    public static OkHttpClient.Builder configureClient(final OkHttpClient.Builder builder) {
+        final TrustManager[] certs = new TrustManager[]{new X509TrustManager() {
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                X509Certificate[] x509Certificates = new X509Certificate[0];
+                return x509Certificates;
+            }
+
+            @Override
+            public void checkServerTrusted(final X509Certificate[] chain,
+                                           final String authType) {
+            }
+
+            @Override
+            public void checkClientTrusted(final X509Certificate[] chain,
+                                           final String authType) {
+            }
+        }};
+
+        SSLContext ctx = null;
+        try {
+            ctx = SSLContext.getInstance("TLS");
+            ctx.init(null, certs, new SecureRandom());
+        } catch (final java.security.GeneralSecurityException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            final HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+                @Override
+                public boolean verify(final String hostname, final SSLSession session) {
+                    return true;
+                }
+            };
+
+            builder.sslSocketFactory(ctx.getSocketFactory()).hostnameVerifier(hostnameVerifier);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+
+        return builder;
+    }
+
 
 }
