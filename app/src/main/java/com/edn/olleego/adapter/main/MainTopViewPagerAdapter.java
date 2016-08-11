@@ -17,8 +17,10 @@ import com.edn.olleego.custom.CircleProgressBar;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.custom.VerticalProgressBar;
+import com.edn.olleego.dialog.LoadingBarDialog;
 import com.edn.olleego.model.UserMissionModel;
 import com.edn.olleego.server.UserMissionAPI;
+import com.edn.olleego.server.UserRestMissionAPI;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -70,14 +72,15 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
     long diffDays;
     Context context;
     ViewPager viewPager;
-
+    LoadingBarDialog loadingBarDialog;
     long diff;
-    public MainTopViewPagerAdapter(LayoutInflater inflater, SharedPreferences olleego_SP, ViewPager viewPager, Context context) {
+    public MainTopViewPagerAdapter(LayoutInflater inflater, SharedPreferences olleego_SP, ViewPager viewPager, Context context, LoadingBarDialog loadingBarDialog) {
         this.inflater = inflater;
         this.olleego_SP = olleego_SP;
         this.viewPager = viewPager;
         this.context = context;
         mSize = 2;
+        this.loadingBarDialog = loadingBarDialog;
     }
 
     public MainTopViewPagerAdapter(int count) {
@@ -193,7 +196,38 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             }
                             else {
                                 if(response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getRest()== true) {
+                                    editor.putString("user_mission_today_onoff", "on");
 
+                                    final boolean comlete22 = response.body().getResult().getMi_days().get((int)diffDays-1).getDay_complete();
+                                    if(comlete22 == false) {
+                                        complete++;
+                                    }
+                                    retrofit = new Retrofit.Builder()
+                                            .baseUrl(ServerInfo.OLLEEGO_HOST)
+                                            .addConverterFactory(GsonConverterFactory.create())
+                                            .build();
+
+
+                                    UserRestMissionAPI userAPI = retrofit.create(UserRestMissionAPI.class);
+                                    String token = "olleego " + olleego_SP.getString("login_token", "");
+                                    final Call<UserMissionModel> repos2 = userAPI.listRepos(token, response.body().getResult().get_id(), Integer.valueOf((int) diffDays));
+
+                                    repos2.enqueue(new Callback<UserMissionModel>() {
+                                        @Override
+                                        public void onResponse(Call<UserMissionModel> call, Response<UserMissionModel> response) {
+                                            if(response.isSuccessful()){
+
+
+
+
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<UserMissionModel> call, Throwable t) {
+
+                                        }
+                                    });
                                 } else {
                                     editor.putString("user_mission_today_onoff", "on");
                                     editor.putInt("user_mission_id", response.body().getResult().get_id());
@@ -347,11 +381,11 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                     if(olleego_SP.getString("user_mission_today_onoff", "").equals("on")) {
                         type = true;
 
-                        viewPager.setAdapter(new MainMiddleViewPagerAdapter(inflater, type, 1 ,olleego_SP,context));
+                        viewPager.setAdapter(new MainMiddleViewPagerAdapter(inflater, type, 1 ,olleego_SP,context, loadingBarDialog));
                     } else {
                         type = false;
 
-                        MainMiddleViewPagerAdapter mainMiddleViewPagerAdapter = new MainMiddleViewPagerAdapter(inflater, type, context );
+                        MainMiddleViewPagerAdapter mainMiddleViewPagerAdapter = new MainMiddleViewPagerAdapter(inflater, type, context , loadingBarDialog);
                         viewPager.setAdapter(mainMiddleViewPagerAdapter);
                     }
 

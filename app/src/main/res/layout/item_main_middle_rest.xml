@@ -15,8 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="5dp"
-            android:text="쉬는날"
-            android:textSize="28sp"
+            android:text="오늘은 휴식!"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#e5e5e2"
             android:layout_alignParentTop="true"
@@ -24,6 +24,19 @@
             android:layout_marginTop="51dp"
             android:id="@+id/textView26" />
 
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="5dp"
+            android:text="오늘은 운동이 없는 날입니다.\n산책이나 가벼운 유산소 운동을 해주세요."
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#e5e5e2"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="105dp" />
 
 
 

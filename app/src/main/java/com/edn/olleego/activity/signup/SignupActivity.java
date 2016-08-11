@@ -28,6 +28,7 @@ import com.edn.olleego.server.request.Signup;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -218,7 +219,15 @@ public class SignupActivity extends FragmentActivity {
                                     editor.putString("login_email", email.getText().toString());
                                     editor.putString("login_token", forgot_model_.getToken());
                                     editor.putString("user_id" , String.valueOf(userModel.getResult().get_id()));
+                                    editor.putString("login_name", userModel.getResult().getName());
+                                    editor.putString("login_gender", userModel.getResult().getGender());
 
+                                    SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+                                    String nowDate =  dateFormat.format(userModel.getResult().getBirthday());
+
+
+                                    editor.putString("login_birthday", nowDate);
+                                    editor.putString("login_img", userModel.getResult().getAvatar());
                                     try {
                                         editor.putFloat("user_bmi", (float) userModel.getResult().getIn_body().get(last - 1).getBmi());
                                         editor.putInt("user_health_temp", (int) userModel.getResult().getIn_body().get(last - 1).getHealth_temp());

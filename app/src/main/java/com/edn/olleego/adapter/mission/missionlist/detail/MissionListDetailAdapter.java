@@ -1,6 +1,7 @@
 package com.edn.olleego.adapter.mission.missionlist.detail;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,12 +62,18 @@ public class MissionListDetailAdapter extends BaseAdapter {
 
         holder.mission_list_detail_text.setText(missionListDetailData.text);
 
+        if(missionListDetailData.type == true) {
+            holder.mission_list_detail_text.setPaintFlags(holder.mission_list_detail_text.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+
+        }
+
 
         return convertView;
     }
 
-    public void add(String text) {
-        MissionListDetailData missionListData = new MissionListDetailData(text);
+    public void add(String text, boolean type) {
+        MissionListDetailData missionListData = new MissionListDetailData(text,type);
         missionListDetailDatas.add(missionListData);
         notifyDataSetChanged();
     }

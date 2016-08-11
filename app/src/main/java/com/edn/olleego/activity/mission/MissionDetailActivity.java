@@ -3,6 +3,7 @@ package com.edn.olleego.activity.mission;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -20,6 +21,7 @@ import com.edn.olleego.R;
 import com.edn.olleego.adapter.mission.Mission_Data;
 import com.edn.olleego.adapter.mission.Mission_Detail_Img_Adapter;
 import com.edn.olleego.common.ServerInfo;
+import com.edn.olleego.dialog.LoadingBarDialog;
 import com.edn.olleego.dialog.MissionStartDialog;
 import com.edn.olleego.model.AllMissionModel;
 import com.edn.olleego.model.ExdetailModel;
@@ -96,6 +98,8 @@ public class MissionDetailActivity extends AppCompatActivity {
     Intent intent;
 
     SelectMissionModel selectMissionModel;
+
+    LoadingBarDialog loadingBarDialog;
     int times;
 
     int types;
@@ -112,6 +116,7 @@ public class MissionDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mission_detail);
         ButterKnife.bind(this);
 
+        loadingBarDialog = new LoadingBarDialog(this);
 
         time.add(0, R.id.mission_detail_time_one);
         time.add(1, R.id.mission_detail_time_two);
@@ -210,6 +215,7 @@ public class MissionDetailActivity extends AppCompatActivity {
                     } else {
                         selectEx(i + 1);
                     }
+                    loadingBarDialog.dismiss();
                 }
 
                 @Override
@@ -349,6 +355,7 @@ public class MissionDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.mission_detail_time_one)
     void time_one_click() {
+        loadingBarDialog.show();
         times = 10;
         for(int i=0; i<6; i++) {
             findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_no);
@@ -368,6 +375,8 @@ public class MissionDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.mission_detail_time_two)
     void time_two_click() {
+        loadingBarDialog.show();
+
         times = 20;
         for(int i=0; i<6; i++) {
             findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_no);
@@ -384,6 +393,8 @@ public class MissionDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.mission_detail_time_three)
     void time_three_click() {
+        loadingBarDialog.show();
+
         times = 30;
         for(int i=0; i<6; i++) {
             findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_no);
@@ -400,6 +411,8 @@ public class MissionDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.mission_detail_time_four)
     void time_four_click() {
+        loadingBarDialog.show();
+
         times = 40;
         for(int i=0; i<6; i++) {
             findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_no);
@@ -416,6 +429,8 @@ public class MissionDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.mission_detail_time_five)
     void time_five_click() {
+        loadingBarDialog.show();
+
         times = 50;
         for(int i=0; i<6; i++) {
             findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_no);
@@ -432,6 +447,8 @@ public class MissionDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.mission_detail_time_six)
     void time_six_click() {
+        loadingBarDialog.show();
+
         times = 60;
         for(int i=0; i<6; i++) {
             findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_no);

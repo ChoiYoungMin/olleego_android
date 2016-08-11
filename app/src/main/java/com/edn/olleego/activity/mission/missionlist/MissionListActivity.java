@@ -16,6 +16,8 @@ import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.model.UserMissionModel;
 import com.edn.olleego.server.UserMissionAPI;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -25,6 +27,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MissionListActivity extends AppCompatActivity {
+
+    int life_list;
+    int food_list;
+    ArrayList<Integer> ex_list = new ArrayList<Integer>();
 
     @BindView(R.id.mission_listviews)
     ListView mission_listviews;
@@ -95,10 +101,25 @@ public class MissionListActivity extends AppCompatActivity {
                     mission_listviews.setAdapter(missionListAdapter);
 
                     for(int i=0; i<userMissionModel.getResult().getMission().getMi_days().size(); i++ ){
+                        ex_list.clear();
                         try {
-                            missionListAdapter.add(String.valueOf(i + 1), userMissionModel.getResult().getMission().getMi_days().get(i).getLife().getTitle(), userMissionModel.getResult().getMission().getMi_days().get(i).getExgroup().get(0).getTitle(), userMissionModel.getResult().getMission().getMi_days().get(i).getFood().getTitle(),userMissionModel.getResult().getMission());
+                                try{
+                                    life_list = userMissionModel.getResult().getMi_days().get(i).getLife().getLf_list().get(0);
+                                } catch (IndexOutOfBoundsException e) {
+                                    life_list=0;
+                                }
+
+                                try{
+                                    food_list = userMissionModel.getResult().getMi_days().get(i).getFood().getFd_list().get(0);
+
+                                } catch (IndexOutOfBoundsException e){
+                                    food_list=0;
+                                }
+
+
+                            missionListAdapter.add(String.valueOf(i + 1), userMissionModel.getResult().getMission().getMi_days().get(i).getLife().getTitle(), userMissionModel.getResult().getMission().getMi_days().get(i).getExgroup().get(0).getTitle(), userMissionModel.getResult().getMission().getMi_days().get(i).getFood().getTitle(),userMissionModel.getResult().getMission(), life_list,food_list,userMissionModel.getResult().getMi_days().get(i).getExgroup());
                         } catch (NullPointerException e ) {
-                            missionListAdapter.add(String.valueOf(i + 1), "- 오늘의 생활습관 휴식 -", "- 오늘의 운동 휴식 -", "- 오늘은 식습관 휴식 -",userMissionModel.getResult().getMission() );
+                            missionListAdapter.add(String.valueOf(i + 1), "- 오늘의 생활습관 휴식 -", "- 오늘의 운동 휴식 -", "- 오늘은 식습관 휴식 -",userMissionModel.getResult().getMission(),life_list,food_list,userMissionModel.getResult().getMi_days().get(i).getExgroup() );
 
                         }
                     }

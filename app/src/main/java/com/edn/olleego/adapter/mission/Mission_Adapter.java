@@ -2,6 +2,7 @@ package com.edn.olleego.adapter.mission;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
+import com.edn.olleego.dialog.LoadingBarDialog;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 import java.util.ArrayList;
@@ -24,10 +26,15 @@ public class Mission_Adapter extends BaseAdapter{
     private Context context = null;
     private ArrayList<Mission_Data> mission_data = new ArrayList<Mission_Data>();
 
+    LoadingBarDialog loadingBarDialog;
+
     public Mission_Adapter(LayoutInflater inflater, Context context) {
         super();
         this.inflater = inflater;
         this.context = context;
+        loadingBarDialog = new LoadingBarDialog(context);
+        loadingBarDialog.show();
+        loadingBarDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
     }
 
 
@@ -48,6 +55,11 @@ public class Mission_Adapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+
+        if(position == mission_data.size()-1) {
+            loadingBarDialog.dismiss();
+        }
         Mission_ViewHolder holder = null;
 
 
@@ -87,6 +99,8 @@ public class Mission_Adapter extends BaseAdapter{
             Glide.with(context).load(R.drawable.health_managing)
                     .into(holder.mission_type_img);
         }
+
+
 
         //mission_type_img
         return convertView;

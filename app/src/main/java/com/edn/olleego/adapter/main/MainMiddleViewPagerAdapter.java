@@ -10,20 +10,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.activity.mission.exmission.EtcMissionActivity;
 import com.edn.olleego.activity.mission.exmission.ExMissionActivity;
 import com.edn.olleego.common.ServerInfo;
+import com.edn.olleego.dialog.LoadingBarDialog;
 import com.edn.olleego.model.ExgroupsModel;
 import com.edn.olleego.model.FoodsModel;
 import com.edn.olleego.model.LifesModel;
+import com.edn.olleego.model.UserMissionModel;
+import com.edn.olleego.model.UserModel;
 import com.edn.olleego.server.ExgroupsAPI;
 import com.edn.olleego.server.FoodsAPI;
 import com.edn.olleego.server.LifesAPI;
+import com.edn.olleego.server.UserAPI;
+import com.edn.olleego.server.UserRestMissionAPI;
 
 import java.io.Serializable;
 import java.net.CookieManager;
@@ -63,6 +70,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
     Context context;
 
+    LoadingBarDialog loadingBarDialog;
 
 
     View convertView ;
@@ -88,14 +96,18 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
     String food_complete;
     String life_complete;
 
+    int taget_img;
+    int taget2_img;
+
 
     int foods = 0;
     int lifes =0;
-    public MainMiddleViewPagerAdapter(LayoutInflater inflater,boolean type, int i, SharedPreferences olleego_SP, Context context) {
+    public MainMiddleViewPagerAdapter(LayoutInflater inflater,boolean type, int i, SharedPreferences olleego_SP, Context context,LoadingBarDialog loadingBarDialog) {
         this.inflater = inflater;
         this.context= context;
         convertView = null;
         this.type = type;
+        this.loadingBarDialog= loadingBarDialog;
         //notifyDataSetChanged();
 
         if(olleego_SP.getString("user_mission_today_rest", "").equals("false")) {
@@ -105,6 +117,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
         } else if (olleego_SP.getString("user_mission_today_rest", "").equals("true")){
             mSize = 1;
             Toast.makeText(context,"쉬는날 디자인 ㄴ",  Toast.LENGTH_SHORT).show();
+            this.olleego_SP = olleego_SP;
             rest = true;
         }
 
@@ -121,11 +134,12 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
         life_complete = olleego_SP.getString("user_mission_today_life_complete", "");
     }
 
-    public MainMiddleViewPagerAdapter(LayoutInflater inflater, boolean type, Context context){
+    public MainMiddleViewPagerAdapter(LayoutInflater inflater, boolean type, Context context,LoadingBarDialog loadingBarDialog){
         this.context = context;
         this.inflater = inflater;
         this.type = type;
         mSize = 1;
+        this.loadingBarDialog= loadingBarDialog;
     }
 
 
@@ -154,12 +168,19 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
         if(type == false) {
             convertView = inflater.inflate(R.layout.item_main_middle_no, null);
             view.addView(convertView);
+            loadingBarDialog.dismiss();
             mSize = 1;
         } else {
             if (rest == true) {
+                loadingBarDialog.dismiss();
+
                 convertView = inflater.inflate(R.layout.item_main_middle_rest, null);
                 view.addView(convertView);
                 mSize = 1;
+
+
+
+
             } else if (rest == false) {
                 if(position < 1) {
                     convertView = inflater.inflate(R.layout.item_main_middle_mission, null);
@@ -172,11 +193,20 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                         TextView mission_title = (TextView) convertView.findViewById(R.id.user_mission_title);
                         TextView mission_time = (TextView) convertView.findViewById(R.id.user_mission_time);
                         TextView mission_time2 = (TextView) convertView.findViewById(R.id.user_mission_time2);
+                        ImageView mission_taget = (ImageView) convertView.findViewById(R.id.user_mission_taget);
+                        ImageView mission_taget2 = (ImageView) convertView.findViewById(R.id.user_mission_taget2);
+
+                        String taget = exgroupsModel.getResult().getTarget().get(0).getValue();
+                        String taget2 = exgroupsModel.getResult().getTarget().get(1).getValue();;
 
                         try {
                             mission_title.setText(exgroupsModel.getResult().getTitle());
                             mission_time.setText(String.valueOf(exgroupsModel.getResult().getTime()) + "분");
                             mission_time2.setText(String.valueOf(exgroupsModel.getResult().getEx_list().size()) + "개");
+                            Glide.with(context).load(taget_chk(taget)).into(mission_taget);
+                            Glide.with(context).load(taget_chk(taget2)).into(mission_taget2);
+
+
                         } catch (NullPointerException e ){
                             Log.e("zz", String.valueOf(e));
                         }
@@ -361,6 +391,25 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
     }
 
+    private int taget_chk(String taget) {
+        switch (taget){
+            case "상체":
+                return R.drawable.m_bd_up;
+            case "하체":
+                return R.drawable.m_bd_down;
+            case "복근":
+                return R.drawable.m_bd_stomach;
+            case "힙업":
+                return R.drawable.m_bd_hips;
+            case "등":
+                return R.drawable.m_bd_back;
+            case "전신":
+                return R.drawable.m_bd_all;
+
+        }
+        return 0;
+    }
+
     public void addItem() {
         mSize++;
         notifyDataSetChanged();
@@ -460,6 +509,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                 lifesModel = response.body();
                 init();
                 notifyDataSetChanged();
+                loadingBarDialog.dismiss();
             }
 
             @Override

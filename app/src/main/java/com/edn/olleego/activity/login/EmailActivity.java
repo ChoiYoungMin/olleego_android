@@ -23,6 +23,8 @@ import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -152,6 +154,16 @@ public class EmailActivity extends Activity {
                                 SharedPreferences.Editor editor = olleego_SP.edit();
                                 editor.putString("login_chk", "true");
                                 editor.putString("login_email", login_email.getText().toString());
+                                editor.putString("login_name", userModel.getResult().getName());
+                                editor.putString("login_gender", userModel.getResult().getGender());
+
+                                SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+                                String nowDate =  dateFormat.format(userModel.getResult().getBirthday());
+
+
+                                editor.putString("login_birthday", nowDate);
+                                editor.putString("login_img", userModel.getResult().getAvatar());
+
                                 editor.putString("login_token", loginModel.getToken());
                                 editor.putString("user_id" , String.valueOf(userModel.getResult().get_id()));
 

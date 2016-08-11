@@ -24,40 +24,35 @@
             android:layout_height="150dp">
 
             <RelativeLayout
-                android:background="@drawable/raduis_setting"
+                android:id="@+id/setting_img_ok"
                 android:layout_width="80dp"
                 android:layout_height="80dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></LinearLayout>
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:id="@+id/setting_img"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_person"/>
 
 
                 <LinearLayout
                     android:gravity="center"
                     android:layout_marginLeft="3dp"
-                    android:layout_marginTop="3dp"
                     android:background="@drawable/raduis_setting2"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
-                    android:layout_below="@+id/imageView12"
-                    android:layout_toEndOf="@+id/imageView12">
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_photo_md"/>
                 </LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_person"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/imageView12" />
-
             </RelativeLayout>
+
+
         </LinearLayout>
 
         <View
@@ -76,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이름"
-                android:layout_alignTop="@+id/textView9"
+                android:layout_alignTop="@+id/setting_name_text"
                 android:layout_alignParentStart="true" />
             <TextView
                 android:textColor="#606060"
@@ -87,7 +82,7 @@
                 android:text="홍길동"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/textView9" />
+                android:id="@+id/setting_name_text" />
 
 
         </RelativeLayout>
@@ -103,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="메일주소"
-                android:layout_alignTop="@+id/textView10"
+                android:layout_alignTop="@+id/setting_email_text"
                 android:layout_alignParentStart="true" />
             <TextView
                 android:textColor="#606060"
@@ -114,7 +109,7 @@
                 android:text="com5090@naver.com"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/textView10" />
+                android:id="@+id/setting_email_text"  />
 
 
         </RelativeLayout>
@@ -130,8 +125,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="성별"
-                android:layout_alignBaseline="@+id/textView12"
-                android:layout_alignBottom="@+id/textView12"
+                android:layout_alignBaseline="@+id/setting_gender_text"
+                android:layout_alignBottom="@+id/setting_gender_text"
                 android:layout_alignParentStart="true" />
             <TextView
                 android:textColor="#606060"
@@ -142,7 +137,7 @@
                 android:text="남성"
                android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/textView12" />
+                android:id="@+id/setting_gender_text"  />
 
 
         </RelativeLayout>
@@ -162,6 +157,8 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
             <TextView
+
+                android:id="@+id/setting_birthday_text"
                 android:textColor="#606060"
                 android:textSize="14sp"
                 android:layout_marginRight="40dp"

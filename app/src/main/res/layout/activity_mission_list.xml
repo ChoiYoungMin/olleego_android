@@ -12,7 +12,7 @@
         android:gravity="center|start"
         android:background="#30312f"
         android:layout_width="match_parent"
-        android:layout_height="110dp">
+        android:layout_height="90dp">
 
         <TextView
             android:id="@+id/mission_list_title"

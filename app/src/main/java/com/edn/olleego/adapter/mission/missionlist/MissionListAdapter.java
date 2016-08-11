@@ -10,9 +10,11 @@ import android.widget.ListView;
 
 import com.edn.olleego.R;
 import com.edn.olleego.adapter.mission.missionlist.detail.MissionListDetailAdapter;
+import com.edn.olleego.model.usermission.Exgroup2;
 import com.edn.olleego.model.usermission.Mission;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Antonio on 2016-08-09.
@@ -20,6 +22,8 @@ import java.util.ArrayList;
 public class MissionListAdapter extends BaseAdapter {
     Mission mission;
     MissionListViewHolder holder = null;
+
+    boolean type;
 
     LayoutInflater inflater;
     Context context;
@@ -71,8 +75,14 @@ public class MissionListAdapter extends BaseAdapter {
 
         try {
             for (int i = 0; i < mission.getMi_days().get(position).getLife().getLf_list().size(); i++) {
+                type = false;
 
-                missionListDetailAdapter_life.add(mission.getMi_days().get(position).getLife().getLf_list().get(i).getTitle());
+                    if(mission.getMi_days().get(position).getLife().getLf_list().get(i).get_id() == missionListData.life_list) {
+                        type = true;
+
+
+                }
+                missionListDetailAdapter_life.add(mission.getMi_days().get(position).getLife().getLf_list().get(i).getTitle(),type);
             }
         }
         catch (NullPointerException e ) {
@@ -86,8 +96,16 @@ public class MissionListAdapter extends BaseAdapter {
         //missionListDetailAdapter_life.add();
         try {
         for(int i=0; i<mission.getMi_days().get(position).getExgroup().get(0).getEx_list().size(); i++){
+            type = false;
+            for(int j=0; j<missionListData.ex_list.getEx_list().size(); j++) {
+                if(mission.getMi_days().get(position).getExgroup().get(0).getEx_list().get(i).getEx().get_id() == missionListData.ex_list.getEx_list().get(j)) {
+                    type = true;
+                }
 
-                missionListDetailAdapter_expo.add(mission.getMi_days().get(position).getExgroup().get(0).getEx_list().get(i).getEx().getTitle());
+            }
+
+
+                missionListDetailAdapter_expo.add(mission.getMi_days().get(position).getExgroup().get(0).getEx_list().get(i).getEx().getTitle(),type);
             }
         }catch (NullPointerException e ) {
 
@@ -99,8 +117,13 @@ public class MissionListAdapter extends BaseAdapter {
         //missionListDetailAdapter_food.add();
         try {
         for(int i=0; i<mission.getMi_days().get(position).getFood().getFd_list().size(); i++){
+            type = false;
+                if(mission.getMi_days().get(position).getFood().getFd_list().get(i).get_id() == missionListData.food_list) {
+                    type = true;
+            }
 
-                missionListDetailAdapter_food.add(mission.getMi_days().get(position).getFood().getFd_list().get(i).getTitle());
+
+                missionListDetailAdapter_food.add(mission.getMi_days().get(position).getFood().getFd_list().get(i).getTitle(), type);
             }
         }catch (NullPointerException e ) {
 
@@ -117,9 +140,10 @@ public class MissionListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void add(String mission_list_day, String mission_list_title_1, String mission_list_title_2, String mission_list_title_3, Mission mission) {
-        MissionListData missionListData = new MissionListData( mission_list_day,  mission_list_title_1,  mission_list_title_2,  mission_list_title_3);
+    public void add(String mission_list_day, String mission_list_title_1, String mission_list_title_2, String mission_list_title_3, Mission mission, int life_list, int food_list, Exgroup2 ex_list) {
+        MissionListData missionListData = new MissionListData( mission_list_day,  mission_list_title_1,  mission_list_title_2,  mission_list_title_3, life_list,food_list,ex_list);
         this.mission = mission;
+
         missionListDatas.add(missionListData);
         notifyDataSetChanged();
     }

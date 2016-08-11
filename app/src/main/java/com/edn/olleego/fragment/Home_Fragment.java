@@ -2,12 +2,14 @@ package com.edn.olleego.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import com.edn.olleego.adapter.main.MainMiddleViewPagerAdapter;
 import com.edn.olleego.adapter.main.MainTopViewPagerAdapter;
 import com.edn.olleego.custom.CircleProgressBar;
 import com.edn.olleego.common.ServerInfo;
+import com.edn.olleego.dialog.LoadingBarDialog;
 import com.edn.olleego.model.DiaryModel;
 import com.edn.olleego.model.ExgroupsModel;
 import com.edn.olleego.model.FoodsModel;
@@ -43,6 +46,8 @@ public class Home_Fragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     int today_com = 0;
+
+    ProgressBar progressBar;
 
     SharedPreferences olleego_SP;
     CircleProgressBar circleProgressBar;
@@ -71,7 +76,7 @@ public class Home_Fragment extends Fragment {
 
     RoundCornerProgressBar main_today_bar ;
     TextView main_today_bar_text ;
-
+    LoadingBarDialog loadingBarDialog;
     boolean replay;
 
     @Override
@@ -136,9 +141,13 @@ public class Home_Fragment extends Fragment {
             }
         });
 
+        //progressBar = (ProgressBar)rootView.findViewById(R.id.main);
+
         //initSP();
 
-
+        loadingBarDialog = new LoadingBarDialog(getContext());
+        loadingBarDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        loadingBarDialog.show();
 
 
         /*
@@ -165,7 +174,7 @@ public class Home_Fragment extends Fragment {
 
 
             viewPager.removeAllViews();
-            mainTopViewPagerAdapter = new MainTopViewPagerAdapter(inflater, olleego_SP, viewPager2, getContext());
+            mainTopViewPagerAdapter = new MainTopViewPagerAdapter(inflater, olleego_SP, viewPager2, getContext(),loadingBarDialog );
             viewPager.setAdapter(mainTopViewPagerAdapter);
             mainTopViewPagerAdapter.notifyDataSetChanged();
             circleIndicator.setViewPager(viewPager);
@@ -209,7 +218,7 @@ public class Home_Fragment extends Fragment {
             Toast.makeText(getContext(),"비로그인중", Toast.LENGTH_SHORT).show();
             viewPager2 = (ViewPager) rootView.findViewById(R.id.viewPager2);
             viewPager2.removeAllViews();
-            mainMiddleViewPagerAdapter = new MainMiddleViewPagerAdapter(inflater,false, getContext() );
+            mainMiddleViewPagerAdapter = new MainMiddleViewPagerAdapter(inflater,false, getContext(),loadingBarDialog );
             viewPager2.setAdapter(mainMiddleViewPagerAdapter);
             mainMiddleViewPagerAdapter.notifyDataSetChanged();
 
@@ -337,6 +346,7 @@ public class Home_Fragment extends Fragment {
                 } else {
                     rootView.findViewById(R.id.main_diary_food_no).setVisibility(View.VISIBLE);
                 }
+
 
             }
 
