@@ -55,7 +55,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
     boolean mission;
 
     int complete = 0;
-
+    int i = 0;
 
     private LayoutInflater inflater;
     private final Random random = new Random();
@@ -381,12 +381,35 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                     if(olleego_SP.getString("user_mission_today_onoff", "").equals("on")) {
                         type = true;
 
+
                         viewPager.setAdapter(new MainMiddleViewPagerAdapter(inflater, type, 1 ,olleego_SP,context, loadingBarDialog));
+                        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                            @Override
+                            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                                if(i==0) {
+                                    viewPager.setCurrentItem(1,false);
+                                    i++;
+                                }
+                            }
+
+                            @Override
+                            public void onPageSelected(int position) {
+
+                            }
+
+                            @Override
+                            public void onPageScrollStateChanged(int state) {
+                            }
+                        });
+
                     } else {
                         type = false;
 
                         MainMiddleViewPagerAdapter mainMiddleViewPagerAdapter = new MainMiddleViewPagerAdapter(inflater, type, context , loadingBarDialog);
                         viewPager.setAdapter(mainMiddleViewPagerAdapter);
+
+
                     }
 
                 }

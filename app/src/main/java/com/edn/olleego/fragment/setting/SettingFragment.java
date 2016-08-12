@@ -16,9 +16,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.mission.MissionCustomStepOneActivity;
+import com.edn.olleego.activity.notice.NoticeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
@@ -36,6 +38,7 @@ public class SettingFragment extends Fragment {
     TextView setting_birthday_text;
     @BindView(R.id.setting_img)
     ImageView setting_img;
+
 
     SharedPreferences olleego_sp;
 
@@ -101,6 +104,12 @@ public class SettingFragment extends Fragment {
 
 
 
+    }
+
+    @OnClick(R.id.setting_notice)
+    void setting_notice() {
+        Intent intent = new Intent(getActivity(), NoticeActivity.class);
+        getActivity().startActivity(intent);
     }
 
 }

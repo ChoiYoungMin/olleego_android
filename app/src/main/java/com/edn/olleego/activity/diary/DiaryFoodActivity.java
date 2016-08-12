@@ -21,6 +21,7 @@ import com.edn.olleego.R;
 import com.edn.olleego.common.FileUtils;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.dialog.DiaryFoodImageDialog;
+import com.edn.olleego.dialog.LoadingBarDialog;
 import com.edn.olleego.model.MissionsModel;
 import com.edn.olleego.server.DiaryAddAPI;
 import com.edn.olleego.server.DiaryFoodAddAPI;
@@ -232,6 +233,7 @@ public class DiaryFoodActivity extends AppCompatActivity {
     String user_id;
     String token;
     String day;
+    String type;
 
 
 
@@ -246,6 +248,7 @@ public class DiaryFoodActivity extends AppCompatActivity {
         user_id= intent.getStringExtra("user");
         token = intent.getStringExtra("token");
         day = intent.getStringExtra("day") + " 00:00:00";;
+        type = intent.getStringExtra("type");
 
         init_layout();
         meal_chk_int.clear();
@@ -786,6 +789,9 @@ public class DiaryFoodActivity extends AppCompatActivity {
     @OnClick(R.id.diary_food_ok)
     void diary_food_ok() {
 
+        final LoadingBarDialog loadingBarDialog = new LoadingBarDialog(this, "food_add");
+        loadingBarDialog.show();
+
 
         switch (types) {
             case 1:
@@ -879,7 +885,11 @@ public class DiaryFoodActivity extends AppCompatActivity {
             public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
 
                 if(response.isSuccessful()) {
-                    setResult(5);
+                    loadingBarDialog.dismiss();
+                    Intent intent = new Intent();
+                    intent.putExtra("food_type", type_temp);
+                    intent.putExtra("type", type);
+                    setResult(5, intent);
                     finish();
                 }
             }

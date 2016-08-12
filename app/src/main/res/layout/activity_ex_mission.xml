@@ -35,19 +35,46 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_alarm_add"/>
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_alarm_add"/>
 
-            <TextView
-                android:layout_marginLeft="5dp"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#a6c52a"
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#a6c52a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오늘의 운동"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ex_mission_ok"
+                android:layout_marginLeft="170dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="오늘의 운동"/>
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mission_fini_detail"/>
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#a6c52a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="운동완료"/>
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -157,7 +184,7 @@
             android:lineSpacingExtra="10dp"
             android:gravity="center"
             android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:text="1.손을 잡고 바닥에 누워라\n심호흡을 간단한ㄷ게 하adad다\n심호흡을 간단한ㄷ게 하adad다\n심호흡을 간단한ㄷ게 하adad다"/>
 
@@ -169,31 +196,43 @@
 
             android:layout_marginBottom="30dp"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#fff3f3"
-            android:gravity="center">
+            android:background="@drawable/border_ex_mission">
 
 
-            <TextView
-                android:textSize="14sp"
-                android:textColor="#ff5b53"
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/olleego_comment"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="주의사항"/>
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/ex_mission_warning"
 
-            <TextView
-                android:id="@+id/ex_mission_warning"
+                    android:layout_marginBottom="20dp"
+                    android:lineSpacingExtra="10dp"
+                    android:textColor="#606060"
+                    android:textSize="12sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
 
-                android:lineSpacingExtra="10dp"
-                android:textColor="#ff5b53"
-                android:textSize="12sp"
-                android:layout_marginTop="15dp"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="다리를 들어올릴 떄 허벅지에 집중해야한다 \n허벅지에 집중해야한다 허벅지에 집중해야한다허벅지에 집중해야한다."/>
+                    android:text="다리를 들어올릴 떄 허벅지에 집중해야한다 \n허벅지에 집중해야한다 허벅지에 집중해야한다허벅지에 집중해야한다."/>
+
+            </LinearLayout>
 
 
         </LinearLayout>

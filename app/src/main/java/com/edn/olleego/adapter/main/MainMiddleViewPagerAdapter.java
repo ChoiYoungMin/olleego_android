@@ -183,35 +183,97 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
             } else if (rest == false) {
                 if(position < 1) {
+
+
+
+                    convertView = inflater.inflate(R.layout.item_main_middle_food, null);
+
+                    TextView today_allcount = (TextView) convertView.findViewById(R.id.user_food_today_count);
+                    TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_food_now_position);
+                    TextView food_title = (TextView) convertView.findViewById(R.id.user_food_title);
+                    TextView food_content = (TextView) convertView.findViewById(R.id.user_food_context);
+
+                    today_allcount.setText(String.valueOf(mSize));
+                    today_nowcount.setText(String.valueOf(position+1));
+
+                    try {
+                        food_title.setText(foodsModel.getResult().getTitle());
+                        food_content.setText(foodsModel.getResult().getFd_list().get(position).getTitle());
+                    }catch (NullPointerException e ){
+                        Log.e("zz", String.valueOf(e));
+                    }
+
+                    if(food_complete.equals("true")) {
+                        convertView.findViewById(R.id.user_food_completes).setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        convertView.findViewById(R.id.user_food_completes).setVisibility(View.GONE);
+
+
+                        convertView.findViewById(R.id.foodtestbtn).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, EtcMissionActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent.putExtra("type", "food");
+                                intent.putExtra("food", (Serializable) foodsModel.getResult().getFd_list().get(position));
+                                intent.putExtra("food_id", foodsModel.getResult().get_id());
+                                intent.putExtra("token", token);
+                                intent.putExtra("mission_id", mission_id);
+                                intent.putExtra("mission_today", mission_today);
+                                ((MainActivity)context).startActivityForResult(intent, 2);
+                            }
+                        });
+                    }
+
+
+                    view.addView(convertView);
+                } else if(position < 1+foodsModel.getResult().getFd_list().size()){
                     convertView = inflater.inflate(R.layout.item_main_middle_mission, null);
 
 
-                        convertView.findViewById(R.id.user_mission_completes).setVisibility(View.GONE);
+                    convertView.findViewById(R.id.user_mission_completes).setVisibility(View.GONE);
 
-                        TextView today_allcount = (TextView) convertView.findViewById(R.id.user_mission_today_count);
-                        TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_mission_now_position);
-                        TextView mission_title = (TextView) convertView.findViewById(R.id.user_mission_title);
-                        TextView mission_time = (TextView) convertView.findViewById(R.id.user_mission_time);
-                        TextView mission_time2 = (TextView) convertView.findViewById(R.id.user_mission_time2);
-                        ImageView mission_taget = (ImageView) convertView.findViewById(R.id.user_mission_taget);
-                        ImageView mission_taget2 = (ImageView) convertView.findViewById(R.id.user_mission_taget2);
+                    TextView today_allcount = (TextView) convertView.findViewById(R.id.user_mission_today_count);
+                    TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_mission_now_position);
+                    TextView mission_title = (TextView) convertView.findViewById(R.id.user_mission_title);
+                    TextView mission_time = (TextView) convertView.findViewById(R.id.user_mission_time);
+                    TextView mission_time2 = (TextView) convertView.findViewById(R.id.user_mission_time2);
+                    ImageView mission_taget = (ImageView) convertView.findViewById(R.id.user_mission_taget);
+                    ImageView mission_taget2 = (ImageView) convertView.findViewById(R.id.user_mission_taget2);
+                    String taget;
+                    String taget2;
+                    try{
 
-                        String taget = exgroupsModel.getResult().getTarget().get(0).getValue();
-                        String taget2 = exgroupsModel.getResult().getTarget().get(1).getValue();;
-
-                        try {
-                            mission_title.setText(exgroupsModel.getResult().getTitle());
-                            mission_time.setText(String.valueOf(exgroupsModel.getResult().getTime()) + "분");
-                            mission_time2.setText(String.valueOf(exgroupsModel.getResult().getEx_list().size()) + "개");
-                            Glide.with(context).load(taget_chk(taget)).into(mission_taget);
-                            Glide.with(context).load(taget_chk(taget2)).into(mission_taget2);
+                        taget = exgroupsModel.getResult().getTarget().get(0).getValue();
+                    } catch (NullPointerException e) {
+                        taget="전신";
+                    }
+                    try{
 
 
-                        } catch (NullPointerException e ){
-                            Log.e("zz", String.valueOf(e));
-                        }
-                        today_allcount.setText(String.valueOf(mSize));
-                        today_nowcount.setText(String.valueOf(position + 1));
+                        taget2 = exgroupsModel.getResult().getTarget().get(1).getValue();
+                    } catch (NullPointerException e) {
+                        taget2=taget;
+                    } catch (IndexOutOfBoundsException e) {
+                        taget2=taget;
+                    }
+
+
+
+                    try {
+                        mission_title.setText(exgroupsModel.getResult().getTitle());
+                        mission_time.setText(String.valueOf(exgroupsModel.getResult().getTime()) + "분");
+                        mission_time2.setText(String.valueOf(exgroupsModel.getResult().getEx_list().size()) + "개");
+                        Glide.with(context).load(taget_chk(taget)).into(mission_taget);
+                        Glide.with(context).load(taget_chk(taget2)).into(mission_taget2);
+
+
+                    } catch (NullPointerException e ){
+                        Log.e("zz", String.valueOf(e));
+                    }
+                    today_allcount.setText(String.valueOf(mSize));
+                    today_nowcount.setText(String.valueOf(position + 1));
 
                     if(exgroup_complete.equals("true")){
                         convertView.findViewById(R.id.user_mission_completes).setVisibility(View.VISIBLE);
@@ -231,6 +293,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                                 intent.putExtra("mission_today", mission_today);
                                 intent.putExtra("exgroup_id", exgroupsModel.getResult().get_id());
                                 intent.putExtra("exgroup_title", exgroupsModel.getResult().getTitle());
+                                intent.putExtra("mission_ok", olleego_SP.getString("user_mission_today_exgroup_complete",""));
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 ((MainActivity)context).startActivityForResult(intent, 1);
 
@@ -256,6 +319,7 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                                 intent.putExtra("mission_today", mission_today);
                                 intent.putExtra("exgroup_id", exgroupsModel.getResult().get_id());
                                 intent.putExtra("exgroup_title", exgroupsModel.getResult().getTitle());
+                                intent.putExtra("mission_ok", olleego_SP.getString("user_mission_today_exgroup_complete",""));
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 ((MainActivity)context).startActivityForResult(intent, 1);
                             }
@@ -263,60 +327,14 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
                     }
 
 
-                        view.addView(convertView);
-
-
-
-
-
-
-
-                } else if(position < 1+foodsModel.getResult().getFd_list().size()){
-
-
-
-                    convertView = inflater.inflate(R.layout.item_main_middle_food, null);
-
-                    TextView today_allcount = (TextView) convertView.findViewById(R.id.user_food_today_count);
-                    TextView today_nowcount = (TextView) convertView.findViewById(R.id.user_food_now_position);
-                    TextView food_title = (TextView) convertView.findViewById(R.id.user_food_title);
-                    TextView food_content = (TextView) convertView.findViewById(R.id.user_food_context);
-
-                    today_allcount.setText(String.valueOf(mSize));
-                    today_nowcount.setText(String.valueOf(position + 1));
-
-                    try {
-                        food_title.setText(foodsModel.getResult().getTitle());
-                        food_content.setText(foodsModel.getResult().getFd_list().get(position - 1).getTitle());
-                    }catch (NullPointerException e ){
-                        Log.e("zz", String.valueOf(e));
-                    }
-
-                    if(food_complete.equals("true")) {
-                        convertView.findViewById(R.id.user_food_completes).setVisibility(View.VISIBLE);
-                    }
-                    else {
-                        convertView.findViewById(R.id.user_food_completes).setVisibility(View.GONE);
-
-
-                        convertView.findViewById(R.id.foodtestbtn).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(context, EtcMissionActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                intent.putExtra("type", "food");
-                                intent.putExtra("food", (Serializable) foodsModel.getResult().getFd_list().get(position - 1));
-                                intent.putExtra("food_id", foodsModel.getResult().get_id());
-                                intent.putExtra("token", token);
-                                intent.putExtra("mission_id", mission_id);
-                                intent.putExtra("mission_today", mission_today);
-                                ((MainActivity)context).startActivityForResult(intent, 2);
-                            }
-                        });
-                    }
-
-
                     view.addView(convertView);
+
+
+
+
+
+
+
 
                     //되돌아갈떄 계속 커짐
                 } else if(position < 1+foodsModel.getResult().getFd_list().size()+ lifesModel.getResult().getLf_list().size()){

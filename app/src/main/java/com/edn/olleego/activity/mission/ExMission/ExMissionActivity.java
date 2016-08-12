@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.edn.olleego.R;
 import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.adapter.mission.exmission.ExMission_Adapter;
 import com.edn.olleego.common.ServerInfo;
+import com.edn.olleego.dialog.LoadingBarDialog;
 import com.edn.olleego.dialog.MissionStartDialog;
 import com.edn.olleego.dialog.MissionSuccessDialog;
 import com.edn.olleego.model.DiaryModel;
@@ -81,6 +83,9 @@ public class ExMissionActivity extends AppCompatActivity {
     @BindView(R.id.ex_mission_time)
     TextView ex_mission_time;
 
+    @BindView(R.id.ex_mission_ok)
+    LinearLayout ex_mission_ok;
+
     int su;
     int size;
     int value= 301;
@@ -99,6 +104,8 @@ public class ExMissionActivity extends AppCompatActivity {
     String exgroup_title;
     Ex exmodels;
     int gg = 3;
+
+    String mission_ok;
 
     SharedPreferences olleego;
 
@@ -126,6 +133,7 @@ public class ExMissionActivity extends AppCompatActivity {
         mission_today = intent.getIntExtra("mission_today", 0);
         exgroup_id = intent.getIntExtra("exgroup_id", 0);
         exgroup_title = intent.getStringExtra("exgroup_title");
+        mission_ok = intent.getStringExtra("mission_ok");
 
             ex_mission_step.setText((su+1)+"-"+size);
             ex_mission_title.setText(exmodel.getTitle());
@@ -136,7 +144,9 @@ public class ExMissionActivity extends AppCompatActivity {
 
 
 
-
+        if(mission_ok.equals("true")) {
+            ex_mission_ok.setVisibility(View.VISIBLE);
+        }
 
 
 
@@ -178,9 +188,12 @@ public class ExMissionActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
                     if(olleego.getString("user_mission_today_exgroup_complete","").equals("true")) {
+                        LoadingBarDialog loadingBarDialog = new LoadingBarDialog(ExMissionActivity.this, "food_add");
+                        loadingBarDialog.show();
                         Toast.makeText(getApplicationContext(), "운동끝!! 이미 포인트 받음" ,Toast.LENGTH_SHORT).show();
                         oncom=true;
-                        mHandler2.sendEmptyMessage(0);
+                        setResult(1);
+                        finish();
 
                     } else {
 
@@ -229,6 +242,7 @@ public class ExMissionActivity extends AppCompatActivity {
                     intent2.putExtra("mission_id", mission_id);
                     intent2.putExtra("mission_today", mission_today);
                     intent2.putExtra("exgroup_id", exgroup_id);
+                    intent2.putExtra("mission_ok", mission_ok);
                     setResult(1);
                     startActivity(intent2);
                     finish();

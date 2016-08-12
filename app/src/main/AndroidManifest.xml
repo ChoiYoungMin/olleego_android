@@ -71,7 +71,8 @@
         <activity android:name=".activity.report.ReportWaistDetailActivity" />
         <activity android:name=".activity.report.ReportHealthyInputActivity" />
         <activity android:name=".activity.mission.missionlist.MissionListActivity" />
-        <activity android:name=".activity.diary.DiaryChartActivity"></activity>
+        <activity android:name=".activity.diary.DiaryChartActivity" />
+        <activity android:name=".activity.notice.NoticeActivity"></activity>
     </application>
 
 </manifest>

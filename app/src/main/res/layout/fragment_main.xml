@@ -145,11 +145,18 @@
             android:layout_height="245dp"
             android:background="@android:color/darker_gray">
 
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+              <android.support.v4.view.ViewPager
+                  android:id="@+id/viewPager2"
+                  android:background="#f5f6f3"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:layout_gravity="center"
+                  android:layout_marginBottom="0dp"
+                  android:clipToPadding="false"
+                  android:gravity="center"
+                  android:paddingLeft="25dp"
+                  android:paddingRight="25dp"/>
 
             <me.relex.circleindicator.CircleIndicator
                 android:id="@+id/inco2"
@@ -177,11 +184,12 @@
                     android:src="@drawable/sweat"
                     android:id="@+id/imageView18"
                     android:layout_marginStart="17dp"
-                    android:layout_marginTop="19dp"
+                    android:layout_marginTop="25dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true" />
 
                 <TextView
+                    android:layout_marginTop="23dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="건강일기"
@@ -190,7 +198,6 @@
                     android:textSize="14sp"
                     android:textColor="#454544"
                     android:layout_marginStart="10dp"
-                    android:layout_alignBottom="@+id/imageView18"
                     android:layout_toEndOf="@+id/imageView18" />
 
                 <LinearLayout
@@ -218,7 +225,7 @@
                     android:gravity="center"
                     android:layout_alignTop="@+id/linearLayout3"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/linearLayout5">
+                    android:id="@+id/main_diary_go">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -264,8 +271,8 @@
                                 android:id="@+id/custom_progressBar2"
                                 android:layout_width="58dp"
                                 android:layout_height="58dp"
-                                app:progress="10"
-                                app:progressBarThickness="3dp"
+                                app:progressBarThickness="2dp"
+                                app:progressbarColor="#ececec"
                                 android:layout_below="@+id/imageView19"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="7dp"/>
@@ -294,7 +301,7 @@
                     android:background="#ffffff"
                     android:elevation="2dp"
                     android:outlineProvider="bounds"
-                    android:id="@+id/relativeLayout4"
+                    android:id="@+id/main_diary_sleep_layout"
                     android:layout_alignTop="@+id/relativeLayout3"
                     android:layout_toEndOf="@+id/relativeLayout3"
                     android:layout_marginLeft="5dp">
@@ -313,15 +320,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="00 : 00"
+                        android:text="00시간 00분"
                         android:textColor="#454544"
                         android:textStyle="bold"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:id="@+id/main_diary_sleep"
                         android:layout_marginRight="9dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="26dp" />
+                        android:layout_marginBottom="30dp" />
                 </RelativeLayout>
 
 
@@ -333,7 +340,7 @@
                     android:background="#ffffff"
                     android:elevation="2dp"
                     android:outlineProvider="bounds"
-                    android:id="@+id/relativeLayout32"
+                    android:id="@+id/main_diary_water_layout"
                     android:layout_alignTop="@+id/relativeLayout4"
                     android:layout_toEndOf="@+id/relativeLayout4"
                     android:layout_marginRight="10dp"
@@ -362,8 +369,9 @@
                         android:id="@+id/custom_progressBar23"
                         android:layout_width="58dp"
                         android:layout_height="58dp"
-                        app:progress="10"
-                        app:progressBarThickness="3dp"
+                        app:progressBarThickness="2dp"
+                        app:progressbarColor="#ececec"
+                        app:progress="19"
                         android:layout_below="@+id/imageView119"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="7dp"/>
@@ -389,7 +397,7 @@
                         android:textColor="@android:color/black"
                         android:textStyle="bold"
                         android:id="@+id/textView36"
-                        android:layout_alignBottom="@+id/main_diary_water"
+                        android:layout_alignTop="@+id/main_diary_water"
                         android:layout_toEndOf="@+id/main_diary_water" />
 
                     <TextView
@@ -407,6 +415,7 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/main_diary_food_add_layout"
                     android:background="#ffffff"
                     android:elevation="2dp"
                     android:outlineProvider="bounds"
@@ -461,10 +470,11 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:id="@+id/main_diary_food_layout"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginLeft="100dp">
                         <LinearLayout
                             android:visibility="gone"
+                            android:layout_marginRight="5dp"
                             android:layout_width="65dp"
                             android:layout_height="30dp"
                             android:orientation="horizontal"
@@ -473,6 +483,7 @@
                             android:id="@+id/main_diary_morning">
 
                             <TextView
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
@@ -482,16 +493,17 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginLeft="5dp"
+                            android:visibility="gone"
+                            android:layout_marginRight="5dp"
                             android:layout_width="65dp"
                             android:layout_height="30dp"
                             android:orientation="horizontal"
                             android:gravity="center"
-                            android:visibility="gone"
                             android:background="@drawable/raduis3"
                             android:id="@+id/main_diary_lunch">
 
                             <TextView
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
@@ -500,16 +512,17 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginLeft="5dp"
+
+                            android:visibility="gone"
                             android:layout_width="65dp"
                             android:layout_height="30dp"
                             android:orientation="horizontal"
                             android:gravity="center"
                             android:background="@drawable/raduis3"
-                            android:visibility="gone"
                             android:id="@+id/main_diary_dinner">
 
                             <TextView
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
@@ -522,39 +535,42 @@
 
 
                     <LinearLayout
+                        android:layout_marginLeft="100dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
 
-                        android:layout_below="@+id/imageView21"
-                        android:layout_centerHorizontal="true">
+                        android:layout_below="@+id/imageView21">
                         <LinearLayout
+                            android:layout_marginRight="5dp"
+                            android:visibility="gone"
                             android:layout_width="65dp"
                             android:layout_height="30dp"
                             android:orientation="horizontal"
+                            android:gravity="center"
+                            android:background="@drawable/raduis3"
+                            android:id="@+id/main_diary_etc">
+
+                            <TextView
+                                android:textSize="12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:text="모임" />
+                        </LinearLayout>
+                        <LinearLayout
+
                             android:visibility="gone"
+                            android:layout_width="65dp"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal"
                             android:gravity="center"
                             android:background="@drawable/raduis3"
                             android:id="@+id/main_diary_snack">
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@android:color/black"
-                                android:textStyle="bold"
-                                android:text="간식" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_marginLeft="5dp"
-                            android:layout_width="65dp"
-                            android:layout_height="30dp"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:background="@drawable/raduis3"
-                            android:id="@+id/main_diary_snack2">
-
-                            <TextView
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"
@@ -562,21 +578,7 @@
                                 android:text="간식" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="65dp"
-                            android:layout_height="30dp"
-                            android:gravity="center"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
-                            android:id="@+id/main_diary_snack3">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@android:color/black"
-                                android:textStyle="bold"
-                                android:text="..."/>
-                        </LinearLayout>
 
                     </LinearLayout>
 

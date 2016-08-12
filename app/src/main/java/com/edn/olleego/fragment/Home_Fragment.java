@@ -1,5 +1,6 @@
 package com.edn.olleego.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,22 +18,29 @@ import android.widget.Toast;
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.akexorcist.roundcornerprogressbar.common.BaseRoundCornerProgressBar;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.diary.DiaryFoodActivity;
 import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.adapter.main.MainMiddleViewPagerAdapter;
 import com.edn.olleego.adapter.main.MainTopViewPagerAdapter;
 import com.edn.olleego.custom.CircleProgressBar;
 import com.edn.olleego.common.ServerInfo;
+import com.edn.olleego.dialog.DiarySleepAddDialog;
+import com.edn.olleego.dialog.DiaryWaterAddDialog;
 import com.edn.olleego.dialog.LoadingBarDialog;
+import com.edn.olleego.fragment.diary.Diary_Fragment;
 import com.edn.olleego.model.DiaryModel;
 import com.edn.olleego.model.ExgroupsModel;
 import com.edn.olleego.model.FoodsModel;
 import com.edn.olleego.model.LifesModel;
 import com.edn.olleego.server.DiaryAPI;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.relex.circleindicator.CircleIndicator;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +55,13 @@ public class Home_Fragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     int today_com = 0;
+    float time;
+    int walkings;
+    int water_temp;
+    float sleep_temp;
+
+    SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+    Date date = new Date();
 
     ProgressBar progressBar;
 
@@ -79,9 +95,37 @@ public class Home_Fragment extends Fragment {
     LoadingBarDialog loadingBarDialog;
     boolean replay;
 
+
+
+    @BindView(R.id.main_diary_sleep)
+    TextView sleep;
+    @BindView(R.id.main_diary_walking)
+    TextView walking;
+    @BindView(R.id.main_diary_water)
+    TextView water;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == 5) {
+            switch (data.getStringExtra("food_type")) {
+                case "아침":
+                    rootView.findViewById(R.id.main_diary_morning).setVisibility(View.VISIBLE);
+                    break;
+                case "점심":
+                    rootView.findViewById(R.id.main_diary_lunch).setVisibility(View.VISIBLE);
+                    break;
+                case "저녁":
+                    rootView.findViewById(R.id.main_diary_dinner).setVisibility(View.VISIBLE);
+                    break;
+                case "모임":
+                    rootView.findViewById(R.id.main_diary_etc).setVisibility(View.VISIBLE);
+                    break;
+                case "간식":
+                    rootView.findViewById(R.id.main_diary_snack).setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
 
 
         if(resultCode == 1 || resultCode == 2|| resultCode == 3) {
@@ -122,24 +166,9 @@ public class Home_Fragment extends Fragment {
         ButterKnife.bind(this,rootView);
         actionbar_init();
         olleego_SP = getActivity().getSharedPreferences("olleego", getActivity().MODE_PRIVATE);
-
         final TextView water = (TextView) rootView.findViewById(R.id.main_diary_water);
 
 
-        rootView.findViewById(R.id.main_diary_water_minus).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                waters = waters -1;
-                water.setText(String.valueOf(waters));
-            }
-        });
-        rootView.findViewById(R.id.main_diary_water_plus).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                waters = waters +1;
-                water.setText(String.valueOf(waters));
-            }
-        });
 
         //progressBar = (ProgressBar)rootView.findViewById(R.id.main);
 
@@ -172,7 +201,7 @@ public class Home_Fragment extends Fragment {
             circleIndicator = (CircleIndicator) rootView.findViewById(R.id.inco);
             circleIndicator2 = (CircleIndicator) rootView.findViewById(R.id.inco2);
 
-
+            viewPager2.setPageMargin(25);
             viewPager.removeAllViews();
             mainTopViewPagerAdapter = new MainTopViewPagerAdapter(inflater, olleego_SP, viewPager2, getContext(),loadingBarDialog );
             viewPager.setAdapter(mainTopViewPagerAdapter);
@@ -277,9 +306,6 @@ public class Home_Fragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
-        Date date = new Date();
-
         String token = "ollego " + olleego_SP.getString("login_token", "");;
         DiaryAPI diaryAPI = retrofit_diary.create(DiaryAPI.class);
 
@@ -291,16 +317,47 @@ public class Home_Fragment extends Fragment {
 
                 if(response.isSuccessful()) {
 
-                    TextView sleep = (TextView) rootView.findViewById(R.id.main_diary_sleep);
-                    TextView walking = (TextView) rootView.findViewById(R.id.main_diary_walking);
-                    float time;
-                    int walkings;
 
-                    if (response.body().getResult().getSleep() == 0) {
-                        time = (float) 00.00;
+
+
+                    NumberFormat nf = NumberFormat.getNumberInstance();
+                    nf.setMinimumFractionDigits(1);
+
+
+                    float hour_temp = response.body().getResult().getSleep();
+                    int hour = (int)hour_temp;
+
+                    float minutes_temp = response.body().getResult().getSleep() - (int)response.body().getResult().getSleep();
+                    String minutes;
+                    String temp =nf.format(minutes_temp);
+
+
+                    if(temp.equals("0.1")) {
+                        minutes = "10분";
+                    } else if(temp.equals("0.2")) {
+                        minutes = "20분";
+                    } else if(temp.equals("0.3")) {
+                        minutes = "30분";
+                    } else if(temp.equals("0.4")) {
+                        minutes = "40분";
+                    } else if(temp.equals("0.5")) {
+                        minutes = "50분";
+
                     } else {
-                        time = response.body().getResult().getSleep();
+                        minutes = "00분";
                     }
+
+                    sleep_temp = response.body().getResult().getSleep();
+
+
+                    sleep.setText(String.valueOf((int)response.body().getResult().getSleep()) + "시간 " + minutes);
+
+
+
+
+
+
+
                     if (response.body().getResult().getWalking() == 0) {
 
                         walkings = 0;
@@ -308,8 +365,10 @@ public class Home_Fragment extends Fragment {
                         walkings = response.body().getResult().getWalking();
                     }
 
-                    sleep.setText(String.valueOf(time));
+                    water_temp = response.body().getResult().getWater();
+
                     walking.setText(String.valueOf(walkings));
+                    water.setText(String.valueOf(water_temp));
 
 
                     try {
@@ -325,6 +384,9 @@ public class Home_Fragment extends Fragment {
                                     break;
                                 case "저녁":
                                     rootView.findViewById(R.id.main_diary_dinner).setVisibility(View.VISIBLE);
+                                    break;
+                                case "모임":
+                                    rootView.findViewById(R.id.main_diary_etc).setVisibility(View.VISIBLE);
                                     break;
                                 case "간식":
                                     rootView.findViewById(R.id.main_diary_snack).setVisibility(View.VISIBLE);
@@ -355,5 +417,86 @@ public class Home_Fragment extends Fragment {
 
             }
         });
+    }
+
+    @OnClick(R.id.main_diary_water_layout)
+    void main_diary_water_layout() {
+        final DiaryWaterAddDialog diaryWaterAddDialog = new DiaryWaterAddDialog(getContext(), olleego_SP.getString("login_token", ""), Integer.valueOf(olleego_SP.getString("user_id","")),dateFormat.format(date), water_temp, sleep_temp, walkings);
+        diaryWaterAddDialog.show();
+
+        diaryWaterAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                String day_temp="";
+                if(diaryWaterAddDialog.getType() == true) {
+                    water_temp = diaryWaterAddDialog.getWater();
+
+                    water.setText(String.valueOf(water_temp));
+                    // 008 됌 수정하셈
+                }
+            }
+        });
+    }
+
+    @OnClick(R.id.main_diary_sleep_layout)
+    void main_diary_sleep_layout() {
+    final DiarySleepAddDialog diarySleepAddDialog = new DiarySleepAddDialog(getContext(), olleego_SP.getString("login_token", ""), Integer.valueOf(olleego_SP.getString("user_id","")),dateFormat.format(date), water_temp, sleep_temp, walkings);
+    diarySleepAddDialog.show();
+
+    diarySleepAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        @Override
+        public void onDismiss(DialogInterface dialog) {
+            if(diarySleepAddDialog.getType() == true) {
+                sleep_temp = diarySleepAddDialog.getSleep();
+
+                float hour_temp = sleep_temp;
+                int hour = (int)hour_temp;
+                NumberFormat nf = NumberFormat.getNumberInstance();
+                nf.setMinimumFractionDigits(1);
+                float minutes_temp = sleep_temp - (int)sleep_temp;
+                String minutes;
+                String temp =nf.format(minutes_temp);
+
+
+                if(temp.equals("0.1")) {
+                    minutes = "10분";
+                } else if(temp.equals("0.2")) {
+                    minutes = "20분";
+                } else if(temp.equals("0.3")) {
+                    minutes = "30분";
+                } else if(temp.equals("0.4")) {
+                    minutes = "40분";
+                } else if(temp.equals("0.5")) {
+                    minutes = "50분";
+
+                } else {
+                    minutes = "00분";
+                }
+
+
+
+                sleep.setText(String.valueOf((int)sleep_temp + "시간 " + minutes));
+            }
+        }
+    });
+    }
+
+    @OnClick(R.id.main_diary_food_add_layout)
+    void main_diary_food_add_layout() {
+        Intent intent = new Intent(getActivity(), DiaryFoodActivity.class);
+        intent.putExtra("user", olleego_SP.getString("user_id", ""));
+        intent.putExtra("day", dateFormat.format(date));
+        intent.putExtra("token", olleego_SP.getString("login_token", ""));
+        intent.putExtra("type", "main");
+        getActivity().startActivityForResult(intent, 0);
+    }
+
+    @OnClick(R.id.main_diary_go)
+    void main_diary_go() {
+        android.support.v4.app.FragmentTransaction transaction;
+        transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_main, new Diary_Fragment(olleego_SP),"diary");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

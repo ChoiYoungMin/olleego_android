@@ -238,4 +238,8 @@ public class DiarySleepAddDialog extends Dialog{
     public boolean getType() {
         return type;
     }
+
+    public float getSleep() {
+        return Float.valueOf(nf.format(sleep));
+    }
 }

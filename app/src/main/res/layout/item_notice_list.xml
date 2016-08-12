@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/notice_layout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/notice_title"
+                android:textSize="15sp"
+                android:textColor="#878885"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="버전이 업데이트 되었습니다."/>
+
+            <TextView
+                android:id="@+id/notice_day"
+                android:textStyle="italic"
+                android:layout_marginTop="27dp"
+                android:textSize="12sp"
+                android:textColor="#878885"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015-05-08"/>
+
+
+                <ImageView
+                    android:id="@+id/notice_img"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_down"/>
+
+
+        </RelativeLayout>
+
+
+        <View
+
+            android:visibility="gone"
+            android:id="@+id/notice_sun"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#e5e5e2"/>
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/notice_body"
+            android:textSize="14sp"
+            android:textColor="#878885"
+            android:layout_marginBottom="30dp"
+
+            android:lineSpacingExtra="3dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="버전이 업데이트 되었습니다.  아아버전이 업데이트 되었습니다. \n아아버전이 업데이트 되었습니다.\n아아버전이 업데이트 되었습니다\n아아버전이 업데이트 되었습니다\n아아버전이 업데이트 되었습니다"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

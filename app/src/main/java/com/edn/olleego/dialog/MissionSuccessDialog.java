@@ -37,11 +37,11 @@ public class MissionSuccessDialog extends Dialog {
 
 
         if(type == 1){
-            title.setText("["+titles+ "]을\n 완료하였습니다.");
+            title.setText("["+titles+ "]을 완료하였습니다.");
         } else if(type == 2) {
-            title.setText("식습관 미션션을\n 완료하습니다.");
+            title.setText("식습관 미션션을 완료하습니다.");
         } else if(type == 3) {
-            title.setText("생활습관 미션을\n 완료하였습니다.");
+            title.setText("생활습관 미션을 완료하였습니다.");
         }
 
 

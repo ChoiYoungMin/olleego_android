@@ -5,7 +5,7 @@
     android:padding="6dp" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/loadingbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,7 +16,7 @@
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/loadingbar_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
 

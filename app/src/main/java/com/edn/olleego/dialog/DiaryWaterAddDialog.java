@@ -69,6 +69,9 @@ public class DiaryWaterAddDialog extends Dialog{
     float sleep;
     int walking;
 
+
+
+
     public DiaryWaterAddDialog(Context context, String token, int user_id, String day, int nowWater, float sleep, int walking) {
         super(context);
 
@@ -205,5 +208,9 @@ public class DiaryWaterAddDialog extends Dialog{
 
     public boolean getType() {
         return type;
+    }
+
+    public int getWater() {
+        return water;
     }
 }

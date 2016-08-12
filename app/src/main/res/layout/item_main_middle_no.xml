@@ -25,6 +25,7 @@
             android:id="@+id/textView26" />
 
         <LinearLayout
+            android:visibility="gone"
             android:background="@drawable/reduis_main_top"
             android:layout_width="270dp"
             android:layout_height="36dp"
@@ -50,7 +51,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/reduis_main_top"
             android:layout_width="270dp"
             android:layout_height="36dp"

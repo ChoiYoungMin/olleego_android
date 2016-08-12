@@ -822,6 +822,8 @@ public class Diary_Fragment extends Fragment {
         intent.putExtra("user", Olleego_SP.getString("user_id", ""));
         intent.putExtra("day", click_day2);
         intent.putExtra("token", Olleego_SP.getString("login_token", ""));
+        intent.putExtra("type", "diary");
+
         getActivity().startActivityForResult(intent, 0);
 
     }

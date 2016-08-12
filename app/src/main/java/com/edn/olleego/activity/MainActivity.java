@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == 5 ) {
-            final android.support.v4.app.Fragment fragment =  getSupportFragmentManager().findFragmentByTag("diary");
+            final android.support.v4.app.Fragment fragment =  getSupportFragmentManager().findFragmentByTag(data.getStringExtra("type"));
             fragment.onActivityResult(requestCode, resultCode, data);
         }
         if(resultCode == 1 ) {
