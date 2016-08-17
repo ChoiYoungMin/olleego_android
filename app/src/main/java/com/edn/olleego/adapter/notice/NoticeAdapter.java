@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
 import com.edn.olleego.R;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by Antonio on 2016-08-12.
  */
-public class NoticeAdapter extends BaseAdapter {
+public class NoticeAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
     LayoutInflater inflater;
     Context context;
     NoticeViewHolder holder;
@@ -62,20 +63,17 @@ public class NoticeAdapter extends BaseAdapter {
         holder.notice_day.setText(noticeData.notice_day);
         holder.notice_body.setText(noticeData.notice_body);
 
-        holder.notice_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(holder.notice_body.getVisibility() == View.GONE) {
-                    holder.notice_body.setVisibility(View.VISIBLE);
-                    holder.notice_sun.setVisibility(View.VISIBLE);
-                    holder.notice_img.setImageResource(R.drawable.ic_keyboard_arrow_up);
-                } else {
-                    holder.notice_body.setVisibility(View.GONE);
-                    holder.notice_sun.setVisibility(View.GONE);
-                    holder.notice_img.setImageResource(R.drawable.ic_keyboard_arrow_down);
-                }
-            }
-        });
+
+        if(noticeData.getVisibility() == View.GONE) {
+            holder.notice_body.setVisibility(View.GONE);
+            holder.notice_sun.setVisibility(View.GONE);
+            holder.notice_img.setImageResource(R.drawable.ic_keyboard_arrow_down);
+        } else {
+            holder.notice_body.setVisibility(View.VISIBLE);
+            holder.notice_sun.setVisibility(View.VISIBLE);
+            holder.notice_img.setImageResource(R.drawable.ic_keyboard_arrow_up);
+        }
+
 
 
         return convertView;
@@ -83,9 +81,16 @@ public class NoticeAdapter extends BaseAdapter {
 
 
     public void add(String title, String day, String body) {
-        NoticeData noticeData = new NoticeData(title,day,body);
+        NoticeData noticeData = new NoticeData(title,day,body,View.GONE);
 
         noticeDatas.add(noticeData);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        noticeDatas.get(position).setVisibility(View.VISIBLE);
         notifyDataSetChanged();
     }
 }

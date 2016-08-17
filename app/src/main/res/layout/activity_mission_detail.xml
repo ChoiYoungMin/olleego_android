@@ -119,7 +119,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_people_12"/>
+                        android:src="@drawable/ic_people_complished"/>
 
                     <TextView
                         android:id="@+id/mission_detail_peple"
@@ -209,7 +209,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_turned_in_not"/>
+                            android:src="@drawable/ic_event_note"/>
 
                         <TextView
 
@@ -257,7 +257,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_turned_in_not"/>
+                            android:src="@drawable/ic_schedule"/>
 
                         <TextView
 

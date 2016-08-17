@@ -14,12 +14,23 @@ public class NoticeData {
     String notice_title;
     String notice_body;
     String notice_day;
+    int visibility;
 
 
-    public NoticeData(String notice_title, String notice_day, String notice_body) {
+    public NoticeData(String notice_title, String notice_day, String notice_body, int visibility) {
         this.notice_title = notice_title;
         this.notice_day = notice_day;
         this.notice_body = notice_body;
+        this.visibility = visibility;
+
+    }
+
+    public int getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(int visibility){
+        this.visibility = visibility;
     }
 
 }
