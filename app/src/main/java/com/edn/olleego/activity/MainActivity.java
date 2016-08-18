@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.edn.olleego.R;
 import com.edn.olleego.activity.login.EmailActivity;
+import com.edn.olleego.activity.notice.NoticeActivity;
 import com.edn.olleego.common.BackPressCloseHandler;
 import com.edn.olleego.fragment.Home_Fragment;
 import com.edn.olleego.fragment.Mission.MissionCategoryMainFragment;
@@ -279,12 +280,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.left_menu_setting) {
             transaction.replace(R.id.content_main, missionCustomFragment);
         } else if (id == R.id.left_menu_notice) {
-            SharedPreferences.Editor editor = olleego_SP.edit();
-            //editor.remove("login_chk");
-            editor.clear();
-            editor.commit();
-            finish();
-            return true;
+            Intent intent = new Intent(getApplicationContext(), NoticeActivity.class);
+            startActivity(intent);
         }
 
         transaction.addToBackStack(null);

@@ -43,6 +43,8 @@ public class MissionStartDialog extends Dialog {
     int day;
     int end_day;
     int mission_id;
+    Context context;
+    boolean end;
 
     @BindView(R.id.missionstart_mission_title)
     TextView mission_title;
@@ -53,6 +55,7 @@ public class MissionStartDialog extends Dialog {
 
     public MissionStartDialog(Context context, String title, int time, boolean type, String token, int user, int mission, int day, int mission_id) {
         super(context);
+        this.context = context;
         this.title = title;
         this.time = time;
         this.type = type;
@@ -149,8 +152,9 @@ public class MissionStartDialog extends Dialog {
                     editor.putString("user_mission_today_onoff", "on");
                     editor.commit();
 
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    getContext().startActivity(intent);
+                    end = true;
+                    dismiss();
+
                 }
 
                 @Override
@@ -187,8 +191,8 @@ public class MissionStartDialog extends Dialog {
 
                     editor.commit();
 
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    getContext().startActivity(intent);
+                    end = true;
+                    dismiss();
 
 
                 }
@@ -199,7 +203,10 @@ public class MissionStartDialog extends Dialog {
                 }
             });
         }
-        dismiss();
     }
 
+
+    public boolean getEnd() {
+        return end;
+    }
 }

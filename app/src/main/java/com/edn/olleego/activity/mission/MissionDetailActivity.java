@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.adapter.mission.Mission_Data;
 import com.edn.olleego.adapter.mission.Mission_Detail_Img_Adapter;
 import com.edn.olleego.common.ServerInfo;
@@ -151,6 +152,17 @@ public class MissionDetailActivity extends AppCompatActivity {
             //ission_detail_su.setText(); 주 몇회?
             mission_detail_description.setText(Html.fromHtml(intent.getStringExtra("mission_description")));
 
+
+             mission_rating.setRating(intent.getIntExtra("mission_rating", 0));
+
+             mission_rating_people.setText("("+intent.getIntExtra("mission_rating_people", 0)+")");
+
+             mission_people.setText(intent.getIntExtra("mission_people", 0) +" 명이 이 미션을 수행하였습니다.");
+
+
+
+
+
             for(int i=0; i< intent.getIntExtra("mission_img_size",0); i++) {
                 mission_detail_img_adapter.addItem(intent.getStringExtra("mission_img"+i));
 
@@ -184,17 +196,41 @@ public class MissionDetailActivity extends AppCompatActivity {
     }
 
 
-    public void selectEx(final int i) {
+    public void selectExgroups(final int i) {
+
+        mission_detail_list.setText("");
         Retrofit retrofit2 = new Retrofit.Builder()
                 .baseUrl(ServerInfo.OLLEEGO_HOST)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
 
-        ExdetailAPI exdetailAPI = retrofit2.create(ExdetailAPI.class);
+        ExgroupsAPI exgroupsModel = retrofit2.create(ExgroupsAPI.class);
+        final Call<ExgroupsModel> repos2 = exgroupsModel.listRepos(i);
+        repos2.enqueue(new Callback<ExgroupsModel>() {
+            @Override
+            public void onResponse(Call<ExgroupsModel> call, Response<ExgroupsModel> response) {
+
+                    for (int g = 0; g < response.body().getResult().getEx_list().size(); g++) {
+                        ex_text = ex_text + "\n" + response.body().getResult().getEx_list().get(g).getEx().getTitle();
+                    }
+
+                    mission_detail_list.setText(ex_text);
+                ex_text="";
+
+                loadingBarDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ExgroupsModel> call, Throwable t) {
+
+            }
+        });
+
 
         //for(int i=0; i<ex_list.size(); i++) {
 
+        /*
         try {
             final Call<ExdetailModel> repos2 = exdetailAPI.listRepos(ex_list.get(i));
             final int finalI = i;
@@ -229,6 +265,7 @@ public class MissionDetailActivity extends AppCompatActivity {
 
         }
        // }
+       */
     }
 
     public void init_list() {
@@ -290,9 +327,7 @@ public class MissionDetailActivity extends AppCompatActivity {
 
 
 
-                list_go(0);
-                ex_lists.clear();
-                selectEx(0);
+                selectExgroups(selectMissionModel.getResult().getMi_days().get(0).getExgroup().get(0).get_id());
             }
 
             @Override
@@ -335,6 +370,14 @@ public class MissionDetailActivity extends AppCompatActivity {
             dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dia) {
+                    boolean end = dialog.getEnd();
+                    if(end == true) {
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             });
 
@@ -342,6 +385,7 @@ public class MissionDetailActivity extends AppCompatActivity {
     }
 
     public void list_go(int i) {
+        /*
         ex_list.clear();
         for(int j=0; j<selectMissionModel.getResult().getMi_days().get(0).getExgroup().size(); j++) {
             if(times == selectMissionModel.getResult().getMi_days().get(0).getExgroup().get(j).getTime()) {
@@ -351,6 +395,7 @@ public class MissionDetailActivity extends AppCompatActivity {
 
             }
         }
+        */
     }
 
     @OnClick(R.id.mission_detail_time_one)
@@ -365,11 +410,9 @@ public class MissionDetailActivity extends AppCompatActivity {
             }
         }
 
-        list_go(0);
+        selectExgroups(selectMissionModel.getResult().getMi_days().get(0).getExgroup().get(0).get_id());
 
-        ex_lists.clear();
-        selectEx(0);
-         // 운동
+
 
     }
 
@@ -385,10 +428,8 @@ public class MissionDetailActivity extends AppCompatActivity {
                 findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_radius);
             }
         }
+        selectExgroups(selectMissionModel.getResult().getMi_days().get(0).getExgroup().get(1).get_id());
 
-        list_go(1);
-        ex_lists.clear();
-        selectEx(0);
     }
 
     @OnClick(R.id.mission_detail_time_three)
@@ -403,10 +444,8 @@ public class MissionDetailActivity extends AppCompatActivity {
                 findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_radius);
             }
         }
+        selectExgroups(selectMissionModel.getResult().getMi_days().get(0).getExgroup().get(2).get_id());
 
-        list_go(2);
-        ex_lists.clear();
-        selectEx(0);
     }
 
     @OnClick(R.id.mission_detail_time_four)
@@ -421,10 +460,8 @@ public class MissionDetailActivity extends AppCompatActivity {
                 findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_radius);
             }
         }
+        selectExgroups(selectMissionModel.getResult().getMi_days().get(0).getExgroup().get(3).get_id());
 
-        list_go(3);
-        ex_lists.clear();
-        selectEx(0);
     }
 
     @OnClick(R.id.mission_detail_time_five)
@@ -439,10 +476,8 @@ public class MissionDetailActivity extends AppCompatActivity {
                 findViewById(time.get(i)).setBackgroundResource(R.drawable.mission_detail_radius);
             }
         }
+        selectExgroups(selectMissionModel.getResult().getMi_days().get(0).getExgroup().get(4).get_id());
 
-        list_go(4);
-        ex_lists.clear();
-        selectEx(0);
     }
 
     @OnClick(R.id.mission_detail_time_six)
@@ -458,9 +493,8 @@ public class MissionDetailActivity extends AppCompatActivity {
             }
         }
 
-        list_go(5);
-        ex_lists.clear();
-        selectEx(0);
+        selectExgroups(selectMissionModel.getResult().getMi_days().get(0).getExgroup().get(5).get_id());
+
     }
 
     private void listViewHeightSet(Adapter listAdapter, ListView listView)

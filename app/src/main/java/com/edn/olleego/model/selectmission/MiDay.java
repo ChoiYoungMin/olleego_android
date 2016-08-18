@@ -8,14 +8,29 @@ import java.util.List;
 public class MiDay {
 
 
+    int life;
+
+    int food;
+
     int day;
 
     String _id;
 
     List<Exgroup> exgroup;
-
     boolean rest;
 
+    public int getLife() {
+        return this.life;
+    }
+    public void setLife(int life) {
+        this.life = life;
+    }
+    public int getFood() {
+        return this.food;
+    }
+    public void setFood(int food) {
+        this.food = food;
+    }
     public int getDay() {
         return this.day;
     }
@@ -40,4 +55,5 @@ public class MiDay {
     public void setRest(boolean rest) {
         this.rest = rest;
     }
+
 }

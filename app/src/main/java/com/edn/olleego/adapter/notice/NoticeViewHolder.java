@@ -15,6 +15,9 @@ import butterknife.ButterKnife;
  */
 public class NoticeViewHolder {
 
+    @BindView(R.id.notice_all_layout)
+    LinearLayout notice_all_layout;
+
     @BindView(R.id.notice_title)
     TextView notice_title;
     @BindView(R.id.notice_body)

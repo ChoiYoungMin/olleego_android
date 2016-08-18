@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.edn.olleego.R;
 
+import java.util.Date;
+
 import butterknife.BindView;
 
 /**
@@ -13,11 +15,11 @@ import butterknife.BindView;
 public class NoticeData {
     String notice_title;
     String notice_body;
-    String notice_day;
+    Date notice_day;
     int visibility;
 
 
-    public NoticeData(String notice_title, String notice_day, String notice_body, int visibility) {
+    public NoticeData(String notice_title, Date notice_day, String notice_body, int visibility) {
         this.notice_title = notice_title;
         this.notice_day = notice_day;
         this.notice_body = notice_body;

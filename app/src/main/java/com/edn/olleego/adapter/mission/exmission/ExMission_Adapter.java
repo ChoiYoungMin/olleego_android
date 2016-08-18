@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 
 import java.util.ArrayList;
@@ -24,8 +25,9 @@ public class ExMission_Adapter extends BaseAdapter{
     private ArrayList<ExMission_Data> mExData = new ArrayList<ExMission_Data>();
     int su;
 
-    public ExMission_Adapter(LayoutInflater inflater) {
+    public ExMission_Adapter(LayoutInflater inflater, Context context) {
         this.inflater = inflater;
+        this.mContext = context;
     }
 
 
@@ -69,6 +71,8 @@ public class ExMission_Adapter extends BaseAdapter{
         if(position == su) {
             convertView.findViewById(R.id.exmission_layout).setBackgroundColor(Color.parseColor("#fafcf3"));
         }
+
+        Glide.with(mContext).load(gymDatas.mImg).into(holder.mImg);
 
         //holder.gym_pt.setText(gymDatas.gym_pt);
 

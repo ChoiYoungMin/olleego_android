@@ -179,22 +179,24 @@
 
         <TextView
             android:id="@+id/ex_mission_method"
-
+            android:textSize="12sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:textColor="#606060"
             android:lineSpacingExtra="10dp"
             android:gravity="center"
             android:layout_marginTop="20dp"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1.손을 잡고 바닥에 누워라\n심호흡을 간단한ㄷ게 하adad다\n심호흡을 간단한ㄷ게 하adad다\n심호흡을 간단한ㄷ게 하adad다"/>
 
 
         <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
 
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -269,7 +271,7 @@
                 android:id="@+id/ex_mission_listview"
                 android:layout_gravity="center_horizontal"
                 android:dividerHeight="3dp"
-                android:divider="@android:color/darker_gray"
+                android:divider="@drawable/card_background"
 
                 />
 

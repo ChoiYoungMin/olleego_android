@@ -25,6 +25,9 @@ public class Mission_ViewHolder {
     @BindView(R.id.mission_level) TextView mission_level;
     @BindView(R.id.mission_time) TextView mission_time;
     @BindView(R.id.mission_type_img) ImageView mission_type_img;
+
+    @BindView(R.id.mission_all_user) TextView mission_all_user;
+
     public Mission_ViewHolder(View view) {
         ButterKnife.bind(this, view);
     }

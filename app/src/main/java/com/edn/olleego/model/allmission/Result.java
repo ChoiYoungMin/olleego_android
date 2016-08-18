@@ -1,8 +1,5 @@
 package com.edn.olleego.model.allmission;
 
-import com.edn.olleego.model.usermission.MiDay2;
-import com.edn.olleego.model.usermission.Mission;
-import com.kakao.usermgmt.response.model.User;
 
 import java.util.Date;
 import java.util.List;
@@ -21,35 +18,38 @@ public class Result {
 
     String title;
 
+    String title_img;
+
     String description1;
 
     String description2;
 
-    MiHelth mi_helth;
+    MiHealth mi_health;
 
     MiLgSort mi_lg_sort;
+
+    int mi_sm_sort;
 
     MiTarget mi_target;
 
     MiLevel mi_level;
 
-    String title_img;
-
     int mi_term;
 
     int __v;
 
-    //List<MiDay> mi_days;
+    List<MiDay> mi_days;
 
-    List<Object> description_img;
+    List<String> description_img;
 
     List<MiMdSort> mi_md_sort;
 
+    int point_avg;
 
+    int point_user;
 
-
-
-
+    int user_count;
+    String mission_status;
 
 
 
@@ -77,6 +77,12 @@ public class Result {
     public void setTitle(String title) {
         this.title = title;
     }
+    public String getTitle_img() {
+        return this.title_img;
+    }
+    public void setTitle_img(String title_img) {
+        this.title_img = title_img;
+    }
     public String getDescription1() {
         return this.description1;
     }
@@ -88,18 +94,24 @@ public class Result {
     }
     public void setDescription2(String description2) {
         this.description2 = description2;
-}
-    public MiHelth getMi_helth() {
-        return this.mi_helth;
     }
-    public void setMi_helth(MiHelth mi_helth) {
-        this.mi_helth = mi_helth;
+    public MiHealth getMi_health() {
+        return this.mi_health;
+    }
+    public void setMi_health(MiHealth mi_health) {
+        this.mi_health = mi_health;
     }
     public MiLgSort getMi_lg_sort() {
         return this.mi_lg_sort;
     }
     public void setMi_lg_sort(MiLgSort mi_lg_sort) {
         this.mi_lg_sort = mi_lg_sort;
+    }
+    public int getMi_sm_sort() {
+        return this.mi_sm_sort;
+    }
+    public void setMi_sm_sort(int mi_sm_sort) {
+        this.mi_sm_sort = mi_sm_sort;
     }
     public MiTarget getMi_target() {
         return this.mi_target;
@@ -125,17 +137,16 @@ public class Result {
     public void set__v(int __v) {
         this.__v = __v;
     }
-    /*
     public List<MiDay> getMi_days() {
         return this.mi_days;
     }
     public void setMi_days(List<MiDay> mi_days) {
         this.mi_days = mi_days;
-    }*/
-    public List<Object> getDescription_img() {
+    }
+    public List<String> getDescription_img() {
         return this.description_img;
     }
-    public void setDescription_img(List<Object> description_img) {
+    public void setDescription_img(List<String> description_img) {
         this.description_img = description_img;
     }
     public List<MiMdSort> getMi_md_sort() {
@@ -144,11 +155,28 @@ public class Result {
     public void setMi_md_sort(List<MiMdSort> mi_md_sort) {
         this.mi_md_sort = mi_md_sort;
     }
-
-    public void setTitle_img(String title_img) {
-        this.title_img = title_img;
+    public int getPoint_avg() {
+        return this.point_avg;
     }
-    public String getTitle_img() {
-        return this.title_img;
+    public void setPoint_avg(int point_avg) {
+        this.point_avg = point_avg;
+    }
+    public int getPoint_user() {
+        return this.point_user;
+    }
+    public void setPoint_user(int point_user) {
+        this.point_user = point_user;
+    }
+    public int getUser_count() {
+        return this.user_count;
+    }
+    public void setUser_count(int user_count) {
+        this.user_count = user_count;
+    }
+    public String getMission_status() {
+        return this.mission_status;
+    }
+    public void setMission_status(String mission_status) {
+        this.mission_status = mission_status;
     }
 }

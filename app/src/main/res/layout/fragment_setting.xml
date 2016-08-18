@@ -343,6 +343,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/setting_privacy"
             android:layout_width="match_parent"
             android:background="@android:color/white"
             android:layout_height="50dp">
@@ -368,6 +369,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/setting_polic"
             android:layout_width="match_parent"
             android:background="@drawable/card_background"
             android:layout_height="50dp">
@@ -394,6 +396,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/setting_logout"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:background="@android:color/white"

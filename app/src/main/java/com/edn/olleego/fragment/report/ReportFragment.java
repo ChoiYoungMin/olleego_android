@@ -3,6 +3,7 @@ package com.edn.olleego.fragment.report;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import com.edn.olleego.adapter.report.Report_PagerAdapter;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.custom.VerticalProgressBar;
+import com.edn.olleego.dialog.LoadingBarDialog;
 import com.edn.olleego.dialog.Report_HealthyDialog;
 import com.edn.olleego.model.ReportModel;
 import com.edn.olleego.server.ReportAPI;
@@ -51,6 +53,7 @@ public class ReportFragment extends Fragment {
 
     double bmi;
     int temp;
+    LoadingBarDialog loadingBarDialog;
 
 
     private Report_PagerAdapter mSectionsPagerAdapter;
@@ -69,6 +72,10 @@ public class ReportFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_report, container, false);
         ButterKnife.bind(this, view);
+
+        loadingBarDialog = new LoadingBarDialog(getContext());
+        loadingBarDialog.show();
+        loadingBarDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -153,6 +160,7 @@ public class ReportFragment extends Fragment {
 
                 report_bmi.setText(s_bim);
                 report_health_temp.setText(String.valueOf(temp) + s_health_temp);
+                loadingBarDialog.dismiss();
             }
 
             @Override

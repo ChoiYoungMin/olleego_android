@@ -150,13 +150,13 @@ public class ExMissionActivity extends AppCompatActivity {
 
 
 
-        ExMission_Adapter exMission_adapter = new ExMission_Adapter(getLayoutInflater());
+        ExMission_Adapter exMission_adapter = new ExMission_Adapter(getLayoutInflater(), this);
         list_View.setAdapter(exMission_adapter);
 
         for(int i=0; i< size; i++ ) {
             exmodels = (Ex) intent.getSerializableExtra("ex"+i);
             ex_id.add(exmodels.get_id());
-            exMission_adapter.add(exmodels.getMovie_url(), exmodels.getTitle(), exmodels.getWarning(),su);
+            exMission_adapter.add(exmodels.getThum_jpg(), exmodels.getTitle(), exmodels.getWarning(),su);
         }
 
         listViewHeightSet(exMission_adapter, list_View);

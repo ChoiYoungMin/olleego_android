@@ -38,8 +38,9 @@
     android:layout_alignStart="@+id/mission_title"
     android:layout_marginTop="18dp"
         android:id="@+id/linearLayout8">
-
++
     <RatingBar
+        android:background="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mission_rating"
@@ -157,6 +158,7 @@
             android:background="@drawable/ic_people_12"/>
 
         <TextView
+            android:id="@+id/mission_all_user"
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

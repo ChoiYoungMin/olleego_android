@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.etc.PolicyActivity;
+import com.edn.olleego.activity.etc.PrivacyActivity;
 import com.edn.olleego.activity.mission.MissionCustomStepOneActivity;
 import com.edn.olleego.activity.notice.NoticeActivity;
 
@@ -38,6 +40,7 @@ public class SettingFragment extends Fragment {
     TextView setting_birthday_text;
     @BindView(R.id.setting_img)
     ImageView setting_img;
+
 
 
     SharedPreferences olleego_sp;
@@ -110,6 +113,28 @@ public class SettingFragment extends Fragment {
     void setting_notice() {
         Intent intent = new Intent(getActivity(), NoticeActivity.class);
         getActivity().startActivity(intent);
+    }
+
+    @OnClick(R.id.setting_polic)
+    void setting_polic() {
+        Intent intent = new Intent(getActivity(), PolicyActivity.class);
+        getActivity().startActivity(intent);
+    }
+
+    @OnClick(R.id.setting_privacy)
+    void setting_privacy() {
+        Intent intent = new Intent(getActivity(), PrivacyActivity.class);
+        getActivity().startActivity(intent);
+    }
+
+
+    @OnClick(R.id.setting_logout)
+    void setting_logout() {
+        SharedPreferences.Editor editor = olleego_sp.edit();
+        //editor.remove("login_chk");
+        editor.clear();
+        editor.commit();
+        getActivity().finish();
     }
 
 }

@@ -15,25 +15,33 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-
+        android:gravity="end|bottom"
         android:layout_below="@+id/linearLayout2">
         <RadioGroup
-            android:layout_marginRight="5dp"
-            android:gravity="right"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <CheckBox
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/mission_all_sort_group"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/mission_all_sort_avg"
+                android:textColor="#878885"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:textColor="#878885"
                 android:text="별점 순"/>
-            <CheckBox
-                android:textSize="12dp"
+
+
+            <RadioButton
+                android:checked="true"
+                android:id="@+id/mission_all_sort_user"
+                android:textColor="#878885"
+                android:textSize="12sp"
+                android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#878885"
                 android:text="사용자 순"/>
         </RadioGroup>
 

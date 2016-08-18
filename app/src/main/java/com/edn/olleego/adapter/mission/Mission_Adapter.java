@@ -32,9 +32,11 @@ public class Mission_Adapter extends BaseAdapter{
         super();
         this.inflater = inflater;
         this.context = context;
+
         loadingBarDialog = new LoadingBarDialog(context);
         loadingBarDialog.show();
         loadingBarDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
     }
 
 
@@ -55,7 +57,6 @@ public class Mission_Adapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
 
         if(position == mission_data.size()-1) {
             loadingBarDialog.dismiss();
@@ -85,9 +86,10 @@ public class Mission_Adapter extends BaseAdapter{
         holder.mission_type.setText(gymDatas.mission_type);
         holder.mission_title.setText(gymDatas.mission_title);
         holder.rating.setRating(gymDatas.rating);
-        holder.rating_peple.setText(String.valueOf(gymDatas.rating_peple));
+        holder.rating_peple.setText("("+String.valueOf(gymDatas.rating_peple)+")");
         holder.mission_level.setText(gymDatas.mission_level);
         holder.mission_time.setText(gymDatas.mission_time);
+        holder.mission_all_user.setText(String.valueOf(gymDatas.mission_user));
 
         if(gymDatas.mission_type.equals("다이어트")) {
             Glide.with(context).load(R.drawable.diet)
@@ -102,12 +104,13 @@ public class Mission_Adapter extends BaseAdapter{
 
 
 
+
         //mission_type_img
         return convertView;
     }
 
-    public void addItem(String mImg, String mission_type, String mission_title, int rating, int rating_peple, String mission_level, String mission_time) {
-        Mission_Data missionData = new Mission_Data(mImg, mission_type, mission_title, rating, rating_peple, mission_level, mission_time);
+    public void addItem(String mImg, String mission_type, String mission_title, int rating, int rating_peple, String mission_level, String mission_time, int mission_user) {
+        Mission_Data missionData = new Mission_Data(mImg, mission_type, mission_title, rating, rating_peple, mission_level, mission_time, mission_user);
 
         mission_data.add(missionData);
         notifyDataSetChanged();

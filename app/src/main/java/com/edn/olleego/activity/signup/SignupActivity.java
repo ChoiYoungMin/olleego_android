@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.edn.olleego.R;
 import com.edn.olleego.activity.MainActivity;
+import com.edn.olleego.activity.etc.PolicyActivity;
+import com.edn.olleego.activity.etc.PrivacyActivity;
 import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.fragment.Policy_Fragment;
@@ -271,7 +273,8 @@ public class SignupActivity extends FragmentActivity {
 
 
                                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
 
                                     startActivity(intent);
                                     finish();
@@ -317,12 +320,20 @@ public class SignupActivity extends FragmentActivity {
     @OnClick(R.id.policy)
     void policy_click() {
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        Policy_Fragment policy_ = new Policy_Fragment();
-        transaction.replace(R.id.policy_, policy_);
-        transaction.commit();
+        Intent intent = new Intent(this, PolicyActivity.class);
+        startActivity(intent);
 
     }
+
+    @OnClick(R.id.policy2)
+    void policy2_click() {
+
+        Intent intent = new Intent(this, PrivacyActivity.class);
+        startActivity(intent);
+
+    }
+
+
 
     @OnClick(R.id.join_exit)
     void join_exit_click() {

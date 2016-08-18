@@ -72,7 +72,9 @@
         <activity android:name=".activity.report.ReportHealthyInputActivity" />
         <activity android:name=".activity.mission.missionlist.MissionListActivity" />
         <activity android:name=".activity.diary.DiaryChartActivity" />
-        <activity android:name=".activity.notice.NoticeActivity"></activity>
+        <activity android:name=".activity.notice.NoticeActivity" />
+        <activity android:name=".activity.etc.PolicyActivity" />
+        <activity android:name=".activity.etc.PrivacyActivity"></activity>
     </application>
 
 </manifest>

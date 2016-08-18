@@ -1,5 +1,6 @@
 package com.edn.olleego.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -47,12 +48,12 @@ public class Policy_Fragment extends Fragment implements SlidingTabLayout.TabCol
 
     @Override
     public int getIndicatorColor(int position) {
-        return  0;
+        return Color.parseColor("#cde860");
     }
 
     @Override
     public int getDividerColor(int position) {
-        return 0;
+        return Color.parseColor("#cde860");
     }
 
     class MiniPagerAdapter extends PagerAdapter {

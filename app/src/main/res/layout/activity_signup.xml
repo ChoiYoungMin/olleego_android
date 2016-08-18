@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="700dp"
+    android:background="@drawable/and_intro1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="700dp"
     android:id="@+id/comeon"
-    tools:context="com.edn.olleego.activity.login.EmailActivity"
-    android:background="@drawable/bg_signin">
+    tools:context="com.edn.olleego.activity.login.EmailActivity">
+
+    <LinearLayout
+        android:background="#b2000000"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="700dp">
 
     <ImageView
         android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
         android:layout_width="20dp"
-        android:layout_height="wrap_content"
+        android:layout_height="16dp"
         android:id="@+id/join_exit"
         android:src="@drawable/close"/>
 
     <LinearLayout
-
+        android:layout_marginTop="40dp"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="600dp"
         android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
@@ -32,15 +42,15 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/email_hint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:background="#1affffff"
             android:textColorHint="@android:color/white"
             android:theme="@style/Theme.AppCompat">
             <EditText
                 android:id="@+id/email_"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-
+                android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
@@ -51,24 +61,20 @@
                 android:layout_marginLeft="20dp"/>
         </android.support.design.widget.TextInputLayout>
 
-        <View
-            android:layout_width="300dp"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:background="@android:color/white"/>
 
         <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="20dp"
             android:id="@+id/name_hint"
             android:layout_width="match_parent"
             android:textColorHint="@android:color/white"
-            android:layout_height="wrap_content"
+            android:background="#1affffff"
+            android:layout_height="40dp"
             android:theme="@style/Theme.AppCompat">
             <EditText
                 android:id="@+id/name_"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:textSize="14sp"
@@ -78,24 +84,20 @@
                 android:background="@null"/>
         </android.support.design.widget.TextInputLayout>
 
-        <View
-            android:layout_width="300dp"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
-            android:background="@android:color/white"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/password_hint"
             android:layout_width="match_parent"
             android:textColorHint="@android:color/white"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#1affffff"
+            android:layout_height="40dp"
             android:theme="@style/Theme.AppCompat">
             <EditText
                 android:id="@+id/password_"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
 
@@ -106,26 +108,22 @@
                 android:hint="비밀번호 (영문과 숫자를 혼합하여 8자이상)"
                 android:background="@null"/>
         </android.support.design.widget.TextInputLayout>
-        <View
-            android:layout_width="300dp"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
-            android:background="@android:color/white"/>
 
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/password2_hint"
             android:layout_width="match_parent"
             android:textColorHint="@android:color/white"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#1affffff"
+            android:layout_height="40dp"
             android:theme="@style/Theme.AppCompat">
             <EditText
                 android:id="@+id/password_chk"
                 android:inputType="textPassword"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
 
                 android:singleLine="true"
                 android:textColor="@android:color/white"
@@ -136,21 +134,16 @@
                 android:background="@null"/>
         </android.support.design.widget.TextInputLayout>
 
-        <View
-            android:layout_width="300dp"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:background="@android:color/white"/>
-
-
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="#1affffff"
+            android:layout_height="40dp"
+            android:layout_width="match_parent">
 
             <TextView
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
@@ -163,50 +156,43 @@
             <ImageView
 
                 android:id="@+id/sex_w"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
                 android:text="여자"
                 android:src="@drawable/f_btn_default"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_toStartOf="@+id/sex_m" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
                 android:text="남자"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
                 android:src="@drawable/m_btn_default"
-                android:id="@+id/sex_m" />
+                android:id="@+id/sex_m"
+                android:layout_alignTop="@+id/sex_w"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
 
-        <View
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:background="@android:color/white"/>
 
 
         <LinearLayout
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="#1affffff"
+            android:layout_height="40dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:textSize="14sp"
-                android:layout_marginLeft="20dp"
                 android:hint="생년월일"
                 android:background="@null"/>
 
             <TextView
                 android:layout_marginLeft="110dp"
-                android:layout_marginTop="15dp"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
@@ -217,7 +203,6 @@
 
             <ImageView
                 android:id="@+id/birtday_btn"
-                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:src="@drawable/birth_btn"/>
@@ -226,56 +211,56 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="20dp"
-            android:background="@android:color/white"/>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:id="@+id/idid">
             <TextView
-                android:layout_gravity="center"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/policy"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/holo_orange_dark"
-                android:text="· 이용약관 및 개인정보취급방침"/>
+                android:text="이용약관 확인"
+                android:layout_alignParentStart="true" />
 
-        </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/policy2"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_orange_dark"
+                android:text="개인정보취급방침 확인"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
 
         <TextView
+            android:lineSpacingExtra="5dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:textSize="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textColor="#cde860"
             android:text="이용약관 및 개인정보취급방침 내용을 확인하였으며,\n                       이 내용에 동의합니다."/>
         <Button
             android:id="@+id/join_ok"
             android:layout_marginTop="20dp"
             android:layout_width="310dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textColor="@android:color/white"
-            android:background="@drawable/border"
+            android:background="@drawable/radius_login"
             android:layout_gravity="center"
-            android:text="회원가입"/>
+            android:text="동의하고 회원가입"/>
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/policy_"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-    </FrameLayout>
+    </LinearLayout>
 </RelativeLayout>
+</ScrollView>

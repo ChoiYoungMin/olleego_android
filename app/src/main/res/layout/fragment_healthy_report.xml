@@ -139,7 +139,7 @@
                         android:layout_marginTop="7dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="18.5 ~ 22.9"/>
+                        android:text=""/>
 
 
                 </LinearLayout>
@@ -179,7 +179,7 @@
                             android:textSize="19sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="18.5 ~ 22.9"/>
+                            android:text=""/>
 
                         <ImageView
                             android:id="@+id/report_healthy_report1_bmiimg2"
@@ -232,7 +232,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="약 72kg ~ 88kg"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -267,7 +267,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="약 7kg ~ 12g"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
