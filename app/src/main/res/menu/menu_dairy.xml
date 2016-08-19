@@ -7,6 +7,6 @@
         android:id="@+id/menu_diray_chart"
         android:title="차트"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_equal"
+        android:icon="@drawable/ic_equalizer"
         app:showAsAction="always"/>
 </menu>

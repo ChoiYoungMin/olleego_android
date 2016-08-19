@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,8 +15,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.login.EmailActivity;
 import com.edn.olleego.activity.notice.NoticeActivity;
@@ -68,8 +72,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
-
     int login_chk;
     SharedPreferences olleego_SP;
     @Override
@@ -104,7 +106,6 @@ public class MainActivity extends AppCompatActivity
 
 
         setCustomActionbar();
-
 
 
 
@@ -207,8 +208,14 @@ public class MainActivity extends AppCompatActivity
             if (olleego_SP.getString("login_chk", "").equals("true")) {
                 findViewById(R.id.login_ok_left).setVisibility(View.VISIBLE);
                 findViewById(R.id.login_ok_right).setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(), "로그인중", Toast.LENGTH_SHORT).show();
 
+                TextView left_header_name = (TextView)findViewById(R.id.left_header_name);
+                TextView left_header_email = (TextView)findViewById(R.id.left_header_email);
+                ImageView left_header_img= (ImageView)findViewById(R.id.left_header_img);
+
+                left_header_name.setText(olleego_SP.getString("login_name",""));
+                left_header_email.setText(olleego_SP.getString("login_email",""));
+                Glide.with(this).load(olleego_SP.getString("login_img", "")).into(left_header_img);
             }
 
 
@@ -216,7 +223,6 @@ public class MainActivity extends AppCompatActivity
             else {
                 findViewById(R.id.login_no_left).setVisibility(View.VISIBLE);
                 findViewById(R.id.login_no_right).setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(), "비로그인중", Toast.LENGTH_SHORT).show();
 
 
             }

@@ -203,7 +203,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
             <ImageView
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right"
@@ -228,7 +228,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
             <ImageView
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right"
@@ -255,7 +255,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
             <ImageView
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right"
@@ -297,7 +297,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
             <ImageView
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right"
@@ -330,7 +330,7 @@
                 android:text="family@edninnovation.net 으로 문의메일 보내기"
                 android:layout_below="@+id/textView5" />
             <ImageView
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right"
@@ -358,7 +358,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
             <ImageView
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right"
@@ -384,7 +384,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
             <ImageView
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right"
@@ -412,7 +412,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
             <ImageView
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right"
@@ -438,7 +438,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
             <ImageView
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_right"

@@ -290,7 +290,7 @@ public class Diary_Fragment extends Fragment {
         onCalendar(curYearFormat.format(date) + "-" + curMonthFormat.format(date), curYearFormat.format(date) + curMonthFormat.format(date));
 
         //
-        daydetail(curMonthFormat.format(date)+"월 "+curDayFormat.format(date)+"일", curYearFormat.format(date)+"-"+curMonthFormat.format(date)+"-"+curDayFormat.format(date));
+        daydetail(curMonthFormat.format(date)+"월 "+curDayFormat.format(date)+"일", curYearFormat.format(date)+"-"+curMonthFormat.format(date)+"-"+curDayFormat.format(date),1);
 
         click_day1 = curMonthFormat.format(date)+"월 "+curDayFormat.format(date)+"일";
         click_day2 = curYearFormat.format(date)+"-"+curMonthFormat.format(date)+"-"+curDayFormat.format(date);
@@ -329,7 +329,7 @@ public class Diary_Fragment extends Fragment {
             day3 = gridAdapter.getItem(position);
         }
 
-        daydetail(su, day1+"-"+day_temp+"-"+day3);
+        daydetail(su, day1+"-"+day_temp+"-"+day3,0);
     }
 
 
@@ -485,7 +485,7 @@ public class Diary_Fragment extends Fragment {
 
 
 
-    private void daydetail(String day, String day2) {
+    private void daydetail(String day, String day2, final int type) {
 
         click_day1 = day;
         click_day2 = day2;
@@ -519,10 +519,20 @@ public class Diary_Fragment extends Fragment {
                             diary_walking_text.setText(String.valueOf(response.body().getResult().getWalking()));
                             walking = response.body().getResult().getWalking();
                         } else {
-                            diary_walking_icon.setImageResource(R.drawable.diary_step_1_unchecked);
-                            diary_walking_text.setTextColor(Color.parseColor(strColorsUn));
-                            diary_walking_text.setText("0");
-                            walking = 0;
+
+                            if(type == 1) {
+                                diary_walking_icon.setImageResource(R.drawable.diary_step_1);
+                                diary_walking_text.setTextColor(Color.parseColor(strColors));
+                                diary_walking_text.setText(String.valueOf(Olleego_SP.getInt("tracker",0)));
+                                walking = Olleego_SP.getInt("tracker",0);
+                            } else {
+                                diary_walking_icon.setImageResource(R.drawable.diary_step_1_unchecked);
+                                diary_walking_text.setTextColor(Color.parseColor(strColorsUn));
+                                diary_walking_text.setText("0");
+                                walking = 0;
+                            }
+
+
 
                         }
 
@@ -668,9 +678,7 @@ public class Diary_Fragment extends Fragment {
 
                 }
                 else if(response.code() == 404) {
-                    diary_walking_icon.setImageResource(R.drawable.diary_step_1_unchecked);
-                    diary_walking_text.setTextColor(Color.parseColor(strColorsUn));
-                    diary_walking_text.setText("0");
+
                     diary_water_icon.setImageResource(R.drawable.diary_water_3_unchecked);
                     diary_water_text.setTextColor(Color.parseColor(strColorsUn));
                     diary_water_text.setText("0 잔");
@@ -682,10 +690,21 @@ public class Diary_Fragment extends Fragment {
                     diary_food_layout.setVisibility(View.GONE);
                     diary_listview_layout.setVisibility(View.GONE);
 
+                    if(type == 1) {
+                        diary_walking_icon.setImageResource(R.drawable.diary_step_1);
+                        diary_walking_text.setTextColor(Color.parseColor(strColors));
+                        diary_walking_text.setText(String.valueOf(Olleego_SP.getInt("tracker",0)));
+                        walking = Olleego_SP.getInt("tracker",0);
+                    } else {
+                        diary_walking_icon.setImageResource(R.drawable.diary_step_1_unchecked);
+                        diary_walking_text.setTextColor(Color.parseColor(strColorsUn));
+                        diary_walking_text.setText("0");
+
+                        walking = 0;
+                    }
 
                     water = 0;
                     sleep = 0.0f;
-                    walking = 0;
 
                 }
 
@@ -786,7 +805,7 @@ public class Diary_Fragment extends Fragment {
                     if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
                     String day_ = day1+"-"+day_temp;
                     onCalendar(day_, day1+day_temp);
-                    daydetail(click_day1 ,click_day2);
+                    daydetail(click_day1 ,click_day2,0);
 
                     // 008 됌 수정하셈
                 }
@@ -807,7 +826,7 @@ public class Diary_Fragment extends Fragment {
                     if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
                     String day_ = day1+"-"+day_temp;
                     onCalendar(day_, day1+day_temp);
-                    daydetail(click_day1 ,click_day2);
+                    daydetail(click_day1 ,click_day2,0);
                 }
             }
         });
@@ -838,7 +857,7 @@ public class Diary_Fragment extends Fragment {
             if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
             String day_ = day1+"-"+day_temp;
             onCalendar(day_, day1+day_temp);
-            daydetail(click_day1 ,click_day2);
+            daydetail(click_day1 ,click_day2,0);
         }
 
     }

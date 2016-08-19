@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.akexorcist.roundcornerprogressbar.common.BaseRoundCornerProgressBar;
+import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.diary.DiaryFoodActivity;
 import com.edn.olleego.activity.login.LoginActivity;
@@ -103,6 +105,9 @@ public class Home_Fragment extends Fragment {
     TextView walking;
     @BindView(R.id.main_diary_water)
     TextView water;
+
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -189,6 +194,7 @@ public class Home_Fragment extends Fragment {
 
         //로그인 상태
         if(olleego_SP.getString("login_chk", "").equals("true")) {
+
 
 
             rootView.findViewById(R.id.main_login_yes).setVisibility(View.VISIBLE);
@@ -306,7 +312,7 @@ public class Home_Fragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String token = "ollego " + olleego_SP.getString("login_token", "");;
+        String token = "olleego " + olleego_SP.getString("login_token", "");;
         DiaryAPI diaryAPI = retrofit_diary.create(DiaryAPI.class);
 
         final Call<DiaryModel> diaryPos = diaryAPI.listRepos(dateFormat.format(date), token);
@@ -360,14 +366,16 @@ public class Home_Fragment extends Fragment {
 
                     if (response.body().getResult().getWalking() == 0) {
 
-                        walkings = 0;
+                        walkings = olleego_SP.getInt("tracker",0);
                     } else {
-                        walkings = response.body().getResult().getWalking();
+                        walkings = olleego_SP.getInt("tracker",0);
                     }
+
+                    walking.setText(String.valueOf(walkings));
+
 
                     water_temp = response.body().getResult().getWater();
 
-                    walking.setText(String.valueOf(walkings));
                     water.setText(String.valueOf(water_temp));
 
 
@@ -406,6 +414,12 @@ public class Home_Fragment extends Fragment {
 
 
                 } else {
+
+                        walkings = olleego_SP.getInt("tracker",0);
+
+
+                    walking.setText(String.valueOf(walkings));
+
                     rootView.findViewById(R.id.main_diary_food_no).setVisibility(View.VISIBLE);
                 }
 

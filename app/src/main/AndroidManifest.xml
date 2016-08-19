@@ -41,13 +41,7 @@
         <activity android:name=".activity.Main2Activity" />
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.mission.MissionCustomStepOneActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -74,7 +68,21 @@
         <activity android:name=".activity.diary.DiaryChartActivity" />
         <activity android:name=".activity.notice.NoticeActivity" />
         <activity android:name=".activity.etc.PolicyActivity" />
-        <activity android:name=".activity.etc.PrivacyActivity"></activity>
+        <activity android:name=".activity.etc.PrivacyActivity" />
+        <activity
+            android:name=".activity.splash.Splash_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".service.TrackerService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -9,14 +9,19 @@
     android:background="?attr/colorPrimary">
 
     <!-- 왼쪽 메뉴 활성화 버튼 -->
-
-    <ImageView
+    <LinearLayout
         android:layout_marginLeft="10dp"
         android:id="@+id/toolbar_left_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/menu"
-        />
+        android:gravity="center|start"
+        android:layout_width="37dp"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu"
+            />
+    </LinearLayout>
 
      <TextView
          android:visibility="gone"
@@ -30,7 +35,7 @@
         />
 
         <ImageView
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/toolbar_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,16 +55,22 @@
 
 
             <!-- 오른쪽 메뉴 활성화 버튼 -->
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_marginRight="15dp"
+            <LinearLayout
                 android:id="@+id/toolbar_right_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_more_horiz"
+                android:gravity="center|end"
+                android:layout_marginRight="10dp"
+                android:layout_width="37dp"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_apps"
 
 
-                />
+                    />
+
+            </LinearLayout>
 
             </LinearLayout>
 

@@ -25,13 +25,18 @@
         android:layout_height="35dp"
         android:orientation="horizontal"
         android:gravity="center">
-
-        <ImageView
+        <LinearLayout
             android:id="@+id/water_remove"
+            android:gravity="center"
             android:layout_marginRight="30dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_remove_18"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_remove_18"/>
+            </LinearLayout>
         
         
         <LinearLayout
@@ -58,14 +63,20 @@
             android:text="잔"/>
 
 
-
-        <ImageView
+        <LinearLayout
             android:id="@+id/water_add"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp">
 
-            android:layout_marginLeft="30dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_add_24"/>
+            <ImageView
+
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_add_24"/>
+        </LinearLayout>
+
    </LinearLayout>
 
     <RelativeLayout
