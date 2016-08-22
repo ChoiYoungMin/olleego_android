@@ -98,7 +98,7 @@
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="4회 입력"/>
+                            android:text="0회 입력"/>
 
                         <TextView
                             android:textStyle="bold"
@@ -134,7 +134,7 @@
                             android:textSize="18sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="20,000"/>
+                            android:text="00,000"/>
                         <TextView
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="10dp"
@@ -258,7 +258,7 @@
                         android:textSize="12sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4회 입력"/>
+                        android:text="0회 입력"/>
 
                     <TextView
                         android:textStyle="bold"

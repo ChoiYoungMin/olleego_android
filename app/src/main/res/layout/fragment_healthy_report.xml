@@ -43,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/report_healthy_layout1"
             android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -329,6 +330,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/report_healthy_layout2"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
                 android:background="@drawable/card_background"
@@ -546,6 +548,7 @@
 
         <LinearLayout
 
+            android:id="@+id/report_healthy_layout3"
             android:gravity="center"
             android:background="#454544"
             android:layout_marginTop="10dp"

@@ -20,6 +20,7 @@ import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.akexorcist.roundcornerprogressbar.common.BaseRoundCornerProgressBar;
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.diary.DiaryChartActivity;
 import com.edn.olleego.activity.diary.DiaryFoodActivity;
 import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.adapter.main.MainMiddleViewPagerAdapter;
@@ -512,5 +513,11 @@ public class Home_Fragment extends Fragment {
         transaction.replace(R.id.content_main, new Diary_Fragment(olleego_SP),"diary");
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @OnClick(R.id.main_diary_type_go)
+    void main_diary_type_go() {
+        Intent intent = new Intent(getContext(), DiaryChartActivity.class);
+        getContext().startActivity(intent);
     }
 }

@@ -209,7 +209,7 @@
                     android:layout_marginEnd="50dp"
 
                     android:gravity="center"
-                    android:id="@+id/linearLayout3">
+                    android:id="@+id/main_diary_type_go">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -223,7 +223,7 @@
                     android:layout_marginEnd="10dp"
 
                     android:gravity="center"
-                    android:layout_alignTop="@+id/linearLayout3"
+                    android:layout_alignTop="@+id/main_diary_type_go"
                     android:layout_alignParentEnd="true"
                     android:id="@+id/main_diary_go">
 
@@ -238,7 +238,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:id="@+id/linearLayout4"
-                    android:layout_below="@+id/linearLayout3"
+                    android:layout_below="@+id/main_diary_type_go"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"
                     >

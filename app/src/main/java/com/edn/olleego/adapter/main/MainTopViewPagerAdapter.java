@@ -166,7 +166,13 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                         ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
                         editor.putString("user_mission_today_onoff", "off");
 
-                    } else if (response.isSuccessful()) {
+                    }
+                    else if(response.code() == 500) {
+                        ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
+                        ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
+                        editor.putString("user_mission_today_onoff", "off");
+                    }
+                    else if (response.isSuccessful()) {
 
 
                         try {

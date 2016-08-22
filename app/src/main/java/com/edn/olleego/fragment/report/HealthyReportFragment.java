@@ -47,6 +47,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class HealthyReportFragment extends Fragment {
 
+    @BindView(R.id.report_healthy_layout1)
+    LinearLayout report_healthy_layout1;
+    @BindView(R.id.report_healthy_layout2)
+    LinearLayout report_healthy_layout2;
+    @BindView(R.id.report_healthy_layout3)
+    LinearLayout report_healthy_layout3;
+
     @BindView(R.id.report_healthy_report_input)
     LinearLayout report_healthy_report_input;
 
@@ -239,6 +246,13 @@ public class HealthyReportFragment extends Fragment {
 
 
 
+                } else {
+                    report_healthy_layout1.setVisibility(View.GONE);
+                    report_healthy_layout2.setVisibility(View.GONE);
+                    report_healthy_layout3.setVisibility(View.GONE);
+
+
+
                 }
             }
 
@@ -280,16 +294,30 @@ public class HealthyReportFragment extends Fragment {
     @OnClick(R.id.report_healthy_report_input)
     void report_healthy_report_input() {
         Intent intent = new Intent(getActivity(), ReportHealthyInputActivity.class);
-        intent.putExtra("height", reportModel.getResult().getHeight());
-        intent.putExtra("weight", reportModel.getResult().getWeight());
-        intent.putExtra("hip", reportModel.getResult().getHip());
-        intent.putExtra("waist", reportModel.getResult().getWaist());
-        intent.putExtra("blood_sugar", reportModel.getResult().getBlood_sugar());
-        intent.putExtra("blood_pressure_max", reportModel.getResult().getBlood_pressure().getMax());
-        intent.putExtra("blood_pressure_min", reportModel.getResult().getBlood_pressure().getMin());
-        intent.putExtra("body_fat", reportModel.getResult().getBody_fat());
-        intent.putExtra("body_fat_per", reportModel.getResult().getBody_fat_per());
-        intent.putExtra("muscle", reportModel.getResult().getMuscle());
+        try {
+
+            intent.putExtra("height", reportModel.getResult().getHeight());
+            intent.putExtra("weight", reportModel.getResult().getWeight());
+            intent.putExtra("hip", reportModel.getResult().getHip());
+            intent.putExtra("waist", reportModel.getResult().getWaist());
+            intent.putExtra("blood_sugar", reportModel.getResult().getBlood_sugar());
+            intent.putExtra("blood_pressure_max", reportModel.getResult().getBlood_pressure().getMax());
+            intent.putExtra("blood_pressure_min", reportModel.getResult().getBlood_pressure().getMin());
+            intent.putExtra("body_fat", reportModel.getResult().getBody_fat());
+            intent.putExtra("body_fat_per", reportModel.getResult().getBody_fat_per());
+            intent.putExtra("muscle", reportModel.getResult().getMuscle());
+        } catch (NullPointerException e) {
+            intent.putExtra("height", 0);
+            intent.putExtra("weight", 0);
+            intent.putExtra("hip", 0);
+            intent.putExtra("waist", 0);
+            intent.putExtra("blood_sugar", 0);
+            intent.putExtra("blood_pressure_max", 0);
+            intent.putExtra("blood_pressure_min", 0);
+            intent.putExtra("body_fat",0);
+            intent.putExtra("body_fat_per", 0);
+            intent.putExtra("muscle", 0);
+        }
         getContext().startActivity(intent);
     }
 
