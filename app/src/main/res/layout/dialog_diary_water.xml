@@ -26,13 +26,14 @@
         android:orientation="horizontal"
         android:gravity="center">
         <LinearLayout
-            android:id="@+id/water_remove"
+            android:id="@+id/water_remove_layout"
             android:gravity="center"
             android:layout_marginRight="30dp"
             android:layout_width="40dp"
             android:layout_height="40dp">
 
             <ImageView
+                android:id="@+id/water_remove"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_remove_18"/>
@@ -64,7 +65,7 @@
 
 
         <LinearLayout
-            android:id="@+id/water_add"
+            android:id="@+id/water_add_layout"
             android:gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_width="40dp"
@@ -72,6 +73,7 @@
 
             <ImageView
 
+                android:id="@+id/water_add"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_add_24"/>

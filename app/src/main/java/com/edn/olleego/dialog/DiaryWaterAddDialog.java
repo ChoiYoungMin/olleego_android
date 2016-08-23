@@ -94,13 +94,13 @@ public class DiaryWaterAddDialog extends Dialog{
 
     }
 
-    @OnClick(R.id.water_add)
+    @OnClick(R.id.water_add_layout)
     void water_add_click() {
         water++;
         water_text.setText(String.valueOf(water));
     }
 
-    @OnClick(R.id.water_remove)
+    @OnClick(R.id.water_remove_layout)
     void water_remove_click() {
         water--;
         water_text.setText(String.valueOf(water));

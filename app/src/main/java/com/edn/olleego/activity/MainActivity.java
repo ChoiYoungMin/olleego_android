@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity
         setCustomActionbar();
 
 
+        nav_view.getMenu().getItem(0).setChecked(true);
 
 
     }
@@ -172,18 +174,11 @@ public class MainActivity extends AppCompatActivity
 
         final FragmentManager fm=this.getSupportFragmentManager();
         final android.support.v4.app.Fragment fragment=fm.findFragmentByTag("main");
-
         if(fragment != null && fragment.isVisible()){
             backPressCloseHandler.onBackPressed();
         }
         else{
-
-            /*
-            toolbar_home2.setVisibility(View.GONE);
-            toolbar_home.setVisibility(View.VISIBLE);
-            toolbar_home22.setVisibility(View.VISIBLE);
-            */
-
+            nav_view.getMenu().getItem(0).setChecked(true);
             super.onBackPressed();
         }
 

@@ -115,7 +115,7 @@
                 android:textSize="18sp"
                 android:textColor="#454544"
                 android:textStyle="bold"
-                android:text="7500 땀"/>
+                android:text="0 땀"/>
 
 
        </LinearLayout>

@@ -412,11 +412,13 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                     } else {
                         type = false;
 
+
                         MainMiddleViewPagerAdapter mainMiddleViewPagerAdapter = new MainMiddleViewPagerAdapter(inflater, type, context , loadingBarDialog);
                         viewPager.setAdapter(mainMiddleViewPagerAdapter);
 
 
                     }
+
 
                 }
 
