@@ -1,6 +1,7 @@
 package com.edn.olleego.fragment.report;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +11,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -17,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edn.olleego.R;
+import com.edn.olleego.activity.diary.DiaryChartActivity;
 import com.edn.olleego.adapter.report.Report_PagerAdapter;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
@@ -66,10 +71,10 @@ public class ReportFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_report, container, false);
         ButterKnife.bind(this, view);

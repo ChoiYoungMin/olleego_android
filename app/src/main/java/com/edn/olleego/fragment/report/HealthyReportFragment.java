@@ -11,6 +11,9 @@ import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.diary.DiaryChartActivity;
 import com.edn.olleego.activity.mission.MissionDetailActivity;
 import com.edn.olleego.activity.report.ReportBMIDetailActivity;
 import com.edn.olleego.activity.report.ReportHealthDetailActivity;
@@ -129,6 +133,54 @@ public class HealthyReportFragment extends Fragment {
 
     ViewPager viewPager;
     Context context;
+    @Override
+    public void onResume() {
+        super.onResume();
+        // destroy all menu and re-call onCreateOptionsMenu
+        getActivity().invalidateOptionsMenu();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main_report, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.menu_report:
+                Intent intent = new Intent(getActivity(), ReportHealthyInputActivity.class);
+                try {
+
+                    intent.putExtra("height", reportModel.getResult().getHeight());
+                    intent.putExtra("weight", reportModel.getResult().getWeight());
+                    intent.putExtra("hip", reportModel.getResult().getHip());
+                    intent.putExtra("waist", reportModel.getResult().getWaist());
+                    intent.putExtra("blood_sugar", reportModel.getResult().getBlood_sugar());
+                    intent.putExtra("blood_pressure_max", reportModel.getResult().getBlood_pressure().getMax());
+                    intent.putExtra("blood_pressure_min", reportModel.getResult().getBlood_pressure().getMin());
+                    intent.putExtra("body_fat", reportModel.getResult().getBody_fat());
+                    intent.putExtra("body_fat_per", reportModel.getResult().getBody_fat_per());
+                    intent.putExtra("muscle", reportModel.getResult().getMuscle());
+                } catch (NullPointerException e) {
+                    intent.putExtra("height", 0);
+                    intent.putExtra("weight", 0);
+                    intent.putExtra("hip", 0);
+                    intent.putExtra("waist", 0);
+                    intent.putExtra("blood_sugar", 0);
+                    intent.putExtra("blood_pressure_max", 0);
+                    intent.putExtra("blood_pressure_min", 0);
+                    intent.putExtra("body_fat",0);
+                    intent.putExtra("body_fat_per", 0);
+                    intent.putExtra("muscle", 0);
+                }
+                getContext().startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public HealthyReportFragment(Context context, ViewPager viewPager) {
         // Required empty public constructor
@@ -156,6 +208,9 @@ public class HealthyReportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
+        getActivity().findViewById(R.id.toolbar_right_menu).setVisibility(View.GONE);
+
         View rootview = inflater.inflate(R.layout.fragment_healthy_report, container, false);
 
         ButterKnife.bind(this, rootview);
@@ -194,6 +249,7 @@ public class HealthyReportFragment extends Fragment {
             @Override
             public void onResponse(Call<ReportModel> call, Response<ReportModel> response) {
                 if(response.isSuccessful()) {
+                    report_healthy_report_input.setVisibility(View.GONE);
                     reportModel = response.body();
 
                     bmi =  reportModel.getResult().getBmi();
@@ -265,14 +321,18 @@ public class HealthyReportFragment extends Fragment {
                         report_healthy_report2_bs_text.setTextColor(Color.parseColor("#606060"));
                     }
 
+                    try{
+                        Glide.with(getContext()).load(reportModel.getResult().getMission1().getTitle_img()).into(report_healthy_mission1_img);
+                        Glide.with(getContext()).load(reportModel.getResult().getMission2().getTitle_img()).into(report_healthy_mission2_img);
+                        report_healthy_mission1_text.setText(reportModel.getResult().getMission1().getTitle());
+                        report_healthy_mission2_text.setText(reportModel.getResult().getMission2().getTitle());
 
-                    Glide.with(getContext()).load(reportModel.getResult().getMission1().getTitle_img()).into(report_healthy_mission1_img);
-                    Glide.with(getContext()).load(reportModel.getResult().getMission2().getTitle_img()).into(report_healthy_mission2_img);
+                    } catch (NullPointerException e) {
+
+                        report_healthy_layout3.setVisibility(View.GONE);
+                    }
 
                     report_healthy_report1_mybmi.setText(String.valueOf(reportModel.getResult().getBmi()));
-                    report_healthy_mission1_text.setText(reportModel.getResult().getMission1().getTitle());
-                    report_healthy_mission2_text.setText(reportModel.getResult().getMission2().getTitle());
-
 
 
 

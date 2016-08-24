@@ -140,7 +140,7 @@
                         android:layout_marginTop="7dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""/>
+                        android:text="18.5 ~ 22.9"/>
 
 
                 </LinearLayout>
@@ -290,9 +290,10 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_search"/>
+                    android:src="@drawable/ic_equalizer"/>
 
                 <TextView
+                    android:layout_marginLeft="5dp"
                     android:textSize="14sp"
                     android:textColor="#606060"
                     android:layout_width="wrap_content"
@@ -547,7 +548,6 @@
 
 
         <LinearLayout
-
             android:id="@+id/report_healthy_layout3"
             android:gravity="center"
             android:background="#454544"

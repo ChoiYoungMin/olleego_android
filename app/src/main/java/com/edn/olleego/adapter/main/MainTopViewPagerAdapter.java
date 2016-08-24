@@ -204,6 +204,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                                 if(response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getRest()== true) {
                                     editor.putString("user_mission_today_onoff", "on");
 
+
                                     final boolean comlete22 = response.body().getResult().getMi_days().get((int)diffDays-1).getDay_complete();
                                     if(comlete22 == false) {
                                         complete++;
@@ -212,6 +213,8 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                                             .baseUrl(ServerInfo.OLLEEGO_HOST)
                                             .addConverterFactory(GsonConverterFactory.create())
                                             .build();
+
+
 
 
                                     UserRestMissionAPI userAPI = retrofit.create(UserRestMissionAPI.class);
