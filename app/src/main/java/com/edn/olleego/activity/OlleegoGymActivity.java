@@ -34,13 +34,13 @@ public class OlleegoGymActivity extends AppCompatActivity {
 
         tv = (TextView)findViewById(R.id.gym_type);
 
-        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        /*map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
         map.addMarker(new MarkerOptions().position(SEOUL).title("새마을 휘트니스"));
         map.addMarker(new MarkerOptions().position(SEOUL2).title("내맘 휘트니스"));
 
         map.moveCamera(CameraUpdateFactory.newLatLngZoom( SEOUL, 1));
-        map.animateCamera(CameraUpdateFactory.zoomTo(16), 2000, null);
+        map.animateCamera(CameraUpdateFactory.zoomTo(16), 2000, null);*/
 
     }
 

@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.common.FileUtils;
 import com.edn.olleego.common.ServerInfo;
@@ -235,7 +236,14 @@ public class DiaryFoodActivity extends AppCompatActivity {
     String day;
     String type;
 
+    String img_src;
+    String sort;
+    String foods;
+    String memo;
 
+    List<String> foodlist;
+
+    int typea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,10 +258,52 @@ public class DiaryFoodActivity extends AppCompatActivity {
         day = intent.getStringExtra("day") + " 00:00:00";;
         type = intent.getStringExtra("type");
 
+        img_src = intent.getStringExtra("img_src");
+        sort = intent.getStringExtra("sort");
+        foods= intent.getStringExtra("foods");
+        memo = intent.getStringExtra("memo");
+
+        foodlist = (ArrayList<String>) intent.getSerializableExtra("foodlist");
+
+
         init_layout();
         meal_chk_int.clear();
 
+        try{
+            initdate();
+            typea = 1;
+        } catch (NullPointerException e) {
+            typea = 2;
 
+        }
+
+
+    }
+
+    public void initdate() {
+
+        switch (sort) {
+            case "아침":
+                type_layout_chk(1);
+                break;
+            case "점심":
+                type_layout_chk(2);
+                break;
+            case "저녁":
+                type_layout_chk(3);
+                break;
+            case "간식":
+                type_layout_chk(4);
+                break;
+            case "모임":
+                type_layout_chk(5);
+                break;
+
+        }
+
+        Glide.with(this).load(img_src).into(test);
+        diary_food_Image.setVisibility(View.GONE);
+        diary_food_Image_yes.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.diary_food_Image)
@@ -857,26 +907,35 @@ public class DiaryFoodActivity extends AppCompatActivity {
             meal_chk_String.add(meal.get(meal_chk_int.get(j)));
         }
 
-        File file = FileUtils.getFile(this, Image_url);
+        Call<MissionsModel> diaryPos = null;
+        if(typea == 2) {
 
-        RequestBody requestFile =
-                RequestBody.create(MediaType.parse("image/*"), file);
+            File file = FileUtils.getFile(this, Image_url);
 
-        MultipartBody.Part body =
-                MultipartBody.Part.createFormData("image", file.getName()+".png", requestFile);
-        Foods foods = new Foods(type_temp, meal_chk_String, diary_food_memo.getText().toString(), cons_temp);
+            RequestBody requestFile =
+                    RequestBody.create(MediaType.parse("image/*"), file);
 
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("image", file.getName()+".png", requestFile);
 
-        DiaryFoodAdd diaryAdd = new DiaryFoodAdd(Integer.valueOf(user_id), day, foods);
-
-
+            Foods foods = new Foods(type_temp, meal_chk_String, diary_food_memo.getText().toString(), cons_temp);
 
 
-        final Call<MissionsModel> diaryPos = diaryAddAPI.listRepos(tokens, "food" ,diaryAdd, body);
+            DiaryFoodAdd diaryAdd = new DiaryFoodAdd(Integer.valueOf(user_id), day, foods);
 
-        Log.e("z", diaryAdd.getDay());
-        Log.e("z", diaryAdd.getFood().toString());
-        Log.e("z", String.valueOf(diaryAdd.getUser()));
+
+            diaryPos = diaryAddAPI.listRepos(tokens, "food" ,diaryAdd, body);
+
+        } else if(typea == 1) {
+            Foods foods = new Foods(type_temp, meal_chk_String, diary_food_memo.getText().toString(), cons_temp);
+
+
+            DiaryFoodAdd diaryAdd = new DiaryFoodAdd(Integer.valueOf(user_id), day, foods);
+
+            diaryPos = diaryAddAPI.listRepos(tokens, "food" ,diaryAdd);
+        }
+
+
 
 
 

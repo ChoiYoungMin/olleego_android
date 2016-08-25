@@ -27,6 +27,7 @@ import com.edn.olleego.activity.notice.NoticeActivity;
 import com.edn.olleego.common.BackPressCloseHandler;
 import com.edn.olleego.fragment.Home_Fragment;
 import com.edn.olleego.fragment.Mission.MissionCategoryMainFragment;
+import com.edn.olleego.fragment.diary.DiaryFoodDetailFragment;
 import com.edn.olleego.fragment.setting.SettingFragment;
 import com.edn.olleego.fragment.OlleegoGym_Fragment;
 import com.edn.olleego.fragment.diary.Diary_Fragment;
@@ -351,5 +352,13 @@ public class MainActivity extends AppCompatActivity
         }
 
 
+    }
+
+    public void food_edit() {
+        DiaryFoodDetailFragment diaryFoodDetailFragment = new DiaryFoodDetailFragment();
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.main_alllayout, diaryFoodDetailFragment,"food");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

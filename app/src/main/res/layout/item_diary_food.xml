@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<RelativeLayout
+    android:id="@+id/diary_food_detail"
      android:layout_width="match_parent"
     android:elevation="3dp"
 
     android:layout_height="122dp">
+
 
     <ImageView
         android:layout_width="122dp"
@@ -63,8 +70,40 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:src="@drawable/hungry_list"/>
+
+
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/diary_food_edit"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수정"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_mode_edit"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>
+
+    </LinearLayout>

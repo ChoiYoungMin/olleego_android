@@ -24,11 +24,13 @@ import android.widget.Toast;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.diary.DiaryChartActivity;
 import com.edn.olleego.activity.diary.DiaryFoodActivity;
+import com.edn.olleego.activity.diary.DiaryFoodDetailActivity;
 import com.edn.olleego.adapter.calendar.Calender_Adapter;
 import com.edn.olleego.adapter.calendar.food.Diary_Food_Adapter;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.dialog.DiarySleepAddDialog;
 import com.edn.olleego.dialog.DiaryWaterAddDialog;
+import com.edn.olleego.fragment.report.ReportFragment;
 import com.edn.olleego.model.DiaryModel;
 import com.edn.olleego.model.DiaryMonthModel;
 import com.edn.olleego.server.DiaryAPI;
@@ -182,6 +184,8 @@ public class Diary_Fragment extends Fragment {
 
 
     android.support.v4.app.FragmentTransaction transaction;
+
+    ArrayList<String> foodlist = new ArrayList<String>();
 
     public Diary_Fragment(SharedPreferences Olleego_SP) {
         // Required empty public constructor
@@ -602,17 +606,18 @@ public class Diary_Fragment extends Fragment {
                         diary_listview_layout.setVisibility(View.VISIBLE);
 
                         etc2_su =0;
-                        diary_food_adapter = new Diary_Food_Adapter(inflater,getContext());
+                        diary_food_adapter = new Diary_Food_Adapter(inflater,getContext(),Diary_Fragment.this);
                         diary_listview.setAdapter(diary_food_adapter);
                         initFood();
                         diary_food_icon.setImageResource(R.drawable.diary_meal_4);
                         diary_food_text.setVisibility(View.GONE);
                         diary_food_layout.setVisibility(View.VISIBLE);
-
+                        foodlist.clear();
                         for (int j=0;j<response.body().getResult().getFood().size(); j++) {
                             String foods = "";
                             if(response.body().getResult().getFood().get(j).getFood().size() == 1) {
-                                diary_food_adapter.additem(response.body().getResult().getFood().get(j).getImage(),response.body().getResult().getFood().get(j).getSort(),response.body().getResult().getFood().get(j).getFood().get(0),response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety());
+                                foodlist.add(response.body().getResult().getFood().get(j).getFood().get(0));
+                                diary_food_adapter.additem(response.body().getResult().getFood().get(j).getImage(),response.body().getResult().getFood().get(j).getSort(),response.body().getResult().getFood().get(j).getFood().get(0),response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety(), response.body().getResult().getCreated(), foodlist);
                             } else {
                                 for (int g=0; g<response.body().getResult().getFood().get(j).getFood().size(); g++) {
                                     if(response.body().getResult().getFood().get(j).getFood().size() == g) {
@@ -622,8 +627,9 @@ public class Diary_Fragment extends Fragment {
                                         foods = foods + response.body().getResult().getFood().get(j).getFood().get(g)+", ";
 
                                     }
+                                    foodlist.add(response.body().getResult().getFood().get(j).getFood().get(g));
                                 }
-                                diary_food_adapter.additem(response.body().getResult().getFood().get(j).getImage(),response.body().getResult().getFood().get(j).getSort(),foods,response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety());
+                                diary_food_adapter.additem(response.body().getResult().getFood().get(j).getImage(),response.body().getResult().getFood().get(j).getSort(),foods,response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety(), response.body().getResult().getCreated() , foodlist);
                             }
 
 
@@ -860,5 +866,15 @@ public class Diary_Fragment extends Fragment {
             daydetail(click_day1 ,click_day2,0);
         }
 
+    }
+
+    public void food_detail(String img, String sort, String food, String memo) {
+        Intent intent = new Intent(getContext(), DiaryFoodDetailActivity.class);
+        intent.putExtra("img", img);
+        intent.putExtra("sort", sort);
+        intent.putExtra("food", food);
+        intent.putExtra("memo", memo);
+
+        getContext().startActivity(intent);
     }
 }

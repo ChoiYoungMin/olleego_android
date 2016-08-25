@@ -25,6 +25,9 @@ public interface DiaryFoodAddAPI {
     @Multipart
     @POST("/api/v2/diaries")
     Call<MissionsModel> listRepos(@Header("Authorization") String authorization, @Query("type") String type, @Part("DiaryFoodAdd") DiaryFoodAdd diaryFoodAdd,  @Part MultipartBody.Part file);
+    @Multipart
+    @POST("/api/v2/diaries")
+    Call<MissionsModel> listRepos(@Header("Authorization") String authorization, @Query("type") String type, @Part("DiaryFoodAdd") DiaryFoodAdd diaryFoodAdd);
 
 }
 

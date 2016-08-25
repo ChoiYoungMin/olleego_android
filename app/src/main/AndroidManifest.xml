@@ -41,7 +41,7 @@
         <activity android:name=".activity.Main2Activity" />
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.mission.MissionCustomStepOneActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -82,7 +82,10 @@
         <service
             android:name=".service.TrackerService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".activity.diary.DiaryFoodDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
