@@ -99,6 +99,8 @@ public class Home_Fragment extends Fragment {
     boolean replay;
 
 
+    @BindView(R.id.custom_progressBar23)
+    CircleProgressBar probar;
 
     @BindView(R.id.main_diary_sleep)
     TextView sleep;
@@ -251,6 +253,8 @@ public class Home_Fragment extends Fragment {
 
         // 비로그인 상태
         else {
+            main_today_bar = (RoundCornerProgressBar)rootView.findViewById(R.id.main_today_bar);
+            main_today_bar_text = (TextView) rootView.findViewById(R.id.main_today_bar_text);
             Toast.makeText(getContext(),"비로그인중", Toast.LENGTH_SHORT).show();
             viewPager2 = (ViewPager) rootView.findViewById(R.id.viewPager2);
             viewPager2.removeAllViews();
@@ -273,6 +277,9 @@ public class Home_Fragment extends Fragment {
 
                 }
             });
+            main_today_bar.setProgress(0);
+            main_today_bar.setSecondaryProgress(0);
+            main_today_bar_text.setText(String.valueOf(0)+"%");
         }
 
 
@@ -378,6 +385,7 @@ public class Home_Fragment extends Fragment {
                     water_temp = response.body().getResult().getWater();
 
                     water.setText(String.valueOf(water_temp));
+                    probar.setProgress(water_temp);
 
 
                     try {

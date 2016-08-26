@@ -3,19 +3,42 @@
     android:id="@+id/main_middle_mission"
     android:orientation="vertical" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/banner01"
-    android:layout_height="220dp"
+    android:background="@drawable/and_b_rest"
+    android:layout_height="match_parent"
     >
     <RelativeLayout
+        android:gravity="center"
+        android:background="#66000000"
         android:id="@+id/main_mission_no"
         android:layout_width="match_parent"
-        android:layout_height="220dp">
+        android:layout_height="match_parent">
+
+
+        <View
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#e3e3e3"
+            android:layout_marginTop="10dp"
+            android:id="@+id/view6" />
+
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:src="@drawable/ic_training"
+            android:layout_alignBottom="@+id/textView26"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26dp"
+            android:id="@+id/imageView12" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="5dp"
-            android:text="오늘은 휴식!"
+            android:text="오늘은 운동 휴식"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#e5e5e2"
@@ -29,16 +52,26 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="5dp"
+            android:lineSpacingExtra="8dp"
             android:text="오늘은 운동이 없는 날입니다.\n산책이나 가벼운 유산소 운동을 해주세요."
-            android:textSize="18sp"
+            android:textSize="16sp"
+
             android:textStyle="bold"
             android:textColor="#e5e5e2"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="105dp" />
+            android:layout_marginTop="105dp"
+            android:id="@+id/textView2" />
 
 
+        <View
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#e3e3e3"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="35dp" />
 
     </RelativeLayout>
 </RelativeLayout>

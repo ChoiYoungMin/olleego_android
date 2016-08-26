@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:lineSpacingExtra="5dp"
             android:text="언제 어디서나 즐길 수 있는 트레이닝 방법과\n식삽관, 생활습관 가이드가 준비되어 있습니다."
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#e5e5e2"
             android:layout_alignParentTop="true"

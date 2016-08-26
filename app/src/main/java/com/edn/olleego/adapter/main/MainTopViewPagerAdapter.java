@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.edn.olleego.R;
@@ -201,6 +202,14 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                                 editor.putString("user_mission_today_onoff", "off");
                             }
                             else {
+                                try {
+                                    if(response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getRest() == true){
+                                        //test
+                                    }
+                                } catch (IndexOutOfBoundsException e) {
+                                    diffDays = response.body().getResult().getMission().getMi_days().size();
+                                    Toast.makeText(context,"미션 완료", Toast.LENGTH_SHORT).show();
+                                }
                                 if(response.body().getResult().getMission().getMi_days().get((int) diffDays-1).getRest()== true) {
                                     editor.putString("user_mission_today_onoff", "on");
 
@@ -362,9 +371,9 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                             });
 
                         } catch (IndexOutOfBoundsException e) {
-                            ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.GONE);
-                            ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
-                            editor.putString("user_mission_today_onoff", "off");
+                            ConvertView2.findViewById(R.id.main_top_mission_yes).setVisibility(View.VISIBLE);
+                            //ConvertView2.findViewById(R.id.main_top_mission_no).setVisibility(View.VISIBLE);
+                            editor.putString("user_mission_today_onoff", "on");
 
                             editor.commit();
                             e.printStackTrace();
