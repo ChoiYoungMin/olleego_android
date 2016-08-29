@@ -151,5 +151,29 @@
     <color name="light_gold">#ffdf45</color>
     <color name="medium_grey">#878885</color>
 
+    <!-- drawer_right_header.xml -->
+    <color name="fitness_blue">#5e7efc</color>
+    <color name="drawer_right_header_line">#9aaeff</color>
+    <color name="drawer_right_header_small_text">#cdd7ff</color>
+
+    <!-- common -->
+    <color name="light_grey_bg1">#f5f6f3</color>
+
+    <color name="black">#000000</color>
+
+    <!-- video_category_item.xml -->
+    <color name="video_category_text">#cde860</color>
+
+    <!-- exercise_video_list_item.xml -->
+    <color name="video_list_item_title">#606060</color>
+    <color name="video_list_item_sub_title">#878885</color>
+
+    <!-- tab layout -->
+    <color name="tab_text_color">#606060</color>
+
+    <!-- alliance category text color -->
+    <color name="category_fitness">#6bb7ff</color>
+    <color name="category_yoga">#ef79d5</color>
+    <color name="category_ptshop">#7675e5</color>
 
 </resources>

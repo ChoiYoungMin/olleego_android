@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/light_grey_bg1">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="222dp"
+            android:layout_height="38dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/alliance_review_more_bg"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/textView56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/more_review"
+                android:textColor="#606060"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imageView36"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:src="@drawable/ic_arrow_downward" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#30312f">
+
+        <View
+            android:id="@+id/view9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:background="#454544" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view9"
+            android:layout_alignStart="@+id/view9"
+            android:layout_below="@+id/view9"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="22dp">
+
+            <TextView
+                android:id="@+id/textView76"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/selected_trainer"
+                android:textColor="#e5e5e2"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/trainer_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/trainer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/trainer_image"
+                android:layout_toStartOf="@+id/trainer_image"
+                android:maxLines="1"
+                android:textColor="#e5e5e2"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView82"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/relativeLayout21"
+            android:layout_alignStart="@+id/relativeLayout21"
+            android:layout_below="@+id/relativeLayout21"
+            android:layout_marginTop="30dp"
+            android:text="@string/selected_pt_time"
+            android:textColor="#e5e5e2"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/day_of_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView82"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:maxLines="1"
+            android:textColor="#e5e5e2"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/relativeLayout21"
+            android:layout_alignRight="@+id/relativeLayout21"
+            android:layout_below="@+id/day_of_week"
+            android:layout_marginTop="6dp"
+            android:textColor="#e5e5e2"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView84"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView82"
+            android:layout_alignStart="@+id/textView82"
+            android:layout_below="@+id/time"
+            android:layout_marginTop="30dp"
+            android:text="@string/make_public_health_info"
+            android:textColor="#e5e5e2"
+            android:layout_marginBottom="33dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/make_public"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView84"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:textColor="@color/fitness_blue"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</LinearLayout>

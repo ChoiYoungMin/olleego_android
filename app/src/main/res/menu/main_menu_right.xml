@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single" android:id="@+id/test">
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/right1"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="제휴 센터 리스트" />
+            android:icon="@drawable/right_nav_drawer_mycenter_icon_selector"
+            android:title="@string/my_center" />
         <item
             android:id="@+id/right2"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="제휴 센터 지도" />
+            android:icon="@drawable/right_nav_drawer_list_icon_selector"
+            android:title="@string/alliance_center_list" />
         <item
             android:id="@+id/right3"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="My 센터" />
-
+            android:icon="@drawable/right_nav_drawer_map_icon_selector"
+            android:title="@string/alliance_center_map" />
     </group>
 </menu>

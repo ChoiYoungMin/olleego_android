@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- background 속성은 drawable로 해야한다. (color X) -->
+    <item android:drawable="@color/white" android:state_pressed="true" />
+    <item android:drawable="@color/white" android:state_checked="true" />
+    <item android:drawable="@color/white" android:state_focused="true" />
+    <item android:drawable="@color/white" android:state_activated="true" />
+    <item android:drawable="@color/fitness_blue" />
+</selector>

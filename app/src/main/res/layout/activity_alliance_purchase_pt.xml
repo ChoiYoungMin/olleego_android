@@ -1,0 +1,957 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey_bg1"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/fitness_blue"
+        android:fitsSystemWindows="true"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_close" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/img_menu"
+                android:text="@string/bottom_bar_purchase"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/light_grey_bg1">
+
+                <TextView
+                    android:id="@+id/status2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="29dp"
+                    android:background="@drawable/alliance_purchase_pt_status_number_bg"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="#cbcbc9"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/status3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="52dp"
+                    android:layout_marginTop="29dp"
+                    android:background="@drawable/alliance_purchase_pt_status_number_bg"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="#cbcbc9"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/status1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginTop="29dp"
+                    android:background="@drawable/alliance_purchase_pt_status_number_bg"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="#cbcbc9"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_status1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/status1"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="7dp"
+                    android:gravity="center"
+                    android:text="@string/select_condition"
+                    android:textColor="#606060" />
+
+                <TextView
+                    android:id="@+id/text_status2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/status2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="7dp"
+                    android:gravity="center"
+                    android:text="@string/select_payment_option"
+                    android:textColor="#cbcbc9" />
+
+                <TextView
+                    android:id="@+id/text_status3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/status3"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="7dp"
+                    android:gravity="center"
+                    android:text="@string/purchase_completion"
+                    android:textColor="#cbcbc9" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="43dp"
+                    android:layout_toLeftOf="@+id/status2"
+                    android:layout_toRightOf="@+id/status1"
+                    android:background="#cbcbc9" />
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="43dp"
+                    android:layout_toLeftOf="@+id/status3"
+                    android:layout_toRightOf="@+id/status2"
+                    android:background="#cbcbc9" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_pay_completed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="51dp"
+                android:background="@color/light_grey_bg1"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/image_completed"
+                    android:layout_width="104dp"
+                    android:layout_height="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/pay_completed" />
+
+                <TextView
+                    android:id="@+id/text_completed1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image_completed"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/pay_completed"
+                    android:textColor="#454544"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_completed2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_completed1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="34dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.3"
+                    android:text="@string/pay_completed_content"
+                    android:textColor="#606060"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_content_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/layout_product_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#30312f">
+
+                    <TextView
+                        android:id="@+id/textView89"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="26dp"
+                        android:text="@string/purchase_product_info"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/arrow_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="24dp"
+                        android:src="@drawable/ic_keyboard_arrow_up" />
+                </RelativeLayout>
+
+                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                    android:id="@+id/exp_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#30312f"
+                    app:ael_duration="200"
+                    app:ael_expanded="true"
+                    app:ael_interpolator="fastOutLinearIn"
+                    app:ael_orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp">
+
+                        <View
+                            android:id="@+id/view8"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginRight="25dp"
+                            android:background="#454544" />
+
+                        <TextView
+                            android:id="@+id/center_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/view8"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="13dp"
+                            android:textColor="#878885"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/center_name"
+                            android:layout_alignStart="@+id/center_name"
+                            android:layout_below="@+id/center_name"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginTop="6dp">
+
+                            <TextView
+                                android:id="@+id/pt_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="#e5e5e2"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/money"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/fitness_blue"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/expiry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/relativeLayout"
+                            android:layout_alignStart="@+id/relativeLayout"
+                            android:layout_below="@+id/relativeLayout"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#cbcbc9"
+                            android:textSize="12sp" />
+
+                    </RelativeLayout>
+                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/parent_layout_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/layout_condition"
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="#30312f">
+
+                        <TextView
+                            android:id="@+id/textView90"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="26dp"
+                            android:text="@string/purchase_condition"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/arrow_condition"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="24dp"
+                            android:src="@drawable/ic_keyboard_arrow_up" />
+                    </RelativeLayout>
+
+                    <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                        android:id="@+id/exp_condition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/layout_condition"
+                        android:background="#30312f"
+                        app:ael_duration="200"
+                        app:ael_expanded="true"
+                        app:ael_interpolator="fastOutLinearIn"
+                        app:ael_orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal">
+
+                            <View
+                                android:id="@+id/view9"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="24dp"
+                                android:background="#454544" />
+
+                            <RelativeLayout
+                                android:id="@+id/relativeLayout21"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/view9"
+                                android:layout_alignStart="@+id/view9"
+                                android:layout_below="@+id/view9"
+                                android:layout_marginRight="24dp"
+                                android:layout_marginTop="22dp">
+
+                                <TextView
+                                    android:id="@+id/textView76"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="@string/selected_trainer"
+                                    android:textColor="#e5e5e2"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:id="@+id/trainer_image"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true" />
+
+                                <TextView
+                                    android:id="@+id/trainer_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_toLeftOf="@id/trainer_image"
+                                    android:maxLines="1"
+                                    android:textColor="#e5e5e2"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/not_selected_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:maxLines="1"
+                                    android:text="@string/not_selected"
+                                    android:textColor="#e5e5e2"
+                                    android:textSize="14sp" />
+
+                            </RelativeLayout>
+
+                            <TextView
+                                android:id="@+id/textView82"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/relativeLayout21"
+                                android:layout_alignStart="@+id/relativeLayout21"
+                                android:layout_below="@+id/relativeLayout21"
+                                android:layout_marginTop="30dp"
+                                android:text="@string/selected_pt_time"
+                                android:textColor="#e5e5e2"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/day_of_week"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/textView82"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="24dp"
+                                android:maxLines="1"
+                                android:text="@string/not_selected"
+                                android:textColor="#e5e5e2"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignEnd="@+id/relativeLayout21"
+                                android:layout_alignRight="@+id/relativeLayout21"
+                                android:layout_below="@+id/day_of_week"
+                                android:layout_marginTop="6dp"
+                                android:textColor="#e5e5e2"
+                                android:textSize="14sp"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/textView84"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/textView82"
+                                android:layout_alignStart="@+id/textView82"
+                                android:layout_below="@+id/time"
+                                android:layout_marginBottom="33dp"
+                                android:layout_marginTop="30dp"
+                                android:text="@string/make_public_health_info"
+                                android:textColor="#e5e5e2"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/make_public"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/textView84"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="24dp"
+                                android:text="@string/close"
+                                android:textColor="#ff5b53"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+                    </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout22"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp"
+                    android:background="#30312f">
+
+                    <TextView
+                        android:id="@+id/textView101"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="24dp"
+                        android:text="@string/purchase_amount"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="24dp"
+                        android:textColor="@color/fitness_blue"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_option"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/light_grey_bg1"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:id="@+id/textView102"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="22dp"
+                        android:text="@string/select_condition"
+                        android:textColor="#606060"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:id="@+id/layout_trainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/textView102"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:id="@+id/textView103"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="24dp"
+                            android:text="@string/select_trainer"
+                            android:textColor="#878885"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayout24"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/textView103"
+                            android:layout_marginTop="16dp">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/recyclerView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:overScrollMode="never" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/textView104"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/relativeLayout24"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="40dp"
+                            android:text="@string/select_date_time"
+                            android:textColor="#878885"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView105"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/textView104"
+                            android:layout_marginLeft="6dp"
+                            android:layout_toEndOf="@+id/textView104"
+                            android:layout_toRightOf="@+id/textView104"
+                            android:text="@string/select_date_time_sub_text"
+                            android:textColor="#878885"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayout25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/textView105"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginLeft="18dp"
+                            android:layout_marginRight="18dp"
+                            android:layout_marginTop="16dp">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/recyclerView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:overScrollMode="never" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/relativeLayout25"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="18dp"
+                            android:layout_marginTop="24dp">
+
+
+                            <RelativeLayout
+                                android:id="@+id/layout_time_picker1"
+                                android:layout_width="120dp"
+                                android:layout_height="34dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="13dp"
+                                android:layout_toLeftOf="@+id/text"
+                                android:background="@drawable/alliance_review_text_border">
+
+                                <TextView
+                                    android:id="@+id/start_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/fitness_blue"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="14dp"
+                                    android:layout_toRightOf="@+id/start_time"
+                                    android:src="@drawable/ic_arrow_drop_down" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:id="@+id/text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="~" />
+
+
+                            <RelativeLayout
+                                android:id="@+id/layout_time_picker2"
+                                android:layout_width="120dp"
+                                android:layout_height="34dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="13dp"
+                                android:layout_toRightOf="@+id/text"
+                                android:background="@drawable/alliance_review_text_border">
+
+                                <TextView
+                                    android:id="@+id/end_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/fitness_blue"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="14dp"
+                                    android:layout_toRightOf="@+id/end_time"
+                                    android:src="@drawable/ic_arrow_drop_down" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="11dp"
+                                android:layout_toEndOf="@+id/layout_time_picker2"
+                                android:layout_toRightOf="@+id/layout_time_picker2"
+                                android:text="시"
+                                android:textColor="#606060"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/layout_trainer"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white"
+                        android:elevation="2dp">
+
+                        <RelativeLayout
+                            android:id="@+id/layout_health_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="67dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/white">
+
+                            <TextView
+                                android:id="@+id/textView81"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="24dp"
+                                android:text="@string/public_health_info"
+                                android:textColor="#606060"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:id="@+id/arrow_health_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/ic_keyboard_arrow_up" />
+                        </RelativeLayout>
+
+                        <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                            android:id="@+id/exp_health"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/layout_health_info"
+                            android:background="@color/white"
+                            app:ael_duration="200"
+                            app:ael_expanded="true"
+                            app:ael_interpolator="fastOutLinearIn"
+                            app:ael_orientation="vertical">
+
+                            <View
+                                android:id="@+id/view1"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp"
+                                android:background="#e5e5e2" />
+
+                            <RadioGroup
+                                android:id="@+id/radio_group"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/view1"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="20dp"
+                                android:orientation="vertical">
+
+                                <RadioButton
+                                    android:id="@+id/option1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:button="@drawable/alliance_purchase_radio_btn_selector"
+                                    android:text="@string/radio_button_text1"
+                                    android:textColor="#606060"
+                                    android:textSize="12sp" />
+
+                                <RadioButton
+                                    android:id="@+id/option2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="9dp"
+                                    android:button="@drawable/alliance_purchase_radio_btn_selector"
+                                    android:text="@string/radio_button_text2"
+                                    android:textColor="#606060"
+                                    android:textSize="12sp" />
+
+                            </RadioGroup>
+
+                            <TextView
+                                android:id="@+id/textView83"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_below="@+id/radio_group"
+                                android:layout_marginBottom="24dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="19dp"
+                                android:lineSpacingMultiplier="1.3"
+                                android:text="@string/public_health_content"
+                                android:textColor="#878885"
+                                android:textSize="12sp" />
+
+                        </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/payment_option"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:background="@color/light_grey_bg1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView86"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="24dp"
+                        android:text="@string/select_payment_option2"
+                        android:textColor="#606060"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_below="@+id/textView86"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white">
+
+                        <View
+                            android:id="@+id/view10"
+                            android:layout_width="2dp"
+                            android:layout_height="80dp"
+                            android:layout_centerInParent="true" />
+
+                        <RelativeLayout
+                            android:id="@+id/layout_credit_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_toLeftOf="@+id/view10"
+                            android:layout_toStartOf="@+id/view10"
+                            android:background="@color/fitness_blue">
+
+                            <TextView
+                                android:id="@+id/credit_card"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="@string/credit_card"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layout_account_transfer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_toEndOf="@+id/view10"
+                            android:layout_toRightOf="@+id/view10"
+                            android:background="@drawable/alliance_review_text_border">
+
+                            <TextView
+                                android:id="@+id/account_transfer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="@string/account_transfer"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottom_button"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/fitness_blue">
+
+                <TextView
+                    android:id="@+id/bottom_button_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/purchase_next_page"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

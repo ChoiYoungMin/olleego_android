@@ -69,15 +69,30 @@ public class ReportFragment extends Fragment {
     public ReportFragment() {
         // Required empty public constructor
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // destroy all menu and re-call onCreateOptionsMenu
+        getActivity().invalidateOptionsMenu();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main_report, menu);
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        setHasOptionsMenu(true);
+        getActivity().findViewById(R.id.toolbar_right_menu).setVisibility(View.GONE);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_report, container, false);
         ButterKnife.bind(this, view);
+
+
 
         loadingBarDialog = new LoadingBarDialog(getContext());
         loadingBarDialog.show();

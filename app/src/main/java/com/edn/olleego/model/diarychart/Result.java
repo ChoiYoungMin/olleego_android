@@ -1,5 +1,7 @@
 package com.edn.olleego.model.diarychart;
 
+import java.util.Date;
+
 /**
  * Created by Antonio on 2016-08-09.
  */
@@ -8,7 +10,7 @@ public class Result {
 
     int _id;
 
-    String day;
+    Date day;
     int walking;
     float sleep;
     int water;
@@ -20,10 +22,10 @@ public class Result {
     public void set_id(int _id) {
         this._id = _id;
     }
-    public String getDay() {
+    public Date getDay() {
         return this.day;
     }
-    public void setDay(String day) {
+    public void setDay(Date day) {
         this.day = day;
     }
     public float getSleep() {

@@ -361,4 +361,204 @@
 
     <string name="mission_custom_text1">키(신장) <font color='red'>*</font> </string>
     <string name="mission_custom_text2">체중 <font color='red'>*</font> </string>
+
+    <!-- layout/drawer_right_header.xml -->
+    <string name="my_reservation">나의 예약</string>
+    <string name="my_pt">내가 한 PT</string>
+    <string name="remaining_pt_cnt">남은 PT 횟수</string>
+    <string name="rigth_menu_login">로그인</string>
+
+    <!-- menu/main_menu_right.xml -->
+    <string name="my_center">MY센터</string>
+    <string name="alliance_center_list">제휴센터 리스트</string>
+    <string name="alliance_center_map">제휴센터 지도뷰</string>
+
+    <!-- layout/right_nav_drawer_bottom_button.xml -->
+    <string name="go_fitness_home">건강관리 홈으로</string>
+
+    <!-- app_bar.xml -->
+    <string name="ex">건강관리 홈으로</string>
+
+    <!-- VideoCategoryActivity -->
+    <string name="exercise_video_title">운동영상</string>
+    <string name="video_home_traning">홈트레이닝</string>
+    <string name="video_fitness">피트니스 센터</string>
+    <string name="video_part">부위별 근력운동</string>
+    <string name="video_pilates">필라테스</string>
+    <string name="video_swim">유산소</string>
+    <string name="video_stretching">스트레칭</string>
+
+    <string name="exercise_part_video_content">운동하기 원하는 신체 부위를 선택해주세요.</string>
+
+    <!-- fragment_exercise_video_list.xml -->
+    <string name="empty_view">데이터가 없습니다.</string>
+
+    <!-- fragment_video_details.xml -->
+    <string name="ex_level">난이도</string>
+    <string name="ex_sort">운동분류</string>
+    <string name="ex_method">운동방법</string>
+    <string name="key_ex_part">주요 운동 부위 :</string>
+    <string name="warning_title">주의사항</string>
+
+    <!-- AllianceCenterActivity -->
+    <string name="alliance_center_title">제휴센터</string>
+
+    <!-- activity_alliance_center.xml -->
+    <string name="current_location">현재위치</string>
+    <string name="spinner_prompt">위치지정</string>
+
+    <!-- alliance_center_list_item.xml -->
+    <string name="pt_gift">PT권</string>
+
+    <!-- AllianceDetailsActivity -->
+    <string name="alliance_tab1">센터안내</string>
+    <string name="alliance_tab2">세부정보</string>
+    <string name="alliance_tab3">공지</string>
+    <string name="alliance_tab4">리뷰</string>
+    <string name="bottom_bar_phone">전화걸기</string>
+    <string name="bottom_bar_purchase">구매하기</string>
+
+    <!-- AllianceCenterInfoFragment -->
+    <string name="expiry_text">(구매일로부터 %s일 이내 사용)</string>
+    <string name="empty_pt">등록된 이용권이 없습니다.</string>
+
+    <!-- fragment_alliance_details_info.xml -->
+    <string name="assigned_trainer">소속트레이너</string>
+
+
+    <!-- alliance_trainers_list_item.xml -->
+    <string name="career_list_text">경력사항</string>
+
+    <!-- alliance_details_info_view_item.xml -->
+    <string name="facility_info">시설정보</string>
+    <string name="available_time">이용시간</string>
+    <string name="location_info">위치정보</string>
+    <string name="notice">공지사항</string>
+
+    <!-- fragment_alliance_review.xml -->
+    <string name="review_text">리뷰는 구매한 회원만 작성 가능합니다.</string>
+    <string name="write_review">리뷰 작성하기</string>
+    <string name="review">리뷰</string>
+    <string name="more_review">후기 20개 더보기</string>
+    <string name="empty_review">등록된 리뷰가 없습니다.</string>
+    <string name="review_trainer">트레이너</string>
+    <string name="edit_review">수정</string>
+    <string name="delete_review">삭제</string>
+
+    <!-- activity_write_review.xml -->
+    <string name="write_review_title">리뷰작성</string>
+    <string name="write_review_confirm">확인</string>
+    <string name="write_review_text1">• 리뷰할 트레이너 선택하기</string>
+    <string name="write_review_text2">• 트레이너 평가하기</string>
+    <string name="drag_ratingbar">좌우로 드래그 하세요</string>
+    <string name="write_review_text3">센터 이용후기 및 트레이너 후기를 작성해주세요 (500자이내)</string>
+
+    <!-- AllianceWriteReviewActivity -->
+    <string name="write_review_toast1">트레이너를 선택해주세요.</string>
+    <string name="write_review_toast2">별점을 입력해주세요.</string>
+    <string name="write_review_toast3">내용을 입력해주세요.</string>
+
+    <!-- AllianceMapFragment -->
+    <string name="marker_pilates">필라테스/요가</string>
+
+    <!-- review_custom_dialog.xml -->
+    <string name="dialog_delete_review">리뷰를 삭제합니다.</string>
+    <string name="dialog_login_msg">로그인 후\n리뷰 작성 가능합니다.</string>
+    <string name="dialog_write_review_warning_msg">리뷰는 구매 완료한 회원만\n작성할 수 있습니다.</string>
+    <string name="dialog_cancel">취소</string>
+    <string name="dialog_delete">삭제</string>
+    <string name="dialog_confirm">확인</string>
+    <string name="dialog_login">로그인 하기</string>
+
+    <!-- location_service_custom_dialog.xml -->
+    <string name="dialog_location_service">위치 서비스 사용 안내</string>
+    <string name="dialog_location_service_content">내 주변 센터를 제공하기 위해 정확한\n위치 정보가 필요합니다.\n위치정보사용에 동의해주세요.</string>
+    <string name="dialog_location_agree">동의</string>
+    <string name="dialog_location_disagree">동의 안함</string>
+
+    <!-- MyCenterActivity -->
+    <string name="my_center_title">MY센터</string>
+    <string name="my_center_tap_title1">예약현황</string>
+    <string name="my_center_tap_title2">구매내역</string>
+    <string name="my_center_tap_title3">내가쓴리뷰</string>
+
+    <!-- mycenter_reservation_item.xml -->
+    <string name="my_center_total">총</string>
+    <string name="my_center_remainder">잔여</string>
+    <string name="confirm_reservation">예약 확인</string>
+    <string name="consult_list">상담내역</string>
+    <string name="d_day_text">일 남음</string>
+    <string name="expire_day_text">까지</string>
+    <string name="reservation_bottom_content">•   예약 취소나 문의사항은 트레이너와 센터로 연락 부탁드립니다.\n•   예약된 시간은 반드시 지켜주세요.\n•   예약 취소는 예약시간 2시간 전까지 가능합니다.\n•   예약시간 이후 취소건에 대해서는 올리고 규정상 횟수 차감이 됩니다.</string>
+    <string name="recommended_fitness">당신을 위한 추천 피트니스 상품</string>
+    <string name="center_short_cut">제휴센터 바로가기</string>
+
+    <!-- fragment_reservation_xml -->
+    <string name="reseravation_empty_view_text1">예약 가능한  PT 이용권이 없습니다.</string>
+    <string name="reseravation_empty_view_text2">바로가기 버튼을 누르시면,\n올리고와 제휴된 센터를 추가할 수 있습니다.</string>
+
+    <!-- ReservationDetailsActivity -->
+    <string name="ongoing_pt">진행 중인 PT권</string>
+    <string name="completed_pt">완료된 PT권</string>
+    <string name="center_detail_view">센터 상세보기 ></string>
+    <string name="call_center">전화하기</string>
+    <string name="alert_text_call_trainer">트레이너에게 전화를 합니다.</string>
+    <string name="center_trainer">담당트레이너</string>
+    <string name="reservation_details_tab_title1">예약 확인</string>
+    <string name="reservation_details_tab_title2">상담내역</string>
+
+    <!-- mycenter_reservation_details_list_item.xml -->
+    <string name="details_day">일차</string>
+    <string name="call_reservation">전화하기</string>
+    <string name="other_reservation">다른 일정 예약하기</string>
+
+    <!-- ReservationDetailsListAdapter -->
+    <string name="details_status_change">예약 변경 및 취소 ></string>
+    <string name="details_status_complete">완료</string>
+    <string name="details_status_cancel">취소</string>
+
+    <!-- ConsultParentViewHolder -->
+    <string name="consult_status_waiting">상담대기</string>
+    <string name="consult_status_complete">상담완료</string>
+
+    <!-- fragment_purchase_list.xml -->
+    <string name="purchase_empty_view_text">구매한 PT 이용권이 없습니다.</string>
+    <string name="purchase_empty_view_text2">바로가기 버튼을 누르시면,\n올리고와 제휴된 센터를 추가할 수 있습니다.</string>
+
+    <!-- mycenter_purchase_list_item.xml -->
+    <string name="purchase_paid_day">구매일</string>
+    <string name="purchase_paid_cancel">구매취소</string>
+    <!-- fragment_my_review-->
+    <string name="my_review_empty_view_text">작성한 리뷰 정보가 없습니다.</string>
+
+    <!-- activity_alliance_purchase_pt.xml -->
+    <string name="select_condition">희망조건선택</string>
+    <string name="select_payment_option">결제방법선택</string>
+    <string name="purchase_completion">구매완료</string>
+    <string name="purchase_product_info">구매상품 정보</string>
+    <string name="purchase_condition">희망조건 정보</string>
+    <string name="purchase_amount">총 결제 금액</string>
+    <string name="select_trainer">• 	트레이너 선택</string>
+    <string name="select_date_time">•  가능한 PT시간 선택</string>
+    <string name="select_date_time_sub_text">(가능 시간대 모두 선택)</string>
+    <string name="public_health_info">건강정보 공개 유무 확인</string>
+    <string name="radio_button_text1">공개합니다.</string>
+    <string name="radio_button_text2">공개하지 않습니다.</string>
+    <string name="public_health_content">트레이너는 올리고에 입력된 회원님의 건강상태를 확인하고,\n그에 맞는 운동 정보를 제공하게 됩니다.\n트레이너에게 공유되는 건강정보는 다음과 같습니다.\n연령, 키, 몸무게, 혈압, 혈당 등 건강정보</string>
+    <string name="purchase_next_page">다음</string>
+    <string name="selected_trainer">•  선택한 트레이너</string>
+    <string name="selected_pt_time">•  가능한 PT시간</string>
+    <string name="make_public_health_info">•  건강정보 공개 유무</string>
+    <string name="select_payment_option2">결제 방법 선택</string>
+    <string name="credit_card">신용카드</string>
+    <string name="account_transfer">실시간 계좌이체</string>
+    <string name="payment">결제하기</string>
+    <string name="make_public">공개</string>
+    <string name="close">비공개</string>
+    <string name="not_selected">선택없음</string>
+    <string name="pay_completed">구매완료 되었습니다.</string>
+    <string name="pay_completed_content">담당 센터에서 2일 이내에게 고객님께 트레이너를 배정하고, 담당 트레이너가 핸드폰으로 연락을 드립니다.
+        담당트레이너로부터 연락이 오지 않았을 경우, 올리고로 메일 보내주시면 빠르게 처리해 드리겠습니다.\nfamily@edninnovation.net</string>
+    <string name="pay_failed">구매 실패하였습니다.</string>
+    <string name="pay_failed_content">인증되지 않았습니다.</string>
 </resources>

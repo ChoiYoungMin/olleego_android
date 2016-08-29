@@ -8,17 +8,21 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.activity.mission.missionlist.MissionListActivity;
 import com.edn.olleego.custom.CircleProgressBar;
 import com.edn.olleego.common.Percent;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.custom.VerticalProgressBar;
 import com.edn.olleego.dialog.LoadingBarDialog;
+import com.edn.olleego.fragment.Mission.MissionCategoryFragment;
+import com.edn.olleego.fragment.Mission.MissionDetailFragment;
 import com.edn.olleego.model.UserMissionModel;
 import com.edn.olleego.server.UserMissionAPI;
 import com.edn.olleego.server.UserRestMissionAPI;
@@ -116,6 +120,19 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
             final TextView main_top_mission_day= (TextView) convertView.findViewById(R.id.main_top_mission_myday);
             final TextView main_top_mission_allday= (TextView) convertView.findViewById(R.id.main_top_mission_allday);
             final TextView main_top_mission_detail = (TextView)convertView.findViewById(R.id.main_top_mission_detail);
+            RelativeLayout main_top_mission_yes = (RelativeLayout) convertView.findViewById(R.id.main_top_mission_yes);
+
+            main_top_mission_yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    android.support.v4.app.FragmentTransaction transaction = ((MainActivity)context).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.content_main, new MissionCategoryFragment());
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+
+
 
             mission_title = null;
             mission_myday= null;
@@ -174,6 +191,7 @@ public class MainTopViewPagerAdapter extends PagerAdapter {
                         editor.putString("user_mission_today_onoff", "off");
                     }
                     else if (response.isSuccessful()) {
+
 
 
                         try {

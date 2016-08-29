@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/alliance_review_text_border">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="24dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_alignBottom="@+id/textView97" />
+
+        <TextView
+            android:id="@+id/textView78"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:layout_toLeftOf="@+id/view"
+            android:layout_toStartOf="@+id/view"
+            android:text="인바디 정보"
+            android:textColor="#606060"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView79"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@+id/view"
+            android:layout_toRightOf="@+id/view"
+            android:text="측정치"
+            android:textColor="#606060"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView78"
+            android:layout_marginTop="12sp"
+            android:layout_toLeftOf="@+id/view"
+            android:layout_toStartOf="@+id/view"
+            android:text="체중"
+            android:textColor="#878885" />
+
+        <TextView
+            android:id="@+id/weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView79"
+            android:layout_marginTop="12sp"
+            android:layout_toEndOf="@+id/view"
+            android:layout_toRightOf="@+id/view"
+            android:textColor="@color/fitness_blue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/muscle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/weight"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/view"
+            android:layout_toRightOf="@+id/view"
+            android:textColor="@color/fitness_blue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/body_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/muscle"
+            android:layout_alignStart="@+id/muscle"
+            android:layout_below="@+id/muscle"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/fitness_blue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/bmi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/body_fat"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/view"
+            android:layout_toRightOf="@+id/view"
+            android:textColor="@color/fitness_blue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/body_fat_per"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bmi"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/view"
+            android:layout_toRightOf="@+id/view"
+            android:textColor="@color/fitness_blue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/whr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/body_fat_per"
+            android:layout_alignStart="@+id/body_fat_per"
+            android:layout_below="@+id/body_fat_per"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/fitness_blue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/basal_metabolism"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/whr"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/view"
+            android:layout_toRightOf="@+id/view"
+            android:textColor="@color/fitness_blue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView92"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView80"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/view"
+            android:layout_toStartOf="@+id/view"
+            android:text="골격근량"
+            android:textColor="#878885" />
+
+        <TextView
+            android:id="@+id/textView93"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView92"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/view"
+            android:layout_toStartOf="@+id/view"
+            android:text="체지방량"
+            android:textColor="#878885" />
+
+        <TextView
+            android:id="@+id/textView94"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView93"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/view"
+            android:layout_toStartOf="@+id/view"
+            android:text="체질량지수(BMI)"
+            android:textColor="#878885" />
+
+        <TextView
+            android:id="@+id/textView95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView94"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/view"
+            android:layout_toStartOf="@+id/view"
+            android:text="체지방률"
+            android:textColor="#878885" />
+
+        <TextView
+            android:id="@+id/textView96"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView95"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/view"
+            android:layout_toStartOf="@+id/view"
+            android:text="복부비만율"
+            android:textColor="#878885" />
+
+        <TextView
+            android:id="@+id/textView97"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView96"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/view"
+            android:layout_toStartOf="@+id/view"
+            android:text="기초대사량"
+            android:textColor="#878885" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView98"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:text="@string/consult_list"
+        android:textColor="#606060"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/consult_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="29dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="11dp"
+        android:lineSpacingMultiplier="1.5"
+        android:textColor="#606060"
+        android:textSize="13sp" />
+</LinearLayout>

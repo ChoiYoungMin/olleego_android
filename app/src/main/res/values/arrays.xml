@@ -24,4 +24,104 @@
         <item >직접입력</item>
     </string-array>
 
+
+    <string-array name="video_content_array">
+        <item>매트, 덤벨, 밴드의 작은 도구가 필요합니다.\n운동은 약 10~15회 내외로 3세트 이상씩 진행해보세요</item>
+        <item>센터의 머신 운동을 할때는 머신에 정확한 자세를 하고 정확한 부위에\n자극이 가도록 해야 부상의 위험이 줄어 들어요.\n동작을 잘 알지 못할때에는 센터의 트레이너분들께 기초 교육을 꼭 받으세요.</item>
+        <item>운동하기 원하는 신체 부위를 선택해주세요.</item>
+        <item>필라테스</item>
+        <item>유산소 운동은 심폐기능을 강화하는 운동입니다.\n주로 근력운동 시작 전에\n워밍업을 통해 심박수를 끌어 올리기 위한 운동입니다.</item>
+        <item>의자, 매트 등의 도구가 필요합니다.\n스트레칭은 뭉친 근육을 풀어주는 운동이며,\n강하게 자극을 주기 보다는 천천히, 약한 힘으로 하는것이 좋습니다.</item>
+    </string-array>
+
+    <string-array name="spinner_item_array">
+        <item>홈트레이닝</item>
+        <item>피트니스 센터</item>
+        <item>부위별 근력</item>
+        <item>필라테스</item>
+        <item>유산소 운동</item>
+        <item>스트레칭</item>
+    </string-array>
+
+    <string-array name="part_list_array">
+        <item>전체</item>
+        <item>전신</item>
+        <item>팔/어깨</item>
+        <item>가슴</item>
+        <item>복부</item>
+        <item>등/허리</item>
+        <item>엉덩이</item>
+        <item>허벅지</item>
+        <item>다리</item>
+    </string-array>
+
+    <string-array name="day_of_week_array">
+        <item>월</item>
+        <item>화</item>
+        <item>수</item>
+        <item>목</item>
+        <item>금</item>
+        <item>토</item>
+        <item>일</item>
+    </string-array>
+
+
+
+    <string-array name="part_id_array">
+        <item>0</item>
+        <item>{\"sm_sort\":[11]}</item>
+        <item>{\"sm_sort\":[17,19]}</item>
+        <item>{\"sm_sort\":[20]}</item>
+        <item>{\"sm_sort\":[12]}</item>
+        <item>{\"sm_sort\":[14,16]}</item>
+        <item>{\"sm_sort\":[15]}</item>
+        <item>{\"sm_sort\":[13]}</item>
+        <item>{\"sm_sort\":[18]}</item>
+    </string-array>
+
+    <integer-array name="video_category_icon_array">
+        <item>@drawable/video_detail_ic_hometraining</item>
+        <item>@drawable/video_detail_ic_fitnesscenter</item>
+        <item>@drawable/video_detail_ic_part</item>
+        <item>@drawable/video_detail_ic_pilates</item>
+        <item>@drawable/video_detail_ic_swim</item>
+        <item>@drawable/video_detail_ic_stretching</item>
+    </integer-array>
+
+    <integer-array name="video_category_background_array">
+        <item>@drawable/img_d1_home</item>
+        <item>@drawable/img_d2_center</item>
+        <item>@drawable/img_d3_muscle</item>
+        <item>@drawable/img_d4_pilates</item>
+        <item>@drawable/img_d5_run</item>
+        <item>@drawable/img_d6_stretching</item>
+    </integer-array>
+
+    <integer-array name="class_image_array">
+        <item>@drawable/class_yoga</item>
+        <item>@drawable/class_boxing</item>
+        <item>@drawable/class_gx</item>
+    </integer-array>
+
+    <integer-array name="facilities_image_light_array">
+        <item>@drawable/fa_parkinglot</item>
+        <item>@drawable/fa_bathroom</item>
+        <item>@drawable/fa_steam</item>
+        <item>@drawable/fa_locker</item>
+        <item>@drawable/fa_clothes</item>
+        <item>@drawable/fa_pool</item>
+        <item>@drawable/fa_inbody</item>
+        <item>@drawable/fa_restroom</item>
+    </integer-array>
+
+    <integer-array name="facilities_image_array">
+        <item>@drawable/fa_parkinglot_x</item>
+        <item>@drawable/fa_bathroom_x</item>
+        <item>@drawable/fa_steam_x</item>
+        <item>@drawable/fa_locker_x</item>
+        <item>@drawable/fa_clothes_x</item>
+        <item>@drawable/fa_pool_x</item>
+        <item>@drawable/fa_inbody_x</item>
+        <item>@drawable/fa_restroom_x</item>
+    </integer-array>
 </resources>

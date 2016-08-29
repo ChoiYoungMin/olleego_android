@@ -17,13 +17,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
+import com.edn.olleego.activity.alliance.AllianceCenterActivity;
+import com.edn.olleego.activity.alliance.AllianceMapActivity;
 import com.edn.olleego.activity.login.EmailActivity;
+import com.edn.olleego.activity.mycenter.MyCenterActivity;
 import com.edn.olleego.activity.notice.NoticeActivity;
+import com.edn.olleego.activity.video.VideoCategoryActivity;
 import com.edn.olleego.common.BackPressCloseHandler;
 import com.edn.olleego.fragment.Home_Fragment;
 import com.edn.olleego.fragment.Mission.MissionCategoryMainFragment;
@@ -85,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         nav_view.setItemIconTintList(null);
+        nav_view2.setItemIconTintList(null);
 
         backPressCloseHandler = new BackPressCloseHandler(this);
         drawer_layout.setFitsSystemWindows(true);
@@ -193,22 +199,22 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         olleego_SP = getSharedPreferences("olleego", MODE_PRIVATE);
-
+        View v = nav_view2.getHeaderView(0);
+        RelativeLayout layout_menu = (RelativeLayout) v.findViewById(R.id.layout_menu);
+        RelativeLayout layout_login = (RelativeLayout) v.findViewById(R.id.layout_login);
         if(login_chk == 0) {
 
             findViewById(R.id.login_no_left).setVisibility(View.GONE);
-            findViewById(R.id.login_no_right).setVisibility(View.GONE);
-            findViewById(R.id.login_ok_right).setVisibility(View.GONE);
             findViewById(R.id.login_ok_left).setVisibility(View.GONE);
 
             if (olleego_SP.getString("login_chk", "").equals("true")) {
                 findViewById(R.id.login_ok_left).setVisibility(View.VISIBLE);
-                findViewById(R.id.login_ok_right).setVisibility(View.VISIBLE);
 
                 TextView left_header_name = (TextView)findViewById(R.id.left_header_name);
                 TextView left_header_email = (TextView)findViewById(R.id.left_header_email);
                 ImageView left_header_img= (ImageView)findViewById(R.id.left_header_img);
-
+                layout_login.setVisibility(View.GONE);
+                layout_menu.setVisibility(View.VISIBLE);
                 left_header_name.setText(olleego_SP.getString("login_name",""));
                 left_header_email.setText(olleego_SP.getString("login_email",""));
                 Glide.with(this).load(olleego_SP.getString("login_img", "")).into(left_header_img);
@@ -218,9 +224,9 @@ public class MainActivity extends AppCompatActivity
             // 비로그인 상태
             else {
                 findViewById(R.id.login_no_left).setVisibility(View.VISIBLE);
-                findViewById(R.id.login_no_right).setVisibility(View.VISIBLE);
 
-
+                layout_menu.setVisibility(View.GONE);
+                layout_login.setVisibility(View.VISIBLE);
             }
         } else {
 
@@ -254,13 +260,17 @@ public class MainActivity extends AppCompatActivity
 
         // 오른쪽 메뉴
 
-        if(id == R.id.right1) {
-            //transaction.replace(R.id.content_main, getFragmentManager());
-        } else if(id == R.id.right2) {
-            Toast.makeText(this, "제휴 센터 지도", Toast.LENGTH_SHORT).show();
+        if (id == R.id.right1) { //My센터
+            Intent intent = new Intent(this, MyCenterActivity.class);
+            startActivity(intent);
             return true;
-        } else if(id == R.id.right3) {
-            Toast.makeText(this, "My 센터", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.right2) { //제휴센터 리스트
+            Intent intent = new Intent(this, AllianceCenterActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.right3) { //제휴센터 지도뷰
+            Intent intent = new Intent(this, AllianceMapActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -275,10 +285,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.left_menu_mission) {
             transaction.replace(R.id.content_main, missionCategoryFragment);
         } else if (id == R.id.left_menu_video) {
-            Intent intent = new Intent(getApplicationContext(), EmailActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            Intent intent = new Intent(this, VideoCategoryActivity.class);
             startActivity(intent);
-            finish();
         } else if (id == R.id.left_menu_setting) {
             transaction.replace(R.id.content_main, missionCustomFragment);
         } else if (id == R.id.left_menu_notice) {
@@ -361,4 +369,14 @@ public class MainActivity extends AppCompatActivity
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
+    // 외주 추가 소스
+
+    @OnClick(R.id.layout_bottom)
+    public void onClickRightMenuBottomButton(View v){ //우측메뉴 건강관리홈 버튼
+        //drawer_layout.closeDrawer(GravityCompat.END);
+    }
+
+
 }

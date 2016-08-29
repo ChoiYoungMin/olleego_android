@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        icon="@drawable/ic_phone"
+        id="@+id/tab_phone"
+        title="@string/bottom_bar_phone" />
+    <tab
+        id="@+id/tab_purchase"
+        title="@string/bottom_bar_purchase" />
+</tabs>

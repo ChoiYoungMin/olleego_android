@@ -36,6 +36,7 @@
 
     </FrameLayout>
 
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -49,17 +50,20 @@
         />
 
 
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/fitness_blue"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/drawer_right_header"
+        app:itemBackground="@drawable/right_nav_drawer_menu_item_selector"
+        app:itemTextAppearance="@style/NavDrawerTextStyle2"
+        app:menu="@menu/main_menu_right">
 
-
-        <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/drawer_right_header"
-            app:menu="@menu/main_menu_right" />
-
+        <include layout="@layout/right_nav_drawer_bottom_button" />
+    </android.support.design.widget.NavigationView>
 
 
 

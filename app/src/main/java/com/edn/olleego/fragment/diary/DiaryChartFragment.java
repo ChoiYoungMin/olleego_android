@@ -32,7 +32,9 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -113,7 +115,8 @@ public class DiaryChartFragment extends Fragment {
 
                     group1= new ArrayList<>();
                     for(int i=0; i<diaryChartModel.getResult().size(); i++ ) {
-                        String labelz = diaryChartModel.getResult().get(temp).getDay();
+                        SimpleDateFormat dateFormat = new  SimpleDateFormat("MM-dd", java.util.Locale.getDefault());
+                        String labelz = dateFormat.format(diaryChartModel.getResult().get(temp).getDay());
                         labels.add(labelz);
 
                         if(type == 1) {
@@ -178,6 +181,7 @@ public class DiaryChartFragment extends Fragment {
                     leftAxis.setLabelCount(5, true);
                     leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
                     leftAxis.setSpaceTop(30f);
+                    leftAxis.setAxisMinValue(0);
                     leftAxis.setDrawGridLines(false);
 
 

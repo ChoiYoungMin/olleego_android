@@ -133,18 +133,6 @@ public class HealthyReportFragment extends Fragment {
 
     ViewPager viewPager;
     Context context;
-    @Override
-    public void onResume() {
-        super.onResume();
-        // destroy all menu and re-call onCreateOptionsMenu
-        getActivity().invalidateOptionsMenu();
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.main_report, menu);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -186,6 +174,8 @@ public class HealthyReportFragment extends Fragment {
         // Required empty public constructor
         this.viewPager = viewPager;
         this.context = context;
+
+
     }
 
     @Override
@@ -208,8 +198,6 @@ public class HealthyReportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        setHasOptionsMenu(true);
-        getActivity().findViewById(R.id.toolbar_right_menu).setVisibility(View.GONE);
 
         View rootview = inflater.inflate(R.layout.fragment_healthy_report, container, false);
 

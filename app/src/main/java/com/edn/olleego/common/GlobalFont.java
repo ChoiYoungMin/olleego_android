@@ -2,6 +2,7 @@ package com.edn.olleego.common;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.tsengvn.typekit.Typekit;
 import com.tsengvn.typekit.TypekitContextWrapper;
@@ -11,11 +12,14 @@ import com.tsengvn.typekit.TypekitContextWrapper;
  */
 public class GlobalFont  extends Application {
 
+    private static GlobalFont mInstance;
     private static final String TAG = GlobalFont.class.getName();
-
+    private final String WEB_HOST_URL = "http://1.255.51.120:5000";
     @Override
     public void onCreate() {
         super.onCreate();
+        mInstance = this;
+
         Typekit.getInstance()
                 .addNormal(Typekit.createFromAsset(this, "NotoSansCJKkr-Medium.woff"))
                 .addBold(Typekit.createFromAsset(this, "NotoSansCJKkr-Bold.woff"));
@@ -35,5 +39,13 @@ public class GlobalFont  extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(TypekitContextWrapper.wrap(base));
+        MultiDex.install(this);
+    }
+
+    public static GlobalFont getInstance() {
+        return mInstance;
+    }
+    public String getWebHostUrl() {
+        return WEB_HOST_URL;
     }
 }
