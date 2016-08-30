@@ -78,7 +78,7 @@ public class DiaryWaterAddDialog extends Dialog{
         this.token = token;
         this.user_id = user_id;
         this.day = day+ " 00:00:00";
-        this.water = nowWater;
+        this.water = nowWater/250;
         this.sleep = sleep;
         this.walking = walking;
     }
@@ -134,7 +134,7 @@ public class DiaryWaterAddDialog extends Dialog{
 
         DiaryAdd diaryAdd = new DiaryAdd();
 
-        diaryAdd.DiaryWaterAdd(user_id,day,water,sleep,walking);
+        diaryAdd.DiaryWaterAdd(user_id,day,water*250,sleep,walking);
 
         final Call<MissionsModel> diaryPos = diaryAddAPI.listRepos(tokens, "water",diaryAdd);
 

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -64,6 +65,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * A simple {@link Fragment} subclass.
  */
 public class HealthyReportFragment extends Fragment {
+
+    @BindView(R.id.healthy_report_nodata)
+    RelativeLayout healthy_report_nodata;
+    @BindView(R.id.healthy_report_nodata2)
+    RelativeLayout healthy_report_nodata2;
 
     @BindView(R.id.report_healthy_layout1)
     LinearLayout report_healthy_layout1;
@@ -168,7 +174,147 @@ public class HealthyReportFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // destroy all menu and re-call onCreateOptionsMenu
+        getActivity().invalidateOptionsMenu();
 
+
+        final HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        final CookieManager cookieManager = new CookieManager();
+        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+
+        OkHttpClient client = configureClient(new OkHttpClient().newBuilder()) //인증서 무시
+                .connectTimeout(15, TimeUnit.SECONDS) //연결 타임아웃 시간 설정
+                .writeTimeout(15, TimeUnit.SECONDS) //쓰기 타임아웃 시간 설정
+                .readTimeout(15, TimeUnit.SECONDS) //읽기 타임아웃 시간 설정
+                .cookieJar(new JavaNetCookieJar(cookieManager)) //쿠키메니져 설정
+                .addInterceptor(httpLoggingInterceptor) //http 로그 확인
+                .build();
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ServerInfo.OLLEEGO_HOST)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        olleego_SP = getActivity().getSharedPreferences("olleego", getActivity().MODE_PRIVATE);
+
+
+
+        String token = "olleego " + olleego_SP.getString("login_token", "");;
+        ReportAPI diaryAPI = retrofit.create(ReportAPI.class);
+
+        final Call<ReportModel> diaryPos = diaryAPI.listRepos(token);
+
+        diaryPos.enqueue(new Callback<ReportModel>() {
+            @Override
+            public void onResponse(Call<ReportModel> call, Response<ReportModel> response) {
+                if(response.isSuccessful()) {
+                    report_healthy_report_input.setVisibility(View.GONE);
+                    reportModel = response.body();
+
+                    bmi =  reportModel.getResult().getBmi();
+
+                    if(18.5 > bmi ) {
+                        report_healthy_report1_bmiimg.setImageResource(R.drawable.ic_chevron_right);
+                    } else if(22.9 < bmi) {
+                        report_healthy_report1_bmiimg.setImageResource(R.drawable.ic_chevron_left);
+
+                    } else {
+                        report_healthy_report1_bmiimg.setImageResource(R.drawable.ic_equal);
+
+                    }
+
+                    if (bmi > 0 && bmi < 18.5) {
+                        report_healthy_report1_bmiimg2.setImageResource(R.drawable.ic_status_x);
+                    } else if (bmi >= 18.5 && bmi < 23) {
+                        report_healthy_report1_bmiimg2.setImageResource(R.drawable.ic_status_2);
+
+
+                    } else if (bmi >= 23 && bmi < 25) {
+                        report_healthy_report1_bmiimg2.setImageResource(R.drawable.ic_status_3);
+
+
+                    } else if (bmi >= 25 && bmi < 30) {
+                        report_healthy_report1_bmiimg2.setImageResource(R.drawable.ic_status_4);
+
+
+                    } else {
+                        report_healthy_report1_bmiimg2.setImageResource(R.drawable.ic_status_5);
+
+                    }
+
+
+
+
+
+
+                    report_healthy_report1_title.setText(reportModel.getResult().getWhr_eval().getData_a());
+                    report_healthy_report1_content.setText(reportModel.getResult().getWhr_eval().getData_b());
+
+                    report_healthy_report1_allkg.setText("약 "+ reportModel.getResult().getWhr_eval().getData_c());
+                    report_healthy_report1_chkkg.setText(reportModel.getResult().getWhr_eval().getData_d());
+
+                    report_healthy_report2_title.setText(reportModel.getResult().getMs_status().getData_e());
+
+                    if(reportModel.getResult().getMs_status().getCheck() < 1) {
+
+                        report_healthy_report2_content.setText("아래의 건강수치를 분석해본 결과\n 건강상태가 아주 양호한 편입니다.");
+                    } else if(reportModel.getResult().getMs_status().getCheck() == 2) {
+                        report_healthy_report2_content.setText("아래의 건강수치를 분석해본 결과\n 대사증후군 관리 대상입니다. ");
+                    } else if(reportModel.getResult().getMs_status().getCheck() == 3) {
+                        report_healthy_report2_content.setText("아래의 건강수치를 분석해본 결과\n대사증후군이 의심되며 가까운\n의료기관에서 검진을 받아 보시기\n바랍니다");
+                    }
+
+
+                    if(reportModel.getResult().getMs_status().getWaist() == true ) {
+                        report_healthy_report2_waist_img.setImageResource(R.drawable.ic_check_circle);
+                        report_healthy_report2_waist_text.setTextColor(Color.parseColor("#606060"));
+                    }
+
+                    if(reportModel.getResult().getMs_status().getBp() == true ) {
+                        report_healthy_report2_bp_img.setImageResource(R.drawable.ic_check_circle);
+                        report_healthy_report2_bp_text.setTextColor(Color.parseColor("#606060"));
+                    }
+
+                    if(reportModel.getResult().getMs_status().getBs() == true ) {
+                        report_healthy_report2_bs_img.setImageResource(R.drawable.ic_check_circle);
+                        report_healthy_report2_bs_text.setTextColor(Color.parseColor("#606060"));
+                    }
+
+                    try{
+                        Glide.with(getContext()).load(reportModel.getResult().getMission1().getTitle_img()).into(report_healthy_mission1_img);
+                        Glide.with(getContext()).load(reportModel.getResult().getMission2().getTitle_img()).into(report_healthy_mission2_img);
+                        report_healthy_mission1_text.setText(reportModel.getResult().getMission1().getTitle());
+                        report_healthy_mission2_text.setText(reportModel.getResult().getMission2().getTitle());
+
+                    } catch (NullPointerException e) {
+
+                        report_healthy_layout3.setVisibility(View.GONE);
+                    }
+
+                    report_healthy_report1_mybmi.setText(String.valueOf(reportModel.getResult().getBmi()));
+
+
+
+                } else {
+                    healthy_report_nodata.setVisibility(View.VISIBLE);
+                    healthy_report_nodata2.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReportModel> call, Throwable t) {
+
+            }
+        });
+    }
 
     public HealthyReportFragment(Context context, ViewPager viewPager) {
         // Required empty public constructor
@@ -198,6 +344,7 @@ public class HealthyReportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
 
         View rootview = inflater.inflate(R.layout.fragment_healthy_report, container, false);
 
@@ -325,9 +472,9 @@ public class HealthyReportFragment extends Fragment {
 
 
                 } else {
-                    report_healthy_layout1.setVisibility(View.GONE);
-                    report_healthy_layout2.setVisibility(View.GONE);
-                    report_healthy_layout3.setVisibility(View.GONE);
+
+                    healthy_report_nodata.setVisibility(View.VISIBLE);
+                    healthy_report_nodata2.setVisibility(View.VISIBLE);
 
 
 

@@ -544,8 +544,8 @@ public class Diary_Fragment extends Fragment {
                         if (response.body().getResult().getWater() != 0) {
                             diary_water_icon.setImageResource(R.drawable.diary_water_3);
                             diary_water_text.setTextColor(Color.parseColor(strColors));
-                            diary_water_text.setText(String.valueOf(response.body().getResult().getWater()) + " 잔");
-                            water = response.body().getResult().getWater();
+                            diary_water_text.setText(String.valueOf(response.body().getResult().getWater()/250) + " 잔");
+                            water = response.body().getResult().getWater()/250;
                         } else {
                             diary_water_icon.setImageResource(R.drawable.diary_water_3_unchecked);
                             diary_water_text.setTextColor(Color.parseColor(strColorsUn));
@@ -800,7 +800,9 @@ public class Diary_Fragment extends Fragment {
 
     @OnClick(R.id.diary_water_add)
     void diary_water_add_click() {
-        final DiaryWaterAddDialog diaryWaterAddDialog = new DiaryWaterAddDialog(getContext(), Olleego_SP.getString("login_token", ""), Integer.valueOf(Olleego_SP.getString("user_id","")),click_day2, water, sleep, walking);
+
+
+        final DiaryWaterAddDialog diaryWaterAddDialog = new DiaryWaterAddDialog(getContext(), Olleego_SP.getString("login_token", ""), Integer.valueOf(Olleego_SP.getString("user_id","")),click_day2, water*250, sleep, walking);
         diaryWaterAddDialog.show();
 
         diaryWaterAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -821,7 +823,7 @@ public class Diary_Fragment extends Fragment {
 
     @OnClick(R.id.diary_sleep_add)
     void diary_sleep_add_click() {
-        final DiarySleepAddDialog diarySleepAddDialog = new DiarySleepAddDialog(getContext(), Olleego_SP.getString("login_token", ""), Integer.valueOf(Olleego_SP.getString("user_id","")),click_day2, water, sleep, walking);
+        final DiarySleepAddDialog diarySleepAddDialog = new DiarySleepAddDialog(getContext(), Olleego_SP.getString("login_token", ""), Integer.valueOf(Olleego_SP.getString("user_id","")),click_day2, water*250, sleep, walking);
         diarySleepAddDialog.show();
 
         diarySleepAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

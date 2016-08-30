@@ -1,5 +1,6 @@
 package com.edn.olleego.common;
 
+import com.edn.olleego.model.MissionsModel;
 import com.edn.olleego.model.alliance.AllianceCategoryModel;
 import com.edn.olleego.model.alliance.AllianceDeleteReviewBody;
 import com.edn.olleego.model.alliance.AllianceDetailsModel;
@@ -25,6 +26,7 @@ import com.edn.olleego.model.mycenter.ReservationDetailsModel;
 import com.edn.olleego.model.mycenter.ReservationModel;
 import com.edn.olleego.model.video.VideoDetailsModel;
 import com.edn.olleego.model.video.VideoListModel;
+import com.edn.olleego.server.request.DiaryAdd;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -167,4 +169,9 @@ public interface OlleegoInterface {
     //좌측 메뉴 > 운동영상 > 상세운동 페이지
     @GET("/api/v2/exdetails/{id}")
     Call<VideoDetailsModel> getVideo(@Path("id") String id);
+
+
+    @Headers("Content-Type: application/json")
+    @POST("/api/v2/diaries")
+    Call<MissionsModel> getDiaryAdd(@Header("Authorization") String authorization, @Query("type") String type , @Body DiaryAdd diaryAdd);
 }

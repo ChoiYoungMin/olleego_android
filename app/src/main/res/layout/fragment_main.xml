@@ -346,14 +346,22 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="5dp">
 
-                    <TextView
+                    <LinearLayout
+
                         android:id="@+id/main_diary_water_minus"
-                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:layout_width="25dp"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textSize="30sp"
-                        android:layout_above="@+id/custom_progressBar23"
-                        android:layout_toStartOf="@+id/custom_progressBar23" />
+                        android:layout_above="@+id/custom_progressBar23">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:textSize="30sp" />
+                    </LinearLayout>
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -399,14 +407,20 @@
                         android:layout_alignTop="@+id/main_diary_water"
                         android:layout_toEndOf="@+id/main_diary_water" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+"
-                        android:textSize="30sp"
+                    <LinearLayout
+
                         android:id="@+id/main_diary_water_plus"
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
                         android:layout_above="@+id/custom_progressBar23"
-                        android:layout_toEndOf="@+id/custom_progressBar23" />
+                        android:layout_toEndOf="@+id/custom_progressBar23" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:textSize="30sp"/>
+                    </LinearLayout>
                 </RelativeLayout>
 
 

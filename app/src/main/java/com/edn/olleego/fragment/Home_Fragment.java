@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.edn.olleego.activity.diary.DiaryFoodActivity;
 import com.edn.olleego.activity.login.LoginActivity;
 import com.edn.olleego.adapter.main.MainMiddleViewPagerAdapter;
 import com.edn.olleego.adapter.main.MainTopViewPagerAdapter;
+import com.edn.olleego.common.RestfulAdapter;
 import com.edn.olleego.custom.CircleProgressBar;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.dialog.DiarySleepAddDialog;
@@ -35,7 +37,11 @@ import com.edn.olleego.model.DiaryModel;
 import com.edn.olleego.model.ExgroupsModel;
 import com.edn.olleego.model.FoodsModel;
 import com.edn.olleego.model.LifesModel;
+import com.edn.olleego.model.MissionsModel;
+import com.edn.olleego.model.mycenter.ReservationDetailsModel;
 import com.edn.olleego.server.DiaryAPI;
+import com.edn.olleego.server.DiaryAddAPI;
+import com.edn.olleego.server.request.DiaryAdd;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -382,10 +388,10 @@ public class Home_Fragment extends Fragment {
                     walking.setText(String.valueOf(walkings));
 
 
-                    water_temp = response.body().getResult().getWater();
+                    water_temp = response.body().getResult().getWater()/250;
 
                     water.setText(String.valueOf(water_temp));
-                    probar.setProgress(water_temp);
+                    probar.setProgress((int)( (((double)water_temp*250) / (double)60000) * 100.0));
 
 
                     try {
@@ -442,9 +448,12 @@ public class Home_Fragment extends Fragment {
         });
     }
 
-    @OnClick(R.id.main_diary_water_layout)
-    void main_diary_water_layout() {
-        final DiaryWaterAddDialog diaryWaterAddDialog = new DiaryWaterAddDialog(getContext(), olleego_SP.getString("login_token", ""), Integer.valueOf(olleego_SP.getString("user_id","")),dateFormat.format(date), water_temp, sleep_temp, walkings);
+    @OnClick(R.id.custom_progressBar23)
+    void custom_progressBar23() {
+
+        final int water_ml = water_temp * 250;
+
+        final DiaryWaterAddDialog diaryWaterAddDialog = new DiaryWaterAddDialog(getContext(), olleego_SP.getString("login_token", ""), Integer.valueOf(olleego_SP.getString("user_id","")),dateFormat.format(date), water_ml, sleep_temp, walkings);
         diaryWaterAddDialog.show();
 
         diaryWaterAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -452,10 +461,17 @@ public class Home_Fragment extends Fragment {
             public void onDismiss(DialogInterface dialog) {
                 String day_temp="";
                 if(diaryWaterAddDialog.getType() == true) {
-                    water_temp = diaryWaterAddDialog.getWater();
 
-                    water.setText(String.valueOf(water_temp));
-                    // 008 됌 수정하셈
+                    int j = diaryWaterAddDialog.getWater();
+
+                    water.setText(String.valueOf(j));
+
+                    int g = (int)( ((double)water_ml / (double)60000) * 100.0);
+
+                    probar.setProgress(g);
+
+                    water_temp = j;
+
                 }
             }
         });
@@ -463,7 +479,7 @@ public class Home_Fragment extends Fragment {
 
     @OnClick(R.id.main_diary_sleep_layout)
     void main_diary_sleep_layout() {
-    final DiarySleepAddDialog diarySleepAddDialog = new DiarySleepAddDialog(getContext(), olleego_SP.getString("login_token", ""), Integer.valueOf(olleego_SP.getString("user_id","")),dateFormat.format(date), water_temp, sleep_temp, walkings);
+    final DiarySleepAddDialog diarySleepAddDialog = new DiarySleepAddDialog(getContext(), olleego_SP.getString("login_token", ""), Integer.valueOf(olleego_SP.getString("user_id","")),dateFormat.format(date), water_temp*250, sleep_temp, walkings);
     diarySleepAddDialog.show();
 
     diarySleepAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -527,5 +543,85 @@ public class Home_Fragment extends Fragment {
     void main_diary_type_go() {
         Intent intent = new Intent(getContext(), DiaryChartActivity.class);
         getContext().startActivity(intent);
+    }
+
+
+    @OnClick(R.id.main_diary_water_plus)
+    void main_diary_water_plus() {
+        water_temp++;
+        final int water_ml = water_temp * 250;
+
+
+        RestfulAdapter.setOlleegoInterface(null);
+
+
+        String tokens = "olleego " + olleego_SP.getString("login_token", "");
+
+        DiaryAdd diaryAdd = new DiaryAdd();
+        diaryAdd.DiaryWaterAdd(Integer.valueOf(olleego_SP.getString("user_id", "")),dateFormat.format(date),water_ml,sleep_temp,walkings);
+        Call<MissionsModel> call = RestfulAdapter.getInstance().getDiaryAdd(tokens, "water",diaryAdd);
+        call.enqueue(new Callback<MissionsModel>() {
+            @Override
+            public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
+
+
+                int j = water_ml / 250;
+
+                water.setText(String.valueOf(j));
+
+                int g = (int)( ((double)water_ml / (double)60000) * 100.0);
+
+                probar.setProgress(g);
+
+            }
+
+            @Override
+            public void onFailure(Call<MissionsModel> call, Throwable t) {
+
+            }
+        });
+
+
+
+    }
+
+    @OnClick(R.id.main_diary_water_minus)
+    void main_diary_water_minus() {
+        water_temp--;
+        final int water_ml = water_temp * 250;
+
+
+        RestfulAdapter.setOlleegoInterface(null);
+
+
+        String tokens = "olleego " + olleego_SP.getString("login_token", "");
+
+        DiaryAdd diaryAdd = new DiaryAdd();
+        diaryAdd.DiaryWaterAdd(Integer.valueOf(olleego_SP.getString("user_id", "")),dateFormat.format(date),water_ml,sleep_temp,walkings);
+        Call<MissionsModel> call = RestfulAdapter.getInstance().getDiaryAdd(tokens, "water",diaryAdd);
+        call.enqueue(new Callback<MissionsModel>() {
+            @Override
+            public void onResponse(Call<MissionsModel> call, Response<MissionsModel> response) {
+
+
+                int j = water_ml / 250;
+
+                water.setText(String.valueOf(j));
+
+                int g = (int)( ((double)water_ml / (double)60000) * 100.0);
+
+                probar.setProgress(g);
+
+            }
+
+            @Override
+            public void onFailure(Call<MissionsModel> call, Throwable t) {
+
+            }
+        });
+
+
+
+
     }
 }

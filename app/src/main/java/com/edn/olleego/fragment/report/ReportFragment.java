@@ -80,7 +80,98 @@ public class ReportFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_report, menu);
+
+        Olleego_SP = getActivity().getSharedPreferences("olleego", getActivity().MODE_PRIVATE);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ServerInfo.OLLEEGO_HOST)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        String token = "olleego " + Olleego_SP.getString("login_token", "");;
+        ReportAPI diaryAPI = retrofit.create(ReportAPI.class);
+
+        final Call<ReportModel> diaryPos = diaryAPI.listRepos(token);
+
+        diaryPos.enqueue(new Callback<ReportModel>() {
+            @Override
+            public void onResponse(Call<ReportModel> call, Response<ReportModel> response) {
+                if (response.isSuccessful()) {
+                    bmi = response.body().getResult().getBmi();
+                    temp = response.body().getResult().getHealth_temp();
+
+                    String s_bim = null;
+                    String s_health_temp = null;
+
+                    if (bmi > 0 && bmi < 18.5) {
+                        s_bim = String.valueOf(bmi + " (저체중)");
+                        report_bmi.setTextColor(Color.parseColor("#ccd6a1"));
+                    } else if (bmi >= 18.5 && bmi < 23) {
+                        s_bim = String.valueOf(bmi + " (정상)");
+                        report_bmi.setTextColor(Color.parseColor("#cde860"));
+
+                    } else if (bmi >= 23 && bmi < 25) {
+                        s_bim = String.valueOf(bmi + " (과체중)");
+                        report_bmi.setTextColor(Color.parseColor("#ffa9a5"));
+
+                    } else if (bmi >= 25 && bmi < 30) {
+                        s_bim = String.valueOf(bmi + " (경도비만)");
+                        report_bmi.setTextColor(Color.parseColor("#ff8681"));
+
+                    } else {
+                        s_bim = String.valueOf(bmi + " (고도비만)");
+                        report_bmi.setTextColor(Color.parseColor("#ff5b53"));
+
+                    }
+
+
+                    if (temp > 0 && temp < 20) {
+                        s_health_temp = "˚ [건강위험]";
+                        report_health_temp.setTextColor(Color.parseColor("#ff5b53"));
+                        report_health_bar.setCurrentValue(Percent.PERCENT_10);
+                    } else if (temp >= 20 && temp < 40) {
+                        s_health_temp = "˚ [주의]";
+                        report_health_temp.setTextColor(Color.parseColor("#ff8681"));
+                        report_health_bar.setCurrentValue(Percent.PERCENT_25);
+                    } else if (temp >= 40 && temp < 60) {
+                        s_health_temp = "˚ [건강관심]";
+                        report_health_bar.setCurrentValue(Percent.PERCENT_50);
+                        report_health_temp.setTextColor(Color.parseColor("#ffa9a5"));
+
+                    } else if (temp >= 60 && temp < 80) {
+                        s_health_temp = "˚ [건강양호]";
+                        report_health_bar.setCurrentValue(Percent.PERCENT_75);
+                        report_health_temp.setTextColor(Color.parseColor("#cde860"));
+
+                    } else {
+                        s_health_temp = "˚ [건강좋음]";
+                        report_health_bar.setCurrentValue(Percent.PERCENT_100);
+                        report_health_temp.setTextColor(Color.parseColor("#cde860"));
+
+                    }
+
+                    report_bmi.setText(s_bim);
+                    report_health_temp.setText(String.valueOf(temp) + s_health_temp);
+                    loadingBarDialog.dismiss();
+
+                } else {
+                    report_bmi.setText("[ 정보없음 ]");
+                    report_health_temp.setText("[ 정보없음 ]");
+                    loadingBarDialog.dismiss();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReportModel> call, Throwable t) {
+
+            }
+        });
+
     }
+
+
 
 
     @Override

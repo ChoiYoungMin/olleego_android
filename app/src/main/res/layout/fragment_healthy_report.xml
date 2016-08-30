@@ -42,6 +42,9 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+
+
         <LinearLayout
             android:id="@+id/report_healthy_layout1"
             android:layout_marginTop="10dp"
@@ -74,25 +77,31 @@
                     android:text=""
                     android:id="@+id/report_healthy_report1_title" />
 
-
-                <TextView
+                <LinearLayout
                     android:id="@+id/report_healthy_report1_detail"
-                    android:textColor="#a6c52a"
-                    android:textSize="12sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="자세히보기"
+                    android:gravity="center|end"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
                     android:layout_alignTop="@+id/report_healthy_report1_title"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="55dp" />
+                    android:layout_marginEnd="20dp" >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_search"
-                    android:layout_alignTop="@+id/report_healthy_report1_title"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="30dp"/>
+
+                    <TextView
+                        android:textColor="#a6c52a"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="자세히보기" />
+
+                    <ImageView
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_search"/>
+                </LinearLayout>
+
+
             </RelativeLayout>
 
             <TextView
@@ -304,10 +313,14 @@
 
         </LinearLayout>
 
+
+
             <RelativeLayout
+                android:id="@+id/healthy_report_nodata"
                 android:visibility="gone"
+                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="400dp"
                 android:background="#bbffffff">
 
                 <TextView
@@ -318,9 +331,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="건강정보를 입력하시면 회원님의 비만도를 알려드려요!\n    상단의 건강정보 입력 버튼을 눌러 주세요요"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="113dp" />
+                   />
 
 
             </RelativeLayout>
@@ -521,10 +532,12 @@
 
             </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:visibility="gone"
+                android:gravity="center"
+                android:id="@+id/healthy_report_nodata2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="400dp"
                 android:background="#bbffffff">
 
                 <TextView
@@ -533,14 +546,11 @@
                     android:textColor="#ff5b53"
                     android:textSize="13sp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="혈압, 혈당 정보를 입력하면 건강상태를 알려 드려요!"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="113dp" />
+                    android:layout_height="wrap_content"
+                    android:text="혈압, 혈당 정보를 입력하면 건강상태를 알려 드려요!" />
 
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </RelativeLayout>
 
