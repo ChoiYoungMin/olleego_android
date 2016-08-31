@@ -80,6 +80,9 @@ public class MissionDetailActivity extends AppCompatActivity {
     @BindView(R.id.mission_detail_description)
     TextView mission_detail_description;
 
+    @BindView(R.id.mission_detail_description2)
+    TextView mission_detail_description2;
+
     @BindView(R.id.mission_title_img)
     ImageView mission_title_img;
 
@@ -150,8 +153,8 @@ public class MissionDetailActivity extends AppCompatActivity {
             mission_detail_level.setText(intent.getStringExtra("mission_level"));
             mission_detail_day.setText(intent.getStringExtra("mission_day")+"주");
             //ission_detail_su.setText(); 주 몇회?
-            mission_detail_description.setText(Html.fromHtml(intent.getStringExtra("mission_description")));
-
+            mission_detail_description.setText(intent.getStringExtra("mission_description"));
+            mission_detail_description2.setText(Html.fromHtml(intent.getStringExtra("mission_description2")));
 
              mission_rating.setRating(intent.getIntExtra("mission_rating", 0));
 
@@ -191,8 +194,6 @@ public class MissionDetailActivity extends AppCompatActivity {
         init_list();
 
         listViewHeightSet(mission_detail_img_adapter, listView);
-
-
     }
 
 
@@ -327,7 +328,8 @@ public class MissionDetailActivity extends AppCompatActivity {
 
 
 
-                selectExgroups(selectMissionModel.getResult().getMi_days().get(0).getExgroup().get(0).get_id());
+                time_one_click();
+
             }
 
             @Override

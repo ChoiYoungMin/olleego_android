@@ -13,11 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.adapter.mission.exmission.ExMission_Adapter;
@@ -43,6 +45,7 @@ import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -86,6 +89,9 @@ public class ExMissionActivity extends AppCompatActivity {
     @BindView(R.id.ex_mission_ok)
     LinearLayout ex_mission_ok;
 
+    @BindView(R.id.ex_mission_img)
+    ImageView ex_mission_img;
+
     int su;
     int size;
     int value= 301;
@@ -104,6 +110,7 @@ public class ExMissionActivity extends AppCompatActivity {
     String exgroup_title;
     Ex exmodels;
     int gg = 3;
+    List<ExList> img_src;
 
     String mission_ok;
 
@@ -135,10 +142,11 @@ public class ExMissionActivity extends AppCompatActivity {
         exgroup_title = intent.getStringExtra("exgroup_title");
         mission_ok = intent.getStringExtra("mission_ok");
 
-            ex_mission_step.setText((su+1)+"-"+size);
-            ex_mission_title.setText(exmodel.getTitle());
-            ex_mission_method.setText(exmodel.getMethod());
-            ex_mission_warning.setText(exmodel.getWarning());
+
+        ex_mission_step.setText((su+1)+"-"+size);
+        ex_mission_title.setText(exmodel.getTitle());
+        ex_mission_method.setText(exmodel.getMethod());
+        ex_mission_warning.setText(exmodel.getWarning());
 
 
 
@@ -158,6 +166,11 @@ public class ExMissionActivity extends AppCompatActivity {
             ex_id.add(exmodels.get_id());
             exMission_adapter.add(exmodels.getThum_jpg(), exmodels.getTitle(), exmodels.getWarning(),su);
         }
+
+        exmodels = (Ex) intent.getSerializableExtra("ex"+su);
+        Glide.with(this).load(exmodels.getThum_gif()).into(ex_mission_img);
+
+
 
         listViewHeightSet(exMission_adapter, list_View);
 
@@ -243,6 +256,9 @@ public class ExMissionActivity extends AppCompatActivity {
                     intent2.putExtra("mission_today", mission_today);
                     intent2.putExtra("exgroup_id", exgroup_id);
                     intent2.putExtra("mission_ok", mission_ok);
+
+
+
                     setResult(1);
                     startActivity(intent2);
                     finish();

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ import com.edn.olleego.activity.mission.exmission.EtcMissionActivity;
 import com.edn.olleego.activity.mission.exmission.ExMissionActivity;
 import com.edn.olleego.common.ServerInfo;
 import com.edn.olleego.dialog.LoadingBarDialog;
+import com.edn.olleego.fragment.Mission.MissionCategoryFragment;
+import com.edn.olleego.fragment.Mission.MissionCategoryMainFragment;
 import com.edn.olleego.model.ExgroupsModel;
 import com.edn.olleego.model.FoodsModel;
 import com.edn.olleego.model.LifesModel;
@@ -167,6 +170,17 @@ public class MainMiddleViewPagerAdapter extends PagerAdapter {
 
         if(type == false) {
             convertView = inflater.inflate(R.layout.item_main_middle_no, null);
+            LinearLayout reduis_main_top = (LinearLayout)convertView.findViewById(R.id.reduis_main_top);
+            reduis_main_top.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    android.support.v4.app.FragmentTransaction transaction = ((MainActivity)context).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.content_main, new MissionCategoryMainFragment());
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+
             view.addView(convertView);
             loadingBarDialog.dismiss();
             mSize = 1;

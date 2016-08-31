@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.edn.olleego.R;
 import com.edn.olleego.activity.MainActivity;
 import com.edn.olleego.common.ServerInfo;
@@ -55,6 +57,8 @@ public class EtcMissionActivity extends AppCompatActivity {
 
     String type;
 
+    @BindView(R.id.etc_mission_img)
+    ImageView etc_mission_img;
 
     @BindView(R.id.etc_mission_type)
     TextView mission_type;
@@ -105,7 +109,7 @@ public class EtcMissionActivity extends AppCompatActivity {
                 mission_time.setText(gettime(fdList.getFd_time(),1));
                 mission_description.setText(Html.fromHtml(fdList.getDescription2()));
                 mission_tip.setText(fdList.getTip());
-
+                Glide.with(this).load(fdList.getDescription_img().get(0)).into(etc_mission_img);
 
                 tokens = intent.getStringExtra("token");
                 mission_id = intent.getIntExtra("mission_id", 0);
@@ -125,6 +129,7 @@ public class EtcMissionActivity extends AppCompatActivity {
                 mission_time.setText(gettime(lfList.getLf_time(),2));
                 mission_description.setText(lfList.getDescription1());
                 mission_tip.setText(lfList.getTip());
+                Glide.with(this).load(lfList.getDescription_img().get(0)).into(etc_mission_img);
 
 
                 tokens = intent.getStringExtra("token");

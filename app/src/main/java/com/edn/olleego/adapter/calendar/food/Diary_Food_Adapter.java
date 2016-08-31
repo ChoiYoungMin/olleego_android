@@ -17,9 +17,11 @@ import com.edn.olleego.adapter.mission.Mission_Data;
 import com.edn.olleego.adapter.mission.Mission_ViewHolder;
 import com.edn.olleego.fragment.diary.Diary_Fragment;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Antonio on 2016-07-27.
@@ -30,8 +32,8 @@ public class Diary_Food_Adapter extends BaseAdapter{
     private Context context = null;
     private ArrayList<Diary_Food_Data> diary_food_datas = new ArrayList<Diary_Food_Data>();
     Diary_Fragment fragment;
-
     SharedPreferences olleego_sp;
+    List<String> foodlist;
 
 
     public Diary_Food_Adapter(LayoutInflater inflater, Context context, Diary_Fragment fragment) {
@@ -82,6 +84,24 @@ public class Diary_Food_Adapter extends BaseAdapter{
         holder.diary_food_foods.setText(diary_food_data.mFoods);
         holder.diary_food_memo.setText(diary_food_data.mMemo);
 
+        switch (diary_food_data.mIcon) {
+            case "부족해":
+                holder.diary_food_icon.setImageResource(R.drawable.hungry_list);
+                break;
+
+            case "기분좋아":
+                holder.diary_food_icon.setImageResource(R.drawable.happy_list);
+                break;
+
+            case "배불러요":
+                holder.diary_food_icon.setImageResource(R.drawable.full_list);
+                break;
+
+            case "과식!":
+                holder.diary_food_icon.setImageResource(R.drawable.overeat_list);
+                break;
+        }
+
         holder.diary_food_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +126,7 @@ public class Diary_Food_Adapter extends BaseAdapter{
                 intent.putExtra("foods", diary_food_datas.get(position).mFoods);
                 intent.putExtra("memo", diary_food_datas.get(position).mMemo);
                 intent.putExtra("icon", diary_food_datas.get(position).mIcon);
-                intent.putExtra("foodlist", diary_food_datas.get(position).foodlist);
+                intent.putExtra("foodlist", (Serializable) diary_food_datas.get(position).foodlist);
 
                 ((MainActivity)context).startActivityForResult(intent, 0);
 
@@ -121,9 +141,9 @@ public class Diary_Food_Adapter extends BaseAdapter{
     }
 
 
-    public void additem(String mImg, String mSort, String mFoods, String mMemo, String mIcon, Date day, ArrayList<String> foodlist){
-        Diary_Food_Data diary_food_data = new Diary_Food_Data(mImg, mSort, mFoods,mMemo,mIcon,day, foodlist);
+    public void additem(String mImg, String mSort, String mFoods, String mMemo, String mIcon, Date day, List<String> foodlist){
 
+        Diary_Food_Data diary_food_data = new Diary_Food_Data(mImg, mSort, mFoods,mMemo,mIcon,day, foodlist);
         diary_food_datas.add(diary_food_data);
         notifyDataSetChanged();
 

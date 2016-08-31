@@ -2,6 +2,7 @@ package com.edn.olleego.model.Lifes;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Antonio on 2016-07-15.
@@ -40,6 +41,11 @@ public class LfList implements Serializable {
     //Image2 image2;
 
     //Image1 image1;
+
+    String title_img;
+
+    List<String> description_img;
+
 
 
     public int get_id() {
@@ -126,17 +132,17 @@ public class LfList implements Serializable {
     public void set__v(int __v) {
         this.__v = __v;
     }
-    /*
-    public Image2 getImage2() {
-        return this.image2
+
+    public String getTitle_img() {
+        return this.title_img;
     }
-    public Image2 setImage2(Image2 image2) {
-        this.image2 = image2
+    public void setTitle_img(String title_img) {
+        this.title_img = title_img;
     }
-    public Image1 getImage1() {
-        return this.image1
+    public List<String> getDescription_img() {
+        return this.description_img;
     }
-    public Image1 setImage1(Image1 image1) {
-        this.image1 = image1
-    } */
+    public void setDescription_img(List<String> description_img) {
+        this.description_img = description_img;
+    }
 }

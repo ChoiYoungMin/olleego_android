@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
@@ -68,8 +69,9 @@ public class HealthyReportFragment extends Fragment {
 
     @BindView(R.id.healthy_report_nodata)
     RelativeLayout healthy_report_nodata;
+
     @BindView(R.id.healthy_report_nodata2)
-    RelativeLayout healthy_report_nodata2;
+    LinearLayout healthy_report_nodata2;
 
     @BindView(R.id.report_healthy_layout1)
     LinearLayout report_healthy_layout1;
@@ -340,15 +342,20 @@ public class HealthyReportFragment extends Fragment {
     SharedPreferences olleego_SP;
     ReportModel reportModel;
     Double bmi;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-
         View rootview = inflater.inflate(R.layout.fragment_healthy_report, container, false);
 
-        ButterKnife.bind(this, rootview);
+        try{
+            ButterKnife.bind(this, rootview);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         final HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -475,8 +482,12 @@ public class HealthyReportFragment extends Fragment {
 
                     healthy_report_nodata.setVisibility(View.VISIBLE);
                     healthy_report_nodata2.setVisibility(View.VISIBLE);
-
-
+                    report_healthy_layout3.setVisibility(View.GONE);
+                    DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+                    int px = Math.round(1200 * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+                    ViewGroup.LayoutParams params = viewPager.getLayoutParams();
+                    params.height = px;
+                    viewPager.setLayoutParams(params);
 
                 }
             }

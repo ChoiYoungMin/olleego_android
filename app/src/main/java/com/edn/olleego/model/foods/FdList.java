@@ -2,6 +2,7 @@ package com.edn.olleego.model.foods;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Antonio on 2016-07-15.
@@ -36,6 +37,9 @@ public class FdList  implements Serializable {
 
     int __v;
 
+    String title_img;
+
+    List<String> description_img;
 
 
     public int get_id() {
@@ -122,5 +126,16 @@ public class FdList  implements Serializable {
     public void set__v(int __v) {
         this.__v = __v;
     }
-
+    public String getTitle_img() {
+        return this.title_img;
+    }
+    public void setTitle_img(String title_img) {
+        this.title_img = title_img;
+    }
+    public List<String> getDescription_img() {
+        return this.description_img;
+    }
+    public void setDescription_img(List<String> description_img) {
+        this.description_img = description_img;
+    }
 }

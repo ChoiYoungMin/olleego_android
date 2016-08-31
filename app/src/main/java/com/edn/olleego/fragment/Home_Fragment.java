@@ -122,6 +122,7 @@ public class Home_Fragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == 5) {
+            rootView.findViewById(R.id.main_diary_food_no).setVisibility(View.GONE);
             switch (data.getStringExtra("food_type")) {
                 case "아침":
                     rootView.findViewById(R.id.main_diary_morning).setVisibility(View.VISIBLE);

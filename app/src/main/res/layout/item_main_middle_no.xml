@@ -51,6 +51,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/reduis_main_top"
             android:layout_marginTop="60dp"
             android:background="@drawable/reduis_main_top"
             android:layout_width="270dp"

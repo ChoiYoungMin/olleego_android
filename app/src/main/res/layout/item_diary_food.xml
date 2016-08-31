@@ -15,7 +15,6 @@
     <ImageView
         android:layout_width="122dp"
         android:layout_height="122dp"
-        android:src="@drawable/basic_food_1"
         android:scaleType="fitXY"
         android:id="@+id/item_diary_food_img" />
 
@@ -68,8 +67,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/item_diary_food_icon"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/hungry_list"/>
+            android:layout_alignParentEnd="true"/>
 
 
     </RelativeLayout>

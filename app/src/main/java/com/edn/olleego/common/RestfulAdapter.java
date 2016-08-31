@@ -25,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RestfulAdapter {
     //private static final String OLLEEGO_HOST = "http://1.255.51.120:5000";
     private static final String OLLEEGO_HOST = "http://192.168.0.7:4000";
+    //private static final String OLLEEGO_HOST = "http://olleego1.iptime.org:5000";
     private static final String OLLEEGO_HOST_TEST = "http://sinrim10.iptime.org:4000";
     public static final int CONNECT_TIMEOUT = 15;
     public static final int WRITE_TIMEOUT = 15;

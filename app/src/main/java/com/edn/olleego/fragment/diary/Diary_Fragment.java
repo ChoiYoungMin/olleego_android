@@ -319,21 +319,34 @@ public class Diary_Fragment extends Fragment {
         if (Integer.parseInt(day2) < 10) day_temp = "0"+day2;
 
 
-        if(Integer.parseInt(gridAdapter.getItem(position)) < 10) {
-            su = day_temp+"월 "+"0"+gridAdapter.getItem(position)+"일";
-        } else {
-            su = day_temp+"월 "+gridAdapter.getItem(position)+"일";
+        try {
+            if(Integer.parseInt(gridAdapter.getItem(position)) < 10) {
+                su = day_temp+"월 "+"0"+gridAdapter.getItem(position)+"일";
+            } else {
+                su = day_temp+"월 "+gridAdapter.getItem(position)+"일";
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
+
 
         String day3;
 
-        if(Integer.parseInt(gridAdapter.getItem(position)) < 10) {
-            day3 = "0"+gridAdapter.getItem(position);
-        } else {
-            day3 = gridAdapter.getItem(position);
+        try {
+            if(Integer.parseInt(gridAdapter.getItem(position)) < 10) {
+                day3 = "0"+gridAdapter.getItem(position);
+            } else {
+                day3 = gridAdapter.getItem(position);
+            }
+            daydetail(su, day1+"-"+day_temp+"-"+day3,0);
+        } catch (NumberFormatException e)
+        {
+            e.printStackTrace();
+            daydetail(su, day1+"-"+day_temp+"-"+0,0);
         }
 
-        daydetail(su, day1+"-"+day_temp+"-"+day3,0);
+
+
     }
 
 
@@ -631,6 +644,7 @@ public class Diary_Fragment extends Fragment {
                                 }
                                 diary_food_adapter.additem(response.body().getResult().getFood().get(j).getImage(),response.body().getResult().getFood().get(j).getSort(),foods,response.body().getResult().getFood().get(j).getMemo(),response.body().getResult().getFood().get(j).getSatiety(), response.body().getResult().getCreated() , foodlist);
                             }
+                            foodlist.clear();
 
 
                             switch (response.body().getResult().getFood().get(j).getSort()) {

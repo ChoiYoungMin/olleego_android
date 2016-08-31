@@ -153,6 +153,7 @@ public class MissionCategoryFragment extends Fragment {
                 intent.putExtra("mission_level", allMissionModel.getResult().get(position).getMi_level().getValue());
                 intent.putExtra("mission_day", String.valueOf(allMissionModel.getResult().get(position).getMi_term()));
                 intent.putExtra("mission_description", allMissionModel.getResult().get(position).getDescription1());
+                intent.putExtra("mission_description2", allMissionModel.getResult().get(position).getDescription2());
                 intent.putExtra("mission_img_size", allMissionModel.getResult().get(position).getDescription_img().size());
                 intent.putExtra("mission_title_img", allMissionModel.getResult().get(position).getTitle_img());
                 intent.putExtra("mission_type", 1);
@@ -186,7 +187,22 @@ public class MissionCategoryFragment extends Fragment {
         missionAdapter.notifyDataSetChanged();
         missionAdapter.ItemRemove();
 
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        CookieManager cookieManager = new CookieManager();
+        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+
+        OkHttpClient client = configureClient(new OkHttpClient().newBuilder()) //인증서 무시
+                .connectTimeout(15, TimeUnit.SECONDS) //연결 타임아웃 시간 설정
+                .writeTimeout(15, TimeUnit.SECONDS) //쓰기 타임아웃 시간 설정
+                .readTimeout(15, TimeUnit.SECONDS) //읽기 타임아웃 시간 설정
+                .cookieJar(new JavaNetCookieJar(cookieManager)) //쿠키메니져 설정
+                .addInterceptor(httpLoggingInterceptor) //http 로그 확인
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
                 .baseUrl(ServerInfo.OLLEEGO_HOST)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -220,6 +236,7 @@ public class MissionCategoryFragment extends Fragment {
                 }
                 else  {
                     Toast.makeText(getContext(),"미션 데이터가 없습니당 ㅎㅎ", Toast.LENGTH_SHORT).show();
+
                 }
             }
 

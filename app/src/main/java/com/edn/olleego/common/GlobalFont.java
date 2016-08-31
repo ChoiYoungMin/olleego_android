@@ -16,6 +16,7 @@ public class GlobalFont  extends Application {
     private static final String TAG = GlobalFont.class.getName();
     //private final String WEB_HOST_URL = "http://1.255.51.120:5000";
     private final String WEB_HOST_URL = "http://192.168.0.7:4000";
+    //private final String WEB_HOST_URL = "http://olleego1.iptime.org:5000";
     @Override
     public void onCreate() {
         super.onCreate();
